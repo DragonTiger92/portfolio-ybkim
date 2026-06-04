@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+
+# Build artifacts
+dist
+build
+coverage
+
+# Local caches
+.vite
+.eslintcache
+
+# Package manager logs
+*.log
