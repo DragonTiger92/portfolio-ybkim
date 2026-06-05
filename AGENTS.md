@@ -220,7 +220,13 @@ When styling:
 
 - Use Conventional Commits style for commit messages.
 - If the working directory or staging area contains multiple concerns, separate them into focused commits.
-- For agent-led work, make the commit message indicate that the work was agent-led so code reviewers can identify the authoring context.
+- For Codex-led work, include the official co-author trailer in the commit message footer:
+
+```txt
+Co-authored-by: Codex <noreply@openai.com>
+```
+
+- Do not use informal suffixes such as `(agent-led)` in the commit subject to indicate agent authorship.
 
 Do not create commits unless explicitly requested.
 
