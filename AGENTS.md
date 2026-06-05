@@ -316,13 +316,14 @@ If environment variables are needed, use example names and document them without
 
 ## Deployment Awareness
 
-This project is expected to be deployed as a static frontend site, with GitHub Pages as the most likely deployment target. Other static hosting tools may be considered later, but GitHub Pages compatibility should be the default assumption for now.
+This project is expected to be deployed as a static frontend site through GitHub Pages project-site hosting at a URL like `https://username.github.io/portfolio-ybkim/`.
+
+Do not assume a custom domain or a GitHub Pages user/organization root site unless explicitly requested.
 
 When changing build or routing behavior:
 
 - Check Vite configuration.
-- If no `vite.config.*` file exists, treat the project as using Vite defaults and add config only when the change requires it.
-- Be careful with Vite `base` paths, especially for GitHub Pages project-site deployment under a repository path.
+- Keep Vite `base` aligned with the GitHub Pages repository path.
 - Do not assume server-side runtime support.
 - Avoid features that require a backend unless explicitly planned.
 - Keep static deployment compatibility in mind.
