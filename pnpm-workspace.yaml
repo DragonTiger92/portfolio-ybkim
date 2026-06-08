@@ -1,0 +1,9 @@
+packages:
+  - "."
+
+savePrefix: ""
+minimumReleaseAge: 10080
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeStrict: true
+verifyDepsBeforeRun: error
+strictDepBuilds: true

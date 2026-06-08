@@ -55,6 +55,34 @@ pnpm lint
 
 If a command does not exist in `package.json`, report that clearly instead of inventing an alternative.
 
+## Supply Chain Security
+
+Do not run package installation or dependency mutation commands unless the user explicitly requests or approves the exact action.
+
+This includes:
+
+- `pnpm install`
+- `pnpm add`
+- `pnpm update`
+- `pnpm dlx`
+- `pnpm import`
+
+When dependency installation is approved, use `pnpm` only and respect the repository's `pnpm-workspace.yaml` security settings:
+
+- direct dependency versions must be pinned exactly in `package.json`
+- new installs must use the configured package cooldown period before accepting newly published packages
+- dependency lifecycle build scripts must remain strict and explicit
+
+For verification, prefer non-mutating checks first:
+
+```bash
+pnpm audit
+pnpm typecheck
+pnpm lint
+pnpm format:check
+pnpm build
+```
+
 ## Code Style
 
 Write code that is easy to read, review, and maintain.
