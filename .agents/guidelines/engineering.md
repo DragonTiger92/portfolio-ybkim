@@ -13,6 +13,21 @@ Before making changes:
 7. Prefer simple, clear solutions over clever abstractions.
 8. Explain assumptions when the codebase does not provide enough information.
 
+## Practical Design Heuristics
+
+Use these heuristics to keep changes small, understandable, and aligned with the project:
+
+- YAGNI: do not build speculative features, extension points, configuration layers, or generic abstractions before there is a concrete need.
+- KISS: prefer the simplest design that fully satisfies the current requirement.
+- SRP: keep each module, function, and component focused on one clear responsibility.
+- SoC: keep UI rendering, state changes, validation, data transformation, configuration, and side effects separated when it improves readability.
+- DRY with judgment: remove meaningful duplication, but do not abstract code that only looks similar while serving different reasons to change.
+- High cohesion, low coupling: keep related logic close together and avoid unnecessary cross-module knowledge.
+- Explicit over implicit: prefer visible data flow, named helpers, and clear inputs/outputs over hidden mutation or ambient assumptions.
+- Fail fast: validate required assumptions near the boundary and return early when work cannot proceed.
+- Least power: use the narrowest tool, API, type, or abstraction that solves the problem.
+- Locality: prefer changes near the relevant feature unless shared behavior genuinely needs a shared home.
+
 ## Code Style
 
 Write code that is easy to read, review, and maintain.
@@ -48,10 +63,12 @@ Do not over-separate files only for theoretical purity. Extract only when it imp
 
 The project intends to enforce strict block-depth quality rules through ESLint, Husky, and lint-staged.
 
-Expected direction:
+Current policy:
 
-- Warning level around block depth `1`
-- Error level around block depth `2`
+- Prefer block depth `1`.
+- Warn at block depth `2`, so a human can still commit intentionally when the tradeoff is justified.
+- Error at block depth `3` and deeper.
+- Agent-led work must run strict lint with `--max-warnings 0`, so warnings are fixed before completion.
 - Pre-commit quality checks through Git hooks
 
 Write code to avoid deep nesting from the beginning.
@@ -74,6 +91,7 @@ When branching grows:
 - Extract guard clauses.
 - Extract small helper functions.
 - Split complex UI branches into smaller functions or modules.
+- Keep validation, data transformation, state updates, and UI rendering in separate focused steps when it improves readability.
 - Avoid nested ternaries.
 - Avoid deeply nested `if`, `for`, `while`, `switch`, and callback structures.
 

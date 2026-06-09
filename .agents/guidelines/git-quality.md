@@ -22,7 +22,7 @@ Preferred order:
 
 ```bash
 pnpm.cmd typecheck
-pnpm.cmd lint
+pnpm.cmd lint:strict
 pnpm.cmd format:check
 pnpm.cmd build
 ```
@@ -63,5 +63,7 @@ Suggested direction:
 ```txt
 pre-commit -> lint-staged -> ESLint / formatter on staged files
 ```
+
+Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
 
 Do not implement Husky or lint-staged unless explicitly requested.

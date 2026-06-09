@@ -7,6 +7,84 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
+const nestedControlFlowNodeTypes = [
+  "IfStatement",
+  "ForStatement",
+  "ForInStatement",
+  "ForOfStatement",
+  "WhileStatement",
+  "DoWhileStatement",
+  "SwitchStatement",
+  "TryStatement",
+  "CatchClause",
+];
+
+const cleanCodePlugin = {
+  rules: {
+    "warn-depth-two": {
+      meta: {
+        type: "suggestion",
+        docs: {
+          description: "Warn when control-flow nesting reaches depth 2.",
+        },
+        schema: [],
+        messages: {
+          avoidDepthTwo:
+            "Control-flow nesting depth is 2. Prefer guard clauses, early returns, or extracting a small function.",
+        },
+      },
+      create(context) {
+        const depthStack = [0];
+
+        function enterFunction() {
+          depthStack.push(0);
+        }
+
+        function exitFunction() {
+          depthStack.pop();
+        }
+
+        function enterNestedControlFlow(node) {
+          const currentIndex = depthStack.length - 1;
+
+          depthStack[currentIndex] += 1;
+
+          if (depthStack[currentIndex] !== 2) {
+            return;
+          }
+
+          context.report({
+            node,
+            messageId: "avoidDepthTwo",
+          });
+        }
+
+        function exitNestedControlFlow() {
+          const currentIndex = depthStack.length - 1;
+
+          depthStack[currentIndex] -= 1;
+        }
+
+        const visitors = {
+          FunctionDeclaration: enterFunction,
+          "FunctionDeclaration:exit": exitFunction,
+          FunctionExpression: enterFunction,
+          "FunctionExpression:exit": exitFunction,
+          ArrowFunctionExpression: enterFunction,
+          "ArrowFunctionExpression:exit": exitFunction,
+        };
+
+        for (const nodeType of nestedControlFlowNodeTypes) {
+          visitors[nodeType] = enterNestedControlFlow;
+          visitors[`${nodeType}:exit`] = exitNestedControlFlow;
+        }
+
+        return visitors;
+      },
+    },
+  },
+};
+
 export default defineConfig([
   {
     ignores: ["dist/**", "build/**", "coverage/**", "node_modules/**"],
@@ -18,7 +96,7 @@ export default defineConfig([
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    plugins: { js },
+    plugins: { js, "clean-code": cleanCodePlugin },
     extends: ["js/recommended"],
     languageOptions: {
       ecmaVersion: "latest",
@@ -30,10 +108,16 @@ export default defineConfig([
       "no-alert": "warn",
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-duplicate-imports": "error",
+      "no-nested-ternary": "error",
       "no-var": "error",
       "object-shorthand": ["error", "always"],
       "prefer-const": "error",
       "prefer-template": "error",
+      "clean-code/warn-depth-two": "warn",
+      complexity: ["warn", 8],
+      "max-depth": ["error", 2],
+      "max-lines-per-function": ["warn", { max: 80, skipBlankLines: true, skipComments: true }],
+      "max-params": ["warn", 3],
     },
   },
   {
