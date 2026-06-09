@@ -36,6 +36,6 @@
       "pnpm exec eslint --fix --no-warn-ignored",
       "pnpm exec prettier --write"
     ],
-    "**/*.html": "pnpm exec prettier --write"
+    "**/*.{html,yml,yaml}": "pnpm exec prettier --write"
   }
 }
