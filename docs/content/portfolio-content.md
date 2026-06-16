@@ -19,7 +19,7 @@ release without losing public-information safety.
 | Section    | Purpose                                  |
 | ---------- | ---------------------------------------- |
 | Intro      | State positioning and job-seeking status |
-| Projects   | Present sanitized case studies           |
+| Projects   | Present public project summaries         |
 | Skills     | Connect tools to delivery responsibility |
 | Process    | Show planning, documentation, and checks |
 | Repository | Invite technical review of this project  |

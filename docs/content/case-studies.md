@@ -25,11 +25,3 @@ hosting with care.
 These projects are useful as early-career frontend evidence. They can be
 summarized compactly because the main portfolio should prioritize the current
 developer positioning and this repository's execution quality.
-
-## Applicant-Only Evidence
-
-Some work history evidence may be appropriate for resumes, interviews, or direct
-job applications, but not for public website copy or public repository docs.
-
-If applicant-only evidence is used later, public copy must be written from a
-fresh disclosure review rather than copied from private context.

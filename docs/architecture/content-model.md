@@ -31,3 +31,6 @@ Every strong claim should be backed by one of these public-safe forms:
 - A public document in this repository.
 - A resume or recommendation artifact shared directly during applications, not
   published on the portfolio site.
+
+Applicant-only or private evidence can support private preparation, but it must
+not become public content without a fresh disclosure review.
