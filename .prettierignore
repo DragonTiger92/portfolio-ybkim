@@ -10,5 +10,9 @@ coverage
 .vite
 .eslintcache
 
+# Local/private working directories
+tmp
+.contexts
+
 # Package manager logs
 *.log

@@ -25,4 +25,5 @@ dist-ssr
 
 # Temporary files
 tmp/
+.contexts/
 .agents/handoffs/

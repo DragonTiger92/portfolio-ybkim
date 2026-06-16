@@ -26,3 +26,11 @@ Do not expose:
 - deployment secrets
 
 If environment variables are needed, use example names and document them without real values.
+
+## Private Context Handling
+
+`.contexts/` is a private, gitignored context store.
+
+- Do not publish `.contexts/` contents into public docs, website copy, commit messages, pull request text, or reports unless the user explicitly requests that exact disclosure.
+- When using company or private-project material as source context, write public-facing summaries that avoid confidential implementation details.
+- Before finishing work that touches private context, check that `.contexts/` files are not shown as tracked or untracked public changes.

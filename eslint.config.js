@@ -87,7 +87,7 @@ const cleanCodePlugin = {
 
 export default defineConfig([
   {
-    ignores: ["dist/**", "build/**", "coverage/**", "node_modules/**"],
+    ignores: ["dist/**", "build/**", "coverage/**", "node_modules/**", "tmp/**", ".contexts/**"],
   },
   {
     linterOptions: {
