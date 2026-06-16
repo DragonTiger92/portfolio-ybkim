@@ -14,7 +14,7 @@ This document is the single source of truth for user-facing behavior.
 The first viewport must clearly present YB Kim as a frontend-specialized
 full-stack web developer.
 
-### Acceptance Criteria
+### FR-001 Acceptance Criteria
 
 - The headline or primary copy communicates frontend strength and full-stack
   delivery breadth.
@@ -34,7 +34,7 @@ full-stack web developer.
 The site must summarize representative public projects without using private or
 applicant-only work as public source material.
 
-### Acceptance Criteria
+### FR-002 Acceptance Criteria
 
 - Each project summary states the problem, role, stack category, and outcome.
 - Applicant-only or private work evidence is excluded from public case-study
@@ -52,7 +52,7 @@ applicant-only work as public source material.
 
 Visitors must be able to access the public GitHub repository and contact paths.
 
-### Acceptance Criteria
+### FR-003 Acceptance Criteria
 
 - Repository access is visible from persistent or repeated navigation.
 - Contact actions use public-safe channels only.
@@ -70,7 +70,7 @@ Visitors must be able to access the public GitHub repository and contact paths.
 The site must connect skills to evidence rather than listing tools without
 context.
 
-### Acceptance Criteria
+### FR-004 Acceptance Criteria
 
 - Frontend, integration, deployment, documentation, and verification skills are
   grouped by role in delivery.

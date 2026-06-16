@@ -13,7 +13,7 @@ portfolio site.
 
 The site must be accessible by default.
 
-### Verification
+### NFR-001 Verification
 
 - Use semantic HTML for document structure and navigation.
 - Preserve visible focus states for interactive elements.
@@ -30,7 +30,7 @@ The site must be accessible by default.
 
 The portfolio should remain lightweight and fast as a static site.
 
-### Verification
+### NFR-002 Verification
 
 - Avoid unnecessary runtime dependencies.
 - Keep image and asset usage intentional.
@@ -47,7 +47,7 @@ The portfolio should remain lightweight and fast as a static site.
 
 The project should be easy to inspect, modify, and verify.
 
-### Verification
+### NFR-003 Verification
 
 - Keep TypeScript, DOM rendering, styling, and content data responsibilities
   clear.
@@ -65,7 +65,7 @@ The project should be easy to inspect, modify, and verify.
 Public files must not disclose private company material or sensitive personal
 information.
 
-### Verification
+### NFR-004 Verification
 
 - Keep private evidence in gitignored `.contexts/`.
 - Do not publish recommendation-letter content on the web portfolio.
@@ -82,7 +82,7 @@ information.
 
 The site must remain compatible with GitHub Pages project-site hosting.
 
-### Verification
+### NFR-005 Verification
 
 - Keep Vite `base` aligned with `/portfolio-ybkim/`.
 - Avoid backend runtime assumptions.
