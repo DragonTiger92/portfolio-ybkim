@@ -14,6 +14,7 @@ review. It is intentionally compact.
 | `WI-007` | Quality | `NFR-001` | Validate accessibility basics         | Draft       | `PH-004` | P1       |
 | `WI-008` | Quality | `NFR-002` | Validate performance and static build | Draft       | `PH-004` | P1       |
 | `WI-009` | Deploy  | `NFR-005` | Verify GitHub Pages deployment path   | Draft       | `PH-005` | P2       |
+| `WI-010` | Quality | Project   | Establish GitHub Flow and CI baseline | In Progress | `PH-001` | P1       |
 
 ## Priority Vocabulary
 

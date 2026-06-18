@@ -20,6 +20,22 @@ The SBOM is stored at the repository root as `sbom.spdx.json`.
 | Dependencies | `NOASSERTION` when a package license is not locally confirmed |
 | Update       | Regenerate after dependency or project license changes        |
 
+Future production release automation is expected to replace the manual root
+SBOM workflow with a CI-generated CycloneDX JSON SBOM attached to each GitHub
+Release. Until that release workflow is implemented, the root SPDX artifact
+remains the current baseline.
+
+## Automated Review
+
+- Dependabot checks npm package metadata and GitHub Actions updates on a weekly
+  schedule.
+- Dependency Review runs on pull requests to inspect newly introduced
+  dependencies and license changes.
+- Copyleft license families that could conflict with the repository licensing
+  intent are denied at the pull-request review gate.
+- Release notes are generated from pull request metadata and labels when a
+  GitHub Release is created.
+
 ## Repository Licensing
 
 - Source code and build/configuration files are licensed under the MIT License.

@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a defect in the portfolio site, project docs, or repository workflow.
+title: "fix: "
+labels:
+  - type:fix
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for defects with clear current behavior and expected behavior.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken?
+      placeholder: Describe the defect in one or two paragraphs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include screenshots, URLs, command output, or reproduction steps when useful.
+    validations:
+      required: false
+  - type: dropdown
+    id: release_impact
+    attributes:
+      label: Release impact
+      options:
+        - release:patch
+        - release:minor
+        - release:major
+        - release:not-applicable
+      default: 0
+    validations:
+      required: true

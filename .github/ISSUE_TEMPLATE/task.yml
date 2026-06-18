@@ -1,0 +1,40 @@
+name: Maintenance task
+description: Track repository, CI, documentation, or operations work.
+title: "chore: "
+labels:
+  - type:docs
+  - release:not-applicable
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for non-feature work such as docs, CI, repository policy, or maintenance.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be improved or made ready?
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: List the concrete work items.
+      placeholder: "- ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: primary_area
+    attributes:
+      label: Primary area
+      options:
+        - type:docs
+        - type:ci
+        - type:infra
+        - type:security
+        - type:deps
+        - type:content
+      default: 0
+    validations:
+      required: true

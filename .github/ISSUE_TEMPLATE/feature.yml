@@ -1,0 +1,45 @@
+name: Feature or content request
+description: Plan a user-visible portfolio feature, content update, or experience improvement.
+title: "feat: "
+labels:
+  - type:feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for user-facing product, content, or portfolio experience changes.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What outcome should this change create?
+      placeholder: State the user-visible result and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What should be included or intentionally left out?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What must be true before this issue can close?
+      placeholder: "- ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: release_impact
+    attributes:
+      label: Release impact
+      options:
+        - release:minor
+        - release:patch
+        - release:major
+        - release:not-applicable
+      default: 0
+    validations:
+      required: true

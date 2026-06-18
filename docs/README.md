@@ -26,6 +26,7 @@ evidence.
 | `adr/0003-use-spdx-json-sbom.md`                        | SBOM format decision                         |
 | `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                   |
 | `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary              |
+| `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision     |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                   |
 | `reference/glossary.md`                                 | Shared terms                                 |
 | `content/portfolio-content.md`                          | Public portfolio content model               |
