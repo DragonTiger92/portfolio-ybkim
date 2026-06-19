@@ -5,11 +5,21 @@
 `portfolio-ybkim` is a personal static portfolio project. It does not currently
 provide a backend service, user accounts, or a production API.
 
-## Reporting
+## Supported Version
 
-If you find a security issue in this public repository, open a GitHub issue with
-a minimal description that does not expose secrets or private data. For sensitive
-reports, contact the repository owner through the public profile contact path.
+Security review applies to the current `main` branch and the latest public
+deployment after releases begin. Older commits and unreleased topic branches
+are not maintained as separate supported versions.
+
+## Reporting A Vulnerability
+
+Do not open a public issue for a suspected vulnerability or exposed secret.
+Use GitHub's private vulnerability reporting flow for this repository so the
+maintainer can investigate before disclosure.
+
+Include the affected path or revision, expected impact, reproduction steps, and
+any suggested mitigation that can be shared safely. Do not include real secrets
+or third-party personal data in the report.
 
 ## Private Material
 

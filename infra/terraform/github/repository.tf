@@ -16,6 +16,16 @@ resource "github_repository" "this" {
 
   delete_branch_on_merge = true
 
+  security_and_analysis {
+    secret_scanning {
+      status = "enabled"
+    }
+
+    secret_scanning_push_protection {
+      status = "enabled"
+    }
+  }
+
   lifecycle {
     prevent_destroy = true
   }

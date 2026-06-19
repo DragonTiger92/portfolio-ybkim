@@ -7,11 +7,13 @@ This Terraform root manages long-lived GitHub repository governance for
 
 - repository feature and merge settings;
 - project-specific issue labels;
-- Dependabot vulnerability alerts and security updates; and
+- Dependabot vulnerability alerts and security updates;
+- Secret scanning and push protection; and
 - the `main` branch ruleset.
 
-Milestones, issue assignment, repository files, Actions workflows, secrets, and
-Cloudflare resources are managed elsewhere.
+Milestones, issue assignment, repository files, Actions workflows, CodeQL
+default setup, private vulnerability reporting, secrets, and Cloudflare
+resources are managed elsewhere.
 
 ## Bootstrap Boundary
 

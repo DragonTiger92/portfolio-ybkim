@@ -6,16 +6,18 @@ state.
 
 ## Ownership Boundaries
 
-| Surface                                   | Owner                                         |
-| ----------------------------------------- | --------------------------------------------- |
-| Repository settings and custom labels     | GitHub Terraform root                         |
-| `main` branch ruleset                     | GitHub Terraform root                         |
-| Vulnerability alerts and security updates | GitHub Terraform root                         |
-| Issue and pull request templates          | Version-controlled `.github/` files           |
-| GitHub Actions workflows                  | Version-controlled `.github/workflows/`       |
-| Milestones and issue assignment           | Milestone synchronization workflow and API    |
-| Credentials and secrets                   | GitHub secure settings, never Terraform state |
-| Cloudflare Pages, Access, and DNS         | Separate PH-003 Terraform root                |
+| Surface                                    | Owner                                         |
+| ------------------------------------------ | --------------------------------------------- |
+| Repository settings and custom labels      | GitHub Terraform root                         |
+| `main` branch ruleset                      | GitHub Terraform root                         |
+| Vulnerability alerts and security updates  | GitHub Terraform root                         |
+| Secret scanning feature flags              | GitHub Terraform root                         |
+| CodeQL and private vulnerability reporting | GitHub-managed settings via owner API         |
+| Issue and pull request templates           | Version-controlled `.github/` files           |
+| GitHub Actions workflows                   | Version-controlled `.github/workflows/`       |
+| Milestones and issue assignment            | Milestone synchronization workflow and API    |
+| Credentials and secrets                    | GitHub secure settings, never Terraform state |
+| Cloudflare Pages, Access, and DNS          | Separate PH-003 Terraform root                |
 
 ## Main Ruleset
 
@@ -23,6 +25,8 @@ The desired `main` ruleset:
 
 - requires pull requests;
 - requires `Check`, `Dependency Review`, and `PR Metadata`;
+- requires CodeQL results and blocks analyzer errors or high-and-higher
+  security alerts;
 - requires the branch to be current with `main`;
 - requires review conversations to be resolved;
 - blocks branch deletion and force pushes; and
@@ -53,6 +57,21 @@ public branch naming convention instead.
 and the production build. Terraform planning and apply are deliberately absent
 from pull requests until durable remote state and owner credentials are
 configured.
+
+## Security And Quality Baseline
+
+- Use GitHub CodeQL default setup with the `extended` query suite
+  for JavaScript and TypeScript.
+- Keep Secret scanning and push protection enabled.
+- Keep Dependabot alerts and security updates enabled.
+- Accept sensitive reports only through GitHub private vulnerability reporting.
+- Treat non-provider pattern detection and secret validity checks as unavailable
+  while GitHub keeps those settings disabled for the current repository.
+
+CodeQL default setup and private vulnerability reporting are explicit
+provider-boundary exceptions. They are verified through GitHub's API rather than
+represented as Terraform resources. Do not add a generic REST Terraform
+provider solely to cover these two settings.
 
 ## Bootstrap
 

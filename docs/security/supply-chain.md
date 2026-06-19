@@ -46,6 +46,14 @@ to policy review instead of inventing a license conclusion.
 - Repository security setup should enable Dependency Graph, Dependabot alerts,
   Dependabot security updates, secret scanning, and push protection where the
   repository and account support them.
+- CodeQL default setup should scan JavaScript and TypeScript with the `extended`
+  query suite. The `main` ruleset should reject analyzer
+  errors and high-or-higher security alerts after the bootstrap merge.
+- Secret scanning and push protection should remain enabled. Non-provider
+  patterns, validity checks, and AI-based generic detection remain optional or
+  unavailable until repository support and signal quality are confirmed.
+- Sensitive vulnerability reports should use GitHub private vulnerability
+  reporting rather than a public issue.
 - Release notes are generated from pull request metadata and labels when a
   GitHub Release is created.
 
