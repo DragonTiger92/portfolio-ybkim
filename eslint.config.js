@@ -87,7 +87,15 @@ const cleanCodePlugin = {
 
 export default defineConfig([
   {
-    ignores: ["dist/**", "build/**", "coverage/**", "node_modules/**", "tmp/**", ".contexts/**"],
+    ignores: [
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "node_modules/**",
+      "tmp/**",
+      ".contexts/**",
+      "**/.terraform/**",
+    ],
   },
   {
     linterOptions: {
@@ -128,6 +136,12 @@ export default defineConfig([
   },
   {
     files: ["*.config.{js,mjs,ts,mts}", "eslint.config.js"],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+  {
+    files: ["scripts/**/*.{js,mjs,cjs}"],
     languageOptions: {
       globals: globals.node,
     },

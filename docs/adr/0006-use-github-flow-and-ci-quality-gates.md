@@ -84,9 +84,12 @@ The first workflow-baseline issue may be created manually because the issue
 templates do not exist on `main` until this branch is merged. Later issues
 should use the repository templates.
 
-Deployment workflows, Cloudflare Pages, Cloudflare Access, Wrangler, Terraform,
-and release SBOM generation are intentionally deferred until the portfolio site
-has a deployable product surface.
+Manage repository settings, labels, supported security controls, and the
+`main` ruleset as PH-001 GitHub governance infrastructure through Terraform.
+Keep its state and ownership boundary separate from deployment infrastructure.
+Deployment workflows, Cloudflare Pages, Cloudflare Access, Wrangler,
+deployment Terraform, and release SBOM generation remain deferred until the
+portfolio site has a deployable product surface.
 
 ## Consequences
 
@@ -96,5 +99,5 @@ has a deployable product surface.
   reviewer to infer them from commit history.
 - CI makes the existing `pnpm` verification path visible in pull requests.
 - DevSecOps signals remain lightweight and appropriate for a small static site.
-- Some repository settings, such as labels and branch protection, may still need
-  manual setup or later Terraform-managed configuration.
+- Applying the final `main` ruleset remains a post-bootstrap operation because
+  its required checks must first exist on the default branch.

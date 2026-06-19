@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "check": "pnpm typecheck && pnpm lint:strict && pnpm format:check && pnpm build",
+    "test:governance": "node --test scripts/*.test.mjs",
+    "check": "pnpm typecheck && pnpm lint:strict && pnpm test:governance && pnpm format:check && pnpm build",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky"

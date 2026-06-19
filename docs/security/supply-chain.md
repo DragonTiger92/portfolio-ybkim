@@ -34,6 +34,9 @@ to policy review instead of inventing a license conclusion.
 
 - Dependabot checks npm package metadata and GitHub Actions updates on a weekly
   schedule.
+- A weekly, manually repeatable security-audit workflow runs
+  `pnpm audit --audit-level moderate` as an advisory signal outside the pull
+  request merge gate.
 - Dependency Review runs on pull requests to inspect newly introduced
   dependencies and license changes.
 - Dependency Review acts as the CI License Audit policy gate by allowing only

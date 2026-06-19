@@ -23,6 +23,7 @@ evidence.
 | `architecture/overview.md`                              | Static site architecture                    |
 | `architecture/content-model.md`                         | Portfolio content structure                 |
 | `architecture/deployment.md`                            | GitHub Pages deployment model               |
+| `architecture/github-governance.md`                     | GitHub settings and IaC ownership           |
 | `adr/0001-use-static-vite-vanilla-typescript.md`        | Technology baseline decision                |
 | `adr/0002-separate-public-docs-and-agent-guidelines.md` | Documentation boundary decision             |
 | `adr/0003-use-spdx-json-sbom.md`                        | SBOM format decision                        |
