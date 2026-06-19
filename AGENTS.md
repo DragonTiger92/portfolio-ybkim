@@ -12,7 +12,8 @@ Before changing files, inspect the current code and read the guideline files rel
 
 - `.agents/guidelines/project.md`
 - `.agents/guidelines/engineering.md`
-- `.agents/guidelines/package-security.md`
+- `.agents/guidelines/tooling.md`
+- `.agents/guidelines/supply-chain-security.md`
 - `.agents/guidelines/ui.md`
 - `.agents/guidelines/git-quality.md`
 - `.agents/guidelines/operations.md`
