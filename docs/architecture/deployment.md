@@ -1,6 +1,8 @@
 # Deployment Architecture
 
-The intended deployment target is GitHub Pages project-site hosting.
+Cloudflare Pages is the selected production-hosting target. GitHub Pages is not
+a supported target. Provider-specific deployment implementation is deferred to
+`PH-003 Deployment And Operations Readiness`.
 
 ## Build Flow
 
@@ -15,15 +17,103 @@ The generated `dist/` directory is the deployable artifact.
 
 ## Hosting Assumptions
 
-- The repository path is `portfolio-ybkim`.
-- Vite `base` should remain `/portfolio-ybkim/` unless the hosting model changes.
-- No server-side runtime, database, or API is available from GitHub Pages.
+- Production uses a Cloudflare Pages project when the PH-003 decision is
+  implemented.
+- Vite `base` must match the selected deployment hostname and path. Do not retain
+  the GitHub Pages project-path base solely as an obsolete production default.
+- No application server runtime, database, or backend API is required.
 - Content should be bundled at build time or embedded as static source.
+- Compatibility with another hosting provider is not a release acceptance
+  criterion.
+
+## Platform Components
+
+| Component                | Responsibility                                              | Phase / State                         |
+| ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
+| GitHub repository        | Source, issues, pull requests, tags, and release metadata   | PH-001 baseline                       |
+| GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003    |
+| Vite                     | Produce the deployable `dist/` static artifact              | Existing build tool                   |
+| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
+| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                        |
+| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                        |
+| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
+| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
+| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003           |
+| Cloudflare DNS and TLS   | Serve an optional custom domain securely                    | Only if a custom domain is adopted    |
+
+There is no separately managed staging machine, origin application server,
+database server, or logging server in the baseline architecture.
+
+The exact Cloudflare Terraform resources and durable remote-state backend are
+intentionally selected during PH-003. Deferring those choices is expected while
+the Cloudflare account, domain, Access policy, and deployment resources do not
+yet exist.
+
+## Static Artifact And Serving Model
+
+- Vite compiles source and imported assets into `dist/`.
+- Content-hashed build assets under `dist/assets/` are treated as immutable for
+  one deployment.
+- GitHub Actions uploads `dist/` through Wrangler; the generated directory is
+  not committed to Git.
+- Cloudflare Pages retains deployment artifacts and serves the selected
+  production or preview artifact from its edge network.
+- GitHub Releases hold release evidence such as notes and SBOM files. They are
+  not the runtime storage used to serve the website unless a future decision
+  explicitly attaches the site bundle.
+
+## Preview And Staging Model
+
+Use the term **protected preview environment** rather than implying a dedicated
+staging server. A protected preview can serve the staging purpose for remote QA,
+but it is a Cloudflare Pages deployment with its own URL and static artifact.
+
+- Verify every build locally with the normal check/build path and use
+  `vite preview` when browser inspection is needed.
+- Create a remote preview manually through `workflow_dispatch` only when shared
+  QA, production-like edge serving, or release-candidate evidence is useful.
+- Protect preview hostnames through Cloudflare Access. The exact identity
+  provider and allowlist are selected while implementing `PBI-026`.
+- Do not tag ordinary previews. Use an `-rc.N` tag only when the deployed preview
+  is an actual candidate for the target production release.
+
+## Deployment Workflow Boundary
+
+The accepted orchestration direction is GitHub Actions plus Wrangler Direct
+Upload, not Cloudflare Git integration. A reusable production-deployment
+workflow should be callable by both the automatic and manual entry points.
+PH-003 implements:
+
+1. full repository checks and a reproducible Vite build;
+2. optional, manually dispatched protected preview deployment;
+3. automatic production deployment on each push to `main`;
+4. production smoke checks and rollback evidence; and
+5. production tag, generated release notes, and CycloneDX SBOM publication.
+
+The automatic `main` workflow deploys and smoke-checks the integrated commit but
+does not create a release tag for every deployment. A manually triggered formal
+release workflow accepts an explicit version and reviewed `main` revision, then
+uses the same production-deployment implementation.
+
+The formal release order is:
+
+1. validate the version, revision, permissions, and absence of a duplicate tag;
+2. run checks, build the site, and generate release artifacts such as the SBOM;
+3. deploy the exact build to Cloudflare Pages production;
+4. pass production smoke checks against the canonical URL;
+5. create and push the `vX.Y.Z` tag for the deployed revision; and
+6. publish the GitHub Release with generated notes and release artifacts.
+
+This is transaction-like orchestration rather than a literal cross-platform
+transaction. A failure before smoke-check success creates no release tag. A
+failure while creating the tag or GitHub Release leaves a verified production
+deployment that the owner can finalize through an idempotent retry without
+inventing a different version.
 
 ## Release Checks
 
 - Run `pnpm.cmd check` before treating a release candidate as ready.
-- Verify built asset paths under the project-site base path.
+- Verify built asset paths under the selected production base path.
 - Review public copy for private information before publishing.
 
 ## Release Versioning

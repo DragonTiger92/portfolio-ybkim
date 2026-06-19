@@ -23,7 +23,8 @@ visual page.
 - Communicate a clear web developer profile with frontend as the entry point.
 - Show public-safe project evidence without relying on private or applicant-only
   source material in public docs.
-- Keep the site deployable as a static GitHub Pages project.
+- Keep the site deployable as a static Cloudflare Pages product. Supporting
+  GitHub Pages or another host is not a project requirement.
 - Maintain concise requirements, architecture, ADR, and security documents.
 - Use the repository as a visible example of thoughtful engineering practice.
 

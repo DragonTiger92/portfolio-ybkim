@@ -44,17 +44,18 @@ Content under `.contexts/` is confidential by default.
 
 ## Deployment Awareness
 
-This project is expected to be deployed as a static frontend site through GitHub Pages project-site hosting at a URL like `https://username.github.io/portfolio-ybkim/`.
+This project is expected to be deployed as a static frontend site through
+Cloudflare Pages. GitHub Pages is not a supported production target.
 
-Do not assume a custom domain or a GitHub Pages user/organization root site unless explicitly requested.
+Do not assume a custom domain until it is explicitly adopted during PH-003.
 
 When changing build or routing behavior:
 
 - Check Vite configuration.
-- Keep Vite `base` aligned with the GitHub Pages repository path.
+- Keep Vite `base` aligned with the Cloudflare Pages root deployment path.
 - Do not assume server-side runtime support.
 - Avoid features that require a backend unless explicitly planned.
-- Keep static deployment compatibility in mind.
+- Keep Cloudflare Pages static deployment compatibility in mind.
 
 ## Out of Scope Unless Requested
 

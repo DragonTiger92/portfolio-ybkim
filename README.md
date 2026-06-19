@@ -2,7 +2,7 @@
 
 웹 개발자로서의 재취직을 목표로 제작 중인 개인 포트폴리오 프로젝트입니다. 포지셔닝은 **FE 중심 풀스택 웹 개발자(Frontend-specialized full-stack web developer)** 입니다.
 
-이 저장소는 완성된 결과물뿐 아니라, Vanilla TypeScript, HTML, Pure CSS를 기반으로 정적 웹사이트를 설계하고 개선해 가는 과정을 함께 보여주기 위한 작업 공간입니다. GitHub Pages에 배포 가능한 가볍고 빠른 정적 사이트를 목표로 합니다.
+이 저장소는 완성된 결과물뿐 아니라, Vanilla TypeScript, HTML, Pure CSS를 기반으로 정적 웹사이트를 설계하고 개선해 가는 과정을 함께 보여주기 위한 작업 공간입니다. Cloudflare Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
 
 ## For Recruiters
 
@@ -49,7 +49,7 @@ accepted.
 | Language     | TypeScript                               |
 | Build Tool   | Vite                                     |
 | Code Quality | ESLint, Prettier, eslint-config-prettier |
-| Hosting      | GitHub Pages                             |
+| Hosting      | Cloudflare Pages                         |
 
 ## AI-Assisted Workflow
 
@@ -63,7 +63,7 @@ accepted.
 
 - 웹 개발자로서의 문제 해결 방식과 구현 역량을 보여주는 포트폴리오를 만든다.
 - 프레임워크 의존을 최소화하고 브라우저 기본 기술, TypeScript, CSS 설계 역량을 드러낸다.
-- GitHub Pages에 배포 가능한 가볍고 빠른 정적 사이트로 유지한다.
+- Cloudflare Pages에 배포하는 가볍고 빠른 정적 사이트로 유지한다.
 - 작업 과정에서 README와 docs를 함께 보강해 프로젝트 의도, 구조, 의사결정을 기록한다.
 - 공개 포트폴리오 문구는 근거 있게 작성하되, 회사 내부 자료나 private project 세부사항은 노출하지 않는다.
 
@@ -123,4 +123,4 @@ pnpm preview
 
 ## Deployment
 
-GitHub Pages project-site 배포를 목표로 합니다. Vite `base`는 `/portfolio-ybkim/` 경로와 맞춰 유지합니다.
+Cloudflare Pages 배포를 목표로 합니다. Vite `base`는 Pages 루트 경로인 `/`를 사용합니다. 배포 workflow와 Cloudflare 인프라는 PH-003에서 구현합니다.

@@ -22,7 +22,7 @@ evidence.
 | `requirements/non-functional-requirements.md`           | Product quality attributes and constraints  |
 | `architecture/overview.md`                              | Static site architecture                    |
 | `architecture/content-model.md`                         | Portfolio content structure                 |
-| `architecture/deployment.md`                            | GitHub Pages deployment model               |
+| `architecture/deployment.md`                            | Cloudflare deployment and release model     |
 | `architecture/github-governance.md`                     | GitHub settings and IaC ownership           |
 | `adr/0001-use-static-vite-vanilla-typescript.md`        | Technology baseline decision                |
 | `adr/0002-separate-public-docs-and-agent-guidelines.md` | Documentation boundary decision             |
@@ -30,6 +30,7 @@ evidence.
 | `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                  |
 | `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary             |
 | `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision    |
+| `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare delivery and preview decision    |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                  |
 | `security/license-compliance.md`                        | Pre-release third-party license review      |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery |

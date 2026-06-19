@@ -2,13 +2,14 @@
 
 ## Status
 
-Accepted
+Accepted; hosting-provider details superseded by
+[ADR-0007](0007-use-cloudflare-pages-delivery.md)
 
 ## Context
 
 This portfolio is intended to show disciplined web development in a small static
 project. The project contract already uses Vite, Vanilla TypeScript, HTML, pure
-CSS, pnpm, Git, and GitHub Pages.
+CSS, pnpm, and Git. GitHub Pages was the original hosting assumption.
 
 ## Decision
 
@@ -17,6 +18,6 @@ pure CSS.
 
 ## Consequences
 
-- The project remains lightweight and easy to deploy to GitHub Pages.
+- The project remains lightweight and suitable for static edge hosting.
 - Frontend fundamentals stay visible in the implementation.
 - React or another UI framework requires a future ADR and explicit user request.

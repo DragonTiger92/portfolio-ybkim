@@ -9,7 +9,7 @@ TypeScript, HTML, and pure CSS.
 Source files
   -> Vite build
   -> static assets in dist/
-  -> GitHub Pages project-site hosting
+  -> Cloudflare Pages hosting
   -> browser
 ```
 
@@ -28,6 +28,7 @@ Source files
 ## Constraints
 
 - The site must not require a backend runtime.
-- The project must preserve static GitHub Pages compatibility.
+- The supported production target is Cloudflare Pages. GitHub Pages and other
+  static hosts are outside the compatibility contract.
 - React or another UI framework must not be introduced without a new decision.
 - Public docs and site copy must not expose private company material.

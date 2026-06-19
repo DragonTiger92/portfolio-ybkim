@@ -107,23 +107,24 @@ information.
   company-confidential workflow detail from public docs and site copy.
 - Use only the selected public contact channels in website contact actions.
 
-## NFR-005: Static Hosting Portability
+## NFR-005: Static Cloudflare Deployment
 
-| Field               | Value                                                         |
-| ------------------- | ------------------------------------------------------------- |
-| Category            | Deployment                                                    |
-| Status              | Draft                                                         |
-| Severity            | High                                                          |
-| Applicability       | WebFE                                                         |
-| Verification Method | StaticAnalysis, Checklist                                     |
-| Source              | [ADR-0001](../adr/0001-use-static-vite-vanilla-typescript.md) |
+| Field               | Value                                                    |
+| ------------------- | -------------------------------------------------------- |
+| Category            | Deployment                                               |
+| Status              | Draft                                                    |
+| Severity            | High                                                     |
+| Applicability       | WebFE                                                    |
+| Verification Method | StaticAnalysis, Checklist                                |
+| Source              | [ADR-0007](../adr/0007-use-cloudflare-pages-delivery.md) |
 
-The site must remain deployable as static build output without requiring a
-backend runtime or a hosting-provider-specific application server.
+The site must deploy to Cloudflare Pages as static build output without an
+application server or backend runtime. Compatibility with another hosting
+provider is not required.
 
 ### NFR-005 Verification
 
-- Configure Vite asset paths for the selected production host.
+- Configure Vite asset paths for the Cloudflare Pages root path.
 - Avoid backend runtime assumptions.
 - Keep client-side routing optional or static-hosting safe.
 - Verify the generated build locally and on the selected static host.

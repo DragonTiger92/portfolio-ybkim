@@ -27,7 +27,7 @@ For active continuation notes, check `.agents/handoffs/` when the user asks to r
 - Do not install, add, update, import, or execute dependency packages unless the user explicitly approves the exact action.
 - Keep direct dependency versions exact in `package.json`.
 - Keep changes scoped to the user's request and avoid unrelated refactors.
-- Preserve static GitHub Pages compatibility.
+- Preserve static Cloudflare Pages compatibility.
 - Do not create commits unless the user explicitly requests a commit.
 - Do not expose secrets or modify environment files.
 - Run available checks before claiming completion when feasible.

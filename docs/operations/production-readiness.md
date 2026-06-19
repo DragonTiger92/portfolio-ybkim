@@ -64,7 +64,7 @@ makes it useful.
 - escalation to the hosting provider when rollback does not restore service.
 
 The selected hosting implementation must verify its actual rollback mechanism.
-For the current Cloudflare Pages candidate, only successful production
+For the selected Cloudflare Pages target, only successful production
 deployments are rollback targets; preview deployments are not.
 
 ## Logging Boundary
