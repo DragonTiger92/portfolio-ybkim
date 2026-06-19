@@ -28,18 +28,36 @@ Use GitHub Flow:
 - Prefer focused commits inside branches and reviewable pull requests into
   `main`.
 
-Roadmap phases are milestone-level outcomes. Feature specifications are the
-usual unit of issue tracking. A pull request may close multiple issues when it
-completes a phase-sized milestone branch, but each issue should stay close to
-one feature specification item.
+Roadmap phases are milestone-level outcomes. When milestones are managed in
+GitHub, GitHub Milestones should mirror the documented roadmap phases. Feature
+specifications are the usual unit of issue tracking, and each GitHub issue
+should normally track one feature specification item or one similarly sized
+defect or maintenance task. A pull request may close multiple issues when it
+completes a phase-sized milestone branch.
 
 Use GitHub Actions as the CI quality gate for repository checks. The baseline CI
 workflow runs the project check command before merge-oriented work is considered
 ready.
 
+Use event-specific checks:
+
+- `pre-commit`: run staged-file lint and formatting through Husky and
+  lint-staged so local commits stay fast.
+- `pull_request`: run the full project check and dependency review before
+  merge-oriented work is considered ready.
+- `push` to `main`: run the full project check after integration.
+- Future release workflow: build, deploy, generate release notes, and attach a
+  release SBOM only after a deployable product surface exists.
+
 Use repository issue templates, a pull request template, Dependabot, dependency
 review, and generated release-note configuration as lightweight workflow
 governance.
+
+GitHub Milestones are planning containers, not release automation by
+themselves. Issues and pull requests assigned to a milestone update milestone
+progress as they open and close, but milestone creation, issue assignment, and
+milestone closure remain manual or future infrastructure-as-code automation
+unless explicitly implemented.
 
 Use a compact label vocabulary for issues, pull requests, and generated release
 notes:

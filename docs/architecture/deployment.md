@@ -49,3 +49,18 @@ followed by `v1.2.0-rc.2`, then the final production tag `v1.2.0`.
 Ordinary feature branch previews do not require Git tags. A production release
 tag should represent a meaningful public release, and the final version bump is
 decided intentionally rather than inferred automatically from every deployment.
+
+## Roadmap Release Targets
+
+The first production public release is planned for `PH-003` and should use
+`v1.0.0`.
+
+Earlier roadmap phases do not receive production Git tags because they prepare
+documentation, workflow, content, and implementation readiness without
+publishing an operations-ready product. During `PH-003`, release candidates may
+use `v1.0.0-rc.N` before the final `v1.0.0` tag.
+
+Post-launch work in `PH-004` should use `v1.1.0` or later minor versions for
+meaningful new capabilities such as analytics or discovery improvements, and
+`v1.0.x` patch versions for corrections, small accessibility fixes, link fixes,
+or deployment-safe refinements.

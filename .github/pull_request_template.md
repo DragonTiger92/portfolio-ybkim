@@ -12,7 +12,6 @@ Closes #
 - [ ] `PH-002`
 - [ ] `PH-003`
 - [ ] `PH-004`
-- [ ] `PH-005`
 
 ## Included Feature Specifications
 

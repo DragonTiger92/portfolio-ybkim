@@ -31,8 +31,8 @@ remains the current baseline.
   schedule.
 - Dependency Review runs on pull requests to inspect newly introduced
   dependencies and license changes.
-- Copyleft license families that could conflict with the repository licensing
-  intent are denied at the pull-request review gate.
+- Dependency Review acts as the CI license audit gate by allowing only the
+  reviewed SPDX license identifiers used by the current dependency graph.
 - Release notes are generated from pull request metadata and labels when a
   GitHub Release is created.
 

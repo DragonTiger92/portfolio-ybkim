@@ -25,8 +25,7 @@ body:
         - PH-002
         - PH-003
         - PH-004
-        - PH-005
-      default: 2
+      default: 1
     validations:
       required: true
   - type: textarea
