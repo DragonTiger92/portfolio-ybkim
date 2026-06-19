@@ -43,6 +43,35 @@ When dependency installation is approved, use `pnpm` only and respect the reposi
 - new installs must use the configured package cooldown period before accepting newly published packages
 - dependency lifecycle build scripts must remain strict and explicit
 
+## External Tool And Version Freshness
+
+Do not select an externally distributed package or CLI version from model
+memory alone.
+
+Before requesting approval to install or upgrade an external tool:
+
+1. Query a live authoritative source, such as the configured package-manager
+   repository, the vendor's official release feed, or the tool's official
+   repository.
+2. Cross-check the package identity, publisher, stable version, and release
+   channel. Do not substitute alpha, beta, release-candidate, or similarly
+   pre-release builds for a stable release unless the user explicitly requests
+   one.
+3. State the exact version, query date, and authoritative source in the
+   user-facing approval request. Explicitly distinguish live verification from
+   model-memory knowledge.
+4. Pin the exact version in the install command when the package manager supports
+   it.
+5. If live verification fails or sources disagree, stop and explain the
+   uncertainty instead of installing a remembered version.
+
+After installation:
+
+- Verify the installed binary's version and resolved executable path.
+- Report whether the installed version matches the approved version.
+- Record only non-secret provenance information; never expose repository tokens,
+  package credentials, or private registry configuration.
+
 ## Current pnpm Hardening Intent
 
 The repository should use:
