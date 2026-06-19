@@ -13,7 +13,7 @@ Closes #
 - [ ] `PH-003`
 - [ ] `PH-004`
 
-## Included Feature Specifications
+## Included Product Backlog Items
 
 -
 
@@ -40,6 +40,7 @@ Closes #
 
 ## Checks
 
+- [ ] Branch name follows `<type>/<issue-number>-<short-kebab-description>`
 - [ ] `pnpm.cmd check`
 - [ ] Documentation or ADR impact reviewed
 - [ ] Public/private information boundary reviewed

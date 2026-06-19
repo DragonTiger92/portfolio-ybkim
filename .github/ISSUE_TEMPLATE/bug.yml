@@ -9,11 +9,11 @@ body:
       value: |
         Use this for defects with clear current behavior and expected behavior.
   - type: input
-    id: spec_id
+    id: pbi_id
     attributes:
-      label: Related feature specification ID
-      description: Include a spec ID when the defect belongs to a planned specification item.
-      placeholder: FS-008
+      label: Related Product Backlog Item ID
+      description: Include a PBI ID when the defect belongs to planned backlog work.
+      placeholder: PBI-008
     validations:
       required: false
   - type: dropdown

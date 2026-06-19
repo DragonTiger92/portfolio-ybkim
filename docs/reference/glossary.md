@@ -1,16 +1,38 @@
 # Glossary
 
-| Term                               | Meaning                                                             |
-| ---------------------------------- | ------------------------------------------------------------------- |
-| ADR (Architecture Decision Record) | A short record of an important technical or project decision        |
-| FE                                 | Frontend                                                            |
-| Full-stack                         | Ability to work across frontend, backend, data, deployment, and ops |
-| Public-safe claim                  | A portfolio statement that can be published without private detail  |
-| SBOM                               | Software Bill of Materials, the dependency inventory for software   |
-| SPDX                               | A standard format for software supply-chain metadata and SBOMs      |
-| SSoT                               | Single Source of Truth                                              |
-| Static site                        | A site deployable as static files without a server runtime          |
-| Vite                               | The build tool used by this portfolio project                       |
-| GitHub Pages                       | The intended static hosting target                                  |
-| MIT License                        | The permissive source-code license used for this project's code     |
-| NOTICE                             | The root notice file that defines code/content licensing boundaries |
+| Term                                 | Meaning                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------ |
+| ADR (Architecture Decision Record)   | A short record of an important technical or project decision             |
+| AEO (Answer Engine Optimization)     | Content refinement for answer-oriented discovery systems                 |
+| CI/CD                                | Automated integration, verification, release, and deployment workflows   |
+| CycloneDX                            | An OWASP standard for machine-readable Bills of Materials                |
+| DevOps                               | Practices connecting delivery automation with reliable operation         |
+| FE                                   | Frontend                                                                 |
+| Feature Specification                | Optional detailed behavior design for one complex user-facing capability |
+| FR (Functional Requirement)          | Required user-facing product behavior                                    |
+| Full-stack                           | Ability to work across frontend, backend, data, deployment, and ops      |
+| GEO (Generative Engine Optimization) | Content refinement for generative discovery systems                      |
+| GitHub Issue                         | Execution ticket that normally tracks one PBI or a similar-sized defect  |
+| GitHub Milestone                     | Repository planning container that mirrors one roadmap phase             |
+| Health Check                         | Verification that a deployed service is externally usable                |
+| IaC (Infrastructure as Code)         | Version-controlled management of long-lived infrastructure               |
+| License Audit                        | Dependency-license policy check, not a complete legal compliance audit   |
+| License Compliance Review            | Automated evidence plus human review of third-party usage obligations    |
+| MIT License                          | The permissive source-code license used for this project's code          |
+| NFR (Non-Functional Requirement)     | Required product quality attribute or constraint                         |
+| NOTICE                               | The root notice file that defines code and content licensing boundaries  |
+| PBI (Product Backlog Item)           | Implementation-sized work item normally tracked by one GitHub issue      |
+| Phase                                | Roadmap outcome mirrored by a GitHub Milestone                           |
+| Product Backlog                      | Ordered set of implementation-sized work planned for the product         |
+| Public-safe claim                    | A portfolio statement that can be published without private detail       |
+| Pull Request                         | Review and integration unit that may close one or more PBI issues        |
+| Rollback                             | Restoration of the last known-good production deployment                 |
+| Requirements Traceability Matrix     | Relationship index connecting requirements to implementation work        |
+| SBOM                                 | Software Bill of Materials, a machine-readable component inventory       |
+| SEO (Search Engine Optimization)     | Content and metadata refinement for search engine discovery              |
+| SPDX                                 | A standard for software supply-chain and licensing metadata              |
+| SSoT                                 | Single Source of Truth                                                   |
+| Static site                          | A site deployable as static files without a server runtime               |
+| Smoke Check                          | Small post-deployment test of critical production behavior               |
+| Synthetic Monitoring                 | Scheduled external requests that test production availability            |
+| Vite                                 | The build tool used by this portfolio project                            |

@@ -25,14 +25,24 @@ SBOM workflow with a CI-generated CycloneDX JSON SBOM attached to each GitHub
 Release. Until that release workflow is implemented, the root SPDX artifact
 remains the current baseline.
 
+CycloneDX does not use SPDX `NOASSERTION` as a required placeholder. The release
+workflow should preserve missing license metadata as unresolved or omitted
+generator output, validate the generated schema, and route unknown license data
+to policy review instead of inventing a license conclusion.
+
 ## Automated Review
 
 - Dependabot checks npm package metadata and GitHub Actions updates on a weekly
   schedule.
 - Dependency Review runs on pull requests to inspect newly introduced
   dependencies and license changes.
-- Dependency Review acts as the CI license audit gate by allowing only the
-  reviewed SPDX license identifiers used by the current dependency graph.
+- Dependency Review acts as the CI License Audit policy gate by allowing only
+  reviewed dependency license identifiers. It reduces license-policy risk but
+  is not a complete legal audit of copied source, media assets, notices, or
+  license obligations outside dependency metadata.
+- Repository security setup should enable Dependency Graph, Dependabot alerts,
+  Dependabot security updates, secret scanning, and push protection where the
+  repository and account support them.
 - Release notes are generated from pull request metadata and labels when a
   GitHub Release is created.
 
@@ -42,6 +52,8 @@ remains the current baseline.
 - Portfolio content, docs, personal text, visual design content, images, and
   other non-code materials are All Rights Reserved unless otherwise stated.
 - The human-readable licensing boundary is documented in root `NOTICE.md`.
+- Third-party code, images, fonts, media, and copied material follow the
+  [Pre-Release License Compliance Review](license-compliance.md).
 
 ## Verification
 

@@ -14,6 +14,17 @@ Co-authored-by: Codex <noreply@openai.com>
 
 Do not create commits unless explicitly requested.
 
+## Branch Names
+
+Follow the public workflow in `docs/process/development-workflow.md`.
+
+- Name human-created pull request branches
+  `<type>/<issue-number>-<short-kebab-description>`.
+- Use only the documented type prefixes and create from the latest `main` unless
+  an explicit exception applies.
+- Do not rename, delete, or replace a local or remote branch without user
+  approval.
+
 ## Quality Checks
 
 Before claiming completion, run available checks when possible.

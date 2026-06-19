@@ -7,10 +7,9 @@ This repository contains `portfolio-ybkim`, a personal portfolio website.
 The project currently uses:
 
 - Vite
-- Vanilla TypeScript
 - HTML
 - Pure CSS
-- TypeScript
+- Vanilla TypeScript
 - pnpm
 - Git
 - GitHub
