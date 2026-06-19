@@ -28,6 +28,11 @@ Use GitHub Flow:
 - Prefer focused commits inside branches and reviewable pull requests into
   `main`.
 
+Roadmap phases are milestone-level outcomes. Feature specifications are the
+usual unit of issue tracking. A pull request may close multiple issues when it
+completes a phase-sized milestone branch, but each issue should stay close to
+one feature specification item.
+
 Use GitHub Actions as the CI quality gate for repository checks. The baseline CI
 workflow runs the project check command before merge-oriented work is considered
 ready.

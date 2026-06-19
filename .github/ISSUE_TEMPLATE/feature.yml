@@ -1,5 +1,5 @@
-name: Feature or content request
-description: Plan a user-visible portfolio feature, content update, or experience improvement.
+name: Feature specification item
+description: Track one feature specification item from the planning docs.
 title: "feat: "
 labels:
   - type:feature
@@ -7,7 +7,28 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this for user-facing product, content, or portfolio experience changes.
+        Use this for one feature specification item. A phase-sized pull request can close multiple issues.
+  - type: input
+    id: spec_id
+    attributes:
+      label: Feature specification ID
+      description: Link this issue to `docs/planning/feature-specifications.md` when possible.
+      placeholder: FS-006
+    validations:
+      required: false
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Roadmap phase
+      options:
+        - PH-001
+        - PH-002
+        - PH-003
+        - PH-004
+        - PH-005
+      default: 2
+    validations:
+      required: true
   - type: textarea
     id: goal
     attributes:

@@ -15,7 +15,7 @@ evidence.
 | ------------------------------------------------------- | -------------------------------------------- |
 | `planning/project-brief.md`                             | Project purpose, audience, and boundaries    |
 | `planning/roadmap.md`                                   | Delivery phases and current priorities       |
-| `planning/work-items.md`                                | Implementation and documentation backlog     |
+| `planning/feature-specifications.md`                    | Implementation specification index           |
 | `requirements/functional-requirements.md`               | User-facing behavior requirements            |
 | `requirements/non-functional-requirements.md`           | Quality, privacy, accessibility, performance |
 | `architecture/overview.md`                              | Static site architecture                     |
@@ -37,6 +37,6 @@ evidence.
 - Keep each document short enough for a reviewer to scan.
 - Prefer public-safe claims over private implementation detail.
 - Link related documents instead of duplicating the same explanation.
-- Treat IDs such as `FR-001`, `NFR-001`, and `WI-001` as stable once published.
+- Treat IDs such as `FR-001`, `NFR-001`, and `FS-001` as stable once published.
 - Keep confidential evidence in `.contexts/`, not in `docs/`.
 - Keep licensing scope aligned with root `LICENSE`, `NOTICE.md`, and the SBOM.
