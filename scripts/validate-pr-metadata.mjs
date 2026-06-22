@@ -13,7 +13,7 @@ const allowedPrefixes = [
 ];
 
 const branchPattern = new RegExp(
-  `^(${allowedPrefixes.join("|")})/([1-9]\\d*)-[a-z0-9]+(?:-[a-z0-9]+)*$`,
+  `^(${allowedPrefixes.join("|")})/((?:ph|pbi)-\\d{3})-[a-z0-9]+(?:-[a-z0-9]+)*$`,
 );
 const trustedAutomation = new Set(["dependabot[bot]"]);
 
@@ -23,20 +23,15 @@ function countSelected(body, valuePattern) {
   ).length;
 }
 
-function hasClosingReference(body, issueNumber) {
-  const keyword = String.raw`(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)`;
-  return new RegExp(`${keyword}\\s+#${issueNumber}\\b`, "i").test(body);
-}
-
 function validateBranch(body, branchMatch) {
   if (!branchMatch) {
-    return ["Branch name must match <type>/<issue-number>-<short-kebab-description>."];
+    return ["Branch name must match <type>/<ph-NNN|pbi-NNN>-<short-kebab-description>."];
   }
 
-  if (!hasClosingReference(body, branchMatch[2])) {
-    return [
-      `PR body must close the branch issue with Closes #${branchMatch[2]} or an equivalent keyword.`,
-    ];
+  const trackingId = branchMatch[2].toUpperCase();
+
+  if (!new RegExp(`\\b${trackingId}\\b`).test(body)) {
+    return [`PR body must reference the branch tracking ID ${trackingId}.`];
   }
 
   return [];

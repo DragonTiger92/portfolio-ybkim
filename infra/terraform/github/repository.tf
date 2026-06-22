@@ -3,7 +3,7 @@ resource "github_repository" "this" {
   description = "portfolio of Yongbeom Kim who is a web developer"
   visibility  = "public"
 
-  has_issues      = true
+  has_issues      = false
   has_projects    = false
   has_wiki        = false
   has_discussions = false

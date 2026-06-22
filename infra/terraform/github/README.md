@@ -6,14 +6,14 @@ This Terraform root manages long-lived GitHub repository governance for
 ## Managed Scope
 
 - repository feature and merge settings;
-- project-specific issue labels;
+- project-specific pull request and release labels;
 - Dependabot vulnerability alerts and security updates;
 - Secret scanning and push protection; and
 - the `main` branch ruleset.
 
-Milestones, issue assignment, repository files, Actions workflows, CodeQL
-default setup, private vulnerability reporting, secrets, and Cloudflare
-resources are managed elsewhere.
+Repository files, Actions workflows, CodeQL default setup, private vulnerability
+reporting, secrets, and Cloudflare resources are managed elsewhere. GitHub
+Issues and Milestones are intentionally not used for project planning.
 
 ## Bootstrap Boundary
 

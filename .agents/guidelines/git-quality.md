@@ -19,7 +19,7 @@ Do not create commits unless explicitly requested.
 Follow the public workflow in `docs/process/development-workflow.md`.
 
 - Name human-created pull request branches
-  `<type>/<issue-number>-<short-kebab-description>`.
+  `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`.
 - Use only the documented type prefixes and create from the latest `main` unless
   an explicit exception applies.
 - Do not rename, delete, or replace a local or remote branch without user

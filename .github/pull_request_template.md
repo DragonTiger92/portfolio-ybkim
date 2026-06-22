@@ -2,11 +2,7 @@
 
 -
 
-## Linked Issue
-
-Closes #
-
-## Roadmap Phase / Milestone
+## Roadmap Phase
 
 - [ ] `PH-001`
 - [ ] `PH-002`
@@ -15,7 +11,7 @@ Closes #
 
 ## Included Product Backlog Items
 
--
+- `PBI-`
 
 ## Release Impact
 
@@ -40,7 +36,8 @@ Closes #
 
 ## Checks
 
-- [ ] Branch name follows `<type>/<issue-number>-<short-kebab-description>`
+- [ ] Branch name follows `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`
+- [ ] Roadmap and Product Backlog statuses are updated where applicable
 - [ ] `pnpm.cmd check`
 - [ ] Documentation or ADR impact reviewed
 - [ ] Public/private information boundary reviewed

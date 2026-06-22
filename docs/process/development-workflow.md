@@ -1,44 +1,47 @@
 # Development Workflow
 
-This project uses GitHub Flow with issue-linked topic branches. The workflow is
+This project uses GitHub Flow with docs-tracked topic branches. The workflow is
 kept explicit so a single maintainer, reviewers, and automation can trace each
-change from planning through integration.
+change from planning through integration without duplicating work state in
+GitHub Issues.
 
 ## Standard Flow
 
-1. Create or identify the GitHub issue that owns the work.
-2. Update local `main` from `origin/main`.
-3. Create a short-lived topic branch from the latest `main`.
-4. Implement and verify the scoped work.
-5. Open a pull request that uses a closing keyword such as `Closes #123`.
-6. Merge only after required checks and review are complete.
-7. Delete the merged topic branch.
+1. Select the roadmap Phase or Product Backlog Item that owns the work.
+2. Mark active work `In Progress` in the relevant planning document.
+3. Update local `main` from `origin/main`.
+4. Create a topic branch from the latest `main`.
+5. Open a draft pull request early when CI or review visibility is useful.
+6. Implement, verify, and update the tracked PBI and Phase status.
+7. Merge only after acceptance criteria, required checks, and review are complete.
+8. Delete the merged topic branch.
 
 ## Branch Name Format
 
 Use this format for human-created branches intended for pull requests:
 
 ```text
-<type>/<issue-number>-<short-kebab-description>
+<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>
 ```
 
 Rules:
 
 - Use one of the approved lowercase type prefixes.
-- Use the GitHub issue number without `#` or leading zeroes.
+- Use lowercase `ph-NNN` for a phase integration branch.
+- Use lowercase `pbi-NNN` for a branch scoped to one Product Backlog Item.
 - Use a short ASCII kebab-case description.
-- Name a phase-sized integration branch after its primary tracking issue. The
-  pull request may still close multiple related PBI issues.
+- A phase branch may integrate multiple PBIs; list every included PBI in the
+  pull request.
 - Create the branch from the latest `main` unless a documented recovery or
   stacked-work exception applies.
 
 Examples:
 
 ```text
-feature/42-project-showcase
-fix/57-mobile-navigation-overflow
-docs/61-release-runbook
-infra/73-cloudflare-pages-baseline
+feature/ph-002-static-portfolio
+fix/pbi-024-mobile-navigation-overflow
+docs/pbi-033-release-runbook
+infra/ph-003-cloudflare-delivery
 ```
 
 ## Approved Type Prefixes
@@ -66,7 +69,7 @@ metadata.
 - `wip/*` is reserved for temporary work that is not ready to become a pull
   request. It is not a merge-target naming convention.
 - Emergency or recovery branches may deviate only when the reason is recorded
-  in the issue or pull request.
+  in the pull request.
 
 The current workflow-baseline branch follows this policy as
-`feature/1-project-workflow-baseline`.
+`feature/ph-001-product-foundation-baseline`.

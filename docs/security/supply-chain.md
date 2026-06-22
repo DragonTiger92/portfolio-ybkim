@@ -53,7 +53,7 @@ to policy review instead of inventing a license conclusion.
   patterns, validity checks, and AI-based generic detection remain optional or
   unavailable until repository support and signal quality are confirmed.
 - Sensitive vulnerability reports should use GitHub private vulnerability
-  reporting rather than a public issue.
+  reporting rather than a public discussion or work item.
 - Release notes are generated from pull request metadata and labels when a
   GitHub Release is created.
 

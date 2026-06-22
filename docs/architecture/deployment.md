@@ -30,7 +30,7 @@ The generated `dist/` directory is the deployable artifact.
 
 | Component                | Responsibility                                              | Phase / State                         |
 | ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
-| GitHub repository        | Source, issues, pull requests, tags, and release metadata   | PH-001 baseline                       |
+| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
 | GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003    |
 | Vite                     | Produce the deployable `dist/` static artifact              | Existing build tool                   |
 | Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |

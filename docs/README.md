@@ -31,6 +31,7 @@ evidence.
 | `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary             |
 | `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision    |
 | `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare delivery and preview decision    |
+| `adr/0008-use-docs-based-work-tracking.md`              | Docs-based work tracking decision           |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                  |
 | `security/license-compliance.md`                        | Pre-release third-party license review      |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery |

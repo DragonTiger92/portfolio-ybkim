@@ -13,9 +13,9 @@ state.
 | Vulnerability alerts and security updates  | GitHub Terraform root                         |
 | Secret scanning feature flags              | GitHub Terraform root                         |
 | CodeQL and private vulnerability reporting | GitHub-managed settings via owner API         |
-| Issue and pull request templates           | Version-controlled `.github/` files           |
+| Pull request template                      | Version-controlled `.github/` file            |
 | GitHub Actions workflows                   | Version-controlled `.github/workflows/`       |
-| Milestones and issue assignment            | Milestone synchronization workflow and API    |
+| Phase and PBI work status                  | Version-controlled planning documents         |
 | Credentials and secrets                    | GitHub secure settings, never Terraform state |
 | Cloudflare Pages, Access, and DNS          | Separate PH-003 Terraform root                |
 
@@ -44,14 +44,14 @@ public branch naming convention instead.
 
 ## Quality Gate Matrix
 
-| Trigger                     | Required work                                                                | Purpose                                             |
-| --------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------- |
-| Local `pre-commit`          | Staged ESLint and Prettier checks through lint-staged                        | Keep the commit feedback loop fast                  |
-| Pull request                | `Check`, `Dependency Review`, and `PR Metadata`                              | Gate merge readiness and policy metadata            |
-| Terraform-related PR change | Terraform format, provider initialization without backend, and validation    | Reject invalid IaC before merge                     |
-| Push to `main`              | Full `pnpm check`                                                            | Verify the integrated default branch                |
-| Weekly schedule             | `pnpm audit --audit-level moderate`                                          | Surface dependency advisories without blocking a PR |
-| Manual dispatch             | Security audit, Terraform validation, or Milestone synchronization as needed | Support owner-driven recovery and explicit rechecks |
+| Trigger                     | Required work                                                             | Purpose                                             |
+| --------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------- |
+| Local `pre-commit`          | Staged ESLint and Prettier checks through lint-staged                     | Keep the commit feedback loop fast                  |
+| Pull request                | `Check`, `Dependency Review`, and `PR Metadata`                           | Gate merge readiness and policy metadata            |
+| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                     |
+| Push to `main`              | Full `pnpm check`                                                         | Verify the integrated default branch                |
+| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR |
+| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks |
 
 `pnpm check` includes type checking, strict lint, governance tests, formatting,
 and the production build. Terraform planning and apply are deliberately absent

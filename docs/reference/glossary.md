@@ -12,8 +12,6 @@
 | FR (Functional Requirement)          | Required user-facing product behavior                                                 |
 | Full-stack                           | Ability to work across frontend, backend, data, deployment, and ops                   |
 | GEO (Generative Engine Optimization) | Content refinement for generative discovery systems                                   |
-| GitHub Issue                         | Execution ticket that normally tracks one PBI or a similar-sized defect               |
-| GitHub Milestone                     | Repository planning container that mirrors one roadmap phase                          |
 | Health Check                         | Verification that a deployed service is externally usable                             |
 | IaC (Infrastructure as Code)         | Version-controlled management of long-lived infrastructure                            |
 | License Audit                        | Dependency-license policy check, not a complete legal compliance audit                |
@@ -23,13 +21,13 @@
 | NFR (Non-Functional Requirement)     | Required product quality attribute or constraint                                      |
 | NOTICE                               | The root notice file that defines code and content licensing boundaries               |
 | Open source                          | Software carrying a license that permits use, study, modification, and redistribution |
-| PBI (Product Backlog Item)           | Implementation-sized work item normally tracked by one GitHub issue                   |
-| Phase                                | Roadmap outcome mirrored by a GitHub Milestone                                        |
+| PBI (Product Backlog Item)           | Implementation-sized work item tracked in the version-controlled Product Backlog      |
+| Phase                                | Roadmap-level outcome and status tracked in `roadmap.md`                              |
 | Product Backlog                      | Ordered set of implementation-sized work planned for the product                      |
 | Protected preview                    | Authenticated Cloudflare Pages deployment used for remote QA                          |
 | Public repository                    | Publicly viewable repository; visibility alone grants no reuse license                |
 | Public-safe claim                    | A portfolio statement that can be published without private detail                    |
-| Pull Request                         | Review and integration unit that may close one or more PBI issues                     |
+| Pull Request                         | Review and CI integration unit that references one Phase and one or more PBIs         |
 | Rollback                             | Restoration of the last known-good production deployment                              |
 | Requirements Traceability Matrix     | Relationship index connecting requirements to implementation work                     |
 | SBOM                                 | Software Bill of Materials, a machine-readable component inventory                    |

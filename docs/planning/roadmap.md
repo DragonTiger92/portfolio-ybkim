@@ -1,10 +1,9 @@
 # Roadmap
 
-The roadmap uses phases as milestone-level outcomes, not fixed calendar
-promises. Each phase should be mirrored as a GitHub Milestone, while individual
-GitHub issues usually track Product Backlog Items (PBIs). Milestone lifecycle
-automation is planned in `PBI-017`; phases should not depend on repeated manual
-synchronization.
+The roadmap is the source of truth for phase-level outcomes and status, not a
+fixed calendar promise. Product Backlog Items provide the implementation-sized
+view, while GitHub Pull Requests provide review and CI integration without
+duplicating roadmap state in GitHub Issues or Milestones.
 
 | Phase    | Name                                | Status      | Release Target        | Goal                                                    |
 | -------- | ----------------------------------- | ----------- | --------------------- | ------------------------------------------------------- |
@@ -39,9 +38,9 @@ improvements.
 
 ## Status Vocabulary
 
-| Status      | Meaning                                           |
-| ----------- | ------------------------------------------------- |
-| Planned     | Defined but not yet active                        |
-| In Progress | The phase milestone is actively being implemented |
-| Completed   | The phase outcome and integration are complete    |
-| Cancelled   | The phase was intentionally removed               |
+| Status      | Meaning                                         |
+| ----------- | ----------------------------------------------- |
+| Planned     | Defined but not yet active                      |
+| In Progress | The phase outcome is actively being implemented |
+| Completed   | The phase outcome and integration are complete  |
+| Cancelled   | The phase was intentionally removed             |

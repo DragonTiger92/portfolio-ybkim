@@ -4,9 +4,7 @@ import test from "node:test";
 import { validatePullRequestMetadata } from "./validate-pr-metadata.mjs";
 
 const validBody = `
-Closes #19
-
-## Roadmap Phase / Milestone
+## Roadmap Phase
 - [x] \`PH-001\`
 
 ## Included Product Backlog Items
@@ -19,31 +17,41 @@ Closes #19
 - [x] \`type:ci\`
 `;
 
-test("accepts an issue-linked branch and complete metadata", () => {
+test("accepts a PBI-linked branch and complete metadata", () => {
   const errors = validatePullRequestMetadata({
     actor: "DragonTiger92",
     body: validBody,
-    headRef: "ci/19-quality-gates",
+    headRef: "ci/pbi-019-quality-gates",
   });
 
   assert.deepEqual(errors, []);
 });
 
-test("requires the branch issue to be closed by the PR", () => {
+test("requires the branch tracking ID in the PR body", () => {
   const errors = validatePullRequestMetadata({
     actor: "DragonTiger92",
-    body: validBody.replace("Closes #19", "Closes #20"),
-    headRef: "ci/19-quality-gates",
+    body: validBody.replace("PBI-019", "PBI-020"),
+    headRef: "ci/pbi-019-quality-gates",
   });
 
-  assert.match(errors.join("\n"), /Closes #19/);
+  assert.match(errors.join("\n"), /PBI-019/);
+});
+
+test("accepts a phase integration branch", () => {
+  const errors = validatePullRequestMetadata({
+    actor: "DragonTiger92",
+    body: validBody,
+    headRef: "feature/ph-001-product-foundation-baseline",
+  });
+
+  assert.deepEqual(errors, []);
 });
 
 test("rejects an unsupported branch prefix", () => {
   const errors = validatePullRequestMetadata({
     actor: "DragonTiger92",
     body: validBody,
-    headRef: "work/19-quality-gates",
+    headRef: "work/pbi-019-quality-gates",
   });
 
   assert.match(errors.join("\n"), /Branch name/);
@@ -55,7 +63,7 @@ test("requires one phase and one release impact", () => {
     body: validBody
       .replace("- [x] `PH-001`", "- [ ] `PH-001`")
       .replace("- [x] `release:not-applicable`", "- [ ] `release:not-applicable`"),
-    headRef: "ci/19-quality-gates",
+    headRef: "ci/pbi-019-quality-gates",
   });
 
   assert.match(errors.join("\n"), /exactly one roadmap phase/);

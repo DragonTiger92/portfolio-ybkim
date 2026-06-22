@@ -60,7 +60,7 @@ makes it useful.
 - recent deployment, DNS, TLS, and provider-status checks;
 - rollback to the last known-good production deployment;
 - post-rollback smoke verification;
-- a short incident note with cause, impact, and follow-up issue; and
+- a short incident note with cause, impact, and follow-up PBI; and
 - escalation to the hosting provider when rollback does not restore service.
 
 The selected hosting implementation must verify its actual rollback mechanism.
