@@ -44,6 +44,10 @@ Keep repository resources only while they have an active purpose.
 - Create a file under `.agents/handoffs/` only for unresolved work that is
   expected to resume in a later session. Keep project-specific handoffs in this
   gitignored workspace directory rather than substituting global memory.
+- Keep durable project-specific context in `AGENTS.md`, `.agents/guidelines/`,
+  or the relevant project document. Native Codex Memories may provide automatic
+  recall, but they are not the source of truth and should not require routine
+  per-thread curation.
 - When a handoff is resolved or superseded, move any durable decision to the
   appropriate guideline, ADR, architecture document, or planning source of
   truth; then remove the handoff and its references.
