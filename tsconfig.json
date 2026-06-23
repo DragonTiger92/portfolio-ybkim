@@ -13,11 +13,15 @@
     "moduleDetection": "force",
     "noEmit": true,
 
+    /* Type checking */
+    "strict": true,
+    "noUncheckedSideEffectImports": true,
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "vite.config.ts"]
 }
