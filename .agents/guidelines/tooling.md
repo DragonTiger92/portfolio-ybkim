@@ -60,5 +60,5 @@ than the project.
 4. Report the sandbox result and the external result separately. Do not use this path to
    dismiss an ordinary code or configuration failure.
 
-For the detailed environment checkpoint, see
-`.agents/handoffs/2026-06-12-codex-windows-sandbox-evaluation.md`.
+Keep machine-specific resolved diagnostics in the user's global Codex memory or
+other machine-local state rather than in a completed repository handoff.
