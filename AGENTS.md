@@ -8,16 +8,20 @@ Do not introduce React or another UI framework unless the user explicitly reques
 
 ## Required Reading
 
-Before changing files, inspect the current code and read the guideline files relevant to the task:
+Before changing files, inspect the current code and read only the guideline files
+that match the task. Do not load every guideline by default.
 
-- `.agents/guidelines/project.md`
-- `.agents/guidelines/engineering.md`
-- `.agents/guidelines/tooling.md`
-- `.agents/guidelines/supply-chain-security.md`
-- `.agents/guidelines/ui.md`
-- `.agents/guidelines/git-quality.md`
-- `.agents/guidelines/operations.md`
-- `.agents/guidelines/reporting.md`
+- `.agents/guidelines/project.md`: repository structure, documentation boundaries,
+  deployment, build, or routing behavior
+- `.agents/guidelines/engineering.md`: source code, configuration, or scripts
+- `.agents/guidelines/tooling.md`: external tools, command execution, or output handling
+- `.agents/guidelines/supply-chain-security.md`: dependencies, lockfiles, audits, or
+  package-manager policy
+- `.agents/guidelines/ui.md`: HTML, CSS, DOM rendering, responsiveness, or accessibility
+- `.agents/guidelines/git-quality.md`: Git, branches, commits, hooks, CI, or completion
+  checks
+- `.agents/guidelines/operations.md`: any file edit or environment-sensitive operation
+- `.agents/guidelines/reporting.md`: final work report
 
 For active continuation notes, check `.agents/handoffs/` when the user asks to resume prior work.
 

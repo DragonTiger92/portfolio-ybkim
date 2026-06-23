@@ -27,23 +27,34 @@ Follow the public workflow in `docs/process/development-workflow.md`.
 
 ## Quality Checks
 
-Before claiming completion, run available checks when possible.
+Before claiming completion, run the canonical project check when possible:
 
-Preferred order:
+```bash
+pnpm.cmd check
+```
+
+The check runs type checking, strict linting, governance tests, formatting verification,
+and the production Vite bundle in fail-fast order. After it passes, do not rerun every
+component command separately.
+
+If the check fails, rerun only the failing stage or use these commands for focused work:
 
 ```bash
 pnpm.cmd typecheck
 pnpm.cmd lint:strict
+pnpm.cmd test:governance
 pnpm.cmd format:check
-pnpm.cmd build
+pnpm.cmd build:bundle
 ```
 
-If the project later adds formatting, type-checking, or test scripts, also use the relevant commands, for example:
+Use the standalone `pnpm.cmd build` when the task specifically requires a complete build
+that includes its own type check.
+
+For formatting fixes or ordinary local lint feedback, use the relevant focused command:
 
 ```bash
 pnpm.cmd format
-pnpm.cmd typecheck
-pnpm.cmd test
+pnpm.cmd lint
 ```
 
 If checks fail:

@@ -13,7 +13,8 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "test:governance": "node --test scripts/*.test.mjs",
-    "check": "pnpm typecheck && pnpm lint:strict && pnpm test:governance && pnpm format:check && pnpm build",
+    "build:bundle": "vite build",
+    "check": "pnpm typecheck && pnpm lint:strict && pnpm test:governance && pnpm format:check && pnpm build:bundle",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky"

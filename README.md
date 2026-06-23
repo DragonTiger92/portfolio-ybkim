@@ -84,6 +84,7 @@ pnpm lint:fix
 pnpm format
 pnpm format:check
 pnpm check
+pnpm build:bundle
 pnpm build
 pnpm preview
 ```
@@ -94,7 +95,8 @@ pnpm preview
 - `lint:fix`: 자동 수정 가능한 ESLint 문제를 수정합니다.
 - `format`: Prettier로 전체 파일을 포맷합니다.
 - `format:check`: Prettier 포맷 상태를 검사합니다.
-- `check`: 타입 검사, ESLint, Prettier 검사를 한 번에 실행합니다.
+- `check`: 타입 검사, strict lint, governance test, 포맷 검사, Vite 번들을 한 번에 실행합니다.
+- `build:bundle`: 타입 검사를 반복하지 않고 Vite 프로덕션 번들만 생성합니다.
 - `build`: 배포용 정적 파일을 생성합니다.
 - `preview`: 빌드 결과를 로컬에서 미리 봅니다.
 
