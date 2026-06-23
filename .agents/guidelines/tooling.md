@@ -46,6 +46,48 @@ flooding the agent context.
 - Do not suppress warnings or errors from authoritative checks merely to reduce output.
   Prefer filtering successful progress output only when the savings are material.
 
+## Windows Shell Compatibility
+
+Use the Codex native Windows agent with PowerShell for this Windows-hosted
+workspace. WSL is not required for ordinary project work.
+
+- Write agent-run commands in PowerShell syntax. Do not paste Bash-only syntax
+  such as `export`, heredocs, `/dev/null`, or `rm -rf` into PowerShell.
+- Treat the shell declared by the active Codex environment as authoritative.
+  Translate commands for that shell before execution instead of trial-running a
+  command written for another shell and retrying after it fails.
+- Keep one shell responsible for each command. Use Git Bash only when reproducing
+  an explicitly Bash-specific workflow, and invoke it as a separate process
+  rather than piping PowerShell output into Bash.
+- From PowerShell, continue to use `pnpm.cmd` for project commands. This selects
+  the Windows command shim deterministically and avoids dependence on PowerShell
+  script-shim resolution.
+- Treat `package.json` scripts as package-manager command-shell syntax. A script
+  that works through `pnpm.cmd` is not necessarily valid when pasted directly
+  into Windows PowerShell 5.1.
+- Prefer vendor-installed executable shims and normal `PATH` discovery. Use an
+  absolute executable path only for diagnosis or when a tool is not yet visible
+  in the inherited environment.
+- After changing user `PATH` or installing a CLI, restart the terminal, Codex app,
+  or thread that must inherit it. Verify PowerShell resolution with `Get-Command`
+  and Git Bash resolution with `type -a` before changing configuration again.
+- Do not hardcode the user or machine `PATH` in project `.codex/config.toml` merely
+  to repair a stale process environment.
+- If PowerShell blocks vendor `.ps1` shims, inspect all execution-policy scopes
+  first. Prefer the Codex-documented `RemoteSigned` policy at `CurrentUser` scope;
+  do not weaken `LocalMachine`, Group Policy, or use `Bypass`/`Unrestricted`
+  without an explicit need and approval.
+- On this Windows PowerShell 5.1 environment, the current-user profile normalizes
+  console input, console output, and native-process pipelines to UTF-8 without a
+  BOM. Do not assume that this also changes legacy file-cmdlet defaults.
+- Read a known UTF-8 file with `Get-Content -Encoding UTF8`. Do not write source
+  files with `Out-File`, `Set-Content`, shell redirection, or another command whose
+  Windows PowerShell 5.1 encoding is implicit; use the repository editing and
+  formatting tools instead.
+- PowerShell 7 may be installed side by side through Microsoft's recommended
+  WinGet package when its features are needed. Do not require it while the native
+  Windows PowerShell agent and project checks remain compatible.
+
 ## Windows Sandbox Diagnostics
 
 On this Windows workspace, `spawn EPERM` from Node.js or Vite, or a local executable
