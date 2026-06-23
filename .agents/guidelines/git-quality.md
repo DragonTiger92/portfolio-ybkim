@@ -68,9 +68,13 @@ Do not claim that checks passed unless they were actually run.
 
 ## Husky And lint-staged
 
-The project may later use Husky and lint-staged to enforce pre-commit quality checks.
+Husky and lint-staged are active. The current flow is:
 
-When adding or modifying this setup:
+```txt
+pre-commit -> pnpm exec lint-staged -> staged ESLint fixes -> staged formatting
+```
+
+Keep this hook staged-file-only and fast:
 
 - Keep hooks minimal and fast.
 - Prefer running lint and formatting only on staged files.
@@ -79,13 +83,10 @@ When adding or modifying this setup:
 - Ensure commands use `pnpm`.
 - Do not add Git hooks that modify unrelated files unexpectedly.
 - Document any new script added to `package.json`.
-
-Suggested direction:
-
-```txt
-pre-commit -> lint-staged -> ESLint / formatter on staged files
-```
+- Do not add a pre-push hook while the explicit local completion check and pull
+  request CI remain the authoritative full gates.
 
 Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
 
-Do not implement Husky or lint-staged unless explicitly requested.
+The public event-to-gate source of truth is the Quality Gate Matrix in
+`docs/architecture/github-governance.md`.

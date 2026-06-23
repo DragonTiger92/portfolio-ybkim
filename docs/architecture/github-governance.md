@@ -46,10 +46,12 @@ public branch naming convention instead.
 
 | Trigger                     | Required work                                                             | Purpose                                             |
 | --------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------- |
-| Local `pre-commit`          | Staged ESLint and Prettier checks through lint-staged                     | Keep the commit feedback loop fast                  |
-| Pull request                | `Check`, `Dependency Review`, and `PR Metadata`                           | Gate merge readiness and policy metadata            |
+| Local iteration             | Focused `pnpm.cmd lint`, formatter, or failing-stage command              | Give fast feedback without repeating the full gate  |
+| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                  |
+| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff      |
+| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata            |
 | Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                     |
-| Push to `main`              | Full `pnpm check`                                                         | Verify the integrated default branch                |
+| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                |
 | Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR |
 | Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks |
 
@@ -57,6 +59,20 @@ public branch naming convention instead.
 and the production build. Terraform planning and apply are deliberately absent
 from pull requests until durable remote state and owner credentials are
 configured.
+
+There is no pre-push hook. The explicit local completion check provides a full
+developer-side gate, while pull request CI repeats it in a clean Linux runner as
+the authoritative merge check. This repetition is intentional environment
+verification rather than redundant hook work.
+
+The required `Check` workflow runs for every pull request without path filters.
+The repository is small, documentation and configuration are included in lint and
+format checks, and an always-reported `Check` context avoids leaving the required
+ruleset check pending. Specialized Terraform validation remains path-scoped.
+
+The governance tests inside `pnpm check` verify the metadata validator's code.
+The separate `PR Metadata` workflow applies that validator to the current pull
+request, so the two stages have different responsibilities.
 
 ## Security And Quality Baseline
 
