@@ -59,6 +59,77 @@ For UI code:
 
 Do not over-separate files only for theoretical purity. Extract only when it improves readability, reuse, testability, or maintainability.
 
+## Cohesion And Coupling
+
+Prefer high cohesion and low coupling at the feature, module, and function levels.
+
+High cohesion means that code kept together serves one capability or one reason to
+change. Low coupling means that a module can change without requiring unrelated
+modules to know or change its internal details.
+
+When organizing or refactoring code:
+
+- Keep feature-specific rendering, state, validation, data transformation, and
+  types close to that feature until another real consumer needs them.
+- Give each module a clear responsibility and avoid generic dumping grounds such
+  as broad `utils`, `helpers`, or `common` modules with unrelated exports.
+- Expose narrow, explicit contracts. Pass the data a dependency needs instead of
+  exposing DOM structure, mutable internals, or an entire state object.
+- Keep dependency direction understandable. Avoid circular imports, hidden global
+  state, cross-module mutation, and modules that reach through another module's
+  abstraction boundary.
+- Extract shared code only when consumers share the same behavior and reason to
+  change, not merely similar syntax.
+- Do not add dependency injection, registries, event buses, or indirection solely
+  to reduce the appearance of coupling. Use the simplest explicit dependency that
+  supports the current design.
+
+Before extracting a module, ask:
+
+1. Does the extracted code have a distinct reason to change?
+2. Can its responsibility and contract be named precisely?
+3. Does the extraction reduce knowledge between callers and implementation?
+4. Will related changes remain local, or will one feature now require edits across
+   more files?
+
+If extraction only moves lines while increasing navigation or shared knowledge,
+keep the code together and choose a better boundary.
+
+## File Size And Refactoring Trigger
+
+File-size limits are review triggers for responsibility and readability, not a
+substitute for design judgment. The enforced limits are:
+
+| File category                              | Content-line limit |
+| ------------------------------------------ | -----------------: |
+| JavaScript and TypeScript                  |                250 |
+| CSS                                        |                300 |
+| HTML, JSON, JSONC, YAML, and Terraform     |                250 |
+| Narrative Markdown                         |                250 |
+| Requirements and selected planning ledgers |                350 |
+| Agent guideline Markdown                   |                200 |
+
+ESLint counts JavaScript and TypeScript after skipping blank and comment-only
+lines. `pnpm.cmd lint:size` counts non-empty lines for the other maintained text
+files. Generated artifacts, dependency directories, private `.contexts/` source,
+and temporary `tmp/` material are excluded.
+
+When a file reaches or exceeds its limit before requested content is added:
+
+1. Read the whole file and inspect its imports, callers, tests, and related docs.
+2. Identify responsibilities and reasons to change that are already mixed.
+3. Choose a boundary that increases cohesion and reduces knowledge between
+   modules.
+4. Refactor first, preserving public behavior and explicit data flow.
+5. Add the requested content to the module that owns that responsibility.
+6. Run the focused checks and then `pnpm.cmd check` when feasible.
+
+Do not split by arbitrary line ranges, create numbered `part1` or `part2` files,
+move unrelated exports into a generic utility module, or introduce barrel files
+only to hide a growing dependency surface. A narrowly scoped exception is
+acceptable only when the file is a cohesive registry or generated artifact and
+the reason is documented beside the policy.
+
 ## Control Flow and Block Depth
 
 The project intends to enforce strict block-depth quality rules through ESLint, Husky, and lint-staged.

@@ -33,16 +33,19 @@ Before claiming completion, run the canonical project check when possible:
 pnpm.cmd check
 ```
 
-The check runs type checking, strict linting, governance tests, formatting verification,
-and the production Vite bundle in fail-fast order. After it passes, do not rerun every
-component command separately.
+The check runs type checking, strict linting, strict file-size validation,
+governance and file-size tests, formatting verification, and the production Vite
+bundle in fail-fast order. After it passes, do not rerun every component command
+separately.
 
 If the check fails, rerun only the failing stage or use these commands for focused work:
 
 ```bash
 pnpm.cmd typecheck
 pnpm.cmd lint:strict
+pnpm.cmd lint:size:strict
 pnpm.cmd test:governance
+pnpm.cmd test:file-size
 pnpm.cmd format:check
 pnpm.cmd build:bundle
 ```
@@ -55,6 +58,7 @@ For formatting fixes or ordinary local lint feedback, use the relevant focused c
 ```bash
 pnpm.cmd format
 pnpm.cmd lint
+pnpm.cmd lint:size
 ```
 
 If checks fail:
@@ -71,7 +75,7 @@ Do not claim that checks passed unless they were actually run.
 Husky and lint-staged are active. The current flow is:
 
 ```txt
-pre-commit -> pnpm exec lint-staged -> staged ESLint fixes -> staged formatting
+pre-commit -> pnpm exec lint-staged -> staged ESLint fixes -> staged formatting -> staged file-size feedback
 ```
 
 Keep this hook staged-file-only and fast:
@@ -87,6 +91,10 @@ Keep this hook staged-file-only and fast:
   request CI remain the authoritative full gates.
 
 Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
+
+File-size validation follows the same intent: staged-file and ordinary local runs
+report advisory feedback, while `pnpm.cmd lint:size:strict` fails agent-led and
+completion checks when a maintained file exceeds its category limit.
 
 The public event-to-gate source of truth is the Quality Gate Matrix in
 `docs/architecture/github-governance.md`.

@@ -31,6 +31,12 @@ Keep public project documentation readable for both human maintainers and LLM ag
 - Keep root-level references, such as `AGENTS.md` and `README.md`, concise and aligned with the broader documentation structure.
 - When turning notes or drafts into docs, remove scratch instructions, agent-only prompts, and planning asides unless they are part of the documented requirement.
 - Prefer clear headings, stable terminology, explicit assumptions, and short rationale over private shorthand.
+- Treat document size as a navigation signal rather than splitting prose at an
+  arbitrary line number. When a document approaches its category limit, split by
+  audience, topic, or ownership and keep an index or summary at the original path.
+- Keep structured requirement and planning ledgers cohesive while their repeated
+  sections remain easy to scan; use a higher limit than narrative documents and
+  split only when a stable domain boundary exists.
 - If content belongs in another document or an agent-only reference, mention that in the work report instead of hiding it in public project docs.
 
 ## Confidential Context

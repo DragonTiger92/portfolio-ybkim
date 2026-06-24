@@ -124,6 +124,7 @@ export default defineConfig([
       "clean-code/warn-depth-two": "warn",
       complexity: ["warn", 8],
       "max-depth": ["error", 2],
+      "max-lines": ["warn", { max: 250, skipBlankLines: true, skipComments: true }],
       "max-lines-per-function": ["warn", { max: 80, skipBlankLines: true, skipComments: true }],
       "max-params": ["warn", 3],
     },

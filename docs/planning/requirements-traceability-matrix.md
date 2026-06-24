@@ -29,6 +29,7 @@ governance work rather than product behavior.
 | `NFR-003`      | `PBI-016` | Define        |
 | `NFR-003`      | `PBI-019` | Verify        |
 | `NFR-003`      | `PBI-034` | Implement     |
+| `NFR-003`      | `PBI-035` | Verify        |
 | `NFR-004`      | `PBI-004` | Verify        |
 | `NFR-004`      | `PBI-005` | Verify        |
 | `NFR-008`      | `PBI-018` | Implement     |

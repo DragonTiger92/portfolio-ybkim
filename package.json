@@ -10,11 +10,14 @@
     "lint": "eslint .",
     "lint:strict": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
+    "lint:size": "node scripts/validate-file-size.mjs",
+    "lint:size:strict": "node scripts/validate-file-size.mjs --strict",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "test:governance": "node --test scripts/*.test.mjs",
+    "test:governance": "node --test scripts/validate-pr-metadata.test.mjs",
+    "test:file-size": "node --test scripts/validate-file-size.test.mjs",
     "build:bundle": "vite build",
-    "check": "pnpm typecheck && pnpm lint:strict && pnpm test:governance && pnpm format:check && pnpm build:bundle",
+    "check": "pnpm typecheck && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm format:check && pnpm build:bundle",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky"
@@ -37,9 +40,14 @@
   "lint-staged": {
     "**/*.{js,mjs,cjs,ts,mts,cts,css,json,jsonc,md}": [
       "pnpm exec eslint --fix --no-warn-ignored",
-      "pnpm exec prettier --write"
+      "pnpm exec prettier --write",
+      "node scripts/validate-file-size.mjs"
     ],
-    "**/*.{html,yml,yaml}": "pnpm exec prettier --write",
+    "**/*.{html,yml,yaml}": [
+      "pnpm exec prettier --write",
+      "node scripts/validate-file-size.mjs"
+    ],
+    "**/*.tf": "node scripts/validate-file-size.mjs",
     ".prettierrc": "pnpm exec prettier --write"
   }
 }

@@ -77,6 +77,9 @@ modify, and verify from the repository.
 
 - Keep TypeScript, DOM rendering, styling, and content data responsibilities
   clear.
+- Keep modules cohesive, dependencies explicit, and cross-module knowledge narrow;
+  use file-size static analysis as a refactoring trigger rather than mechanically
+  splitting files.
 - Keep public docs mapped from `docs/README.md`.
 - Keep docs and ADRs updated when project structure changes.
 - Run the available checks before claiming implementation completion.
