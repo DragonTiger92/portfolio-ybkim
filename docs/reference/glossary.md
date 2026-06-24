@@ -3,6 +3,7 @@
 | Term                                 | Meaning                                                                               |
 | ------------------------------------ | ------------------------------------------------------------------------------------- |
 | ADR (Architecture Decision Record)   | A short record of an important technical or project decision                          |
+| Astro                                | The static site and component build framework used by this portfolio                  |
 | AEO (Answer Engine Optimization)     | Content refinement for answer-oriented discovery systems                              |
 | CI/CD                                | Automated integration, verification, release, and deployment workflows                |
 | CycloneDX                            | An OWASP standard for machine-readable Bills of Materials                             |
@@ -37,4 +38,3 @@
 | Static site                          | A site deployable as static files without a server runtime                            |
 | Smoke Check                          | Small post-deployment test of critical production behavior                            |
 | Synthetic Monitoring                 | Scheduled external requests that test production availability                         |
-| Vite                                 | The build tool used by this portfolio project                                         |

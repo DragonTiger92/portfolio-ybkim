@@ -2,8 +2,10 @@
 
 ## Status
 
-Accepted; hosting-provider details superseded by
-[ADR-0007](0007-use-cloudflare-pages-delivery.md)
+Superseded by
+[ADR-0009](0009-adopt-astro-static-component-architecture.md). Hosting-provider
+details were separately superseded by
+[ADR-0007](0007-use-cloudflare-pages-delivery.md).
 
 ## Context
 

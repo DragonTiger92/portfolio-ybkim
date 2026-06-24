@@ -9,7 +9,7 @@ only material that is appropriate for public repository docs.
 | ----- | ----------------------------------------------------------- |
 | Role  | Owner and implementer                                       |
 | Focus | Static portfolio, documentation, quality checks, deployment |
-| Stack | Vite, Vanilla TypeScript, HTML, CSS, pnpm                   |
+| Stack | Astro, TypeScript, semantic HTML, CSS, pnpm                 |
 
 This repository is itself a case study. It should show how a small portfolio can
 still be planned, documented, implemented, checked, and prepared for static

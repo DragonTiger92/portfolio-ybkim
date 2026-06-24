@@ -45,8 +45,9 @@ The site must provide a scannable project showcase section.
 
 - Each project item includes a title, short summary, role or focus, and relevant
   stack or capability tags.
-- Each project item links to a public repository, public demo, or states that no
-  public link is available.
+- Each landing-page project item links to a first-depth project-detail page.
+- A project detail links to a public repository or demo when one is available
+  and does not invent a public destination when one is unavailable.
 - Project summaries are concise enough for recruiter review.
 
 ## FR-003: Repository And Contact Navigation

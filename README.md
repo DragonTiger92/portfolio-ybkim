@@ -2,7 +2,10 @@
 
 웹 개발자로서의 재취직을 목표로 제작 중인 개인 포트폴리오 프로젝트입니다. 포지셔닝은 **FE 중심 풀스택 웹 개발자(Frontend-specialized full-stack web developer)** 입니다.
 
-이 저장소는 완성된 결과물뿐 아니라, Vanilla TypeScript, HTML, Pure CSS를 기반으로 정적 웹사이트를 설계하고 개선해 가는 과정을 함께 보여주기 위한 작업 공간입니다. Cloudflare Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
+이 저장소는 완성된 결과물뿐 아니라, Astro의 정적 생성, TypeScript,
+시맨틱 HTML(semantic HTML), Pure CSS를 기반으로 웹사이트를 설계하고
+개선해 가는 과정을 함께 보여주기 위한 작업 공간입니다. Cloudflare
+Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
 
 ## For Recruiters
 
@@ -42,14 +45,15 @@ accepted.
 
 ## Tech Stack
 
-| Area         | Stack                                    |
-| ------------ | ---------------------------------------- |
-| Markup       | HTML                                     |
-| Styling      | CSS                                      |
-| Language     | TypeScript                               |
-| Build Tool   | Vite                                     |
-| Code Quality | ESLint, Prettier, eslint-config-prettier |
-| Hosting      | Cloudflare Pages                         |
+| Area         | Stack                                   |
+| ------------ | --------------------------------------- |
+| Markup       | Astro, semantic HTML                    |
+| Styling      | CSS                                     |
+| Language     | TypeScript                              |
+| Build Tool   | Astro                                   |
+| Code Quality | ESLint, Prettier, HTML Validate, W3C Nu |
+| Testing      | Playwright, axe-core                    |
+| Hosting      | Cloudflare Pages                        |
 
 ## AI-Assisted Workflow
 
@@ -83,20 +87,24 @@ pnpm lint
 pnpm lint:fix
 pnpm format
 pnpm format:check
+pnpm test:a11y
+pnpm check:static
 pnpm check
 pnpm build:bundle
 pnpm build
 pnpm preview
 ```
 
-- `dev`: Vite 개발 서버를 실행합니다.
-- `typecheck`: TypeScript 타입 검사를 실행합니다.
+- `dev`: Astro 개발 서버를 실행합니다.
+- `typecheck`: Astro와 TypeScript 타입 검사를 실행합니다.
 - `lint`: ESLint로 코드와 설정 파일을 검사합니다.
 - `lint:fix`: 자동 수정 가능한 ESLint 문제를 수정합니다.
 - `format`: Prettier로 전체 파일을 포맷합니다.
 - `format:check`: Prettier 포맷 상태를 검사합니다.
-- `check`: 타입 검사, strict lint, governance test, 포맷 검사, Vite 번들을 한 번에 실행합니다.
-- `build:bundle`: 타입 검사를 반복하지 않고 Vite 프로덕션 번들만 생성합니다.
+- `test:a11y`: 최신 Astro build를 생성한 뒤 browser accessibility test를 실행합니다.
+- `check:static`: 타입, lint, 파일 크기, 포맷, Astro 빌드, HTML 표준을 검사합니다.
+- `check`: 정적 검사에 실제 브라우저 접근성 검사를 더해 전체 품질 gate를 실행합니다.
+- `build:bundle`: 타입 검사를 반복하지 않고 Astro 정적 산출물을 생성합니다.
 - `build`: 배포용 정적 파일을 생성합니다.
 - `preview`: 빌드 결과를 로컬에서 미리 봅니다.
 
@@ -107,11 +115,15 @@ pnpm preview
 ├── public/
 ├── docs/
 ├── src/
-│   ├── assets/
-│   ├── counter.ts
-│   ├── main.ts
-│   └── style.css
-├── index.html
+│   ├── components/
+│   ├── content/projects/
+│   ├── layouts/
+│   ├── pages/
+│   ├── scripts/
+│   └── styles/
+├── tests/
+├── astro.config.mjs
+├── playwright.config.ts
 ├── eslint.config.js
 ├── LICENSE
 ├── NOTICE.md
@@ -125,4 +137,5 @@ pnpm preview
 
 ## Deployment
 
-Cloudflare Pages 배포를 목표로 합니다. Vite `base`는 Pages 루트 경로인 `/`를 사용합니다. 배포 workflow와 Cloudflare 인프라는 PH-003에서 구현합니다.
+Cloudflare Pages 배포를 목표로 합니다. Astro는 static output과 루트 경로를
+사용하며, 배포 workflow와 Cloudflare 인프라는 PH-003에서 구현합니다.

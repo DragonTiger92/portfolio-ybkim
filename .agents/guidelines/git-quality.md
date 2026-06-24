@@ -34,9 +34,9 @@ pnpm.cmd check
 ```
 
 The check runs type checking, strict linting, strict file-size validation,
-governance and file-size tests, formatting verification, and the production Vite
-bundle in fail-fast order. After it passes, do not rerun every component command
-separately.
+governance and file-size tests, formatting verification, the production Astro
+build, strict HTML checks, W3C Nu validation, and browser accessibility tests in
+fail-fast order. After it passes, do not rerun every component command separately.
 
 If the check fails, rerun only the failing stage or use these commands for focused work:
 
@@ -48,7 +48,15 @@ pnpm.cmd test:governance
 pnpm.cmd test:file-size
 pnpm.cmd format:check
 pnpm.cmd build:bundle
+pnpm.cmd validate:html:strict
+pnpm.cmd validate:standards:strict
+pnpm.cmd test:a11y
 ```
+
+`pnpm.cmd test:a11y` creates a fresh Astro build before starting Playwright so a
+focused browser run cannot silently validate stale `dist/` output. The internal
+`test:a11y:run` script assumes a fresh build and is used only after
+`check:static` inside the canonical `check` sequence.
 
 Use the standalone `pnpm.cmd build` when the task specifically requires a complete build
 that includes its own type check.
@@ -87,14 +95,22 @@ Keep this hook staged-file-only and fast:
 - Ensure commands use `pnpm`.
 - Do not add Git hooks that modify unrelated files unexpectedly.
 - Document any new script added to `package.json`.
-- Do not add a pre-push hook while the explicit local completion check and pull
-  request CI remain the authoritative full gates.
+
+The pre-push hook runs `pnpm check:static`. It intentionally excludes browser
+tests to keep local pushes predictable while still blocking type, lint, size,
+format, build, HTML, and standards failures. Pull request CI remains the
+authoritative full gate and also runs the browser accessibility suite.
 
 Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
 
 File-size validation follows the same intent: staged-file and ordinary local runs
 report advisory feedback, while `pnpm.cmd lint:size:strict` fails agent-led and
 completion checks when a maintained file exceeds its category limit.
+
+The same warning policy applies across static-analysis tools: ordinary human
+commands may show advisory warnings, but agent-led completion, pre-push, and CI
+commands must treat warnings as failures. Suppressions require a narrow,
+documented reason and must not be added merely to make a gate green.
 
 The public event-to-gate source of truth is the Quality Gate Matrix in
 `docs/architecture/github-governance.md`.

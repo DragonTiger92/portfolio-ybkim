@@ -10,9 +10,19 @@ tool list.
 | Profile Summary   | Introduce the developer positioning in one screen |
 | Skill Group       | Connect capabilities to delivery responsibility   |
 | Case Study        | Show a project problem, role, action, and result  |
+| Project Detail    | Give each case study a stable first-depth route   |
 | Project Link      | Send visitors to public repositories or demos     |
 | Contact Action    | Provide a safe next step for recruiters           |
 | Documentation Cue | Show that the repository is intentionally managed |
+
+## Page Model
+
+- `/` is the landing page and the only top-level discovery surface.
+- `/projects/{slug}/` is the first-depth project-detail route.
+- Project metadata is validated by the Astro content collection schema.
+- A reusable project card links landing-page summaries to project details.
+- Each project detail owns its title, summary, role, focus, stack, order, links,
+  and Markdown narrative.
 
 ## Skill Groups
 

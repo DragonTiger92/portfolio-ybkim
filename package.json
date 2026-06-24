@@ -5,8 +5,9 @@
   "packageManager": "pnpm@11.5.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "typecheck": "tsc --noEmit",
+    "dev": "astro dev",
+    "typecheck": "astro check",
+    "typecheck:strict": "astro check --minimumFailingSeverity warning",
     "lint": "eslint .",
     "lint:strict": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
@@ -16,26 +17,39 @@
     "format:check": "prettier . --check",
     "test:governance": "node --test scripts/validate-pr-metadata.test.mjs",
     "test:file-size": "node --test scripts/validate-file-size.test.mjs",
-    "build:bundle": "vite build",
-    "check": "pnpm typecheck && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm format:check && pnpm build:bundle",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "test:a11y": "pnpm build:bundle && playwright test",
+    "test:a11y:run": "playwright test",
+    "validate:html": "html-validate dist --ext html",
+    "validate:html:strict": "html-validate dist --ext html --max-warnings 0",
+    "validate:standards": "vnu --also-check-css --skip-non-html dist",
+    "validate:standards:strict": "vnu --Werror --also-check-css --skip-non-html dist",
+    "build:bundle": "astro build",
+    "check:static": "pnpm typecheck:strict && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm format:check && pnpm build:bundle && pnpm validate:html:strict && pnpm validate:standards:strict",
+    "check": "pnpm check:static && pnpm test:a11y:run",
+    "build": "astro check --minimumFailingSeverity warning && astro build",
+    "preview": "astro preview --host 127.0.0.1",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@axe-core/playwright": "4.11.3",
     "@eslint/css": "1.3.0",
     "@eslint/js": "10.0.1",
     "@eslint/json": "2.0.0",
     "@eslint/markdown": "8.0.2",
+    "@playwright/test": "1.61.0",
+    "astro": "6.4.7",
     "eslint": "10.4.1",
     "eslint-config-prettier": "10.1.8",
     "globals": "17.6.0",
+    "html-validate": "11.5.3",
     "husky": "9.1.7",
     "lint-staged": "17.0.7",
     "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.60.1",
-    "vite": "8.0.16"
+    "vnu-jar": "26.6.14"
   },
   "lint-staged": {
     "**/*.{js,mjs,cjs,ts,mts,cts,css,json,jsonc,md}": [
@@ -43,7 +57,7 @@
       "pnpm exec prettier --write",
       "node scripts/validate-file-size.mjs"
     ],
-    "**/*.{html,yml,yaml}": [
+    "**/*.{astro,html,yml,yaml}": [
       "pnpm exec prettier --write",
       "node scripts/validate-file-size.mjs"
     ],

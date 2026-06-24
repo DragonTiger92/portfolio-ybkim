@@ -3,6 +3,7 @@ import { extname, relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ignoredDirectoryNames = new Set([
+  ".astro",
   ".git",
   ".terraform",
   ".contexts",
@@ -10,6 +11,8 @@ const ignoredDirectoryNames = new Set([
   "coverage",
   "dist",
   "node_modules",
+  "playwright-report",
+  "test-results",
   "tmp",
 ]);
 
@@ -40,7 +43,7 @@ const fileSizePolicies = [
     max: 300,
   },
   {
-    extensions: new Set([".html", ".json", ".jsonc", ".tf", ".yaml", ".yml"]),
+    extensions: new Set([".astro", ".html", ".json", ".jsonc", ".tf", ".yaml", ".yml"]),
     label: "maintained configuration or markup",
     max: 250,
   },

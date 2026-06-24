@@ -36,5 +36,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install browser for accessibility checks
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Run project checks
         run: pnpm check

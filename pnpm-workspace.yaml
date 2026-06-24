@@ -7,3 +7,8 @@ minimumReleaseAgeIgnoreMissingTime: false
 minimumReleaseAgeStrict: true
 verifyDepsBeforeRun: error
 strictDepBuilds: true
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  vnu-jar: true

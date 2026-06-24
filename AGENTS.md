@@ -2,7 +2,7 @@
 
 ## Project Contract
 
-This repository contains `portfolio-ybkim`, a personal portfolio website built with Vite, Vanilla TypeScript, HTML, pure CSS, pnpm, Git, and GitHub.
+This repository contains `portfolio-ybkim`, a statically generated personal portfolio website built with Astro, TypeScript, semantic HTML, pure CSS, pnpm, Git, and GitHub.
 
 Do not introduce React or another UI framework unless the user explicitly requests it.
 

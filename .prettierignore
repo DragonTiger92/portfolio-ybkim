@@ -2,9 +2,12 @@
 node_modules
 
 # Build artifacts
+.astro
 dist
 build
 coverage
+playwright-report
+test-results
 
 # Local caches
 .vite

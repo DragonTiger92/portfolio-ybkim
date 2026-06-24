@@ -6,15 +6,17 @@ This repository contains `portfolio-ybkim`, a personal portfolio website.
 
 The project currently uses:
 
-- Vite
-- HTML
+- Astro in static output mode
+- Semantic HTML
 - Pure CSS
 - Vanilla TypeScript
 - pnpm
 - Git
 - GitHub
 
-Do not introduce React or another UI framework unless explicitly requested.
+Astro components are the repository's page and reusable UI composition model.
+Do not introduce React, another UI renderer, or a CSS framework unless explicitly
+requested and justified by a concrete product need.
 
 The portfolio should prioritize maintainability, readability, accessibility, responsive layout, and clear presentation of the developer's work.
 
@@ -57,8 +59,8 @@ Do not assume a custom domain until it is explicitly adopted during PH-003.
 
 When changing build or routing behavior:
 
-- Check Vite configuration.
-- Keep Vite `base` aligned with the Cloudflare Pages root deployment path.
+- Check Astro configuration and generated routes.
+- Keep Astro output static and URLs compatible with the Cloudflare Pages root.
 - Do not assume server-side runtime support.
 - Avoid features that require a backend unless explicitly planned.
 - Keep Cloudflare Pages static deployment compatibility in mind.

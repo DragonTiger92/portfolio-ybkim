@@ -1,0 +1,153 @@
+@layer reset, base, layout;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  ol,
+  ul,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  ol,
+  ul {
+    padding: 0;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 0.2rem solid var(--color-focus);
+    outline-offset: 0.2rem;
+  }
+
+  html {
+    background: var(--color-canvas);
+  }
+
+  body {
+    min-block-size: 100svb;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    color: var(--color-text);
+    background: var(--color-canvas);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 760;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  h1 {
+    max-inline-size: 13ch;
+    font-size: var(--text-h1);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+  }
+
+  a {
+    color: var(--color-accent-strong);
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover {
+    text-decoration-thickness: 0.16em;
+  }
+
+  strong {
+    font-weight: 750;
+  }
+}
+
+@layer layout {
+  .site-shell {
+    inline-size: min(100% - 2rem, var(--content-max));
+    margin-inline: auto;
+  }
+
+  .content-section {
+    padding-block: var(--space-8);
+  }
+
+  .content-section--tinted {
+    background: var(--color-surface-muted);
+  }
+
+  .section-heading {
+    display: grid;
+    max-inline-size: 42rem;
+    gap: var(--space-3);
+    margin-block-end: var(--space-7);
+  }
+
+  .section-heading > p:last-child {
+    color: var(--color-text-muted);
+    font-size: var(--text-lead);
+  }
+
+  .project-main {
+    padding-block: var(--space-5) var(--space-9);
+  }
+
+  @media (min-width: 48rem) {
+    .site-shell {
+      inline-size: min(100% - 4rem, var(--content-max));
+    }
+
+    .content-section {
+      padding-block: var(--space-9);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .button-link,
+    .text-link,
+    .theme-toggle {
+      transition-duration: 0.01ms;
+    }
+  }
+}

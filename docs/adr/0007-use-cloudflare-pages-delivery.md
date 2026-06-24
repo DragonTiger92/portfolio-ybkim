@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The portfolio is a static Vite product with one maintainer. It needs automatic
+The portfolio is a statically generated Astro product with one maintainer. It needs automatic
 production delivery, occasional production-like remote QA, and access control
 for non-public previews without provisioning a traditional staging server.
 

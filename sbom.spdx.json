@@ -2,15 +2,12 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "portfolio-ybkim-0.0.0",
-  "documentNamespace": "https://github.com/DragonTiger92/portfolio-ybkim/sbom/2026-06-16T08-20-27Z",
+  "name": "portfolio-ybkim-0.0.0-sbom",
+  "documentNamespace": "https://github.com/DragonTiger92/portfolio-ybkim/sbom/2026-06-24T07-25-26Z",
   "creationInfo": {
-    "created": "2026-06-16T08:20:27Z",
-    "creators": [
-      "Tool: Codex generated SPDX JSON from pnpm local metadata",
-      "Tool: pnpm@11.5.1",
-      "Tool: Codex updated repository license expression"
-    ]
+    "created": "2026-06-24T07:25:26Z",
+    "creators": ["Tool: Codex generated SPDX JSON from pnpm local metadata"],
+    "licenseListVersion": "3.27.0"
   },
   "packages": [
     {
@@ -32,6 +29,481 @@
         }
       ],
       "licenseComments": "MIT applies to source code and build/configuration files. Portfolio content, documentation, personal descriptions, visual design content, images, and other non-code materials are All Rights Reserved unless otherwise stated. See NOTICE.md."
+    },
+    {
+      "name": "@astrojs/check",
+      "SPDXID": "SPDXRef-Package-astrojs-check-0.9.9",
+      "versionInfo": "0.9.9",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/check@0.9.9"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/compiler",
+      "SPDXID": "SPDXRef-Package-astrojs-compiler-2.13.1",
+      "versionInfo": "2.13.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler@2.13.1"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/compiler",
+      "SPDXID": "SPDXRef-Package-astrojs-compiler-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/internal-helpers",
+      "SPDXID": "SPDXRef-Package-astrojs-internal-helpers-0.10.0",
+      "versionInfo": "0.10.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/internal-helpers@0.10.0"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/language-server",
+      "SPDXID": "SPDXRef-Package-astrojs-language-server-2.16.10",
+      "versionInfo": "2.16.10",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/language-server@2.16.10"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/markdown-remark",
+      "SPDXID": "SPDXRef-Package-astrojs-markdown-remark-7.2.0",
+      "versionInfo": "7.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/markdown-remark@7.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/prism",
+      "SPDXID": "SPDXRef-Package-astrojs-prism-4.0.2",
+      "versionInfo": "4.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/prism@4.0.2"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/telemetry",
+      "SPDXID": "SPDXRef-Package-astrojs-telemetry-3.3.2",
+      "versionInfo": "3.3.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/telemetry@3.3.2"
+        }
+      ]
+    },
+    {
+      "name": "@astrojs/yaml2ts",
+      "SPDXID": "SPDXRef-Package-astrojs-yaml2ts-0.2.4",
+      "versionInfo": "0.2.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/yaml2ts@0.2.4"
+        }
+      ]
+    },
+    {
+      "name": "@axe-core/playwright",
+      "SPDXID": "SPDXRef-Package-axe-core-playwright-4.11.3",
+      "versionInfo": "4.11.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MPL-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40axe-core/playwright@4.11.3"
+        }
+      ]
+    },
+    {
+      "name": "@babel/helper-string-parser",
+      "SPDXID": "SPDXRef-Package-babel-helper-string-parser-7.29.7",
+      "versionInfo": "7.29.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40babel/helper-string-parser@7.29.7"
+        }
+      ]
+    },
+    {
+      "name": "@babel/helper-validator-identifier",
+      "SPDXID": "SPDXRef-Package-babel-helper-validator-identifier-7.29.7",
+      "versionInfo": "7.29.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40babel/helper-validator-identifier@7.29.7"
+        }
+      ]
+    },
+    {
+      "name": "@babel/parser",
+      "SPDXID": "SPDXRef-Package-babel-parser-7.29.7",
+      "versionInfo": "7.29.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40babel/parser@7.29.7"
+        }
+      ]
+    },
+    {
+      "name": "@babel/types",
+      "SPDXID": "SPDXRef-Package-babel-types-7.29.7",
+      "versionInfo": "7.29.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40babel/types@7.29.7"
+        }
+      ]
+    },
+    {
+      "name": "@capsizecss/unpack",
+      "SPDXID": "SPDXRef-Package-capsizecss-unpack-4.0.1",
+      "versionInfo": "4.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40capsizecss/unpack@4.0.1"
+        }
+      ]
+    },
+    {
+      "name": "@clack/core",
+      "SPDXID": "SPDXRef-Package-clack-core-1.4.1",
+      "versionInfo": "1.4.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40clack/core@1.4.1"
+        }
+      ]
+    },
+    {
+      "name": "@clack/prompts",
+      "SPDXID": "SPDXRef-Package-clack-prompts-1.5.1",
+      "versionInfo": "1.5.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40clack/prompts@1.5.1"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/abbreviation",
+      "SPDXID": "SPDXRef-Package-emmetio-abbreviation-2.3.3",
+      "versionInfo": "2.3.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/abbreviation@2.3.3"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/css-abbreviation",
+      "SPDXID": "SPDXRef-Package-emmetio-css-abbreviation-2.1.8",
+      "versionInfo": "2.1.8",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/css-abbreviation@2.1.8"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/css-parser",
+      "SPDXID": "SPDXRef-Package-emmetio-css-parser-0.4.1",
+      "versionInfo": "0.4.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/css-parser@0.4.1"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/html-matcher",
+      "SPDXID": "SPDXRef-Package-emmetio-html-matcher-1.3.0",
+      "versionInfo": "1.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/html-matcher@1.3.0"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/scanner",
+      "SPDXID": "SPDXRef-Package-emmetio-scanner-1.0.4",
+      "versionInfo": "1.0.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/scanner@1.0.4"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/stream-reader",
+      "SPDXID": "SPDXRef-Package-emmetio-stream-reader-2.2.0",
+      "versionInfo": "2.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/stream-reader@2.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@emmetio/stream-reader-utils",
+      "SPDXID": "SPDXRef-Package-emmetio-stream-reader-utils-0.1.0",
+      "versionInfo": "0.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emmetio/stream-reader-utils@0.1.0"
+        }
+      ]
+    },
+    {
+      "name": "@esbuild/win32-x64",
+      "SPDXID": "SPDXRef-Package-esbuild-win32-x64-0.27.7",
+      "versionInfo": "0.27.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40esbuild/win32-x64@0.27.7"
+        }
+      ]
     },
     {
       "name": "@eslint-community/eslint-utils",
@@ -262,6 +734,25 @@
       ]
     },
     {
+      "name": "@html-validate/stylish",
+      "SPDXID": "SPDXRef-Package-html-validate-stylish-6.0.0",
+      "versionInfo": "6.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40html-validate/stylish@6.0.0"
+        }
+      ]
+    },
+    {
       "name": "@humanfs/core",
       "SPDXID": "SPDXRef-Package-humanfs-core-0.19.2",
       "versionInfo": "0.19.2",
@@ -376,9 +867,9 @@
       ]
     },
     {
-      "name": "@oxc-project/types",
-      "SPDXID": "SPDXRef-Package-oxc-project-types-0.133.0",
-      "versionInfo": "0.133.0",
+      "name": "@img/colour",
+      "SPDXID": "SPDXRef-Package-img-colour-1.1.0",
+      "versionInfo": "1.1.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -390,33 +881,33 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40oxc-project/types@0.133.0"
+          "referenceLocator": "pkg:npm/%40img/colour@1.1.0"
         }
       ]
     },
     {
-      "name": "@rolldown/binding-win32-x64-msvc",
-      "SPDXID": "SPDXRef-Package-rolldown-binding-win32-x64-msvc-1.0.3",
-      "versionInfo": "1.0.3",
+      "name": "@img/sharp-win32-x64",
+      "SPDXID": "SPDXRef-Package-img-sharp-win32-x64-0.34.5",
+      "versionInfo": "0.34.5",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "MIT",
+      "licenseDeclared": "Apache-2.0 AND LGPL-3.0-or-later",
       "copyrightText": "NOASSERTION",
       "primaryPackagePurpose": "LIBRARY",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-win32-x64-msvc@1.0.3"
+          "referenceLocator": "pkg:npm/%40img/sharp-win32-x64@0.34.5"
         }
       ]
     },
     {
-      "name": "@rolldown/pluginutils",
-      "SPDXID": "SPDXRef-Package-rolldown-pluginutils-1.0.1",
-      "versionInfo": "1.0.1",
+      "name": "@jridgewell/sourcemap-codec",
+      "SPDXID": "SPDXRef-Package-jridgewell-sourcemap-codec-1.5.5",
+      "versionInfo": "1.5.5",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -428,7 +919,273 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/pluginutils@1.0.1"
+          "referenceLocator": "pkg:npm/%40jridgewell/sourcemap-codec@1.5.5"
+        }
+      ]
+    },
+    {
+      "name": "@oslojs/encoding",
+      "SPDXID": "SPDXRef-Package-oslojs-encoding-1.1.0",
+      "versionInfo": "1.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40oslojs/encoding@1.1.0"
+        }
+      ]
+    },
+    {
+      "name": "@playwright/test",
+      "SPDXID": "SPDXRef-Package-playwright-test-1.61.0",
+      "versionInfo": "1.61.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40playwright/test@1.61.0"
+        }
+      ]
+    },
+    {
+      "name": "@rollup/pluginutils",
+      "SPDXID": "SPDXRef-Package-rollup-pluginutils-5.4.0",
+      "versionInfo": "5.4.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40rollup/pluginutils@5.4.0"
+        }
+      ]
+    },
+    {
+      "name": "@rollup/rollup-win32-x64-gnu",
+      "SPDXID": "SPDXRef-Package-rollup-rollup-win32-x64-gnu-4.62.0",
+      "versionInfo": "4.62.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40rollup/rollup-win32-x64-gnu@4.62.0"
+        }
+      ]
+    },
+    {
+      "name": "@rollup/rollup-win32-x64-msvc",
+      "SPDXID": "SPDXRef-Package-rollup-rollup-win32-x64-msvc-4.62.0",
+      "versionInfo": "4.62.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40rollup/rollup-win32-x64-msvc@4.62.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/core",
+      "SPDXID": "SPDXRef-Package-shikijs-core-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/core@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/engine-javascript",
+      "SPDXID": "SPDXRef-Package-shikijs-engine-javascript-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/engine-javascript@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/engine-oniguruma",
+      "SPDXID": "SPDXRef-Package-shikijs-engine-oniguruma-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/engine-oniguruma@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/langs",
+      "SPDXID": "SPDXRef-Package-shikijs-langs-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/langs@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/primitive",
+      "SPDXID": "SPDXRef-Package-shikijs-primitive-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/primitive@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/themes",
+      "SPDXID": "SPDXRef-Package-shikijs-themes-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/themes@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/types",
+      "SPDXID": "SPDXRef-Package-shikijs-types-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/types@4.2.0"
+        }
+      ]
+    },
+    {
+      "name": "@shikijs/vscode-textmate",
+      "SPDXID": "SPDXRef-Package-shikijs-vscode-textmate-10.0.2",
+      "versionInfo": "10.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40shikijs/vscode-textmate@10.0.2"
+        }
+      ]
+    },
+    {
+      "name": "@sidvind/better-ajv-errors",
+      "SPDXID": "SPDXRef-Package-sidvind-better-ajv-errors-7.0.0",
+      "versionInfo": "7.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40sidvind/better-ajv-errors@7.0.0"
         }
       ]
     },
@@ -581,6 +1338,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/%40types/ms@2.1.0"
+        }
+      ]
+    },
+    {
+      "name": "@types/nlcst",
+      "SPDXID": "SPDXRef-Package-types-nlcst-2.0.3",
+      "versionInfo": "2.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/nlcst@2.0.3"
         }
       ]
     },
@@ -794,6 +1570,177 @@
       ]
     },
     {
+      "name": "@ungap/structured-clone",
+      "SPDXID": "SPDXRef-Package-ungap-structured-clone-1.3.1",
+      "versionInfo": "1.3.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40ungap/structured-clone@1.3.1"
+        }
+      ]
+    },
+    {
+      "name": "@volar/kit",
+      "SPDXID": "SPDXRef-Package-volar-kit-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/kit@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@volar/language-core",
+      "SPDXID": "SPDXRef-Package-volar-language-core-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/language-core@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@volar/language-server",
+      "SPDXID": "SPDXRef-Package-volar-language-server-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/language-server@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@volar/language-service",
+      "SPDXID": "SPDXRef-Package-volar-language-service-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/language-service@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@volar/source-map",
+      "SPDXID": "SPDXRef-Package-volar-source-map-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/source-map@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@volar/typescript",
+      "SPDXID": "SPDXRef-Package-volar-typescript-2.4.28",
+      "versionInfo": "2.4.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40volar/typescript@2.4.28"
+        }
+      ]
+    },
+    {
+      "name": "@vscode/emmet-helper",
+      "SPDXID": "SPDXRef-Package-vscode-emmet-helper-2.11.0",
+      "versionInfo": "2.11.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40vscode/emmet-helper@2.11.0"
+        }
+      ]
+    },
+    {
+      "name": "@vscode/l10n",
+      "SPDXID": "SPDXRef-Package-vscode-l10n-0.0.18",
+      "versionInfo": "0.0.18",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40vscode/l10n@0.0.18"
+        }
+      ]
+    },
+    {
       "name": "acorn",
       "SPDXID": "SPDXRef-Package-acorn-8.16.0",
       "versionInfo": "8.16.0",
@@ -851,6 +1798,44 @@
       ]
     },
     {
+      "name": "ajv",
+      "SPDXID": "SPDXRef-Package-ajv-8.20.0",
+      "versionInfo": "8.20.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ajv@8.20.0"
+        }
+      ]
+    },
+    {
+      "name": "ajv-draft-04",
+      "SPDXID": "SPDXRef-Package-ajv-draft-04-1.0.0",
+      "versionInfo": "1.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ajv-draft-04@1.0.0"
+        }
+      ]
+    },
+    {
       "name": "ansi-escapes",
       "SPDXID": "SPDXRef-Package-ansi-escapes-7.3.0",
       "versionInfo": "7.3.0",
@@ -866,6 +1851,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/ansi-escapes@7.3.0"
+        }
+      ]
+    },
+    {
+      "name": "ansi-regex",
+      "SPDXID": "SPDXRef-Package-ansi-regex-5.0.1",
+      "versionInfo": "5.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ansi-regex@5.0.1"
         }
       ]
     },
@@ -890,6 +1894,25 @@
     },
     {
       "name": "ansi-styles",
+      "SPDXID": "SPDXRef-Package-ansi-styles-4.3.0",
+      "versionInfo": "4.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ansi-styles@4.3.0"
+        }
+      ]
+    },
+    {
+      "name": "ansi-styles",
       "SPDXID": "SPDXRef-Package-ansi-styles-6.2.3",
       "versionInfo": "6.2.3",
       "supplier": "NOASSERTION",
@@ -904,6 +1927,158 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/ansi-styles@6.2.3"
+        }
+      ]
+    },
+    {
+      "name": "anymatch",
+      "SPDXID": "SPDXRef-Package-anymatch-3.1.3",
+      "versionInfo": "3.1.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/anymatch@3.1.3"
+        }
+      ]
+    },
+    {
+      "name": "argparse",
+      "SPDXID": "SPDXRef-Package-argparse-2.0.1",
+      "versionInfo": "2.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Python-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/argparse@2.0.1"
+        }
+      ]
+    },
+    {
+      "name": "aria-query",
+      "SPDXID": "SPDXRef-Package-aria-query-5.3.2",
+      "versionInfo": "5.3.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/aria-query@5.3.2"
+        }
+      ]
+    },
+    {
+      "name": "array-iterate",
+      "SPDXID": "SPDXRef-Package-array-iterate-2.0.1",
+      "versionInfo": "2.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/array-iterate@2.0.1"
+        }
+      ]
+    },
+    {
+      "name": "astro",
+      "SPDXID": "SPDXRef-Package-astro-6.4.7",
+      "versionInfo": "6.4.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/astro@6.4.7"
+        }
+      ]
+    },
+    {
+      "name": "axe-core",
+      "SPDXID": "SPDXRef-Package-axe-core-4.11.4",
+      "versionInfo": "4.11.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MPL-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/axe-core@4.11.4"
+        }
+      ]
+    },
+    {
+      "name": "axobject-query",
+      "SPDXID": "SPDXRef-Package-axobject-query-4.1.0",
+      "versionInfo": "4.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/axobject-query@4.1.0"
+        }
+      ]
+    },
+    {
+      "name": "bail",
+      "SPDXID": "SPDXRef-Package-bail-2.0.2",
+      "versionInfo": "2.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/bail@2.0.2"
         }
       ]
     },
@@ -923,6 +2098,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/balanced-match@4.0.4"
+        }
+      ]
+    },
+    {
+      "name": "boolbase",
+      "SPDXID": "SPDXRef-Package-boolbase-1.0.0",
+      "versionInfo": "1.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/boolbase@1.0.0"
         }
       ]
     },
@@ -984,6 +2178,101 @@
       ]
     },
     {
+      "name": "character-entities-html4",
+      "SPDXID": "SPDXRef-Package-character-entities-html4-2.1.0",
+      "versionInfo": "2.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/character-entities-html4@2.1.0"
+        }
+      ]
+    },
+    {
+      "name": "character-entities-legacy",
+      "SPDXID": "SPDXRef-Package-character-entities-legacy-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/character-entities-legacy@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "chokidar",
+      "SPDXID": "SPDXRef-Package-chokidar-4.0.3",
+      "versionInfo": "4.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/chokidar@4.0.3"
+        }
+      ]
+    },
+    {
+      "name": "chokidar",
+      "SPDXID": "SPDXRef-Package-chokidar-5.0.0",
+      "versionInfo": "5.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/chokidar@5.0.0"
+        }
+      ]
+    },
+    {
+      "name": "ci-info",
+      "SPDXID": "SPDXRef-Package-ci-info-4.4.0",
+      "versionInfo": "4.4.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ci-info@4.4.0"
+        }
+      ]
+    },
+    {
       "name": "cli-cursor",
       "SPDXID": "SPDXRef-Package-cli-cursor-5.0.0",
       "versionInfo": "5.0.0",
@@ -1022,6 +2311,101 @@
       ]
     },
     {
+      "name": "cliui",
+      "SPDXID": "SPDXRef-Package-cliui-8.0.1",
+      "versionInfo": "8.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/cliui@8.0.1"
+        }
+      ]
+    },
+    {
+      "name": "clsx",
+      "SPDXID": "SPDXRef-Package-clsx-2.1.1",
+      "versionInfo": "2.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/clsx@2.1.1"
+        }
+      ]
+    },
+    {
+      "name": "color-convert",
+      "SPDXID": "SPDXRef-Package-color-convert-2.0.1",
+      "versionInfo": "2.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/color-convert@2.0.1"
+        }
+      ]
+    },
+    {
+      "name": "color-name",
+      "SPDXID": "SPDXRef-Package-color-name-1.1.4",
+      "versionInfo": "1.1.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/color-name@1.1.4"
+        }
+      ]
+    },
+    {
+      "name": "comma-separated-tokens",
+      "SPDXID": "SPDXRef-Package-comma-separated-tokens-2.0.3",
+      "versionInfo": "2.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/comma-separated-tokens@2.0.3"
+        }
+      ]
+    },
+    {
       "name": "commander",
       "SPDXID": "SPDXRef-Package-commander-8.3.0",
       "versionInfo": "8.3.0",
@@ -1041,6 +2425,82 @@
       ]
     },
     {
+      "name": "commander",
+      "SPDXID": "SPDXRef-Package-commander-11.1.0",
+      "versionInfo": "11.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/commander@11.1.0"
+        }
+      ]
+    },
+    {
+      "name": "common-ancestor-path",
+      "SPDXID": "SPDXRef-Package-common-ancestor-path-2.0.0",
+      "versionInfo": "2.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BlueOak-1.0.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/common-ancestor-path@2.0.0"
+        }
+      ]
+    },
+    {
+      "name": "cookie",
+      "SPDXID": "SPDXRef-Package-cookie-1.1.1",
+      "versionInfo": "1.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/cookie@1.1.1"
+        }
+      ]
+    },
+    {
+      "name": "cookie-es",
+      "SPDXID": "SPDXRef-Package-cookie-es-1.2.3",
+      "versionInfo": "1.2.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/cookie-es@1.2.3"
+        }
+      ]
+    },
+    {
       "name": "cross-spawn",
       "SPDXID": "SPDXRef-Package-cross-spawn-7.0.6",
       "versionInfo": "7.0.6",
@@ -1056,6 +2516,120 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/cross-spawn@7.0.6"
+        }
+      ]
+    },
+    {
+      "name": "crossws",
+      "SPDXID": "SPDXRef-Package-crossws-0.3.5",
+      "versionInfo": "0.3.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/crossws@0.3.5"
+        }
+      ]
+    },
+    {
+      "name": "css-select",
+      "SPDXID": "SPDXRef-Package-css-select-5.2.2",
+      "versionInfo": "5.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/css-select@5.2.2"
+        }
+      ]
+    },
+    {
+      "name": "css-tree",
+      "SPDXID": "SPDXRef-Package-css-tree-2.2.1",
+      "versionInfo": "2.2.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/css-tree@2.2.1"
+        }
+      ]
+    },
+    {
+      "name": "css-tree",
+      "SPDXID": "SPDXRef-Package-css-tree-3.2.1",
+      "versionInfo": "3.2.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/css-tree@3.2.1"
+        }
+      ]
+    },
+    {
+      "name": "css-what",
+      "SPDXID": "SPDXRef-Package-css-what-6.2.2",
+      "versionInfo": "6.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/css-what@6.2.2"
+        }
+      ]
+    },
+    {
+      "name": "csso",
+      "SPDXID": "SPDXRef-Package-csso-5.0.5",
+      "versionInfo": "5.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/csso@5.0.5"
         }
       ]
     },
@@ -1117,6 +2691,25 @@
       ]
     },
     {
+      "name": "defu",
+      "SPDXID": "SPDXRef-Package-defu-6.1.7",
+      "versionInfo": "6.1.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/defu@6.1.7"
+        }
+      ]
+    },
+    {
       "name": "dequal",
       "SPDXID": "SPDXRef-Package-dequal-2.0.3",
       "versionInfo": "2.0.3",
@@ -1132,6 +2725,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/dequal@2.0.3"
+        }
+      ]
+    },
+    {
+      "name": "destr",
+      "SPDXID": "SPDXRef-Package-destr-2.0.5",
+      "versionInfo": "2.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/destr@2.0.5"
         }
       ]
     },
@@ -1155,6 +2767,25 @@
       ]
     },
     {
+      "name": "devalue",
+      "SPDXID": "SPDXRef-Package-devalue-5.8.1",
+      "versionInfo": "5.8.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/devalue@5.8.1"
+        }
+      ]
+    },
+    {
       "name": "devlop",
       "SPDXID": "SPDXRef-Package-devlop-1.1.0",
       "versionInfo": "1.1.0",
@@ -1170,6 +2801,158 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/devlop@1.1.0"
+        }
+      ]
+    },
+    {
+      "name": "diff",
+      "SPDXID": "SPDXRef-Package-diff-8.0.4",
+      "versionInfo": "8.0.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/diff@8.0.4"
+        }
+      ]
+    },
+    {
+      "name": "dom-serializer",
+      "SPDXID": "SPDXRef-Package-dom-serializer-2.0.0",
+      "versionInfo": "2.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/dom-serializer@2.0.0"
+        }
+      ]
+    },
+    {
+      "name": "domelementtype",
+      "SPDXID": "SPDXRef-Package-domelementtype-2.3.0",
+      "versionInfo": "2.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/domelementtype@2.3.0"
+        }
+      ]
+    },
+    {
+      "name": "domhandler",
+      "SPDXID": "SPDXRef-Package-domhandler-5.0.3",
+      "versionInfo": "5.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/domhandler@5.0.3"
+        }
+      ]
+    },
+    {
+      "name": "domutils",
+      "SPDXID": "SPDXRef-Package-domutils-3.2.2",
+      "versionInfo": "3.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/domutils@3.2.2"
+        }
+      ]
+    },
+    {
+      "name": "dset",
+      "SPDXID": "SPDXRef-Package-dset-3.1.4",
+      "versionInfo": "3.1.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/dset@3.1.4"
+        }
+      ]
+    },
+    {
+      "name": "emmet",
+      "SPDXID": "SPDXRef-Package-emmet-2.4.11",
+      "versionInfo": "2.4.11",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/emmet@2.4.11"
+        }
+      ]
+    },
+    {
+      "name": "emoji-regex",
+      "SPDXID": "SPDXRef-Package-emoji-regex-8.0.0",
+      "versionInfo": "8.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/emoji-regex@8.0.0"
         }
       ]
     },
@@ -1193,6 +2976,44 @@
       ]
     },
     {
+      "name": "entities",
+      "SPDXID": "SPDXRef-Package-entities-4.5.0",
+      "versionInfo": "4.5.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/entities@4.5.0"
+        }
+      ]
+    },
+    {
+      "name": "entities",
+      "SPDXID": "SPDXRef-Package-entities-6.0.1",
+      "versionInfo": "6.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/entities@6.0.1"
+        }
+      ]
+    },
+    {
       "name": "environment",
       "SPDXID": "SPDXRef-Package-environment-1.1.0",
       "versionInfo": "1.1.0",
@@ -1208,6 +3029,63 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/environment@1.1.0"
+        }
+      ]
+    },
+    {
+      "name": "es-module-lexer",
+      "SPDXID": "SPDXRef-Package-es-module-lexer-2.1.0",
+      "versionInfo": "2.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/es-module-lexer@2.1.0"
+        }
+      ]
+    },
+    {
+      "name": "esbuild",
+      "SPDXID": "SPDXRef-Package-esbuild-0.27.7",
+      "versionInfo": "0.27.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/esbuild@0.27.7"
+        }
+      ]
+    },
+    {
+      "name": "escalade",
+      "SPDXID": "SPDXRef-Package-escalade-3.2.0",
+      "versionInfo": "3.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/escalade@3.2.0"
         }
       ]
     },
@@ -1421,6 +3299,25 @@
       ]
     },
     {
+      "name": "estree-walker",
+      "SPDXID": "SPDXRef-Package-estree-walker-2.0.2",
+      "versionInfo": "2.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/estree-walker@2.0.2"
+        }
+      ]
+    },
+    {
       "name": "esutils",
       "SPDXID": "SPDXRef-Package-esutils-2.0.3",
       "versionInfo": "2.0.3",
@@ -1455,6 +3352,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/eventemitter3@5.0.4"
+        }
+      ]
+    },
+    {
+      "name": "extend",
+      "SPDXID": "SPDXRef-Package-extend-3.0.2",
+      "versionInfo": "3.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/extend@3.0.2"
         }
       ]
     },
@@ -1512,6 +3428,82 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/fast-levenshtein@2.0.6"
+        }
+      ]
+    },
+    {
+      "name": "fast-string-truncated-width",
+      "SPDXID": "SPDXRef-Package-fast-string-truncated-width-3.0.3",
+      "versionInfo": "3.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fast-string-truncated-width@3.0.3"
+        }
+      ]
+    },
+    {
+      "name": "fast-string-width",
+      "SPDXID": "SPDXRef-Package-fast-string-width-3.0.2",
+      "versionInfo": "3.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fast-string-width@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "fast-uri",
+      "SPDXID": "SPDXRef-Package-fast-uri-3.1.2",
+      "versionInfo": "3.1.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fast-uri@3.1.2"
+        }
+      ]
+    },
+    {
+      "name": "fast-wrap-ansi",
+      "SPDXID": "SPDXRef-Package-fast-wrap-ansi-0.2.2",
+      "versionInfo": "0.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fast-wrap-ansi@0.2.2"
         }
       ]
     },
@@ -1630,6 +3622,63 @@
       ]
     },
     {
+      "name": "flattie",
+      "SPDXID": "SPDXRef-Package-flattie-1.1.1",
+      "versionInfo": "1.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/flattie@1.1.1"
+        }
+      ]
+    },
+    {
+      "name": "fontace",
+      "SPDXID": "SPDXRef-Package-fontace-0.4.1",
+      "versionInfo": "0.4.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fontace@0.4.1"
+        }
+      ]
+    },
+    {
+      "name": "fontkitten",
+      "SPDXID": "SPDXRef-Package-fontkitten-1.0.3",
+      "versionInfo": "1.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fontkitten@1.0.3"
+        }
+      ]
+    },
+    {
       "name": "format",
       "SPDXID": "SPDXRef-Package-format-0.2.2",
       "versionInfo": "0.2.2",
@@ -1637,7 +3686,7 @@
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
       "primaryPackagePurpose": "LIBRARY",
       "externalRefs": [
@@ -1645,6 +3694,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/format@0.2.2"
+        }
+      ]
+    },
+    {
+      "name": "get-caller-file",
+      "SPDXID": "SPDXRef-Package-get-caller-file-2.0.5",
+      "versionInfo": "2.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/get-caller-file@2.0.5"
         }
       ]
     },
@@ -1664,6 +3732,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/get-east-asian-width@1.6.0"
+        }
+      ]
+    },
+    {
+      "name": "get-tsconfig",
+      "SPDXID": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4",
+      "versionInfo": "5.0.0-beta.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/get-tsconfig@5.0.0-beta.4"
         }
       ]
     },
@@ -1721,6 +3808,291 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/globals@17.6.0"
+        }
+      ]
+    },
+    {
+      "name": "h3",
+      "SPDXID": "SPDXRef-Package-h3-1.15.11",
+      "versionInfo": "1.15.11",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/h3@1.15.11"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-from-html",
+      "SPDXID": "SPDXRef-Package-hast-util-from-html-2.0.3",
+      "versionInfo": "2.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-from-html@2.0.3"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-from-parse5",
+      "SPDXID": "SPDXRef-Package-hast-util-from-parse5-8.0.3",
+      "versionInfo": "8.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-from-parse5@8.0.3"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-is-element",
+      "SPDXID": "SPDXRef-Package-hast-util-is-element-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-is-element@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-parse-selector",
+      "SPDXID": "SPDXRef-Package-hast-util-parse-selector-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-parse-selector@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-raw",
+      "SPDXID": "SPDXRef-Package-hast-util-raw-9.1.0",
+      "versionInfo": "9.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-raw@9.1.0"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-to-html",
+      "SPDXID": "SPDXRef-Package-hast-util-to-html-9.0.5",
+      "versionInfo": "9.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-to-html@9.0.5"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-to-parse5",
+      "SPDXID": "SPDXRef-Package-hast-util-to-parse5-8.0.1",
+      "versionInfo": "8.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-to-parse5@8.0.1"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-to-text",
+      "SPDXID": "SPDXRef-Package-hast-util-to-text-4.0.2",
+      "versionInfo": "4.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-to-text@4.0.2"
+        }
+      ]
+    },
+    {
+      "name": "hast-util-whitespace",
+      "SPDXID": "SPDXRef-Package-hast-util-whitespace-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-whitespace@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "hastscript",
+      "SPDXID": "SPDXRef-Package-hastscript-9.0.1",
+      "versionInfo": "9.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hastscript@9.0.1"
+        }
+      ]
+    },
+    {
+      "name": "html-escaper",
+      "SPDXID": "SPDXRef-Package-html-escaper-3.0.3",
+      "versionInfo": "3.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/html-escaper@3.0.3"
+        }
+      ]
+    },
+    {
+      "name": "html-validate",
+      "SPDXID": "SPDXRef-Package-html-validate-11.5.3",
+      "versionInfo": "11.5.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/html-validate@11.5.3"
+        }
+      ]
+    },
+    {
+      "name": "html-void-elements",
+      "SPDXID": "SPDXRef-Package-html-void-elements-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/html-void-elements@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "http-cache-semantics",
+      "SPDXID": "SPDXRef-Package-http-cache-semantics-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/http-cache-semantics@4.2.0"
         }
       ]
     },
@@ -1801,6 +4173,63 @@
       ]
     },
     {
+      "name": "iron-webcrypto",
+      "SPDXID": "SPDXRef-Package-iron-webcrypto-1.2.1",
+      "versionInfo": "1.2.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/iron-webcrypto@1.2.1"
+        }
+      ]
+    },
+    {
+      "name": "is-docker",
+      "SPDXID": "SPDXRef-Package-is-docker-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-docker@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "is-docker",
+      "SPDXID": "SPDXRef-Package-is-docker-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-docker@4.0.0"
+        }
+      ]
+    },
+    {
       "name": "is-extglob",
       "SPDXID": "SPDXRef-Package-is-extglob-2.1.1",
       "versionInfo": "2.1.1",
@@ -1816,6 +4245,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/is-extglob@2.1.1"
+        }
+      ]
+    },
+    {
+      "name": "is-fullwidth-code-point",
+      "SPDXID": "SPDXRef-Package-is-fullwidth-code-point-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-fullwidth-code-point@3.0.0"
         }
       ]
     },
@@ -1858,6 +4306,63 @@
       ]
     },
     {
+      "name": "is-inside-container",
+      "SPDXID": "SPDXRef-Package-is-inside-container-1.0.0",
+      "versionInfo": "1.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-inside-container@1.0.0"
+        }
+      ]
+    },
+    {
+      "name": "is-plain-obj",
+      "SPDXID": "SPDXRef-Package-is-plain-obj-4.1.0",
+      "versionInfo": "4.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-plain-obj@4.1.0"
+        }
+      ]
+    },
+    {
+      "name": "is-wsl",
+      "SPDXID": "SPDXRef-Package-is-wsl-3.1.1",
+      "versionInfo": "3.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-wsl@3.1.1"
+        }
+      ]
+    },
+    {
       "name": "isexe",
       "SPDXID": "SPDXRef-Package-isexe-2.0.0",
       "versionInfo": "2.0.0",
@@ -1873,6 +4378,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/isexe@2.0.0"
+        }
+      ]
+    },
+    {
+      "name": "js-yaml",
+      "SPDXID": "SPDXRef-Package-js-yaml-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/js-yaml@4.2.0"
         }
       ]
     },
@@ -1915,6 +4439,25 @@
       ]
     },
     {
+      "name": "json-schema-traverse",
+      "SPDXID": "SPDXRef-Package-json-schema-traverse-1.0.0",
+      "versionInfo": "1.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/json-schema-traverse@1.0.0"
+        }
+      ]
+    },
+    {
       "name": "json-stable-stringify-without-jsonify",
       "SPDXID": "SPDXRef-Package-json-stable-stringify-without-jsonify-1.0.1",
       "versionInfo": "1.0.1",
@@ -1930,6 +4473,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/json-stable-stringify-without-jsonify@1.0.1"
+        }
+      ]
+    },
+    {
+      "name": "jsonc-parser",
+      "SPDXID": "SPDXRef-Package-jsonc-parser-2.3.1",
+      "versionInfo": "2.3.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/jsonc-parser@2.3.1"
+        }
+      ]
+    },
+    {
+      "name": "jsonc-parser",
+      "SPDXID": "SPDXRef-Package-jsonc-parser-3.3.1",
+      "versionInfo": "3.3.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/jsonc-parser@3.3.1"
         }
       ]
     },
@@ -1972,6 +4553,44 @@
       ]
     },
     {
+      "name": "kleur",
+      "SPDXID": "SPDXRef-Package-kleur-3.0.3",
+      "versionInfo": "3.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/kleur@3.0.3"
+        }
+      ]
+    },
+    {
+      "name": "kleur",
+      "SPDXID": "SPDXRef-Package-kleur-4.1.5",
+      "versionInfo": "4.1.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/kleur@4.1.5"
+        }
+      ]
+    },
+    {
       "name": "levn",
       "SPDXID": "SPDXRef-Package-levn-0.4.1",
       "versionInfo": "0.4.1",
@@ -1987,44 +4606,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/levn@0.4.1"
-        }
-      ]
-    },
-    {
-      "name": "lightningcss",
-      "SPDXID": "SPDXRef-Package-lightningcss-1.32.0",
-      "versionInfo": "1.32.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "MPL-2.0",
-      "copyrightText": "NOASSERTION",
-      "primaryPackagePurpose": "LIBRARY",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss@1.32.0"
-        }
-      ]
-    },
-    {
-      "name": "lightningcss-win32-x64-msvc",
-      "SPDXID": "SPDXRef-Package-lightningcss-win32-x64-msvc-1.32.0",
-      "versionInfo": "1.32.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "MPL-2.0",
-      "copyrightText": "NOASSERTION",
-      "primaryPackagePurpose": "LIBRARY",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-win32-x64-msvc@1.32.0"
         }
       ]
     },
@@ -2124,6 +4705,63 @@
       ]
     },
     {
+      "name": "lru-cache",
+      "SPDXID": "SPDXRef-Package-lru-cache-11.5.1",
+      "versionInfo": "11.5.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BlueOak-1.0.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lru-cache@11.5.1"
+        }
+      ]
+    },
+    {
+      "name": "magic-string",
+      "SPDXID": "SPDXRef-Package-magic-string-0.30.21",
+      "versionInfo": "0.30.21",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/magic-string@0.30.21"
+        }
+      ]
+    },
+    {
+      "name": "magicast",
+      "SPDXID": "SPDXRef-Package-magicast-0.5.3",
+      "versionInfo": "0.5.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/magicast@0.5.3"
+        }
+      ]
+    },
+    {
       "name": "markdown-table",
       "SPDXID": "SPDXRef-Package-markdown-table-3.0.4",
       "versionInfo": "3.0.4",
@@ -2139,6 +4777,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/markdown-table@3.0.4"
+        }
+      ]
+    },
+    {
+      "name": "mdast-util-definitions",
+      "SPDXID": "SPDXRef-Package-mdast-util-definitions-6.0.0",
+      "versionInfo": "6.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mdast-util-definitions@6.0.0"
         }
       ]
     },
@@ -2352,6 +5009,25 @@
       ]
     },
     {
+      "name": "mdast-util-to-hast",
+      "SPDXID": "SPDXRef-Package-mdast-util-to-hast-13.2.1",
+      "versionInfo": "13.2.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mdast-util-to-hast@13.2.1"
+        }
+      ]
+    },
+    {
       "name": "mdast-util-to-markdown",
       "SPDXID": "SPDXRef-Package-mdast-util-to-markdown-2.1.2",
       "versionInfo": "2.1.2",
@@ -2386,6 +5062,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/mdast-util-to-string@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "mdn-data",
+      "SPDXID": "SPDXRef-Package-mdn-data-2.0.28",
+      "versionInfo": "2.0.28",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "CC0-1.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mdn-data@2.0.28"
+        }
+      ]
+    },
+    {
+      "name": "mdn-data",
+      "SPDXID": "SPDXRef-Package-mdn-data-2.27.1",
+      "versionInfo": "2.27.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "CC0-1.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mdn-data@2.27.1"
         }
       ]
     },
@@ -3017,6 +5731,25 @@
       ]
     },
     {
+      "name": "mrmime",
+      "SPDXID": "SPDXRef-Package-mrmime-2.0.1",
+      "versionInfo": "2.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mrmime@2.0.1"
+        }
+      ]
+    },
+    {
       "name": "ms",
       "SPDXID": "SPDXRef-Package-ms-2.1.3",
       "versionInfo": "2.1.3",
@@ -3032,6 +5765,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/ms@2.1.3"
+        }
+      ]
+    },
+    {
+      "name": "muggle-string",
+      "SPDXID": "SPDXRef-Package-muggle-string-0.4.1",
+      "versionInfo": "0.4.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/muggle-string@0.4.1"
         }
       ]
     },
@@ -3074,6 +5826,177 @@
       ]
     },
     {
+      "name": "neotraverse",
+      "SPDXID": "SPDXRef-Package-neotraverse-0.6.18",
+      "versionInfo": "0.6.18",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/neotraverse@0.6.18"
+        }
+      ]
+    },
+    {
+      "name": "nlcst-to-string",
+      "SPDXID": "SPDXRef-Package-nlcst-to-string-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/nlcst-to-string@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "node-fetch-native",
+      "SPDXID": "SPDXRef-Package-node-fetch-native-1.6.7",
+      "versionInfo": "1.6.7",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/node-fetch-native@1.6.7"
+        }
+      ]
+    },
+    {
+      "name": "node-mock-http",
+      "SPDXID": "SPDXRef-Package-node-mock-http-1.0.4",
+      "versionInfo": "1.0.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/node-mock-http@1.0.4"
+        }
+      ]
+    },
+    {
+      "name": "normalize-path",
+      "SPDXID": "SPDXRef-Package-normalize-path-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/normalize-path@3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "nth-check",
+      "SPDXID": "SPDXRef-Package-nth-check-2.1.1",
+      "versionInfo": "2.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/nth-check@2.1.1"
+        }
+      ]
+    },
+    {
+      "name": "obug",
+      "SPDXID": "SPDXRef-Package-obug-2.1.3",
+      "versionInfo": "2.1.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/obug@2.1.3"
+        }
+      ]
+    },
+    {
+      "name": "ofetch",
+      "SPDXID": "SPDXRef-Package-ofetch-1.5.1",
+      "versionInfo": "1.5.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ofetch@1.5.1"
+        }
+      ]
+    },
+    {
+      "name": "ohash",
+      "SPDXID": "SPDXRef-Package-ohash-2.0.11",
+      "versionInfo": "2.0.11",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ohash@2.0.11"
+        }
+      ]
+    },
+    {
       "name": "onetime",
       "SPDXID": "SPDXRef-Package-onetime-7.0.0",
       "versionInfo": "7.0.0",
@@ -3089,6 +6012,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/onetime@7.0.0"
+        }
+      ]
+    },
+    {
+      "name": "oniguruma-parser",
+      "SPDXID": "SPDXRef-Package-oniguruma-parser-0.12.2",
+      "versionInfo": "0.12.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/oniguruma-parser@0.12.2"
+        }
+      ]
+    },
+    {
+      "name": "oniguruma-to-es",
+      "SPDXID": "SPDXRef-Package-oniguruma-to-es-4.3.6",
+      "versionInfo": "4.3.6",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/oniguruma-to-es@4.3.6"
         }
       ]
     },
@@ -3131,6 +6092,25 @@
       ]
     },
     {
+      "name": "p-limit",
+      "SPDXID": "SPDXRef-Package-p-limit-7.3.0",
+      "versionInfo": "7.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/p-limit@7.3.0"
+        }
+      ]
+    },
+    {
       "name": "p-locate",
       "SPDXID": "SPDXRef-Package-p-locate-5.0.0",
       "versionInfo": "5.0.0",
@@ -3146,6 +6126,120 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/p-locate@5.0.0"
+        }
+      ]
+    },
+    {
+      "name": "p-queue",
+      "SPDXID": "SPDXRef-Package-p-queue-9.3.0",
+      "versionInfo": "9.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/p-queue@9.3.0"
+        }
+      ]
+    },
+    {
+      "name": "p-timeout",
+      "SPDXID": "SPDXRef-Package-p-timeout-7.0.1",
+      "versionInfo": "7.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/p-timeout@7.0.1"
+        }
+      ]
+    },
+    {
+      "name": "package-manager-detector",
+      "SPDXID": "SPDXRef-Package-package-manager-detector-1.6.0",
+      "versionInfo": "1.6.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/package-manager-detector@1.6.0"
+        }
+      ]
+    },
+    {
+      "name": "parse-latin",
+      "SPDXID": "SPDXRef-Package-parse-latin-7.0.0",
+      "versionInfo": "7.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/parse-latin@7.0.0"
+        }
+      ]
+    },
+    {
+      "name": "parse5",
+      "SPDXID": "SPDXRef-Package-parse5-7.3.0",
+      "versionInfo": "7.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/parse5@7.3.0"
+        }
+      ]
+    },
+    {
+      "name": "path-browserify",
+      "SPDXID": "SPDXRef-Package-path-browserify-1.0.1",
+      "versionInfo": "1.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/path-browserify@1.0.1"
         }
       ]
     },
@@ -3188,6 +6282,25 @@
       ]
     },
     {
+      "name": "piccolore",
+      "SPDXID": "SPDXRef-Package-piccolore-0.1.3",
+      "versionInfo": "0.1.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/piccolore@0.1.3"
+        }
+      ]
+    },
+    {
       "name": "picocolors",
       "SPDXID": "SPDXRef-Package-picocolors-1.1.1",
       "versionInfo": "1.1.1",
@@ -3208,6 +6321,25 @@
     },
     {
       "name": "picomatch",
+      "SPDXID": "SPDXRef-Package-picomatch-2.3.2",
+      "versionInfo": "2.3.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/picomatch@2.3.2"
+        }
+      ]
+    },
+    {
+      "name": "picomatch",
       "SPDXID": "SPDXRef-Package-picomatch-4.0.4",
       "versionInfo": "4.0.4",
       "supplier": "NOASSERTION",
@@ -3222,6 +6354,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/picomatch@4.0.4"
+        }
+      ]
+    },
+    {
+      "name": "playwright",
+      "SPDXID": "SPDXRef-Package-playwright-1.61.0",
+      "versionInfo": "1.61.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/playwright@1.61.0"
+        }
+      ]
+    },
+    {
+      "name": "playwright-core",
+      "SPDXID": "SPDXRef-Package-playwright-core-1.61.0",
+      "versionInfo": "1.61.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/playwright-core@1.61.0"
         }
       ]
     },
@@ -3283,6 +6453,82 @@
       ]
     },
     {
+      "name": "prettier-plugin-astro",
+      "SPDXID": "SPDXRef-Package-prettier-plugin-astro-0.14.1",
+      "versionInfo": "0.14.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/prettier-plugin-astro@0.14.1"
+        }
+      ]
+    },
+    {
+      "name": "prismjs",
+      "SPDXID": "SPDXRef-Package-prismjs-1.30.0",
+      "versionInfo": "1.30.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/prismjs@1.30.0"
+        }
+      ]
+    },
+    {
+      "name": "prompts",
+      "SPDXID": "SPDXRef-Package-prompts-2.4.2",
+      "versionInfo": "2.4.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/prompts@2.4.2"
+        }
+      ]
+    },
+    {
+      "name": "property-information",
+      "SPDXID": "SPDXRef-Package-property-information-7.2.0",
+      "versionInfo": "7.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/property-information@7.2.0"
+        }
+      ]
+    },
+    {
       "name": "punycode",
       "SPDXID": "SPDXRef-Package-punycode-2.3.1",
       "versionInfo": "2.3.1",
@@ -3298,6 +6544,386 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/punycode@2.3.1"
+        }
+      ]
+    },
+    {
+      "name": "radix3",
+      "SPDXID": "SPDXRef-Package-radix3-1.1.2",
+      "versionInfo": "1.1.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/radix3@1.1.2"
+        }
+      ]
+    },
+    {
+      "name": "readdirp",
+      "SPDXID": "SPDXRef-Package-readdirp-4.1.2",
+      "versionInfo": "4.1.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/readdirp@4.1.2"
+        }
+      ]
+    },
+    {
+      "name": "readdirp",
+      "SPDXID": "SPDXRef-Package-readdirp-5.0.0",
+      "versionInfo": "5.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/readdirp@5.0.0"
+        }
+      ]
+    },
+    {
+      "name": "regex",
+      "SPDXID": "SPDXRef-Package-regex-6.1.0",
+      "versionInfo": "6.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/regex@6.1.0"
+        }
+      ]
+    },
+    {
+      "name": "regex-recursion",
+      "SPDXID": "SPDXRef-Package-regex-recursion-6.0.2",
+      "versionInfo": "6.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/regex-recursion@6.0.2"
+        }
+      ]
+    },
+    {
+      "name": "regex-utilities",
+      "SPDXID": "SPDXRef-Package-regex-utilities-2.3.0",
+      "versionInfo": "2.3.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/regex-utilities@2.3.0"
+        }
+      ]
+    },
+    {
+      "name": "rehype",
+      "SPDXID": "SPDXRef-Package-rehype-13.0.2",
+      "versionInfo": "13.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/rehype@13.0.2"
+        }
+      ]
+    },
+    {
+      "name": "rehype-parse",
+      "SPDXID": "SPDXRef-Package-rehype-parse-9.0.1",
+      "versionInfo": "9.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/rehype-parse@9.0.1"
+        }
+      ]
+    },
+    {
+      "name": "rehype-raw",
+      "SPDXID": "SPDXRef-Package-rehype-raw-7.0.0",
+      "versionInfo": "7.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/rehype-raw@7.0.0"
+        }
+      ]
+    },
+    {
+      "name": "rehype-stringify",
+      "SPDXID": "SPDXRef-Package-rehype-stringify-10.0.1",
+      "versionInfo": "10.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/rehype-stringify@10.0.1"
+        }
+      ]
+    },
+    {
+      "name": "remark-gfm",
+      "SPDXID": "SPDXRef-Package-remark-gfm-4.0.1",
+      "versionInfo": "4.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/remark-gfm@4.0.1"
+        }
+      ]
+    },
+    {
+      "name": "remark-parse",
+      "SPDXID": "SPDXRef-Package-remark-parse-11.0.0",
+      "versionInfo": "11.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/remark-parse@11.0.0"
+        }
+      ]
+    },
+    {
+      "name": "remark-rehype",
+      "SPDXID": "SPDXRef-Package-remark-rehype-11.1.2",
+      "versionInfo": "11.1.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/remark-rehype@11.1.2"
+        }
+      ]
+    },
+    {
+      "name": "remark-smartypants",
+      "SPDXID": "SPDXRef-Package-remark-smartypants-3.0.2",
+      "versionInfo": "3.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/remark-smartypants@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "remark-stringify",
+      "SPDXID": "SPDXRef-Package-remark-stringify-11.0.0",
+      "versionInfo": "11.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/remark-stringify@11.0.0"
+        }
+      ]
+    },
+    {
+      "name": "request-light",
+      "SPDXID": "SPDXRef-Package-request-light-0.5.8",
+      "versionInfo": "0.5.8",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/request-light@0.5.8"
+        }
+      ]
+    },
+    {
+      "name": "request-light",
+      "SPDXID": "SPDXRef-Package-request-light-0.7.0",
+      "versionInfo": "0.7.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/request-light@0.7.0"
+        }
+      ]
+    },
+    {
+      "name": "require-directory",
+      "SPDXID": "SPDXRef-Package-require-directory-2.1.1",
+      "versionInfo": "2.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/require-directory@2.1.1"
+        }
+      ]
+    },
+    {
+      "name": "require-from-string",
+      "SPDXID": "SPDXRef-Package-require-from-string-2.0.2",
+      "versionInfo": "2.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/require-from-string@2.0.2"
+        }
+      ]
+    },
+    {
+      "name": "resolve-pkg-maps",
+      "SPDXID": "SPDXRef-Package-resolve-pkg-maps-1.0.0",
+      "versionInfo": "1.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/resolve-pkg-maps@1.0.0"
         }
       ]
     },
@@ -3321,6 +6947,82 @@
       ]
     },
     {
+      "name": "retext",
+      "SPDXID": "SPDXRef-Package-retext-9.0.0",
+      "versionInfo": "9.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/retext@9.0.0"
+        }
+      ]
+    },
+    {
+      "name": "retext-latin",
+      "SPDXID": "SPDXRef-Package-retext-latin-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/retext-latin@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "retext-smartypants",
+      "SPDXID": "SPDXRef-Package-retext-smartypants-6.2.0",
+      "versionInfo": "6.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/retext-smartypants@6.2.0"
+        }
+      ]
+    },
+    {
+      "name": "retext-stringify",
+      "SPDXID": "SPDXRef-Package-retext-stringify-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/retext-stringify@4.0.0"
+        }
+      ]
+    },
+    {
       "name": "rfdc",
       "SPDXID": "SPDXRef-Package-rfdc-1.4.1",
       "versionInfo": "1.4.1",
@@ -3340,9 +7042,9 @@
       ]
     },
     {
-      "name": "rolldown",
-      "SPDXID": "SPDXRef-Package-rolldown-1.0.3",
-      "versionInfo": "1.0.3",
+      "name": "rollup",
+      "SPDXID": "SPDXRef-Package-rollup-4.62.0",
+      "versionInfo": "4.62.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -3354,7 +7056,64 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/rolldown@1.0.3"
+          "referenceLocator": "pkg:npm/rollup@4.62.0"
+        }
+      ]
+    },
+    {
+      "name": "s.color",
+      "SPDXID": "SPDXRef-Package-s.color-0.0.15",
+      "versionInfo": "0.0.15",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/s.color@0.0.15"
+        }
+      ]
+    },
+    {
+      "name": "sass-formatter",
+      "SPDXID": "SPDXRef-Package-sass-formatter-0.7.9",
+      "versionInfo": "0.7.9",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/sass-formatter@0.7.9"
+        }
+      ]
+    },
+    {
+      "name": "sax",
+      "SPDXID": "SPDXRef-Package-sax-1.6.0",
+      "versionInfo": "1.6.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BlueOak-1.0.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/sax@1.6.0"
         }
       ]
     },
@@ -3374,6 +7133,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/semver@7.8.1"
+        }
+      ]
+    },
+    {
+      "name": "sharp",
+      "SPDXID": "SPDXRef-Package-sharp-0.34.5",
+      "versionInfo": "0.34.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/sharp@0.34.5"
         }
       ]
     },
@@ -3416,6 +7194,25 @@
       ]
     },
     {
+      "name": "shiki",
+      "SPDXID": "SPDXRef-Package-shiki-4.2.0",
+      "versionInfo": "4.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/shiki@4.2.0"
+        }
+      ]
+    },
+    {
       "name": "signal-exit",
       "SPDXID": "SPDXRef-Package-signal-exit-4.1.0",
       "versionInfo": "4.1.0",
@@ -3431,6 +7228,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/signal-exit@4.1.0"
+        }
+      ]
+    },
+    {
+      "name": "sisteransi",
+      "SPDXID": "SPDXRef-Package-sisteransi-1.0.5",
+      "versionInfo": "1.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/sisteransi@1.0.5"
         }
       ]
     },
@@ -3473,6 +7289,25 @@
       ]
     },
     {
+      "name": "smol-toml",
+      "SPDXID": "SPDXRef-Package-smol-toml-1.6.1",
+      "versionInfo": "1.6.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/smol-toml@1.6.1"
+        }
+      ]
+    },
+    {
       "name": "source-map-js",
       "SPDXID": "SPDXRef-Package-source-map-js-1.2.1",
       "versionInfo": "1.2.1",
@@ -3492,6 +7327,25 @@
       ]
     },
     {
+      "name": "space-separated-tokens",
+      "SPDXID": "SPDXRef-Package-space-separated-tokens-2.0.2",
+      "versionInfo": "2.0.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/space-separated-tokens@2.0.2"
+        }
+      ]
+    },
+    {
       "name": "string-argv",
       "SPDXID": "SPDXRef-Package-string-argv-0.3.2",
       "versionInfo": "0.3.2",
@@ -3507,6 +7361,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/string-argv@0.3.2"
+        }
+      ]
+    },
+    {
+      "name": "string-width",
+      "SPDXID": "SPDXRef-Package-string-width-4.2.3",
+      "versionInfo": "4.2.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/string-width@4.2.3"
         }
       ]
     },
@@ -3549,6 +7422,44 @@
       ]
     },
     {
+      "name": "stringify-entities",
+      "SPDXID": "SPDXRef-Package-stringify-entities-4.0.4",
+      "versionInfo": "4.0.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/stringify-entities@4.0.4"
+        }
+      ]
+    },
+    {
+      "name": "strip-ansi",
+      "SPDXID": "SPDXRef-Package-strip-ansi-6.0.1",
+      "versionInfo": "6.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/strip-ansi@6.0.1"
+        }
+      ]
+    },
+    {
       "name": "strip-ansi",
       "SPDXID": "SPDXRef-Package-strip-ansi-7.2.0",
       "versionInfo": "7.2.0",
@@ -3564,6 +7475,82 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/strip-ansi@7.2.0"
+        }
+      ]
+    },
+    {
+      "name": "suf-log",
+      "SPDXID": "SPDXRef-Package-suf-log-2.5.3",
+      "versionInfo": "2.5.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/suf-log@2.5.3"
+        }
+      ]
+    },
+    {
+      "name": "svgo",
+      "SPDXID": "SPDXRef-Package-svgo-4.0.1",
+      "versionInfo": "4.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/svgo@4.0.1"
+        }
+      ]
+    },
+    {
+      "name": "tiny-inflate",
+      "SPDXID": "SPDXRef-Package-tiny-inflate-1.0.3",
+      "versionInfo": "1.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tiny-inflate@1.0.3"
+        }
+      ]
+    },
+    {
+      "name": "tinyclip",
+      "SPDXID": "SPDXRef-Package-tinyclip-0.1.14",
+      "versionInfo": "0.1.14",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tinyclip@0.1.14"
         }
       ]
     },
@@ -3606,6 +7593,44 @@
       ]
     },
     {
+      "name": "trim-lines",
+      "SPDXID": "SPDXRef-Package-trim-lines-3.0.1",
+      "versionInfo": "3.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/trim-lines@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "trough",
+      "SPDXID": "SPDXRef-Package-trough-2.2.0",
+      "versionInfo": "2.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/trough@2.2.0"
+        }
+      ]
+    },
+    {
       "name": "ts-api-utils",
       "SPDXID": "SPDXRef-Package-ts-api-utils-2.5.0",
       "versionInfo": "2.5.0",
@@ -3644,6 +7669,25 @@
       ]
     },
     {
+      "name": "typesafe-path",
+      "SPDXID": "SPDXRef-Package-typesafe-path-0.2.2",
+      "versionInfo": "0.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/typesafe-path@0.2.2"
+        }
+      ]
+    },
+    {
       "name": "typescript",
       "SPDXID": "SPDXRef-Package-typescript-6.0.3",
       "versionInfo": "6.0.3",
@@ -3659,6 +7703,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/typescript@6.0.3"
+        }
+      ]
+    },
+    {
+      "name": "typescript-auto-import-cache",
+      "SPDXID": "SPDXRef-Package-typescript-auto-import-cache-0.3.6",
+      "versionInfo": "0.3.6",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/typescript-auto-import-cache@0.3.6"
         }
       ]
     },
@@ -3682,6 +7745,120 @@
       ]
     },
     {
+      "name": "ufo",
+      "SPDXID": "SPDXRef-Package-ufo-1.6.4",
+      "versionInfo": "1.6.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ufo@1.6.4"
+        }
+      ]
+    },
+    {
+      "name": "ultrahtml",
+      "SPDXID": "SPDXRef-Package-ultrahtml-1.6.0",
+      "versionInfo": "1.6.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ultrahtml@1.6.0"
+        }
+      ]
+    },
+    {
+      "name": "uncrypto",
+      "SPDXID": "SPDXRef-Package-uncrypto-0.1.3",
+      "versionInfo": "0.1.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/uncrypto@0.1.3"
+        }
+      ]
+    },
+    {
+      "name": "unified",
+      "SPDXID": "SPDXRef-Package-unified-11.0.5",
+      "versionInfo": "11.0.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unified@11.0.5"
+        }
+      ]
+    },
+    {
+      "name": "unifont",
+      "SPDXID": "SPDXRef-Package-unifont-0.7.4",
+      "versionInfo": "0.7.4",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unifont@0.7.4"
+        }
+      ]
+    },
+    {
+      "name": "unist-util-find-after",
+      "SPDXID": "SPDXRef-Package-unist-util-find-after-5.0.0",
+      "versionInfo": "5.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-find-after@5.0.0"
+        }
+      ]
+    },
+    {
       "name": "unist-util-is",
       "SPDXID": "SPDXRef-Package-unist-util-is-6.0.1",
       "versionInfo": "6.0.1",
@@ -3697,6 +7874,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/unist-util-is@6.0.1"
+        }
+      ]
+    },
+    {
+      "name": "unist-util-modify-children",
+      "SPDXID": "SPDXRef-Package-unist-util-modify-children-4.0.0",
+      "versionInfo": "4.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-modify-children@4.0.0"
+        }
+      ]
+    },
+    {
+      "name": "unist-util-position",
+      "SPDXID": "SPDXRef-Package-unist-util-position-5.0.0",
+      "versionInfo": "5.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-position@5.0.0"
         }
       ]
     },
@@ -3758,6 +7973,25 @@
       ]
     },
     {
+      "name": "unist-util-visit-children",
+      "SPDXID": "SPDXRef-Package-unist-util-visit-children-3.0.0",
+      "versionInfo": "3.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-visit-children@3.0.0"
+        }
+      ]
+    },
+    {
       "name": "unist-util-visit-parents",
       "SPDXID": "SPDXRef-Package-unist-util-visit-parents-6.0.2",
       "versionInfo": "6.0.2",
@@ -3773,6 +8007,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/unist-util-visit-parents@6.0.2"
+        }
+      ]
+    },
+    {
+      "name": "unstorage",
+      "SPDXID": "SPDXRef-Package-unstorage-1.17.5",
+      "versionInfo": "1.17.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unstorage@1.17.5"
         }
       ]
     },
@@ -3796,9 +8049,9 @@
       ]
     },
     {
-      "name": "vite",
-      "SPDXID": "SPDXRef-Package-vite-8.0.16",
-      "versionInfo": "8.0.16",
+      "name": "vfile",
+      "SPDXID": "SPDXRef-Package-vfile-6.0.3",
+      "versionInfo": "6.0.3",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -3810,7 +8063,501 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vite@8.0.16"
+          "referenceLocator": "pkg:npm/vfile@6.0.3"
+        }
+      ]
+    },
+    {
+      "name": "vfile-location",
+      "SPDXID": "SPDXRef-Package-vfile-location-5.0.3",
+      "versionInfo": "5.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vfile-location@5.0.3"
+        }
+      ]
+    },
+    {
+      "name": "vfile-message",
+      "SPDXID": "SPDXRef-Package-vfile-message-4.0.3",
+      "versionInfo": "4.0.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vfile-message@4.0.3"
+        }
+      ]
+    },
+    {
+      "name": "vite",
+      "SPDXID": "SPDXRef-Package-vite-7.3.5",
+      "versionInfo": "7.3.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vite@7.3.5"
+        }
+      ]
+    },
+    {
+      "name": "vitefu",
+      "SPDXID": "SPDXRef-Package-vitefu-1.1.3",
+      "versionInfo": "1.1.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vitefu@1.1.3"
+        }
+      ]
+    },
+    {
+      "name": "vnu-jar",
+      "SPDXID": "SPDXRef-Package-vnu-jar-26.6.14",
+      "versionInfo": "26.6.14",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vnu-jar@26.6.14"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-css",
+      "SPDXID": "SPDXRef-Package-volar-service-css-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-css@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-emmet",
+      "SPDXID": "SPDXRef-Package-volar-service-emmet-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-emmet@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-html",
+      "SPDXID": "SPDXRef-Package-volar-service-html-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-html@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-prettier",
+      "SPDXID": "SPDXRef-Package-volar-service-prettier-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-prettier@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-typescript",
+      "SPDXID": "SPDXRef-Package-volar-service-typescript-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-typescript@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-typescript-twoslash-queries",
+      "SPDXID": "SPDXRef-Package-volar-service-typescript-twoslash-queries-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-typescript-twoslash-queries@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "volar-service-yaml",
+      "SPDXID": "SPDXRef-Package-volar-service-yaml-0.0.70",
+      "versionInfo": "0.0.70",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/volar-service-yaml@0.0.70"
+        }
+      ]
+    },
+    {
+      "name": "vscode-css-languageservice",
+      "SPDXID": "SPDXRef-Package-vscode-css-languageservice-6.3.10",
+      "versionInfo": "6.3.10",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-css-languageservice@6.3.10"
+        }
+      ]
+    },
+    {
+      "name": "vscode-html-languageservice",
+      "SPDXID": "SPDXRef-Package-vscode-html-languageservice-5.6.2",
+      "versionInfo": "5.6.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-html-languageservice@5.6.2"
+        }
+      ]
+    },
+    {
+      "name": "vscode-json-languageservice",
+      "SPDXID": "SPDXRef-Package-vscode-json-languageservice-4.1.8",
+      "versionInfo": "4.1.8",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-json-languageservice@4.1.8"
+        }
+      ]
+    },
+    {
+      "name": "vscode-jsonrpc",
+      "SPDXID": "SPDXRef-Package-vscode-jsonrpc-8.2.0",
+      "versionInfo": "8.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-jsonrpc@8.2.0"
+        }
+      ]
+    },
+    {
+      "name": "vscode-jsonrpc",
+      "SPDXID": "SPDXRef-Package-vscode-jsonrpc-9.0.0",
+      "versionInfo": "9.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-jsonrpc@9.0.0"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-9.0.1",
+      "versionInfo": "9.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver@9.0.1"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver-protocol",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-protocol-3.17.5",
+      "versionInfo": "3.17.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver-protocol@3.17.5"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver-protocol",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-protocol-3.18.0",
+      "versionInfo": "3.18.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver-protocol@3.18.0"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver-textdocument",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-textdocument-1.0.12",
+      "versionInfo": "1.0.12",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver-textdocument@1.0.12"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver-types",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-types-3.17.5",
+      "versionInfo": "3.17.5",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver-types@3.17.5"
+        }
+      ]
+    },
+    {
+      "name": "vscode-languageserver-types",
+      "SPDXID": "SPDXRef-Package-vscode-languageserver-types-3.18.0",
+      "versionInfo": "3.18.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-languageserver-types@3.18.0"
+        }
+      ]
+    },
+    {
+      "name": "vscode-nls",
+      "SPDXID": "SPDXRef-Package-vscode-nls-5.2.0",
+      "versionInfo": "5.2.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-nls@5.2.0"
+        }
+      ]
+    },
+    {
+      "name": "vscode-uri",
+      "SPDXID": "SPDXRef-Package-vscode-uri-3.1.0",
+      "versionInfo": "3.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/vscode-uri@3.1.0"
+        }
+      ]
+    },
+    {
+      "name": "web-namespaces",
+      "SPDXID": "SPDXRef-Package-web-namespaces-2.0.1",
+      "versionInfo": "2.0.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/web-namespaces@2.0.1"
         }
       ]
     },
@@ -3830,6 +8577,25 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/which@2.0.2"
+        }
+      ]
+    },
+    {
+      "name": "which-pm-runs",
+      "SPDXID": "SPDXRef-Package-which-pm-runs-1.1.0",
+      "versionInfo": "1.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/which-pm-runs@1.1.0"
         }
       ]
     },
@@ -3854,8 +8620,8 @@
     },
     {
       "name": "wrap-ansi",
-      "SPDXID": "SPDXRef-Package-wrap-ansi-10.0.0",
-      "versionInfo": "10.0.0",
+      "SPDXID": "SPDXRef-Package-wrap-ansi-7.0.0",
+      "versionInfo": "7.0.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -3867,7 +8633,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/wrap-ansi@10.0.0"
+          "referenceLocator": "pkg:npm/wrap-ansi@7.0.0"
         }
       ]
     },
@@ -3891,6 +8657,82 @@
       ]
     },
     {
+      "name": "wrap-ansi",
+      "SPDXID": "SPDXRef-Package-wrap-ansi-10.0.0",
+      "versionInfo": "10.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/wrap-ansi@10.0.0"
+        }
+      ]
+    },
+    {
+      "name": "xxhash-wasm",
+      "SPDXID": "SPDXRef-Package-xxhash-wasm-1.1.0",
+      "versionInfo": "1.1.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/xxhash-wasm@1.1.0"
+        }
+      ]
+    },
+    {
+      "name": "y18n",
+      "SPDXID": "SPDXRef-Package-y18n-5.0.8",
+      "versionInfo": "5.0.8",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/y18n@5.0.8"
+        }
+      ]
+    },
+    {
+      "name": "yaml",
+      "SPDXID": "SPDXRef-Package-yaml-2.7.1",
+      "versionInfo": "2.7.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yaml@2.7.1"
+        }
+      ]
+    },
+    {
       "name": "yaml",
       "SPDXID": "SPDXRef-Package-yaml-2.9.0",
       "versionInfo": "2.9.0",
@@ -3910,6 +8752,82 @@
       ]
     },
     {
+      "name": "yaml-language-server",
+      "SPDXID": "SPDXRef-Package-yaml-language-server-1.20.0",
+      "versionInfo": "1.20.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yaml-language-server@1.20.0"
+        }
+      ]
+    },
+    {
+      "name": "yargs",
+      "SPDXID": "SPDXRef-Package-yargs-17.7.2",
+      "versionInfo": "17.7.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yargs@17.7.2"
+        }
+      ]
+    },
+    {
+      "name": "yargs-parser",
+      "SPDXID": "SPDXRef-Package-yargs-parser-21.1.1",
+      "versionInfo": "21.1.1",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yargs-parser@21.1.1"
+        }
+      ]
+    },
+    {
+      "name": "yargs-parser",
+      "SPDXID": "SPDXRef-Package-yargs-parser-22.0.0",
+      "versionInfo": "22.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yargs-parser@22.0.0"
+        }
+      ]
+    },
+    {
       "name": "yocto-queue",
       "SPDXID": "SPDXRef-Package-yocto-queue-0.1.0",
       "versionInfo": "0.1.0",
@@ -3925,6 +8843,44 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/yocto-queue@0.1.0"
+        }
+      ]
+    },
+    {
+      "name": "yocto-queue",
+      "SPDXID": "SPDXRef-Package-yocto-queue-1.2.2",
+      "versionInfo": "1.2.2",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yocto-queue@1.2.2"
+        }
+      ]
+    },
+    {
+      "name": "zod",
+      "SPDXID": "SPDXRef-Package-zod-4.4.3",
+      "versionInfo": "4.4.3",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zod@4.4.3"
         }
       ]
     },
@@ -3957,6 +8913,16 @@
     {
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
       "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-astrojs-check-0.9.9"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-axe-core-playwright-4.11.3"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-eslint-css-1.3.0"
     },
     {
@@ -3977,6 +8943,16 @@
     {
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
       "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-playwright-test-1.61.0"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-astro-6.4.7"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-eslint-10.4.1"
     },
     {
@@ -3988,6 +8964,11 @@
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-globals-17.6.0"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-html-validate-11.5.3"
     },
     {
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
@@ -4007,6 +8988,11 @@
     {
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
       "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-prettier-plugin-astro-0.14.1"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
+      "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-typescript-6.0.3"
     },
     {
@@ -4017,7 +9003,7 @@
     {
       "spdxElementId": "SPDXRef-Package-portfolio-ybkim",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.16"
+      "relatedSpdxElement": "SPDXRef-Package-vnu-jar-26.6.14"
     }
   ],
   "hasExtractedLicensingInfos": [

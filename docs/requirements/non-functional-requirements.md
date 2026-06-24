@@ -23,7 +23,7 @@ portfolio site. Implementation and verification are tracked through the
 | Status              | Draft                                         |
 | Severity            | High                                          |
 | Applicability       | WebFE                                         |
-| Verification Method | Manual, StaticAnalysis                        |
+| Verification Method | Manual, StaticAnalysis, BrowserTest           |
 | Source              | [Project Brief](../planning/project-brief.md) |
 
 The site must use semantic content structure and accessible interaction patterns
@@ -32,22 +32,29 @@ visual presentation.
 
 ### NFR-001 Verification
 
-- Use semantic HTML for landmarks, sections, headings, links, and buttons.
+- Prefer native semantic HTML for landmarks, sections, headings, links, and
+  buttons; use ARIA only when native semantics cannot express the requirement.
+- Render exactly one `main` and one page-level `h1` on each page.
+- Give every `section` and `article` an accessible heading.
 - Keep heading order meaningful and tied to document structure.
 - Preserve visible focus states for interactive elements.
 - Provide meaningful text alternatives for non-decorative images.
+- Keep pointer targets at least 44 by 44 CSS pixels unless a documented WCAG
+  exception applies.
+- Run warning-free HTML Validate and W3C Nu checks against generated HTML.
+- Run Playwright and axe-core checks at narrow and wide viewports.
 - Review keyboard navigation for all primary actions.
 
 ## NFR-002: Lightweight Static Delivery
 
-| Field               | Value                                                         |
-| ------------------- | ------------------------------------------------------------- |
-| Category            | Performance                                                   |
-| Status              | Draft                                                         |
-| Severity            | High                                                          |
-| Applicability       | WebFE                                                         |
-| Verification Method | StaticAnalysis, Manual                                        |
-| Source              | [ADR-0001](../adr/0001-use-static-vite-vanilla-typescript.md) |
+| Field               | Value                                                                |
+| ------------------- | -------------------------------------------------------------------- |
+| Category            | Performance                                                          |
+| Status              | Draft                                                                |
+| Severity            | High                                                                 |
+| Applicability       | WebFE                                                                |
+| Verification Method | StaticAnalysis, Manual                                               |
+| Source              | [ADR-0009](../adr/0009-adopt-astro-static-component-architecture.md) |
 
 The portfolio must stay lightweight enough to build and load as a static site
 without unnecessary runtime dependencies or client-side data fetching.
@@ -127,7 +134,7 @@ provider is not required.
 
 ### NFR-005 Verification
 
-- Configure Vite asset paths for the Cloudflare Pages root path.
+- Generate Astro routes and assets for the Cloudflare Pages root path.
 - Avoid backend runtime assumptions.
 - Keep client-side routing optional or static-hosting safe.
 - Verify the generated build locally and on the selected static host.

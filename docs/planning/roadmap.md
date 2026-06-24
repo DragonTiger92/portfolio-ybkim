@@ -5,18 +5,19 @@ fixed calendar promise. Product Backlog Items provide the implementation-sized
 view, while GitHub Pull Requests provide review and CI integration without
 duplicating roadmap state in GitHub Issues or Milestones.
 
-| Phase    | Name                                | Status      | Release Target        | Goal                                                    |
-| -------- | ----------------------------------- | ----------- | --------------------- | ------------------------------------------------------- |
-| `PH-001` | Product Foundation Baseline         | In Progress | No production tag     | Establish docs, workflow, governance, and content base  |
-| `PH-002` | Static Portfolio Implementation     | Planned     | No production tag     | Replace the Vite scaffold with the portfolio experience |
-| `PH-003` | Deployment And Operations Readiness | Planned     | `v1.0.0`              | Prepare release, deploy, and operations workflows       |
-| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, observability, and insights    |
+| Phase    | Name                                | Status      | Release Target        | Goal                                                   |
+| -------- | ----------------------------------- | ----------- | --------------------- | ------------------------------------------------------ |
+| `PH-001` | Product Foundation Baseline         | In Progress | No production tag     | Establish docs, workflow, governance, and content base |
+| `PH-002` | Static Portfolio Implementation     | Planned     | No production tag     | Complete the portfolio content and experience          |
+| `PH-003` | Deployment And Operations Readiness | Planned     | `v1.0.0`              | Prepare release, deploy, and operations workflows      |
+| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, observability, and insights   |
 
 ## Phase Notes
 
 - `PH-001` combines the earlier documentation and content baselines so the
   repository, governance model, and public-safe portfolio content are ready
-  before product implementation.
+  before product completion. Its Astro page shell is an executable architecture
+  baseline rather than acceptance of the PH-002 portfolio experience.
 - `PH-002` implements the static portfolio site and applies the quality and
   accessibility harness created during the foundation phase.
 - `PH-003` prepares production deployment, release governance, infrastructure

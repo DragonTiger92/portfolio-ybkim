@@ -1,13 +1,13 @@
 # Architecture Overview
 
-`portfolio-ybkim` is a static frontend application built with Vite, Vanilla
-TypeScript, HTML, and pure CSS.
+`portfolio-ybkim` is a statically generated multi-page application built with
+Astro, TypeScript, semantic HTML, and pure CSS.
 
 ## System Shape
 
 ```text
-Source files
-  -> Vite build
+Astro pages, components, and content collections
+  -> Astro static build
   -> static assets in dist/
   -> Cloudflare Pages hosting
   -> browser
@@ -17,8 +17,10 @@ Source files
 
 | Area             | Responsibility                                       |
 | ---------------- | ---------------------------------------------------- |
-| HTML             | Document entry point and static metadata             |
-| TypeScript       | DOM rendering and interaction behavior               |
+| Astro pages      | Route ownership, document structure, and metadata    |
+| Components       | Reusable presentation with explicit data contracts   |
+| Content          | Typed project-detail data and Markdown narratives    |
+| TypeScript       | Progressive interaction behavior                     |
 | CSS              | Layout, visual design, responsiveness, accessibility |
 | `docs/`          | Public project documentation                         |
 | `.agents/`       | Agent-only operational guidance                      |
@@ -30,5 +32,8 @@ Source files
 - The site must not require a backend runtime.
 - The supported production target is Cloudflare Pages. GitHub Pages and other
   static hosts are outside the compatibility contract.
-- React or another UI framework must not be introduced without a new decision.
+- Astro renders HTML at build time. Client JavaScript is added only for a
+  concrete interaction.
+- React, another UI renderer, or a CSS framework must not be introduced without
+  a new decision.
 - Public docs and site copy must not expose private company material.

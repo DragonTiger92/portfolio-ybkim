@@ -1,0 +1,152 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (leftProject, rightProject) => leftProject.data.order - rightProject.data.order,
+);
+
+const skillGroups = [
+  {
+    title: "프론트엔드 구현",
+    description: "Semantic HTML, TypeScript, CSS와 접근성을 제품 구조 안에서 함께 다룹니다.",
+  },
+  {
+    title: "제품 전달",
+    description: "요구사항, 범위, 문서와 검증 기준을 구현 과정과 연결합니다.",
+  },
+  {
+    title: "통합 이해",
+    description: "API, 데이터 흐름, 배포와 release boundary를 이해하고 협업합니다.",
+  },
+  {
+    title: "유지보수",
+    description: "명시적인 책임, 타입 안정성과 자동화된 quality gate를 선호합니다.",
+  },
+];
+---
+
+<BaseLayout
+  title="개발자 김용범의 포트폴리오"
+  description="프론트엔드에 강점을 둔 풀스택 웹 개발자 김용범의 프로젝트와 작업 방식"
+>
+  <main id="main-content">
+    <section id="intro" class="hero-section" aria-labelledby="portfolio-title">
+      <div class="site-shell hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Frontend-specialized full-stack web developer</p>
+          <h1 id="portfolio-title">개발자 김용범의 포트폴리오</h1>
+          <p class="hero-summary">
+            명확한 UI, 타입이 있는 구현과 유지보수 가능한 구조를 바탕으로 웹 제품을 계획부터
+            release까지 연결합니다.
+          </p>
+          <p class="availability">프론트엔드 중심의 웹 개발 기회를 찾고 있습니다.</p>
+          <div class="action-list">
+            <a class="button-link" href="#projects">프로젝트 보기</a>
+            <a
+              class="button-link button-link--secondary"
+              href="https://github.com/DragonTiger92/portfolio-ybkim">저장소 살펴보기</a
+            >
+          </div>
+        </div>
+
+        <aside class="hero-note" aria-labelledby="review-path-title">
+          <h2 id="review-path-title">검토 경로</h2>
+          <ol>
+            <li>프로젝트 결과와 역할</li>
+            <li>구현 및 접근성 기준</li>
+            <li>문서와 자동화된 검증</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects" class="content-section" aria-labelledby="projects-title">
+      <div class="site-shell">
+        <div class="section-heading">
+          <p class="eyebrow">Evidence</p>
+          <h2 id="projects-title">프로젝트</h2>
+          <p>역할, 문제와 결과를 빠르게 검토할 수 있는 공개 가능한 사례입니다.</p>
+        </div>
+
+        <div class="project-grid">
+          {
+            projects.map((project) => (
+              <ProjectCard
+                slug={project.id}
+                title={project.data.title}
+                summary={project.data.summary}
+                role={project.data.role}
+                stack={project.data.stack}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="skills"
+      class="content-section content-section--tinted"
+      aria-labelledby="skills-title"
+    >
+      <div class="site-shell">
+        <div class="section-heading">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="skills-title">역량</h2>
+          <p>도구 목록보다 제품을 전달하는 책임을 중심으로 기술을 설명합니다.</p>
+        </div>
+
+        <ul class="capability-grid">
+          {
+            skillGroups.map((skillGroup) => (
+              <li>
+                <h3>{skillGroup.title}</h3>
+                <p>{skillGroup.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="process" class="content-section" aria-labelledby="process-title">
+      <div class="site-shell process-layout">
+        <div class="section-heading">
+          <p class="eyebrow">Delivery</p>
+          <h2 id="process-title">작업 방식</h2>
+          <p>작은 제품에서도 의사결정과 검증 근거가 구현과 함께 남도록 합니다.</p>
+        </div>
+
+        <ol class="process-list">
+          <li><strong>확인</strong><span>요구사항과 현재 구조를 먼저 읽습니다.</span></li>
+          <li>
+            <strong>구현</strong><span>책임과 데이터 흐름이 드러나는 작은 단위로 만듭니다.</span>
+          </li>
+          <li>
+            <strong>검증</strong><span>정적 분석, 접근성 검사와 production build로 확인합니다.</span
+            >
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section
+      id="repository"
+      class="content-section repository-section"
+      aria-labelledby="repository-title"
+    >
+      <div class="site-shell repository-layout">
+        <div>
+          <p class="eyebrow">Open repository</p>
+          <h2 id="repository-title">저장소</h2>
+          <p>요구사항, ADR, source와 quality gate를 함께 공개해 작업 과정을 검토할 수 있습니다.</p>
+        </div>
+        <a class="button-link" href="https://github.com/DragonTiger92/portfolio-ybkim"
+          >GitHub에서 확인</a
+        >
+      </div>
+    </section>
+  </main>
+</BaseLayout>

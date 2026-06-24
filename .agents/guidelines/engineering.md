@@ -45,6 +45,26 @@ Follow these rules:
 - Keep naming descriptive and consistent with the existing codebase.
 - Do not introduce a new dependency unless there is a strong reason.
 
+## Naming Convention
+
+Names should contain the minimum information needed to identify what the value or
+object represents. Keep them concise without hiding domain meaning, and account
+for the concept's ordinary domain meaning and realistic extension range.
+
+- Name data, entities, collections, types, components, and other object-like
+  concepts with nouns or noun phrases.
+- Name functions, methods, commands, and other behaviors with verbs or verb
+  phrases that state the action or result.
+- Name booleans as predicates, such as `isVisible`, `hasLinks`, or `canNavigate`.
+- Prefer domain terms over generic placeholders such as `data`, `item`, `value`,
+  `handler`, or `utils` when a more precise name is available.
+- Avoid encoding type or implementation details in a name unless that distinction
+  is meaningful to callers.
+- Do not make names longer merely to narrate the implementation. Context supplied
+  by the module, type, or containing object should not be repeated.
+- Preserve established public vocabulary across content schemas, routes,
+  components, styles, tests, and documentation.
+
 ## Separation of Concerns
 
 Keep responsibilities separated by purpose.

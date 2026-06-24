@@ -20,20 +20,39 @@ The portfolio should be accessible by default.
 
 When editing UI:
 
-- Use semantic HTML where possible.
+- Prefer native HTML semantics. Add ARIA only when native elements cannot express
+  the required role, name, state, or relationship.
 - Use buttons for actions and links for navigation.
 - Provide meaningful `alt` text for images.
 - Ensure interactive elements are keyboard accessible.
 - Avoid removing focus styles without replacing them.
 - Preserve readable text contrast.
+- Give each generated page exactly one visible `main` landmark and one page-level
+  `h1`.
+- Use `section` and `article` only for independently meaningful content, and give
+  each one an accessible heading. Do not add an artificial hidden heading to
+  `main`; `main` is a landmark, not sectioning content that requires a heading.
+- Keep heading levels logical. The landing-page `h1` is "개발자 김용범의
+  포트폴리오"; a project-detail page uses its project title as `h1`.
+- Prefer concise noun phrases for headings when they still describe the content
+  accurately and read naturally in a heading outline.
+- Use native `header`, `nav`, `main`, `article`, `section`, `aside`, and `footer`
+  landmarks according to their content model instead of using generic containers
+  with redundant roles.
+- Keep pointer targets at least 44 by 44 CSS pixels unless an equivalent target
+  for the same action is available nearby or another documented WCAG exception
+  applies.
+
+Automated accessibility and standards checks are a safety net, not proof of full
+conformance. Preserve manual review for keyboard order, content meaning, zoom,
+reflow, contrast, and assistive-technology behavior.
 
 ## Styling
 
-The current stylesheet is mostly Vite scaffold styling, so do not treat it as a mature design system or a source of visual direction.
-
-Do not introduce a new styling approach unless explicitly requested.
-
-The current project uses global CSS in `src/style.css`, CSS custom properties, and responsive media queries. Continue with this general approach unless the requested change clearly requires something else.
+The project uses layered pure CSS and CSS custom properties. Treat the shared
+tokens as a small product vocabulary, not as a promise to build a general-purpose
+design system. Add a token or reusable pattern only when it represents an actual
+shared decision.
 
 When styling:
 
@@ -42,3 +61,13 @@ When styling:
 - Prefer reusable patterns after they are intentionally established.
 - Do not introduce global CSS changes without checking their impact.
 - Maintain responsive behavior.
+- Prefer logical properties and values such as `margin-inline`, `padding-block`,
+  and `inset-inline-start` so layout remains writing-mode resilient.
+- Treat desktop recruiter review as the primary product presentation while
+  preserving the same content and actions at narrow and intermediate widths.
+- Use mobile-first responsive CSS: write the narrow-width baseline first, then
+  add content-driven `min-width` breakpoints as the composition gains room. The
+  term describes CSS composition order, not a product priority above desktop.
+- Do not copy device breakpoint catalogs.
+- Test both narrow and wide viewports. Avoid horizontal scrolling, preserve
+  readable line lengths, and let grids collapse according to available space.

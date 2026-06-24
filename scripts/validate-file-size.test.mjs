@@ -17,6 +17,7 @@ describe("file-size policy", () => {
 
   it("applies source-adjacent limits without duplicating the JS and TS ESLint rule", () => {
     assert.equal(getFileSizePolicy("src/style.css").max, 300);
+    assert.equal(getFileSizePolicy("src/pages/index.astro").max, 250);
     assert.equal(getFileSizePolicy("infra/terraform/github/repository.tf").max, 250);
     assert.equal(getFileSizePolicy("src/main.ts"), null);
   });
@@ -25,6 +26,7 @@ describe("file-size policy", () => {
     assert.equal(isIgnoredPath("pnpm-lock.yaml"), true);
     assert.equal(isIgnoredPath("sbom.spdx.json"), true);
     assert.equal(isIgnoredPath("node_modules/example/README.md"), true);
+    assert.equal(isIgnoredPath("test-results/failure/error-context.md"), true);
     assert.equal(isIgnoredPath(".contexts/private-notes.md"), true);
     assert.equal(isIgnoredPath("tmp/draft.md"), true);
   });

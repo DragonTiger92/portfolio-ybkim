@@ -92,6 +92,9 @@ export default defineConfig([
       "build/**",
       "coverage/**",
       "node_modules/**",
+      ".astro/**",
+      "playwright-report/**",
+      "test-results/**",
       "tmp/**",
       ".contexts/**",
       "**/.terraform/**",
@@ -148,6 +151,12 @@ export default defineConfig([
     },
   },
   {
+    files: ["tests/**/*.{js,mjs,ts,mts}"],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+  },
+  {
     files: ["**/*.{ts,mts,cts}"],
     extends: [tseslint.configs.strict, tseslint.configs.stylistic],
     rules: {
@@ -194,6 +203,14 @@ export default defineConfig([
     plugins: { css },
     language: "css/css",
     extends: ["css/recommended"],
+    rules: {
+      // Design tokens are defined in tokens.css; this rule does not resolve
+      // custom properties across separate stylesheets.
+      "css/no-invalid-properties": "off",
+      "css/prefer-logical-properties": "warn",
+      "css/relative-font-units": "warn",
+      "css/use-layers": "warn",
+    },
   },
   eslintConfigPrettier,
 ]);

@@ -8,8 +8,8 @@ a supported target. Provider-specific deployment implementation is deferred to
 
 ```text
 pnpm.cmd build
-  -> tsc
-  -> vite build
+  -> astro check
+  -> astro build
   -> dist/
 ```
 
@@ -19,8 +19,8 @@ The generated `dist/` directory is the deployable artifact.
 
 - Production uses a Cloudflare Pages project when the PH-003 decision is
   implemented.
-- Vite `base` must match the selected deployment hostname and path. Do not retain
-  the GitHub Pages project-path base solely as an obsolete production default.
+- Astro routes are generated for the selected root deployment path. Do not add a
+  GitHub Pages project-path base solely as an obsolete production default.
 - No application server runtime, database, or backend API is required.
 - Content should be bundled at build time or embedded as static source.
 - Compatibility with another hosting provider is not a release acceptance
@@ -32,7 +32,7 @@ The generated `dist/` directory is the deployable artifact.
 | ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
 | GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
 | GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003    |
-| Vite                     | Produce the deployable `dist/` static artifact              | Existing build tool                   |
+| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                   |
 | Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
 | Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                        |
 | Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                        |
@@ -51,7 +51,7 @@ yet exist.
 
 ## Static Artifact And Serving Model
 
-- Vite compiles source and imported assets into `dist/`.
+- Astro renders routes, content, and imported assets into `dist/`.
 - Content-hashed build assets under `dist/assets/` are treated as immutable for
   one deployment.
 - GitHub Actions uploads `dist/` through Wrangler; the generated directory is
@@ -69,7 +69,7 @@ staging server. A protected preview can serve the staging purpose for remote QA,
 but it is a Cloudflare Pages deployment with its own URL and static artifact.
 
 - Verify every build locally with the normal check/build path and use
-  `vite preview` when browser inspection is needed.
+  `astro preview` when browser inspection is needed.
 - Create a remote preview manually through `workflow_dispatch` only when shared
   QA, production-like edge serving, or release-candidate evidence is useful.
 - Protect preview hostnames through Cloudflare Access. The exact identity
@@ -84,7 +84,7 @@ Upload, not Cloudflare Git integration. A reusable production-deployment
 workflow should be callable by both the automatic and manual entry points.
 PH-003 implements:
 
-1. full repository checks and a reproducible Vite build;
+1. full repository checks and a reproducible Astro build;
 2. optional, manually dispatched protected preview deployment;
 3. automatic production deployment on each push to `main`;
 4. production smoke checks and rollback evidence; and
