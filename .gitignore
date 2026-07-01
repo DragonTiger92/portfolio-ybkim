@@ -31,6 +31,9 @@ tmp/
 .contexts/
 .agents/handoffs/
 
+# Generated supply-chain artifacts
+sbom.cdx.json
+
 # Terraform local data and state
 .terraform/
 *.tfstate

@@ -26,13 +26,14 @@ evidence.
 | `architecture/github-governance.md`                     | GitHub settings and IaC ownership            |
 | `adr/0001-use-static-vite-vanilla-typescript.md`        | Technology baseline decision                 |
 | `adr/0002-separate-public-docs-and-agent-guidelines.md` | Documentation boundary decision              |
-| `adr/0003-use-spdx-json-sbom.md`                        | SBOM format decision                         |
+| `adr/0003-use-spdx-json-sbom.md`                        | Superseded SPDX SBOM decision                |
 | `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                   |
 | `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary              |
 | `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision     |
 | `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare delivery and preview decision     |
 | `adr/0008-use-docs-based-work-tracking.md`              | Docs-based work tracking decision            |
 | `adr/0009-adopt-astro-static-component-architecture.md` | Astro static component architecture decision |
+| `adr/0010-use-cyclonedx-json-sbom.md`                   | CycloneDX SBOM format decision               |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                   |
 | `security/license-compliance.md`                        | Pre-release third-party license review       |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery  |

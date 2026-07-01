@@ -24,7 +24,7 @@ describe("file-size policy", () => {
 
   it("ignores generated, dependency, private-context, and temporary paths", () => {
     assert.equal(isIgnoredPath("pnpm-lock.yaml"), true);
-    assert.equal(isIgnoredPath("sbom.spdx.json"), true);
+    assert.equal(isIgnoredPath("sbom.cdx.json"), true);
     assert.equal(isIgnoredPath("node_modules/example/README.md"), true);
     assert.equal(isIgnoredPath("test-results/failure/error-context.md"), true);
     assert.equal(isIgnoredPath(".contexts/private-notes.md"), true);

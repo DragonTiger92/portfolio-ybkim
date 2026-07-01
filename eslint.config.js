@@ -4,6 +4,7 @@ import json from "@eslint/json";
 import markdown from "@eslint/markdown";
 import { defineConfig } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import astro from "eslint-plugin-astro";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -139,6 +140,12 @@ export default defineConfig([
     },
   },
   {
+    files: ["public/**/*.{js,mjs}"],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  {
     files: ["*.config.{js,mjs,ts,mts}", "eslint.config.js"],
     languageOptions: {
       globals: globals.node,
@@ -210,6 +217,18 @@ export default defineConfig([
       "css/prefer-logical-properties": "warn",
       "css/relative-font-units": "warn",
       "css/use-layers": "warn",
+    },
+  },
+  ...astro.configs["flat/recommended"],
+  {
+    files: ["**/*.astro"],
+    rules: {
+      "astro/no-set-html-directive": "error",
+      "astro/no-set-text-directive": "error",
+      "astro/no-unsafe-inline-scripts": "warn",
+      "astro/prefer-class-list-directive": "warn",
+      "astro/prefer-object-class-list": "warn",
+      "astro/prefer-split-class-list": "warn",
     },
   },
   eslintConfigPrettier,

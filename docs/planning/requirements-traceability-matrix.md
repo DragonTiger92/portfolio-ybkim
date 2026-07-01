@@ -41,6 +41,7 @@ governance work rather than product behavior.
 | `NFR-008`      | `PBI-018` | Implement     |
 | `NFR-008`      | `PBI-020` | Verify        |
 | `NFR-008`      | `PBI-034` | Implement     |
+| `NFR-008`      | `PBI-038` | Verify        |
 | `NFR-009`      | `PBI-002` | Define        |
 
 ## PH-002 Static Portfolio Implementation

@@ -88,6 +88,7 @@ pnpm lint:fix
 pnpm format
 pnpm format:check
 pnpm test:a11y
+pnpm sbom:cyclonedx
 pnpm check:static
 pnpm check
 pnpm build:bundle
@@ -102,6 +103,7 @@ pnpm preview
 - `format`: Prettier로 전체 파일을 포맷합니다.
 - `format:check`: Prettier 포맷 상태를 검사합니다.
 - `test:a11y`: 최신 Astro build를 생성한 뒤 browser accessibility test를 실행합니다.
+- `sbom:cyclonedx`: root CycloneDX SBOM을 재생성합니다.
 - `check:static`: 타입, lint, 파일 크기, 포맷, Astro 빌드, HTML 표준을 검사합니다.
 - `check`: 정적 검사에 실제 브라우저 접근성 검사를 더해 전체 품질 gate를 실행합니다.
 - `build:bundle`: 타입 검사를 반복하지 않고 Astro 정적 산출물을 생성합니다.
@@ -130,7 +132,6 @@ pnpm preview
 ├── .prettierrc
 ├── .prettierignore
 ├── SECURITY.md
-├── sbom.spdx.json
 ├── tsconfig.json
 └── package.json
 ```

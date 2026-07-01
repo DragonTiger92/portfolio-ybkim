@@ -23,13 +23,7 @@ const { title, description } = Astro.props;
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <script is:inline>
-      (() => {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = savedTheme ?? (prefersDark ? "dark" : "light");
-      })();
-    </script>
+    <script is:inline src="/scripts/theme-init.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 이동</a>

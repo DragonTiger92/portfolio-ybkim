@@ -8,6 +8,7 @@ build
 coverage
 playwright-report
 test-results
+sbom.cdx.json
 
 # Local caches
 .vite

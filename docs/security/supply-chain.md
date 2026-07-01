@@ -6,29 +6,48 @@
 - Keep direct dependency versions exact in `package.json`.
 - Do not add or update dependencies without an explicit decision.
 - Prefer platform-native solutions for this small static site.
+- Keep peer dependencies explicit. `autoInstallPeers` is disabled so optional
+  peers do not silently enter the graph.
 
 ## SBOM
 
-The SBOM is stored at the repository root as `sbom.spdx.json`.
+The CycloneDX SBOM is generated on demand as `sbom.cdx.json`. The generated file
+is intentionally gitignored because cdxgen output can include
+environment-specific paths and timestamps.
 
-| Field        | Value                                                         |
-| ------------ | ------------------------------------------------------------- |
-| Format       | SPDX 2.3 JSON                                                 |
-| Scope        | npm package graph and repository-level license intent         |
-| Source       | `package.json`, `pnpm-lock.yaml`, local install metadata      |
-| Root license | `MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved`  |
-| Dependencies | `NOASSERTION` when a package license is not locally confirmed |
-| Update       | Regenerate after dependency or project license changes        |
+| Field        | Value                                                    |
+| ------------ | -------------------------------------------------------- |
+| Format       | CycloneDX JSON 1.6                                       |
+| Scope        | JavaScript package graph and repository package metadata |
+| Output       | Local or release artifact, not committed to Git          |
+| Source       | `package.json`, `pnpm-lock.yaml`, local install metadata |
+| Generator    | `@cyclonedx/cdxgen` through `pnpm.cmd sbom:cyclonedx`    |
+| Dependencies | Unresolved license metadata remains generator output     |
+| Update       | Regenerate after dependency or project license changes   |
 
-Future production release automation is expected to replace the manual root
-SBOM workflow with a CI-generated CycloneDX JSON SBOM attached to each GitHub
-Release. Until that release workflow is implemented, the root SPDX artifact
-remains the current baseline.
+Future production release automation is expected to attach a validated
+CycloneDX JSON SBOM to each GitHub Release. Until that release workflow is
+implemented, the pinned generator and command are the reviewable baseline.
 
 CycloneDX does not use SPDX `NOASSERTION` as a required placeholder. The release
 workflow should preserve missing license metadata as unresolved or omitted
 generator output, validate the generated schema, and route unknown license data
 to policy review instead of inventing a license conclusion.
+
+## Transitive Dependency Decisions
+
+- `yaml` is temporarily overridden only for the
+  `yaml-language-server@1.20.0` path to exact version `2.8.3`. The Astro
+  language service path pins vulnerable `yaml@2.7.1`, while `2.8.3` is the first
+  patched version. A patched upstream path exists through newer
+  `volar-service-yaml` and `yaml-language-server` releases, but the installed
+  `@astrojs/language-server` version still pins the older service package.
+  Remove the targeted override when the installed Astro language-service graph
+  declares a patched version itself.
+- The low-severity `esbuild@0.27.7` development-server advisory was resolved
+  by upgrading Astro to a version that declares the patched `esbuild@0.28.1`
+  range through its normal dependency graph. Do not reintroduce an `esbuild`
+  override unless an upstream-compatible path is unavailable.
 
 ## Automated Review
 
@@ -68,6 +87,8 @@ to policy review instead of inventing a license conclusion.
 
 ## Verification
 
-- Parse `sbom.spdx.json` as JSON after regeneration.
+- Parse generated `sbom.cdx.json` as JSON after regeneration.
+- Regenerate the root CycloneDX SBOM with `pnpm.cmd sbom:cyclonedx` after
+  dependency or project license changes.
 - Run `pnpm.cmd format:check` before completion.
 - Run `pnpm.cmd check` before treating a release candidate as ready.

@@ -1,12 +1,16 @@
 packages:
   - "."
 
+autoInstallPeers: false
 savePrefix: ""
 minimumReleaseAge: 10080
 minimumReleaseAgeIgnoreMissingTime: false
 minimumReleaseAgeStrict: true
 verifyDepsBeforeRun: error
 strictDepBuilds: true
+
+overrides:
+  yaml-language-server@1.20.0>yaml: 2.8.3
 
 allowBuilds:
   esbuild: true

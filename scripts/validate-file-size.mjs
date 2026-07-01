@@ -16,7 +16,7 @@ const ignoredDirectoryNames = new Set([
   "tmp",
 ]);
 
-const ignoredFilePaths = new Set(["pnpm-lock.yaml", "sbom.spdx.json"]);
+const ignoredFilePaths = new Set(["pnpm-lock.yaml", "sbom.cdx.json"]);
 
 const fileSizePolicies = [
   {
