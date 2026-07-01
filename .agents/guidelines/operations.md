@@ -35,6 +35,25 @@ If environment variables are needed, use example names and document them without
 - When using company or private-project material as source context, write public-facing summaries that avoid confidential implementation details.
 - Before finishing work that touches private context, check that `.contexts/` files are not shown as tracked or untracked public changes.
 
+## Third-Party And Generated Material
+
+Do not add or publish creative material unless its source, permission, and reuse
+terms are clear. This applies to open-source material, copied or adapted
+snippets, text, images, icons, fonts, media, generated assets, and assets derived
+from another person's work.
+
+- Treat open-source or freely available material as licensed material, not
+  public-domain material.
+- Preserve source URLs, authors or suppliers, license terms, modification notes,
+  and attribution obligations before use.
+- Follow the license, provider terms, applicable law, and ordinary ethical reuse
+  expectations. If permission is missing or the terms prohibit the intended use,
+  do not use the material.
+- Do not assume AI-generated or tool-generated assets are clean when their prompt,
+  input, model, provider terms, or source material creates reuse obligations.
+- Record third-party material and generated-asset decisions in the public
+  license-compliance process when the material is intended to ship.
+
 ## Temporary Artifact Lifecycle
 
 Keep repository resources only while they have an active purpose.
