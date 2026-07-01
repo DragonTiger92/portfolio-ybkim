@@ -18,6 +18,8 @@ that match the task. Do not load every guideline by default.
 - `.agents/guidelines/supply-chain-security.md`: dependencies, lockfiles, audits, or
   package-manager policy
 - `.agents/guidelines/ui.md`: HTML, CSS, DOM rendering, responsiveness, or accessibility
+- `DESIGN.md`: visual design intent, token vocabulary, coherence, or UI pattern
+  decisions
 - `.agents/guidelines/git-quality.md`: Git, branches, commits, hooks, CI, or completion
   checks
 - `.agents/guidelines/operations.md`: any file edit or environment-sensitive operation

@@ -21,8 +21,14 @@ Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
 
 프로젝트 문서는 [`docs/`](docs/)에 정리합니다. `docs/`는 공개 가능한 일반 프로젝트 문서만 담고, agent-only guideline은 `.agents/`, private source context는 gitignored `.contexts/`에 둡니다.
 
+Root [`DESIGN.md`](DESIGN.md)는 이 포트폴리오의 디자인 판단 기준을
+정리한 harness입니다. 사람이 읽을 수 있게 작성하되, 새 UI를 만들거나
+수정하는 LLM agent가 기존 token, layout, accessibility, coherence 결정을
+반복 적용할 수 있게 하는 데 중점을 둡니다.
+
 주요 문서:
 
+- [Design Harness](DESIGN.md)
 - [Project Brief](docs/planning/project-brief.md)
 - [Functional Requirements](docs/requirements/functional-requirements.md)
 - [Non-Functional Requirements](docs/requirements/non-functional-requirements.md)
@@ -116,6 +122,7 @@ pnpm preview
 .
 ├── public/
 ├── docs/
+├── DESIGN.md
 ├── src/
 │   ├── components/
 │   ├── content/projects/

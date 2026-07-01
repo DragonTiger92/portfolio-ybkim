@@ -1,5 +1,15 @@
 # UI Guidelines
 
+## Design Reference
+
+When creating or editing visible UI, use root `DESIGN.md` together with this
+file. `DESIGN.md` defines the product design intent and small token vocabulary;
+this file defines operational implementation rules for HTML, CSS,
+responsiveness, and accessibility.
+
+Do not treat `DESIGN.md` as a mandate to build a broad design system. Use it to
+keep new UI coherent with the portfolio's existing visual axes.
+
 ## UI Structure
 
 When creating or editing UI code:
@@ -56,6 +66,12 @@ shared decision.
 
 When styling:
 
+- Keep every visible state coherent: spacing, radius, shadow, color, typography,
+  and control sizing should look like one committed product decision.
+- Prefer existing token families for color, typography, spacing, radius,
+  elevation, interaction, and layout before introducing a new local value.
+- Add a new token or visual family only when it represents a product-wide
+  decision; otherwise keep the exception narrow and explain it near the change.
 - Keep class names or style utilities readable.
 - Avoid duplicated styling logic.
 - Prefer reusable patterns after they are intentionally established.
