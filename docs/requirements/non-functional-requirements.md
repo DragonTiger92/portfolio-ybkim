@@ -63,6 +63,12 @@ without unnecessary runtime dependencies or client-side data fetching.
 
 - Avoid unnecessary runtime dependencies.
 - Keep image and asset usage intentional.
+- Prefer modern delivery formats such as WebP for suitable raster images when
+  they reduce output size without losing necessary visual fidelity, accessibility
+  context, or rights evidence.
+- Preserve SVG for vector artwork such as icons, logos, diagrams, and UI symbols
+  when scalability, editability, or semantic structure is more valuable than a
+  raster derivative.
 - Confirm `pnpm.cmd build` succeeds before release.
 - Prefer static content over client-side data fetching for portfolio copy.
 

@@ -72,6 +72,7 @@ governance work rather than product behavior.
 | Requirement ID | PBI ID    | Coverage Role |
 | -------------- | --------- | ------------- |
 | `NFR-002`      | `PBI-010` | Verify        |
+| `NFR-002`      | `PBI-039` | Verify        |
 | `NFR-005`      | `PBI-010` | Verify        |
 | `NFR-005`      | `PBI-011` | Implement     |
 | `NFR-005`      | `PBI-012` | Implement     |
