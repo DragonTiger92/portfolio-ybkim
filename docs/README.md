@@ -21,6 +21,7 @@ evidence.
 | `requirements/functional-requirements.md`               | User-facing behavior requirements            |
 | `requirements/non-functional-requirements.md`           | Product quality attributes and constraints   |
 | `architecture/overview.md`                              | Static site architecture                     |
+| `architecture/information-architecture.md`              | Product sitemap and analytics scope          |
 | `architecture/content-model.md`                         | Portfolio content structure                  |
 | `architecture/deployment.md`                            | Cloudflare deployment and release model      |
 | `architecture/github-governance.md`                     | GitHub settings and IaC ownership            |

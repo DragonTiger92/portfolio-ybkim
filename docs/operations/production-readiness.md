@@ -74,3 +74,9 @@ PH-003 readiness uses deployment evidence, availability probes, and provider
 status. `PBI-014` in PH-004 may add CDN analytics, request visibility, or error
 logging only when an observed operational question justifies the privacy and
 maintenance cost.
+
+Visitor-interest analytics belong to `PBI-015`, not the PH-003 health model.
+Keep route, referrer, and outbound-action metrics aggregate and privacy-aware.
+Do not add a server-side collector, analytics proxy, database, or private
+dashboard unless a future ADR accepts the additional architecture, security, and
+operations scope.

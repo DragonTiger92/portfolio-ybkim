@@ -23,6 +23,8 @@ tool list.
 - A reusable project card links landing-page summaries to project details.
 - Each project detail owns its title, summary, role, focus, stack, order, links,
   and Markdown narrative.
+- Route and section-level sitemap decisions are tracked in
+  [Information Architecture](information-architecture.md).
 
 ## Skill Groups
 

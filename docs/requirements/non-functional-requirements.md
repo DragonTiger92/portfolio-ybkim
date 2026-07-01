@@ -268,9 +268,14 @@ portfolio's operational needs and respect visitor privacy.
 
 - Select telemetry only after documenting the operational or product question
   it answers.
+- Prefer aggregate route, referrer, and outbound-action metrics over user-level
+  profiles, session replay, heatmaps, cross-site identity, or advertising
+  audiences.
 - Minimize collected identifiers and retention.
 - Disclose analytics or tracking behavior where required.
 - Add consent controls when the selected tool or jurisdiction requires them.
+- Keep telemetry compatible with static deployment unless a new ADR accepts a
+  server component, collector, database, or proxy.
 - Keep telemetry credentials and private operational data out of the repository.
 
 ## NFR-012: Third-Party Material License Compliance

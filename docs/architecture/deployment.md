@@ -22,6 +22,8 @@ The generated `dist/` directory is the deployable artifact.
 - Astro routes are generated for the selected root deployment path. Do not add a
   GitHub Pages project-path base solely as an obsolete production default.
 - No application server runtime, database, or backend API is required.
+- Post-launch visitor analytics should use provider-managed aggregate telemetry
+  by default; a custom server-side collector requires a future ADR.
 - Content should be bundled at build time or embedded as static source.
 - Compatibility with another hosting provider is not a release acceptance
   criterion.
@@ -39,6 +41,7 @@ The generated `dist/` directory is the deployable artifact.
 | Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
 | GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
 | External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003           |
+| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                        |
 | Cloudflare DNS and TLS   | Serve an optional custom domain securely                    | Only if a custom domain is adopted    |
 
 There is no separately managed staging machine, origin application server,

@@ -24,8 +24,9 @@ duplicating roadmap state in GitHub Issues or Milestones.
   management, release notes, release SBOM generation, pre-release license
   compliance, production smoke checks, uptime monitoring, rollback readiness,
   and minimum discoverability metadata needed before launch.
-- `PH-004` covers post-launch SEO, AEO, GEO, analytics, and evidence-driven
-  observability refinement after the first operations-ready deployment exists.
+- `PH-004` covers post-launch SEO, AEO, GEO, privacy-aware route analytics, and
+  evidence-driven observability refinement after the first operations-ready
+  deployment exists.
 
 Quality and accessibility are cross-cutting gates. The project should establish
 their harness during `PH-001`, apply them during `PH-002`, and keep them visible
