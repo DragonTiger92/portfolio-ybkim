@@ -6,6 +6,7 @@ import {
   evaluateContent,
   getFileSizePolicy,
   isIgnoredPath,
+  resolveInputFiles,
 } from "./validate-file-size.mjs";
 
 describe("file-size policy", () => {
@@ -44,5 +45,18 @@ describe("file-size evaluation", () => {
     assert.equal(result.lines, 251);
     assert.equal(result.max, 250);
     assert.equal(result.exceedsLimit, true);
+  });
+});
+
+describe("file-size input resolution", () => {
+  it("expands directory arguments into maintained files", async () => {
+    const files = await resolveInputFiles(["docs", "AGENTS.md", "tmp"], process.cwd());
+
+    assert.equal(files.includes("docs/README.md"), true);
+    assert.equal(files.includes("AGENTS.md"), true);
+    assert.equal(
+      files.some((filePath) => filePath.startsWith("tmp/")),
+      false,
+    );
   });
 });

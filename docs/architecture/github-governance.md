@@ -44,24 +44,27 @@ public branch naming convention instead.
 
 ## Quality Gate Matrix
 
-| Trigger                     | Required work                                                             | Purpose                                             |
-| --------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------- |
-| Local iteration             | Focused `pnpm.cmd lint`, formatter, or failing-stage command              | Give fast feedback without repeating the full gate  |
-| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                  |
-| Local `pre-push`            | `pnpm check:static`                                                       | Block static-analysis, build, and HTML regressions  |
-| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff      |
-| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata            |
-| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                     |
-| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                |
-| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR |
-| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks |
+| Trigger                     | Required work                                                             | Purpose                                                |
+| --------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Local docs iteration        | `pnpm.cmd check:docs`                                                     | Validate documentation without repeating the full gate |
+| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command         | Give fast feedback without repeating the full gate     |
+| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                     |
+| Local `pre-push`            | `pnpm check:static`                                                       | Block static-analysis, build, and HTML regressions     |
+| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff         |
+| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata               |
+| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                        |
+| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                   |
+| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR    |
+| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks    |
 
-`pnpm check:static` includes warning-free type checking and linting, strict file
-size, governance tests, formatting, the Astro production build, HTML validation,
-and W3C Nu validation. `pnpm check` adds Playwright and axe-core browser checks,
-including semantic structure and 44-by-44 CSS-pixel target checks. Terraform
-planning and apply are deliberately absent from pull requests until durable
-remote state and owner credentials are configured.
+`pnpm check:docs` includes warning-free Markdown linting, strict documentation
+file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
+`AGENTS.md`. `pnpm check:static` includes warning-free type checking and
+linting, strict file size, governance tests, formatting, the Astro production
+build, HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
+axe-core browser checks, including semantic structure and 44-by-44 CSS-pixel
+target checks. Terraform planning and apply are deliberately absent from pull
+requests until durable remote state and owner credentials are configured.
 
 The pre-push hook runs the static subset so obvious standards failures do not
 leave the workstation. Browser installation and rendering remain in the explicit

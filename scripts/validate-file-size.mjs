@@ -126,21 +126,31 @@ async function resolveInputFiles(inputPaths, rootDirectory) {
   }
 
   const files = await Promise.all(
-    inputPaths.map((inputPath) => resolveInputFile(inputPath, rootDirectory)),
+    inputPaths.map((inputPath) => resolveInputPath(inputPath, rootDirectory)),
   );
 
-  return files.filter((filePath) => filePath !== null);
+  return [...new Set(files.flat())];
 }
 
-async function resolveInputFile(inputPath, rootDirectory) {
+async function resolveInputPath(inputPath, rootDirectory) {
   const absolutePath = resolve(rootDirectory, inputPath);
   const inputStat = await stat(absolutePath).catch(handleInputError);
 
   if (inputStat === null) {
-    return null;
+    return [];
   }
 
-  return inputStat.isFile() ? normalizePath(absolutePath, rootDirectory) : null;
+  const normalizedPath = normalizePath(absolutePath, rootDirectory);
+
+  if (isIgnoredPath(normalizedPath)) {
+    return [];
+  }
+
+  if (inputStat.isDirectory()) {
+    return collectFiles(absolutePath, rootDirectory);
+  }
+
+  return inputStat.isFile() ? [normalizedPath] : [];
 }
 
 function handleInputError(error) {
@@ -208,4 +218,4 @@ if (import.meta.url === invokedModuleUrl) {
   );
 }
 
-export { countContentLines, evaluateContent, getFileSizePolicy, isIgnoredPath };
+export { countContentLines, evaluateContent, getFileSizePolicy, isIgnoredPath, resolveInputFiles };

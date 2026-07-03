@@ -27,7 +27,11 @@ Follow the public workflow in `docs/process/development-workflow.md`.
 
 ## Quality Checks
 
-Before claiming completion, run the canonical project check when possible:
+Choose the smallest check that gives meaningful feedback while work is still
+in progress. Before claiming final completion for agent-led work, PR prep, or a
+change that touches source code, package metadata, configuration, CI, generated
+HTML, accessibility behavior, or runtime behavior, run the canonical project
+check when possible:
 
 ```bash
 pnpm.cmd check
@@ -38,9 +42,23 @@ governance and file-size tests, formatting verification, the production Astro
 build, strict HTML checks, W3C Nu validation, and browser accessibility tests in
 fail-fast order. After it passes, do not rerun every component command separately.
 
+For a documentation-only iteration that only touches `docs/`, `.agents/`, or
+`AGENTS.md`, use the focused docs check for the active feedback loop:
+
+```bash
+pnpm.cmd check:docs
+```
+
+The docs check runs warning-free Markdown linting, strict documentation
+file-size validation, and Prettier verification for public docs and agent
+guidance. It does not replace the canonical check for source changes, generated
+content, build output, CI changes, package metadata, accessibility, or runtime
+behavior.
+
 If the check fails, rerun only the failing stage or use these commands for focused work:
 
 ```bash
+pnpm.cmd check:docs
 pnpm.cmd typecheck
 pnpm.cmd lint:strict
 pnpm.cmd lint:size:strict
