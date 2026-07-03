@@ -25,6 +25,11 @@ release without losing public-information safety.
 | Repository | Invite technical review of this project  |
 | Contact    | Provide a safe recruiter next action     |
 
+Detailed project, link, and surface planning data lives in
+[Project Content Inventory](project-content-inventory.md). Keep this document
+focused on content direction rather than becoming the implementation data
+ledger.
+
 ## Tone
 
 - Clear, direct, and evidence-backed.

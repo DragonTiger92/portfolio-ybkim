@@ -3,7 +3,10 @@
 These summaries are public source material for future portfolio copy. They use
 only material that is appropriate for public repository docs.
 
-## Current Portfolio Project
+Project eligibility, link disposition, and private-evidence boundaries are
+tracked in [Project Content Inventory](project-content-inventory.md).
+
+## Portfolio Product
 
 | Field | Summary                                                     |
 | ----- | ----------------------------------------------------------- |

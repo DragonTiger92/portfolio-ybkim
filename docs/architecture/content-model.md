@@ -25,6 +25,9 @@ tool list.
   and Markdown narrative.
 - Route and section-level sitemap decisions are tracked in
   [Information Architecture](information-architecture.md).
+- Candidate project, surface, and link decisions are tracked in
+  [Project Content Inventory](../content/project-content-inventory.md) before
+  implementation copy or wireframes are finalized.
 
 ## Skill Groups
 
@@ -41,6 +44,7 @@ Every strong claim should be backed by one of these public-safe forms:
 - A public repository artifact.
 - A public project summary.
 - A public document in this repository.
+- A public product URL approved by the owner.
 - A resume or recommendation artifact shared directly during applications, not
   published on the portfolio site.
 
