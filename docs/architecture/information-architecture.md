@@ -46,6 +46,10 @@ description, shareable URL, or a substantially different review task.
   separate route.
 - Select public contact and resume destinations in `PBI-006`; do not invent a
   placeholder route before the disclosure and rights boundaries are clear.
+- Use the contact destinations selected in
+  [Portfolio Content Source](../content/portfolio-content-source.md): main Gmail
+  plus alias first, then Cloudflare-routed domain email after Phase 3 domain
+  setup. This does not require a separate contact route.
 
 ## Post-launch Analytics Scope
 

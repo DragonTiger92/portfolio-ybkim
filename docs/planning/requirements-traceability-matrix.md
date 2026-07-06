@@ -48,12 +48,17 @@ governance work rather than product behavior.
 
 | Requirement ID | PBI ID    | Coverage Role |
 | -------------- | --------- | ------------- |
+| `FR-001`       | `PBI-040` | Define        |
 | `FR-001`       | `PBI-021` | Implement     |
+| `FR-002`       | `PBI-040` | Define        |
 | `FR-002`       | `PBI-022` | Implement     |
+| `FR-003`       | `PBI-040` | Define        |
 | `FR-003`       | `PBI-006` | Implement     |
+| `FR-004`       | `PBI-040` | Define        |
 | `FR-004`       | `PBI-007` | Implement     |
 | `FR-005`       | `PBI-023` | Implement     |
 | `FR-006`       | `PBI-024` | Implement     |
+| `FR-007`       | `PBI-040` | Define        |
 | `FR-007`       | `PBI-025` | Implement     |
 | `NFR-001`      | `PBI-008` | Verify        |
 | `NFR-001`      | `PBI-023` | Verify        |
@@ -61,10 +66,12 @@ governance work rather than product behavior.
 | `NFR-002`      | `PBI-009` | Verify        |
 | `NFR-003`      | `PBI-008` | Verify        |
 | `NFR-003`      | `PBI-009` | Verify        |
+| `NFR-004`      | `PBI-040` | Define        |
 | `NFR-004`      | `PBI-021` | Verify        |
 | `NFR-004`      | `PBI-022` | Verify        |
 | `NFR-006`      | `PBI-024` | Implement     |
 | `NFR-006`      | `PBI-008` | Verify        |
+| `NFR-007`      | `PBI-040` | Define        |
 | `NFR-007`      | `PBI-025` | Implement     |
 
 ## PH-003 Deployment And Operations Readiness

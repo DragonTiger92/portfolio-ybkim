@@ -42,6 +42,7 @@ evidence.
 | `content/portfolio-content.md`                          | Public portfolio content model               |
 | `content/case-studies.md`                               | Public-safe case study summaries             |
 | `content/project-content-inventory.md`                  | Project, surface, and link planning data     |
+| `content/portfolio-content-source.md`                   | Implementation-ready portfolio source data   |
 
 ## Writing Principles
 

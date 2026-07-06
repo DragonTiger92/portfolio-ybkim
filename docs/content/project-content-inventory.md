@@ -4,6 +4,9 @@ This document is the pre-implementation content inventory for the portfolio.
 It turns the content model and sitemap into implementation-ready planning data
 before wireframes, mockups, or final product copy are created.
 
+Implementation-ready project, contact, link, skill, and disclosure source data
+is tracked in [Portfolio Content Source](portfolio-content-source.md).
+
 It is not a design specification and it is not a private evidence store. Use it
 to decide which projects, surfaces, links, and claims are eligible for the
 public portfolio. Keep private source notes in `.contexts/` or `tmp/` until the
@@ -47,14 +50,14 @@ the backlog.
 
 ## Project Inventory
 
-| Project Label               | Classification        | Source Visibility | Product Link Disposition | Detail Route | Candidate Tags                                                                                     | Public Treatment                                                                                      |
-| --------------------------- | --------------------- | ----------------- | ------------------------ | ------------ | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `portfolio-ybkim`           | Portfolio Product     | Public repository | Pending production URL   | Yes          | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action    |
-| `Karly`                     | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Compact early frontend evidence; link public source and deployed demo after destination review        |
-| `Book-Kong`                 | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | Compact early React evidence; link public source and deployed demo after destination review           |
-| Academy landing product     | Professional Product  | Private source    | Pending Owner Data       | Candidate    | Professional Product, Full-Stack Delivery, Next.js Product, API-Backed Form Flow, Production Setup | Candidate public product summary; use product URL only after owner supplies the public landing URL    |
-| Professional domain-data UI | Private Evidence      | Private source    | Not Applicable           | Candidate    | Professional Frontend, Domain Data UI, Next.js Architecture, API Integration, Handover Readiness   | Use only after disclosure review; summarize behavior and ownership without internal data or URLs      |
-| Professional operations app | Private Evidence      | Private source    | Private                  | Candidate    | Professional Operations, Maintenance Ownership, Django Operations, Documentation, Reliability      | Use only as sanitized experience evidence; do not expose source, private URL, workflows, or internals |
+| Project Label               | Classification        | Source Visibility | Product Link Disposition | Detail Route | Candidate Tags                                                                                     | Public Treatment                                                                                         |
+| --------------------------- | --------------------- | ----------------- | ------------------------ | ------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `portfolio-ybkim`           | Portfolio Product     | Public repository | Pending production URL   | Yes          | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action       |
+| `Karly`                     | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Compact early frontend evidence; link public source and deployed demo after destination review           |
+| `Book-Kong`                 | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | Compact early React evidence; link public source and deployed demo after destination review              |
+| Academy landing product     | Professional Product  | Private source    | Public                   | Candidate    | Professional Product, Full-Stack Delivery, Next.js Product, API-Backed Form Flow, Production Setup | Candidate public product summary; public URL is confirmed but project copy still needs disclosure review |
+| Professional domain-data UI | Private Evidence      | Private source    | Not Applicable           | Candidate    | Professional Frontend, Domain Data UI, Next.js Architecture, API Integration, Handover Readiness   | Use only after disclosure review; summarize behavior and ownership without internal data or URLs         |
+| Professional operations app | Private Evidence      | Private source    | Private                  | Candidate    | Professional Operations, Maintenance Ownership, Django Operations, Documentation, Reliability      | Use only as sanitized experience evidence; do not expose source, private URL, workflows, or internals    |
 
 ## Initial Publication Set
 
@@ -65,8 +68,8 @@ The initial public portfolio should prioritize:
 3. `Book-Kong` as compact React, server-state, and team-leadership evidence.
 
 The professional projects should remain in private preparation until the owner
-provides source context, public URL confirmation where applicable, and approval
-for a sanitized summary. They should not block the first wireframe.
+approves sanitized summaries. The academy product URL is confirmed, but the
+professional summaries should not block the first wireframe.
 
 ## Surface Plan
 
@@ -83,17 +86,18 @@ for a sanitized summary. They should not block the first wireframe.
 
 ## Link Inventory
 
-| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                  |
-| --------------------------- | -------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                                  |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                               |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                  |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Project detail link after checking that demo credentials or private data are absent |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                  |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Project detail link after checking demo account and third-party data boundaries     |
-| Public owner email          | Owner-provided address                             | Pending Owner Data | Contact action and footer after confirmation                                        |
-| Resume PDF                  | Owner-provided public asset path                   | Pending Owner Data | Contact action after resume PDF is disclosure-reviewed and licensed appropriately   |
-| Academy landing product URL | Owner-provided public URL                          | Pending Owner Data | Project detail or project card only after owner confirms the exact public URL       |
+| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                |
+| --------------------------- | -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------- |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                                |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                             |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data              |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data              |
+| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                         |
+| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | Future contact action after production domain and Email Routing setup             |
+| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Path Decided       | Contact action after resume PDF is disclosure-reviewed and licensed appropriately |
+| Academy landing product URL | `https://academy.shine-edu.kr/`                    | Public             | Project detail or project card only after disclosure review                       |
 
 ## Private Evidence Intake
 
@@ -123,6 +127,31 @@ Current private evidence source categories:
 | Recommendation letter                   | Gitignored owner-provided source context | Keep as applicant-only evidence; do not publish recommendation-letter contents        |
 | Future professional project source docs | `.contexts/` or owner-provided tmp       | Read only when requested; write public summaries from scratch after disclosure review |
 
+## Contact Routing Decision
+
+Use `dczwtu12b+portfolio@gmail.com` for the first public contact action. Manage
+recruiter messages through Gmail filters and labels. Do not publish the base
+Gmail address separately in this inventory.
+
+During Phase 3, after the production domain is selected, configure Cloudflare
+Email Routing on the Free plan for a domain address such as
+`contact@{production-domain}` or `hello@{production-domain}`. Route incoming
+mail to the existing Gmail inbox. Do not configure custom reply-from behavior,
+Google Workspace, or another paid mailbox unless a later decision accepts that
+additional scope.
+
+## Disclosure Review Timing
+
+This inventory and [Portfolio Content Source](portfolio-content-source.md) make
+Phase 2 wireframe and implementation planning possible, but professional and
+private evidence still needs publication approval before it becomes public UI
+copy, Astro content entries, screenshots, or downloadable assets.
+
+Run disclosure review before Phase 2 implementation publishes academy,
+domain-data UI, operations platform, resume, recommendation-letter-derived, or
+private employer evidence. Wireframes can proceed first only if they keep those
+items as generic placeholders or deferred cues.
+
 ## Wireframe Input
 
 The next wireframe or mockup task can start from these decisions:
@@ -132,4 +161,6 @@ The next wireframe or mockup task can start from these decisions:
 - section model: intro, projects, skills, process, repository, contact/footer;
 - project detail template available for public-source projects;
 - professional projects held back until private evidence review produces
-  approved public labels and summaries.
+  approved public labels and summaries;
+- implementation source data available in
+  [Portfolio Content Source](portfolio-content-source.md).

@@ -28,6 +28,8 @@ tool list.
 - Candidate project, surface, and link decisions are tracked in
   [Project Content Inventory](../content/project-content-inventory.md) before
   implementation copy or wireframes are finalized.
+- Implementation-ready project, link, contact, skill, and disclosure source data
+  is tracked in [Portfolio Content Source](../content/portfolio-content-source.md).
 
 ## Skill Groups
 
