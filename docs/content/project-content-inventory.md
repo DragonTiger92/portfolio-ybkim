@@ -73,16 +73,16 @@ professional summaries should not block the first wireframe.
 
 ## Surface Plan
 
-| Surface                  | Content Payload                                                                 | Source Of Truth                                       | Related PBI          | Readiness |
-| ------------------------ | ------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------- | --------- |
-| Intro                    | Positioning, current job-seeking status, primary review action                  | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021` | Ready     |
-| Project showcase         | Ordered project cards, project classifications, short summaries, safe links     | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022` | Ready     |
-| Project detail template  | Problem, role, approach, result, stack, public evidence, next navigation        | Astro project collection schema and this inventory    | `PBI-022`            | Ready     |
-| Skills                   | Capability groups, not a long tool list                                         | [Content Model](../architecture/content-model.md)     | `PBI-007`            | Ready     |
-| Process                  | Planning, implementation, verification, documentation, and handover mindset     | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022` | Ready     |
-| Repository               | Link to this repository, docs, ADRs, and quality-gate review path               | [Content Model](../architecture/content-model.md)     | `PBI-006`            | Ready     |
-| Contact and footer       | GitHub profile, repository source, owner email, resume PDF, rights notice       | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025` | Partial   |
-| Professional project cue | Optional hint that additional professional evidence exists on request or resume | Private context after disclosure review               | `PBI-022`            | Deferred  |
+| Surface                  | Content Payload                                                                 | Source Of Truth                                       | Related PBI                     | Readiness |
+| ------------------------ | ------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------- | --------- |
+| Intro                    | Positioning, current job-seeking status, primary review action                  | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021`            | Ready     |
+| Project showcase         | Ordered project cards, project classifications, short summaries, safe links     | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022`            | Ready     |
+| Project detail template  | Problem, role, approach, result, stack, public evidence, next navigation        | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
+| Skills                   | Capability groups, not a long tool list                                         | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
+| Process                  | Planning, implementation, verification, documentation, and handover mindset     | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
+| Repository               | Link to this repository, docs, ADRs, and quality-gate review path               | [Content Model](../architecture/content-model.md)     | `PBI-006`                       | Ready     |
+| Contact and footer       | GitHub profile, repository source, owner email, resume PDF, rights notice       | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
+| Professional project cue | Optional hint that additional professional evidence exists on request or resume | Private context after disclosure review               | `PBI-022`                       | Deferred  |
 
 ## Link Inventory
 

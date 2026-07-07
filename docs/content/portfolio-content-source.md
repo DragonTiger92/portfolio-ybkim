@@ -3,7 +3,9 @@
 This document is the implementation-ready content source for `PBI-040`. It sits
 between the planning inventory and the Astro content entries. Use it when
 drafting wireframes, project cards, project detail pages, contact actions, skill
-sections, and disclosure notes.
+sections, disclosure notes, and the resume download action. Resume-specific
+boundaries are defined in
+[Resume And Portfolio Boundary](resume-portfolio-boundary.md).
 
 Keep this file public-safe. Private evidence may inform the rows below, but
 private source text, private repository names, internal workflows, endpoints,
@@ -85,6 +87,31 @@ extra cost and operational scope.
 | Domain email   | Phase 3 Decision         | Contact for opportunities                           | Use Cloudflare Email Routing for receiving only after production domain setup |
 | Resume PDF     | Path Decided             | Download resume                                     | Use `/assets/resume/yb-kim-resume.pdf` after PDF disclosure review            |
 
+## Resume Source Data
+
+Use the old resume only as private reference material. It contains stale
+positioning and personal data that should not be copied into the public
+downloadable resume.
+
+| Area            | Public Resume Decision                                                                 |
+| --------------- | -------------------------------------------------------------------------------------- |
+| Role label      | Use `Web Developer`; present frontend strength first and adjacent full-stack coverage  |
+| Language        | Maintain Korean primary resume and English companion draft                             |
+| Contact email   | Use `dczwtu12b+portfolio@gmail.com` until Phase 3 domain email routing is ready        |
+| Phone           | Omit from the public downloadable resume; provide later only through application flows |
+| Home address    | Omit from the public downloadable resume                                               |
+| Location        | Use owner-approved city/district-level location only                                   |
+| Reason leaving  | Omit from the public resume body; prepare for application forms or interviews          |
+| Portfolio URL   | Add after Phase 3 production URL decision                                              |
+| GitHub          | Include `https://github.com/DragonTiger92`                                             |
+| Editable source | Keep draft DOCX under private `.contexts/` until owner approval                        |
+| Public PDF path | Publish reviewed PDF at `/assets/resume/yb-kim-resume.pdf`                             |
+
+Resume content should summarize current fit, recent professional experience,
+selected public projects, grouped skills, and education or credentials that
+still support the target role. Portfolio project pages should carry the deeper
+case-study detail so the resume stays concise.
+
 ## Skill Source Data
 
 | Skill Group             | Public Copy Direction                                                                   | Evidence Boundary                                                     |
@@ -109,7 +136,7 @@ supporting proof.
 | Recommendation letter        | Do not publish or quote; keep as applicant-only supporting material                     |
 | Demo credentials             | Do not publish credentials from earlier project notes or screenshots                    |
 | Screenshots and media        | Use only after checking private data, third-party rights, attribution, and asset policy |
-| Resume                       | Publish only a reviewed PDF with intentional personal data and rights boundaries        |
+| Resume                       | Publish only a reviewed PDF following the resume/portfolio boundary                     |
 
 ## Disclosure Review Timing
 
@@ -149,6 +176,23 @@ public links, selected contact email, repository review path, and generic skill
 groups. Keep Academy and other professional evidence as placeholders or
 resume/interview support until the relevant rows above are approved.
 
+## Disclosure Decision Ledger
+
+| Review Area                  | Decision                 | Public Source Outcome                                                                  |
+| ---------------------------- | ------------------------ | -------------------------------------------------------------------------------------- |
+| Resume PDF                   | Needs revision           | Use path only; create a refreshed public resume before publishing the PDF              |
+| `Karly` public project       | Publish                  | Use current text, public repo link, and deployed demo link; review media separately    |
+| `Book-Kong` public project   | Publish                  | Use current text, public repo link, and deployed demo link; review media separately    |
+| Academy consultation website | Generalize               | Public URL is safe; page copy/media need review before reuse                           |
+| Professional domain-data UI  | Generalize               | Use only as generalized frontend/domain-data UI evidence, not as a named case study    |
+| Operations platform          | Generalize               | Use only as generalized maintenance/reliability evidence, not as a named case study    |
+| Recommendation letter        | Resume or interview only | Do not upload, quote, or paraphrase letter contents on the public website              |
+| Screenshots and media        | Needs owner review       | Use only reviewed assets with clean private-data, third-party rights, and attribution  |
+| Portfolio claims             | Mixed                    | Public-source claims may publish; private-evidence-backed claims must stay generalized |
+
+Private claim-level notes live in
+`.contexts/portfolio-evidence/disclosure-review-working-notes.md`.
+
 ## Wireframe Input
 
 - Use the public project order from this document.
@@ -157,7 +201,8 @@ resume/interview support until the relevant rows above are approved.
 - Treat GitHub profile and repository links as ready contact/review actions.
 - Treat `dczwtu12b+portfolio@gmail.com` as the interim public contact.
 - Use `/assets/resume/yb-kim-resume.pdf` as the resume asset path, but publish
-  the file only after resume disclosure review.
+  the file only after resume disclosure review and the boundary checklist in
+  [Resume And Portfolio Boundary](resume-portfolio-boundary.md).
 - Keep production URL and academy project route deferred.
 - Do not create a separate `/resume` route or contact route for the first
   implementation; use existing anchors and external links.
