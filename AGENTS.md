@@ -24,6 +24,10 @@ that match the task. Do not load every guideline by default.
   decisions
 - `.agents/guidelines/git-quality.md`: Git, branches, commits, hooks, CI, or completion
   checks
+- `.agents/guidelines/session-handoff.md`: session-close, end-of-day wrap-up,
+  handoff, heatup prompt, restart, or short workflow-like continuation requests
+- `.agents/guidelines/document-lifecycle.md`: document cleanup, end-of-life
+  review, or handoff retirement
 - `.agents/guidelines/operations.md`: any file edit or environment-sensitive operation
 - `.agents/guidelines/reporting.md`: final work report
 
