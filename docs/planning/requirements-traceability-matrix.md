@@ -50,11 +50,13 @@ governance work rather than product behavior.
 | -------------- | --------- | ------------- |
 | `FR-001`       | `PBI-040` | Define        |
 | `FR-001`       | `PBI-021` | Implement     |
+| `FR-001`       | `PBI-043` | Implement     |
 | `FR-002`       | `PBI-040` | Define        |
 | `FR-002`       | `PBI-022` | Implement     |
 | `FR-003`       | `PBI-040` | Define        |
 | `FR-003`       | `PBI-041` | Define        |
 | `FR-003`       | `PBI-006` | Implement     |
+| `FR-003`       | `PBI-044` | Implement     |
 | `FR-004`       | `PBI-040` | Define        |
 | `FR-004`       | `PBI-007` | Implement     |
 | `FR-005`       | `PBI-023` | Implement     |
