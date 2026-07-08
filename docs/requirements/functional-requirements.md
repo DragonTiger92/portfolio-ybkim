@@ -139,3 +139,24 @@ stated.
   the asset or in a linked attribution surface.
 - The notice does not imply that the MIT License covers protected portfolio
   materials.
+
+## FR-008: English Portfolio Content
+
+| Field    | Value         |
+| -------- | ------------- |
+| Status   | Draft         |
+| Priority | P2            |
+| Source   | Project Owner |
+
+The site must provide English portfolio content through an agreed i18n model
+for recruiters or reviewers who need to evaluate the portfolio in English.
+
+### FR-008 Acceptance Criteria
+
+- English content covers the recruiter-critical landing-page path, including
+  intro, project summary, skills, and contact actions.
+- English copy preserves the same public-safe claim boundary as the Korean
+  content.
+- The selected i18n and locale presentation model, such as a dedicated route,
+  language toggle, or English-first content surface, is explicit before
+  implementation.
