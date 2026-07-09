@@ -148,8 +148,8 @@ stated.
 | Priority | P2            |
 | Source   | Project Owner |
 
-The site must provide English portfolio content through an agreed i18n model
-for recruiters or reviewers who need to evaluate the portfolio in English.
+The site must provide English portfolio content through an agreed localization
+model for recruiters or reviewers who need to evaluate the portfolio in English.
 
 ### FR-008 Acceptance Criteria
 
@@ -157,6 +157,17 @@ for recruiters or reviewers who need to evaluate the portfolio in English.
   intro, project summary, skills, and contact actions.
 - English copy preserves the same public-safe claim boundary as the Korean
   content.
-- The selected i18n and locale presentation model, such as a dedicated route,
+- The selected locale route and presentation model, such as a dedicated route,
   language toggle, or English-first content surface, is explicit before
   implementation.
+- A discoverable and accessible UI control lets visitors identify the available
+  languages and move to the corresponding localized content when needed.
+- The locale control fits the surrounding interaction model and visual design
+  without obscuring recruiter-critical content or primary actions.
+- Shared UI remains reusable across locales while locale-specific content,
+  metadata, and accessible labels can be managed independently.
+- Automated checks identify missing, empty, or stale required translations and
+  enforce the agreed terminology, style, and prohibited-term rules before
+  publication.
+- AI- or tool-generated English content receives semantic, natural-language,
+  public-claim, and disclosure review before owner approval and publication.

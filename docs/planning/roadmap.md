@@ -25,7 +25,7 @@ duplicating roadmap state in GitHub Issues or Milestones.
   compliance, production smoke checks, uptime monitoring, rollback readiness,
   and minimum discoverability metadata needed before launch.
 - `PH-004` covers post-launch SEO, AEO, GEO, English portfolio content through
-  an agreed i18n model, privacy-aware route analytics, and evidence-driven
+  an agreed localization model, privacy-aware route analytics, and evidence-driven
   observability refinement after the first operations-ready deployment exists.
 
 Quality and accessibility are cross-cutting gates. The project should establish
