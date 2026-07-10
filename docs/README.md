@@ -17,6 +17,7 @@ evidence.
 | `planning/roadmap.md`                                   | Delivery phases and current priorities       |
 | `planning/product-backlog.md`                           | Implementation-sized Product Backlog Items   |
 | `planning/requirements-traceability-matrix.md`          | Requirement-to-backlog traceability          |
+| `design/phase-2-wireframe-brief.md`                     | Phase 2 low-fi wireframe and design brief    |
 | `process/development-workflow.md`                       | GitHub Flow and branch naming convention     |
 | `requirements/functional-requirements.md`               | User-facing behavior requirements            |
 | `requirements/non-functional-requirements.md`           | Product quality attributes and constraints   |

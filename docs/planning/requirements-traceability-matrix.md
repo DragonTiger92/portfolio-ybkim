@@ -23,7 +23,12 @@ governance work rather than product behavior.
 | Requirement ID | PBI ID    | Coverage Role |
 | -------------- | --------- | ------------- |
 | `FR-001`       | `PBI-004` | Define        |
+| `FR-001`       | `PBI-046` | Define        |
 | `FR-002`       | `PBI-005` | Define        |
+| `FR-002`       | `PBI-046` | Define        |
+| `FR-003`       | `PBI-046` | Define        |
+| `FR-004`       | `PBI-046` | Define        |
+| `FR-007`       | `PBI-046` | Define        |
 | `NFR-003`      | `PBI-001` | Implement     |
 | `NFR-003`      | `PBI-003` | Implement     |
 | `NFR-003`      | `PBI-016` | Define        |
@@ -38,6 +43,8 @@ governance work rather than product behavior.
 | `NFR-003`      | `PBI-037` | Verify        |
 | `NFR-004`      | `PBI-004` | Verify        |
 | `NFR-004`      | `PBI-005` | Verify        |
+| `NFR-004`      | `PBI-046` | Verify        |
+| `NFR-006`      | `PBI-046` | Define        |
 | `NFR-008`      | `PBI-018` | Implement     |
 | `NFR-008`      | `PBI-020` | Verify        |
 | `NFR-008`      | `PBI-034` | Implement     |
