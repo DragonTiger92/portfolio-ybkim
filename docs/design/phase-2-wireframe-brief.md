@@ -1,0 +1,146 @@
+# Phase 2 Wireframe Brief
+
+This document defines the low-fidelity screen composition brief for the initial
+static portfolio implementation. It is not a Figma file, image mockup, or
+high-fidelity visual draft. Use it with the root [Design Harness](../../DESIGN.md)
+and the public content sources when implementing `PH-002`.
+
+## Source Inputs
+
+- [Landing Page Copy](../content/landing-page-copy.md) owns exact intro
+  and public project showcase copy seeds.
+- [Portfolio Content Source](../content/portfolio-content-source.md) owns
+  project, link, contact, skill, resume, and disclosure boundaries.
+- [Project Content Inventory](../content/project-content-inventory.md) owns
+  project classification, public treatment, and surface readiness.
+- `DESIGN.md` remains the visual language guide; this brief only fixes layout,
+  hierarchy, and content placement.
+
+## Artifact Boundary
+
+- Produce Markdown implementation guidance only.
+- Do not create Figma, screenshots, image mockups, or high-fidelity visual
+  drafts for `PH-001`.
+- Keep responsive behavior as composition guidance, not pixel-perfect device
+  breakpoints.
+- Do not expose private professional source, internal names, private URLs,
+  credentials, endpoints, screenshots, or confidential architecture.
+
+## Landing Page Section Order
+
+1. Intro / first viewport.
+2. Public project showcase.
+3. Professional highlights.
+4. Skills and delivery capabilities.
+5. Process and repository review path.
+6. Contact and footer.
+
+## First Viewport Layout
+
+```txt
+┌──────────────────────────────────────────────────────┐
+│ status tag                                           │
+│ Web Developer · Frontend-focused delivery             │
+│                                                      │
+│ H1: 사용자 이해 + 유지보수 가능한 웹 제품             │
+│ Lead: frontend-centered delivery, data flow, docs, QA │
+│                                                      │
+│ [이메일로 연락하기] [GitHub 보기] [이력서 PDF]        │
+└──────────────────────────────────────────────────────┘
+```
+
+- Primary CTA: `이메일로 연락하기`.
+- Secondary CTA: `GitHub 보기`.
+- Tertiary CTA: `이력서 PDF`.
+- Keep source-repository review visible near the first viewport, but do not make
+  it compete with the recruiter contact action.
+- Do not add a separate contact route or resume route for the first
+  implementation.
+
+## Project Showcase Structure
+
+Render three public-source project cards in this order:
+
+1. `portfolio-ybkim`.
+2. `Karly`.
+3. `Book-Kong`.
+
+Each card should include:
+
+- project title;
+- short summary from [Landing Page Copy](../content/landing-page-copy.md);
+- compact tags or capability cues;
+- detail-page link;
+- public repository and demo links where available and rechecked.
+
+Project cards should make the source-review path obvious without forcing every
+card into the same link set. `portfolio-ybkim` should emphasize repository,
+docs, ADRs, backlog, and checks. `Karly` and `Book-Kong` should emphasize public
+repository and deployed demo links.
+
+## Professional Highlights Placement
+
+Place professional highlights after the public project showcase. This gives the
+portfolio room to show core professional work while keeping source-code case
+studies limited to inspectable public projects.
+
+Use three generalized highlight cards:
+
+1. Academy information and consultation web service.
+2. Science-question concept and solution-logic structuring tool.
+3. Internal science education content production and review platform.
+
+The academy highlight may link its public product URL. The other two
+professional highlights should not expose private URLs, source, routes,
+screenshots, workflows, or internal names.
+
+## Skills, Process, Repository, Contact, Footer Flow
+
+- Skills: use responsibility-centered groups from Portfolio Content Source,
+  not a proficiency-ranked tool list.
+- Process: show planning, implementation, verification, documentation, and
+  handoff as delivery habits.
+- Repository: provide a technical-review path to source, docs, ADRs, backlog,
+  and quality-gate history.
+- Contact: keep email primary, GitHub/repository secondary, and resume download
+  available.
+- Footer: include GitHub, email, resume, rights notice, and production URL only
+  after the Phase 3 decision exists.
+
+## Project Detail Template
+
+Each public-source detail page should follow this content order:
+
+1. Project title, classification, and concise summary.
+2. Problem or product context.
+3. Owner role and contribution boundary.
+4. Implementation approach.
+5. Outcome or reviewable result.
+6. Public evidence links.
+7. Stack or tool notes as supporting proof.
+8. Previous/next navigation back to the project showcase.
+
+Professional highlights do not need detail routes in the first implementation.
+If a later scope adds one, reopen disclosure review before creating the route.
+
+## Responsive Composition Notes
+
+- Narrow widths: stack intro copy, actions, cards, and detail sections in the
+  same hierarchy; keep primary CTA before secondary actions.
+- Intermediate widths: allow project cards to form a two-column layout only when
+  summaries remain readable.
+- Wide widths: keep the first viewport visually calm, with CTA grouping and line
+  length constrained for desktop recruiter review.
+- At every width, avoid horizontal overflow and preserve the same content and
+  action hierarchy.
+
+## Copy Source And Disclosure Boundaries
+
+- Copy source: use Landing Page Copy for intro and public project card/detail
+  seeds.
+- Data source: use Portfolio Content Source for links, contacts, resume path,
+  skills, professional highlight labels, and disclosure decisions.
+- Media source: Karly and Book-Kong media may be selected only after exact-asset
+  privacy, attribution, and presentation-context review.
+- Professional media: keep screenshots and private media out of the first
+  implementation unless separately approved later.

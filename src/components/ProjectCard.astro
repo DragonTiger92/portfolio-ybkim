@@ -1,0 +1,25 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  summary: string;
+  role: string;
+  stack: string[];
+}
+
+const { slug, title, summary, role, stack } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="project-card__content">
+    <p class="eyebrow">{role}</p>
+    <h3><a href={`/projects/${slug}/`}>{title}</a></h3>
+    <p>{summary}</p>
+  </div>
+
+  <ul class="tag-list">
+    {stack.map((technology) => <li>{technology}</li>)}
+  </ul>
+
+  <a class="text-link" href={`/projects/${slug}/`} aria-label={`${title} 상세 설명`}>상세 설명</a>
+</article>

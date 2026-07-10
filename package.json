@@ -2,14 +2,79 @@
   "name": "portfolio-ybkim",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@11.5.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "typecheck": "astro check",
+    "typecheck:strict": "astro check --minimumFailingSeverity warning",
+    "lint": "eslint .",
+    "lint:docs": "eslint \"docs/**/*.md\" \".agents/**/*.md\" \"AGENTS.md\" --max-warnings 0",
+    "lint:strict": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "lint:size": "node scripts/validate-file-size.mjs",
+    "lint:size:docs:strict": "node scripts/validate-file-size.mjs --strict docs .agents AGENTS.md",
+    "lint:size:strict": "node scripts/validate-file-size.mjs --strict",
+    "format": "prettier . --write",
+    "format:docs:check": "prettier \"docs/**/*.md\" \".agents/**/*.md\" \"AGENTS.md\" --check",
+    "format:check": "prettier . --check",
+    "test:governance": "node --test scripts/validate-pr-metadata.test.mjs",
+    "test:file-size": "node --test scripts/validate-file-size.test.mjs",
+    "test:a11y": "pnpm build:bundle && playwright test",
+    "test:a11y:run": "playwright test",
+    "sbom:cyclonedx": "node node_modules/@cyclonedx/cdxgen/bin/cdxgen.js -t js --no-recurse --no-install-deps --fail-on-error --spec-version 1.6 --json-pretty -o sbom.cdx.json .",
+    "validate:html": "html-validate dist --ext html",
+    "validate:html:strict": "html-validate dist --ext html --max-warnings 0",
+    "validate:standards": "vnu --also-check-css --skip-non-html dist",
+    "validate:standards:strict": "vnu --Werror --also-check-css --skip-non-html dist",
+    "build:bundle": "astro build",
+    "check:docs": "pnpm lint:docs && pnpm lint:size:docs:strict && pnpm format:docs:check",
+    "check:static": "pnpm typecheck:strict && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm format:check && pnpm build:bundle && pnpm validate:html:strict && pnpm validate:standards:strict",
+    "check": "pnpm check:static && pnpm test:a11y:run",
+    "build": "astro check --minimumFailingSeverity warning && astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "typescript": "~6.0.2",
-    "vite": "^8.0.12"
+    "@astrojs/check": "0.9.9",
+    "@axe-core/playwright": "4.11.3",
+    "@cyclonedx/cdxgen": "12.6.0",
+    "@eslint/css": "1.3.0",
+    "@eslint/js": "10.0.1",
+    "@eslint/json": "2.0.0",
+    "@eslint/markdown": "8.0.2",
+    "@playwright/test": "1.61.0",
+    "@typescript-eslint/parser": "8.62.0",
+    "astro": "7.0.2",
+    "eslint": "10.4.1",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-astro": "2.0.0",
+    "globals": "17.6.0",
+    "html-validate": "11.5.3",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.7",
+    "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.62.0",
+    "vnu-jar": "26.6.14"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,ts,mts,cts,css,json,jsonc,md}": [
+      "pnpm exec eslint --fix --no-warn-ignored",
+      "pnpm exec prettier --write",
+      "node scripts/validate-file-size.mjs"
+    ],
+    "**/*.astro": [
+      "pnpm exec eslint --fix --no-warn-ignored",
+      "pnpm exec prettier --write",
+      "node scripts/validate-file-size.mjs"
+    ],
+    "**/*.{html,yml,yaml}": [
+      "pnpm exec prettier --write",
+      "node scripts/validate-file-size.mjs"
+    ],
+    "**/*.tf": "node scripts/validate-file-size.mjs",
+    ".prettierrc": "pnpm exec prettier --write"
   }
 }

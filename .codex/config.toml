@@ -1,0 +1,10 @@
+# Use native Codex memory generation and retrieval without requiring per-thread
+# opt-in. Keep authoritative repository rules and active work state in AGENTS.md,
+# .agents/, and project documents because the memory store is a recall layer.
+
+[features]
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true

@@ -1,0 +1,31 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Seoul
+    labels:
+      - type:deps
+      - release:not-applicable
+    commit-message:
+      prefix: chore
+      include: scope
+    open-pull-requests-limit: 3
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:30"
+      timezone: Asia/Seoul
+    labels:
+      - type:deps
+      - type:ci
+      - release:not-applicable
+    commit-message:
+      prefix: chore
+      include: scope
+    open-pull-requests-limit: 3

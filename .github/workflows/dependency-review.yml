@@ -1,0 +1,46 @@
+name: Dependency Review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: dependency-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Review dependencies and licenses
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, CC0-1.0, BlueOak-1.0.0, MPL-2.0
+          allow-dependencies-licenses: >-
+            pkg:npm/@img/sharp-libvips-darwin-arm64@1.2.4,
+            pkg:npm/@img/sharp-libvips-darwin-x64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-arm@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-arm64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-ppc64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-riscv64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-s390x@1.2.4,
+            pkg:npm/@img/sharp-libvips-linux-x64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linuxmusl-arm64@1.2.4,
+            pkg:npm/@img/sharp-libvips-linuxmusl-x64@1.2.4,
+            pkg:npm/@img/sharp-win32-arm64@0.34.5,
+            pkg:npm/@img/sharp-win32-ia32@0.34.5,
+            pkg:npm/@img/sharp-win32-x64@0.34.5,
+            pkg:npm/argparse@2.0.1,
+            pkg:npm/spdx-exceptions@2.5.0,
+            pkg:npm/uri-js@4.4.1,
+            pkg:npm/vscode-css-languageservice@6.3.10,
+            pkg:npm/vscode-html-languageservice@5.6.2

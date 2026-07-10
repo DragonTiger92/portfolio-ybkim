@@ -1,0 +1,33 @@
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+    authors:
+      - dependabot
+  categories:
+    - title: Breaking Changes
+      labels:
+        - release:major
+    - title: Features And Content
+      labels:
+        - type:feature
+        - type:content
+        - release:minor
+    - title: Fixes And Polish
+      labels:
+        - type:fix
+        - type:ui
+        - type:a11y
+        - type:performance
+        - release:patch
+    - title: Operations And Documentation
+      labels:
+        - type:docs
+        - type:ci
+        - type:infra
+        - type:security
+        - type:deps
+        - release:not-applicable
+    - title: Other Changes
+      labels:
+        - "*"
