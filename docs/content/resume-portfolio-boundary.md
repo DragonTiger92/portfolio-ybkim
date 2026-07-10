@@ -58,6 +58,10 @@ quickly.
   tool list.
 - Keep private professional evidence generalized unless the owner has approved
   exact names, details, screenshots, or metrics.
+- The owner has approved `주식회사 룰메이커스` as the employer name and the
+  academy product URL as public resume evidence. Internal product names, code
+  names, source, architecture, private URLs, and domain information remain
+  excluded.
 - Remove stale beginner-positioning material unless it still supports the
   current target role.
 - Do not include the reason for leaving in the public resume body by default.
@@ -76,6 +80,10 @@ Both versions should share the same claim boundary, project order, contact
 policy, and disclosure review status. The English version should be a natural
 English resume, not a literal line-by-line translation.
 
+For the initial Korean portfolio, publish only the approved Korean resume PDF.
+Keep the English companion application-only until the owner explicitly approves
+a second public asset or the English portfolio work adopts it.
+
 ## Portfolio Content Responsibility
 
 The portfolio should answer "Can I inspect credible evidence behind the resume?"
@@ -84,7 +92,9 @@ The portfolio should answer "Can I inspect credible evidence behind the resume?"
   stack, and public links.
 - Use repository, documentation, ADR, and quality-gate references as current
   evidence.
-- Use screenshots and media only after private-data and rights review.
+- Use screenshots and media only after private-data, attribution, and
+  presentation-context review. Karly and Book-Kong media/design assets are
+  owner-approved candidates; professional screenshots remain separately gated.
 - Keep professional work public-safe through generalized labels unless exact
   names and copy are approved.
 - Do not quote or paraphrase recommendation-letter content on the public site.
@@ -94,13 +104,14 @@ The portfolio should answer "Can I inspect credible evidence behind the resume?"
 Resume and portfolio may mention the same project, but they should operate at
 different detail levels.
 
-| Claim Type                   | Resume Treatment                                    | Portfolio Treatment                                        |
-| ---------------------------- | --------------------------------------------------- | ---------------------------------------------------------- |
-| Current portfolio product    | One bullet or compact project entry                 | Primary case study with source, docs, and quality evidence |
-| Public team projects         | One or two impact bullets across selected projects  | Short detail pages with public repo and demo links         |
-| Academy consultation website | Optional generalized experience bullet after review | Deferred card/detail unless public copy is approved        |
-| Private professional systems | Generalized employment or capability bullets        | No named case study until disclosure review approves scope |
-| Recommendation material      | Applicant-only support, not public resume copy      | No public website content                                  |
+| Claim Type                                                        | Resume Treatment                                     | Portfolio Treatment                                                           |
+| ----------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Current portfolio product                                         | One bullet or compact project entry                  | Primary case study with source, docs, and quality evidence                    |
+| Public team projects                                              | One or two impact bullets across selected projects   | Short detail pages with public repo and demo links                            |
+| Academy information and consultation service                      | Public URL plus reviewed capability bullet           | Professional highlight with public URL and generalized copy                   |
+| Science-question concept and solution-logic structuring tool      | Verified owner-attributed frontend foundation bullet | Professional highlight with no private source or later-feature overclaim      |
+| Internal science education content production and review platform | Generalized inherited-system capability bullet       | Professional highlight with no private source, URL, screenshots, or internals |
+| Recommendation material                                           | Applicant-only support, not public resume copy       | No public website content                                                     |
 
 ## Editable Source And Public PDF
 
@@ -155,3 +166,5 @@ The working standard follows common career-center resume guidance:
   private metadata, or hidden source notes.
 - Portfolio content source and resume content still agree on project labels,
   link destinations, and disclosure status.
+- The public site exposes only the approved language asset; private companion
+  drafts are not copied into public assets.

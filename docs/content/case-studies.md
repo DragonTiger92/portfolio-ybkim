@@ -20,11 +20,33 @@ hosting with care.
 
 ## Earlier Frontend Projects
 
-| Project   | Public-Safe Use                                             |
-| --------- | ----------------------------------------------------------- |
-| Karly     | Vanilla JavaScript, standards-aware UI, team delivery       |
-| Book-Kong | React category project, component thinking, team leadership |
+| Project   | Public-Safe Use                                                                                      |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| Karly     | Product-list/detail implementation, semantic structure, CSS variables, Vanilla JavaScript, team work |
+| Book-Kong | Team leadership, server-state prefetch/query work, Storybook utilities, accessibility helpers        |
 
 These projects are useful as early-career frontend evidence. They can be
 summarized compactly because the main portfolio should prioritize the current
-developer positioning and this repository's execution quality.
+developer positioning and this repository's execution quality. Use text and
+public repository/demo links in the initial portfolio.
+
+Karly design material and project assets are owner-approved for portfolio use
+from the bootcamp-provided project context. Book-Kong logos, screenshots,
+assets, Figma material, and ERD material are owner-created or owner-approved for
+portfolio use. Before copying any exact media asset into the portfolio, still
+check that the selected asset contains no demo credentials, private data, or
+misleading attribution context.
+
+## Professional Work Highlights
+
+Use professional work as a disclosure-safe highlight layer rather than hiding it
+inside the resume only:
+
+| Project Area                                                 | Public-Safe Use                                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Academy information and consultation web service             | Public product URL, planning-to-release delivery, UI/API/data/handoff coverage                 |
+| Science-question concept and solution-logic structuring tool | Owner-attributed frontend foundations, typed boundaries, server-state flows, handoff readiness |
+| Internal science education content production platform       | Inherited-system maintenance, reliability, recovery readiness, documentation, operations care  |
+
+Keep internal names, private repositories, private URLs, endpoints, confidential
+architecture, screenshots, and operational details out of the first public copy.

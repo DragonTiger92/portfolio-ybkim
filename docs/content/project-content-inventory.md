@@ -50,14 +50,14 @@ the backlog.
 
 ## Project Inventory
 
-| Project Label               | Classification        | Source Visibility | Product Link Disposition | Detail Route | Candidate Tags                                                                                     | Public Treatment                                                                                         |
-| --------------------------- | --------------------- | ----------------- | ------------------------ | ------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `portfolio-ybkim`           | Portfolio Product     | Public repository | Pending production URL   | Yes          | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action       |
-| `Karly`                     | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Compact early frontend evidence; link public source and deployed demo after destination review           |
-| `Book-Kong`                 | Public Source Project | Public repository | Public                   | Yes          | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | Compact early React evidence; link public source and deployed demo after destination review              |
-| Academy landing product     | Professional Product  | Private source    | Public                   | Candidate    | Professional Product, Full-Stack Delivery, Next.js Product, API-Backed Form Flow, Production Setup | Candidate public product summary; public URL is confirmed but project copy still needs disclosure review |
-| Professional domain-data UI | Private Evidence      | Private source    | Not Applicable           | Candidate    | Professional Frontend, Domain Data UI, Next.js Architecture, API Integration, Handover Readiness   | Use only after disclosure review; summarize behavior and ownership without internal data or URLs         |
-| Professional operations app | Private Evidence      | Private source    | Private                  | Candidate    | Professional Operations, Maintenance Ownership, Django Operations, Documentation, Reliability      | Use only as sanitized experience evidence; do not expose source, private URL, workflows, or internals    |
+| Project Label                                                     | Classification        | Source Visibility | Product Link Disposition | Initial Detail Route | Candidate Tags                                                                                     | Phase 2 Public Treatment                                                                                                                         |
+| ----------------------------------------------------------------- | --------------------- | ----------------- | ------------------------ | -------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `portfolio-ybkim`                                                 | Portfolio Product     | Public repository | Pending production URL   | Yes                  | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action                                               |
+| `Karly`                                                           | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Early frontend evidence with public source/demo links; selected owner-approved media may be used after exact-asset review                        |
+| `Book-Kong`                                                       | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | React and team-leadership evidence with public source/demo links; selected owner-created media may be used after exact-asset review              |
+| Academy information and consultation web service                  | Professional Product  | Reviewed private  | Public                   | No                   | Professional Product, Full-Stack Delivery, API-Backed Form Flow, Release Preparation               | Professional highlight with public URL and generalized delivery copy; no private architecture or operations detail                               |
+| Science-question concept and solution-logic structuring tool      | Professional Product  | Reviewed private  | Not Applicable           | No                   | Professional Frontend, Typed Boundaries, Server-State Queries, Handover Readiness                  | Professional highlight with verified owner-attributed frontend foundations; exclude later completed features                                     |
+| Internal science education content production and review platform | Professional Product  | Reviewed private  | Private                  | No                   | Professional Operations, Maintenance Ownership, Django Operations, Documentation, Reliability      | Professional highlight with generalized reliability and inherited-system ownership; no source, private URL, workflows, screenshots, or internals |
 
 ## Initial Publication Set
 
@@ -67,37 +67,39 @@ The initial public portfolio should prioritize:
 2. `Karly` as compact standards-aware Vanilla JavaScript evidence.
 3. `Book-Kong` as compact React, server-state, and team-leadership evidence.
 
-The professional projects should remain in private preparation until the owner
-approves sanitized summaries. The academy product URL is confirmed, but the
-professional summaries should not block the first wireframe.
+Professional products should appear as a separate professional highlights layer,
+not as inspectable public-source case studies. This lets the first wireframe
+show core professional work while keeping private source, internal names,
+private URLs, screenshots, credentials, endpoints, workflows, and confidential
+architecture out of public copy.
 
 ## Surface Plan
 
-| Surface                  | Content Payload                                                                 | Source Of Truth                                       | Related PBI                     | Readiness |
-| ------------------------ | ------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------- | --------- |
-| Intro                    | Positioning, current job-seeking status, primary review action                  | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021`            | Ready     |
-| Project showcase         | Ordered project cards, project classifications, short summaries, safe links     | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022`            | Ready     |
-| Project detail template  | Problem, role, approach, result, stack, public evidence, next navigation        | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
-| Skills                   | Capability groups, not a long tool list                                         | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
-| Process                  | Planning, implementation, verification, documentation, and handover mindset     | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
-| Repository               | Link to this repository, docs, ADRs, and quality-gate review path               | [Content Model](../architecture/content-model.md)     | `PBI-006`                       | Ready     |
-| Contact and footer       | GitHub profile, repository source, owner email, resume PDF, rights notice       | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
-| Professional project cue | Optional hint that additional professional evidence exists on request or resume | Private context after disclosure review               | `PBI-022`                       | Deferred  |
+| Surface                 | Content Payload                                                             | Source Of Truth                                       | Related PBI                     | Readiness |
+| ----------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------- | --------- |
+| Intro                   | Positioning, current job-seeking status, primary review action              | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021`            | Ready     |
+| Project showcase        | Ordered project cards, project classifications, short summaries, safe links | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022`            | Ready     |
+| Project detail template | Problem, role, approach, result, stack, public evidence, next navigation    | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
+| Skills                  | Capability groups, not a long tool list                                     | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
+| Process                 | Planning, implementation, verification, documentation, and handover mindset | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
+| Repository              | Link to this repository, docs, ADRs, and quality-gate review path           | [Content Model](../architecture/content-model.md)     | `PBI-006`                       | Ready     |
+| Contact and footer      | GitHub profile, repository source, owner email, resume PDF, rights notice   | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
+| Professional highlights | Generalized professional work cards or cues with disclosure-safe claims     | This inventory and private context after review       | `PBI-022`                       | Ready     |
 
 ## Link Inventory
 
-| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                |
-| --------------------------- | -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                                |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                             |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data              |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data              |
-| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                         |
-| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | Future contact action after production domain and Email Routing setup             |
-| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Path Decided       | Contact action after resume PDF is disclosure-reviewed and licensed appropriately |
-| Academy landing product URL | `https://academy.shine-edu.kr/`                    | Public             | Project detail or project card only after disclosure review                       |
+| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                             |
+| --------------------------- | -------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------ |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                             |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                          |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                             |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data           |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                             |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data           |
+| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                      |
+| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | Future contact action after production domain and Email Routing setup          |
+| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready              | Public Korean resume download action                                           |
+| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public             | Professional highlight and resume evidence; keep private operations detail out |
 
 ## Private Evidence Intake
 
@@ -147,10 +149,12 @@ Phase 2 wireframe and implementation planning possible, but professional and
 private evidence still needs publication approval before it becomes public UI
 copy, Astro content entries, screenshots, or downloadable assets.
 
-Run disclosure review before Phase 2 implementation publishes academy,
-domain-data UI, operations platform, resume, recommendation-letter-derived, or
-private employer evidence. Wireframes can proceed first only if they keep those
-items as generic placeholders or deferred cues.
+The initial Phase 2 content freeze publishes generalized professional
+highlights, but no private professional source, internal names, private URLs,
+professional screenshots, recommendation-derived copy, or confidential
+architecture. Karly and Book-Kong media can be selected when the exact asset is
+cleared for privacy, attribution, and presentation context. The resume action
+may appear in wireframes after `PBI-041` publishes the approved Korean PDF.
 
 ## Wireframe Input
 
@@ -160,7 +164,8 @@ The next wireframe or mockup task can start from these decisions:
 - prominent but secondary source-repository action for `portfolio-ybkim`;
 - section model: intro, projects, skills, process, repository, contact/footer;
 - project detail template available for public-source projects;
-- professional projects held back until private evidence review produces
-  approved public labels and summaries;
+- Karly and Book-Kong media optional after exact-asset review;
+- professional highlights included as generalized disclosure-safe cues while
+  private details remain excluded;
 - implementation source data available in
   [Portfolio Content Source](portfolio-content-source.md).
