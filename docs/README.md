@@ -43,6 +43,7 @@ evidence.
 | `content/case-studies.md`                               | Public-safe case study summaries             |
 | `content/project-content-inventory.md`                  | Project, surface, and link planning data     |
 | `content/portfolio-content-source.md`                   | Implementation-ready portfolio source data   |
+| `content/portfolio-copy-source.md`                      | First viewport and project showcase copy     |
 | `content/resume-portfolio-boundary.md`                  | Resume and portfolio content boundary        |
 
 ## Writing Principles

@@ -5,7 +5,9 @@ between the planning inventory and the Astro content entries. Use it when
 drafting wireframes, project cards, project detail pages, contact actions, skill
 sections, disclosure notes, and the resume download action. Resume-specific
 boundaries are defined in
-[Resume And Portfolio Boundary](resume-portfolio-boundary.md).
+[Resume And Portfolio Boundary](resume-portfolio-boundary.md). Exact
+first-viewport and public project showcase copy seeds are maintained in
+[Portfolio Copy Source](portfolio-copy-source.md).
 
 Keep this file public-safe. Private evidence may inform the rows below, but
 private source text, private repository names, internal workflows, endpoints,
