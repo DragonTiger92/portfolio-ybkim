@@ -1,4 +1,4 @@
-# Portfolio Copy Source
+# Landing Page Copy
 
 This document freezes Phase 2 copy seeds for the landing first viewport and
 public project showcase. It complements

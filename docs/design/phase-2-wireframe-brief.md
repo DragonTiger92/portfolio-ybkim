@@ -7,7 +7,7 @@ and the public content sources when implementing `PH-002`.
 
 ## Source Inputs
 
-- [Portfolio Copy Source](../content/portfolio-copy-source.md) owns exact intro
+- [Landing Page Copy](../content/landing-page-copy.md) owns exact intro
   and public project showcase copy seeds.
 - [Portfolio Content Source](../content/portfolio-content-source.md) owns
   project, link, contact, skill, resume, and disclosure boundaries.
@@ -68,7 +68,7 @@ Render three public-source project cards in this order:
 Each card should include:
 
 - project title;
-- short summary from [Portfolio Copy Source](../content/portfolio-copy-source.md);
+- short summary from [Landing Page Copy](../content/landing-page-copy.md);
 - compact tags or capability cues;
 - detail-page link;
 - public repository and demo links where available and rechecked.
@@ -136,7 +136,7 @@ If a later scope adds one, reopen disclosure review before creating the route.
 
 ## Copy Source And Disclosure Boundaries
 
-- Copy source: use Portfolio Copy Source for intro and public project card/detail
+- Copy source: use Landing Page Copy for intro and public project card/detail
   seeds.
 - Data source: use Portfolio Content Source for links, contacts, resume path,
   skills, professional highlight labels, and disclosure decisions.

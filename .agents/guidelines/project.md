@@ -41,6 +41,31 @@ Keep public project documentation readable for both human maintainers and LLM ag
   split only when a stable domain boundary exists.
 - If content belongs in another document or an agent-only reference, mention that in the work report instead of hiding it in public project docs.
 
+## Naming And Terminology
+
+Prefer standard, widely recognized names for documents, directories, sections,
+and other project entities when a conventional term exists. Good names reduce
+the reader's cost of understanding the abstraction before they can evaluate the
+content.
+
+- Use established product, documentation, and software-delivery terms such as
+  `Product Backlog`, `Roadmap`, `Requirements Traceability Matrix`, `Content
+Model`, `Content Inventory`, `Wireframe Brief`, `Architecture`, `ADR`,
+  `Runbook`, and `Glossary` when they accurately describe the entity.
+- Avoid project-local abstractions, clever labels, or agent-only shorthand in
+  public docs unless the document explicitly defines the term and the custom
+  abstraction is worth its maintenance cost.
+- Prefer the plainest specific name over a broader invented name. For example,
+  use `Landing Page Copy` for landing-page text seeds instead of a vague copy
+  ledger name.
+- Preserve stable identifiers such as `PH-001`, `PBI-040`, `FR-001`, ADR
+  numbers, route paths, and published asset paths unless a requested migration
+  explicitly covers the rename.
+- Before renaming an existing document, check references and weigh the clarity
+  gain against link churn, Git history noise, and reviewer confusion.
+- When renaming a public doc, update `docs/README.md`, planning references, and
+  inbound links in the same change.
+
 ## Confidential Context
 
 Content under `.contexts/` is confidential by default.

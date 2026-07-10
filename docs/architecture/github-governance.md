@@ -116,3 +116,9 @@ The first baseline pull request is therefore a documented bootstrap exception:
 Terraform is formatted, initialized without a backend, and validated on the
 feature branch; the imported plan and active ruleset are applied only after the
 baseline merge and remote-state configuration.
+
+This post-merge governance closure belongs to `PH-001`, not `PH-003`. It may run
+before `PH-002` implementation so subsequent feature work is protected by the
+final repository checks and `main` ruleset. Cloudflare Pages, DNS, preview
+access, production smoke checks, and release operations remain separate `PH-003`
+deployment concerns.

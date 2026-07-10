@@ -26,6 +26,9 @@ that match the task. Do not load every guideline by default.
   checks
 - `.agents/guidelines/session-handoff.md`: session-close, end-of-day wrap-up,
   handoff, heatup prompt, restart, or short workflow-like continuation requests
+- `.agents/guidelines/scribble-intake.md`: Markdown-style user notes, Notepad
+  review scribbles, requirement extraction, review feedback intake, or
+  note-driven planning/execution requests
 - `.agents/guidelines/document-lifecycle.md`: document cleanup, end-of-life
   review, or handoff retirement
 - `.agents/guidelines/operations.md`: any file edit or environment-sensitive operation

@@ -7,7 +7,7 @@ sections, disclosure notes, and the resume download action. Resume-specific
 boundaries are defined in
 [Resume And Portfolio Boundary](resume-portfolio-boundary.md). Exact
 first-viewport and public project showcase copy seeds are maintained in
-[Portfolio Copy Source](portfolio-copy-source.md).
+[Landing Page Copy](landing-page-copy.md).
 
 Keep this file public-safe. Private evidence may inform the rows below, but
 private source text, private repository names, internal workflows, endpoints,
