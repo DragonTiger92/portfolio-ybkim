@@ -62,6 +62,11 @@ to policy review instead of inventing a license conclusion.
   reviewed dependency license identifiers. It reduces license-policy risk but
   is not a complete legal audit of copied source, media assets, notices, or
   license obligations outside dependency metadata.
+- The Dependency Review workflow uses package-specific license exceptions for
+  reviewed transitive tooling packages whose license expressions include
+  documentation, native binary, or bundled-library terms that are too broad for
+  the global allow-list. Keep those exceptions version-specific and review them
+  again when the package version changes.
 - Repository security setup should enable Dependency Graph, Dependabot alerts,
   Dependabot security updates, secret scanning, and push protection where the
   repository and account support them.
