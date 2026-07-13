@@ -6,18 +6,18 @@ state.
 
 ## Ownership Boundaries
 
-| Surface                                    | Owner                                         |
-| ------------------------------------------ | --------------------------------------------- |
-| Repository settings and custom labels      | GitHub Terraform root                         |
-| `main` branch ruleset                      | GitHub Terraform root                         |
-| Vulnerability alerts and security updates  | GitHub Terraform root                         |
-| Secret scanning feature flags              | GitHub Terraform root                         |
-| CodeQL and private vulnerability reporting | GitHub-managed settings via owner API         |
-| Pull request template                      | Version-controlled `.github/` file            |
-| GitHub Actions workflows                   | Version-controlled `.github/workflows/`       |
-| Phase and PBI work status                  | Version-controlled planning documents         |
-| Credentials and secrets                    | GitHub secure settings, never Terraform state |
-| Cloudflare Pages, Access, and DNS          | Separate PH-003 Terraform root                |
+| Surface                                                   | Owner                                         |
+| --------------------------------------------------------- | --------------------------------------------- |
+| Repository settings, Actions variables, and custom labels | GitHub Terraform root                         |
+| `main` branch ruleset                                     | GitHub Terraform root                         |
+| Vulnerability alerts and security updates                 | GitHub Terraform root                         |
+| Secret scanning feature flags                             | GitHub Terraform root                         |
+| CodeQL and private vulnerability reporting                | GitHub-managed settings via owner API         |
+| Pull request template                                     | Version-controlled `.github/` file            |
+| GitHub Actions workflows                                  | Version-controlled `.github/workflows/`       |
+| Phase and PBI work status                                 | Version-controlled planning documents         |
+| Credentials and secrets                                   | GitHub secure settings, never Terraform state |
+| Cloudflare Pages, Access, and DNS                         | Separate PH-003 Terraform root                |
 
 ## Main Ruleset
 
@@ -44,18 +44,19 @@ public branch naming convention instead.
 
 ## Quality Gate Matrix
 
-| Trigger                     | Required work                                                             | Purpose                                                |
-| --------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------ |
-| Local docs iteration        | `pnpm.cmd check:docs`                                                     | Validate documentation without repeating the full gate |
-| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command         | Give fast feedback without repeating the full gate     |
-| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                     |
-| Local `pre-push`            | `pnpm check:static`                                                       | Block static-analysis, build, and HTML regressions     |
-| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff         |
-| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata               |
-| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                        |
-| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                   |
-| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR    |
-| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks    |
+| Trigger                     | Required work                                                             | Purpose                                                                    |
+| --------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Local docs iteration        | `pnpm.cmd check:docs`                                                     | Validate documentation without repeating the full gate                     |
+| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command         | Give fast feedback without repeating the full gate                         |
+| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                                         |
+| Local `pre-push`            | `pnpm check:static`                                                       | Block static-analysis, build, and HTML regressions                         |
+| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff                             |
+| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata                                   |
+| Dependabot pull request     | Policy classification; routine auto-merge; exceptional review attestation | Route updates by metadata, breaking markers, and `deps:validated` evidence |
+| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                                            |
+| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                                       |
+| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR                        |
+| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks                        |
 
 `pnpm check:docs` includes warning-free Markdown linting, strict documentation
 file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
@@ -109,16 +110,39 @@ provider-boundary exceptions. They are verified through GitHub's API rather than
 represented as Terraform resources. Do not add a generic REST Terraform
 provider solely to cover these two settings.
 
+## State And Execution Boundary
+
+HCP Terraform stores and executes this root under organization
+`dragontiger92`, project `portfolio-ybkim-infrastructure`, and workspace
+`portfolio-ybkim-github`. The project is the broader portfolio-infrastructure
+grouping; the workspace is the state boundary for `infra/terraform/github`.
+Future Cloudflare infrastructure uses a separate Terraform root and workspace
+so deployment state is not coupled to repository-governance state.
+
+The workspace uses Remote execution, Terraform `1.15.6`, disabled automatic
+apply, and a CLI-driven workflow without a direct VCS connection. The GitHub
+provider credential is a fine-grained PAT stored only as the workspace's
+sensitive `GITHUB_TOKEN` environment variable. Terraform plans may run only
+after CLI authentication and backend initialization; apply still requires
+explicit owner approval after reviewing the plan.
+
 ## Bootstrap
 
 The ruleset cannot be applied before the baseline workflows exist on `main`.
 The first baseline pull request is therefore a documented bootstrap exception:
 Terraform is formatted, initialized without a backend, and validated on the
 feature branch; the imported plan and active ruleset are applied only after the
-baseline merge and remote-state configuration.
+baseline merge and HCP Terraform backend configuration.
 
 This post-merge governance closure belongs to `PH-001`, not `PH-003`. It may run
 before `PH-002` implementation so subsequent feature work is protected by the
 final repository checks and `main` ruleset. Cloudflare Pages, DNS, preview
 access, production smoke checks, and release operations remain separate `PH-003`
 deployment concerns.
+
+The same Terraform apply owns `allow_auto_merge = true`,
+`delete_branch_on_merge = true`, and the
+`DEPENDABOT_AUTOMERGE_ENABLED = true` Actions variable. Until that apply also
+activates the strict `main` ruleset, the Dependabot workflow classifies updates
+but cannot enable patch auto-merge. This keeps repository automation from
+becoming active before its required-check and branch-lifecycle safeguards.

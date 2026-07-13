@@ -53,6 +53,50 @@ to policy review instead of inventing a license conclusion.
 
 - Dependabot checks npm package metadata and GitHub Actions updates on a weekly
   schedule.
+- Dependabot requests owner review only when an update is major, indirect,
+  unclassified, non-SemVer, grouped ambiguously, or carries an explicit breaking
+  marker. The review request is the owner notification and manual-action trigger;
+  GitHub notification delivery remains an account-level preference.
+- Apply this update policy per pull request:
+
+  | Update                                            | Handling                                                                                                  |
+  | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | Direct npm dependency, SemVer patch or minor      | Enable auto-merge only after the PH-001 activation gate and all required checks pass                      |
+  | GitHub Action, SemVer patch or minor              | Use the same gated auto-merge path; workflow and permission regressions remain covered by required checks |
+  | Major, indirect, unknown, or non-SemVer           | Request owner or Codex-assisted review of compatibility and change scope                                  |
+  | Explicit breaking marker                          | Disable automation and request owner review regardless of the reported SemVer level                       |
+  | `deps:validated` after repository-specific review | Enable auto-merge after required checks, including for major, indirect, or explicitly breaking updates    |
+
+- SemVer communicates compatibility intent, not proof of compatibility. For this
+  small, repairable portfolio, a direct patch or minor update is accepted when
+  Dependabot reports an unambiguous ecosystem and dependency type, no explicit
+  breaking marker exists, and the repository's complete required checks pass.
+  Security updates use the same eligibility test. Major, indirect, grouped
+  ambiguously, and unclassified updates remain manual.
+- Dependabot writes `dependency-type` and `update-type` fields into its generated
+  commit metadata. The policy workflow reads those fields through the GitHub
+  pull-request commits API and derives `npm_and_yarn` or `github_actions` from
+  the generated head branch. A maintainer can inspect the same evidence in the
+  pull request commit message or with `gh api repos/{owner}/{repo}/pulls/{pr}/commits`.
+- Required checks provide systematic evidence: `Check` validates types, lint,
+  governance, formatting, build output, HTML, standards, and browser behavior;
+  Dependency Review rejects moderate-or-higher vulnerabilities and unapproved
+  licenses; CodeQL covers supported static security analysis. These checks can
+  establish repository compatibility within their coverage, but cannot prove
+  the absence of every upstream behavioral defect.
+- `deps:validated` is an explicit compatibility attestation, not a risk label.
+  Apply it only after an owner-authorized human or Codex review traces the
+  dependency's repository usage, reads primary-source release or migration
+  notes, inspects manifest and lockfile scope, and obtains passing relevant
+  checks. The label lets a reviewed major or exceptional update use the same
+  check-gated merge and branch-cleanup path as a routine update.
+- `DEPENDABOT_AUTOMERGE_ENABLED` is a Terraform-managed repository variable.
+  It must not be enabled independently of repository auto-merge, strict required
+  checks, and automatic merged-branch deletion.
+- After a Dependabot pull request merges, GitHub deletes its head branch through
+  the Terraform-managed `delete_branch_on_merge` repository setting. A closed,
+  unmerged update requires an owner-recorded reason and may need a Dependabot
+  ignore rule to prevent recreation.
 - A weekly, manually repeatable security-audit workflow runs
   `pnpm audit --audit-level moderate` as an advisory signal outside the pull
   request merge gate.

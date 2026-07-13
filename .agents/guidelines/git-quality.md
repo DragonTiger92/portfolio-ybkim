@@ -22,8 +22,41 @@ Follow the public workflow in `docs/process/development-workflow.md`.
   `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`.
 - Use only the documented type prefixes and create from the latest `main` unless
   an explicit exception applies.
+- Choose a Phase branch when related PBIs genuinely benefit from one integration
+  baseline. Choose a PBI branch when independent review, verification, rollback,
+  or delivery is useful; do not create branches merely to mirror chat sessions.
+- Treat a branch as a review and integration boundary, not a session boundary.
+  Resume the same branch across sessions while its concern remains active, and
+  start a new branch when a new concern needs an independent boundary.
+- Keep one active branch per worktree. Use separate worktrees for parallel
+  branches so dirty changes and verification results cannot cross concerns.
 - Do not rename, delete, or replace a local or remote branch without user
   approval.
+
+## Exceptional Branches
+
+- Use stacked branches only when a child change truly depends on an unmerged
+  parent. Base the child pull request on the parent, record the parent pull
+  request and merge order in the template's `Notes`, integrate bottom-up, and
+  retarget or update the child after the parent reaches `main`.
+
+## Pull Request And Branch Lifecycle
+
+- After a human-created pull request is merged, confirm that its head commit is
+  an ancestor of `main` before deleting the local topic branch. Confirm the
+  remote topic branch was deleted or delete it with owner approval.
+- Treat automation pull requests and their generated branches as one lifecycle.
+  An open Dependabot pull request normally accounts for one remote branch; the
+  branch is not stale merely because it appears in the repository branch list.
+- Do not bulk-close automation pull requests based only on their count or a
+  failed check. Inspect each update and the first failing gate, then merge,
+  repair, defer, ignore, or close it with a reason appropriate to that update.
+- When closing an abandoned or superseded pull request manually, leave a concise
+  comment that records the reason and the replacement pull request or commit
+  when one exists. Confirm its remote branch is removed after close.
+- Preserve an unmerged `wip/*` branch until its commits and ownership are
+  understood. A temporary name is not sufficient evidence that its work is
+  disposable.
 
 ## Quality Checks
 

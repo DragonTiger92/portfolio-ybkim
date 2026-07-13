@@ -88,3 +88,29 @@ pnpm.cmd lint
 pnpm.cmd format:check
 pnpm.cmd build
 ```
+
+## Dependabot Manual Review
+
+When a Dependabot pull request requests owner review, treat it as a request for
+evidence-based repository inspection rather than automatic rejection.
+
+1. Identify the ecosystem, dependency type, update type, changed manifests, and
+   explicit breaking markers from the pull request and Dependabot commit.
+2. Read the upstream release notes, migration notes, and security advisory when
+   available; use primary sources.
+3. Search the repository for the dependency's imports, commands, configuration,
+   inputs, outputs, permissions, and generated artifacts.
+4. Compare the proposed manifest and lockfile diff with the package's actual
+   role and check for unexpected transitive churn.
+5. With owner authorization for dependency execution, run the smallest focused
+   verification and then `pnpm.cmd check` before recommending merge.
+6. When the evidence supports the update, add the Terraform-managed
+   `deps:validated` label. This attests repository-specific compatibility and
+   lets the Dependabot policy enable auto-merge after required checks pass.
+7. Confirm merge and branch cleanup. Escalate to the owner without applying the
+   label when impact is materially high, evidence conflicts, required checks
+   fail without a safe fix, or uncertainty remains after inspection.
+
+Codex can perform this review when the owner resumes or starts a task with the
+pull request in scope. Repository GitHub Actions do not independently start a
+Codex desktop task, so the owner review notification remains the handoff trigger.
