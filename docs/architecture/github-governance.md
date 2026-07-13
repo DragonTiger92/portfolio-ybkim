@@ -128,21 +128,18 @@ explicit owner approval after reviewing the plan.
 
 ## Bootstrap
 
-The ruleset cannot be applied before the baseline workflows exist on `main`.
-The first baseline pull request is therefore a documented bootstrap exception:
-Terraform is formatted, initialized without a backend, and validated on the
-feature branch; the imported plan and active ruleset are applied only after the
-baseline merge and HCP Terraform backend configuration.
+The bootstrap sequence is complete. Baseline workflows reached `main` before
+the ruleset was activated, then the HCP Terraform backend was configured. The
+first owner-reviewed remote apply imported the existing repository and security
+controls before activating the managed settings and ruleset.
 
-This post-merge governance closure belongs to `PH-001`, not `PH-003`. It may run
-before `PH-002` implementation so subsequent feature work is protected by the
-final repository checks and `main` ruleset. Cloudflare Pages, DNS, preview
-access, production smoke checks, and release operations remain separate `PH-003`
-deployment concerns.
+This post-merge governance closure completed `PH-001`, not `PH-003`, so
+subsequent feature work is protected by the final repository checks and `main`
+ruleset. Cloudflare Pages, DNS, preview access, production smoke checks, and
+release operations remain separate `PH-003` deployment concerns.
 
-The same Terraform apply owns `allow_auto_merge = true`,
+The applied Terraform state owns `allow_auto_merge = true`,
 `delete_branch_on_merge = true`, and the
-`DEPENDABOT_AUTOMERGE_ENABLED = true` Actions variable. Until that apply also
-activates the strict `main` ruleset, the Dependabot workflow classifies updates
-but cannot enable patch auto-merge. This keeps repository automation from
-becoming active before its required-check and branch-lifecycle safeguards.
+`DEPENDABOT_AUTOMERGE_ENABLED = true` Actions variable. The Dependabot workflow
+can enable auto-merge only through the active required-check and branch-lifecycle
+safeguards.
