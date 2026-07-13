@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Review dependencies and licenses
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: moderate
           allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, CC0-1.0, BlueOak-1.0.0, MPL-2.0
