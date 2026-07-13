@@ -6,6 +6,8 @@ This Terraform root manages long-lived GitHub repository governance for
 ## Managed Scope
 
 - repository feature and merge settings;
+- the Dependabot minor-and-patch auto-merge activation variable;
+- the `deps:validated` compatibility-attestation label;
 - project-specific pull request and release labels;
 - Dependabot vulnerability alerts and security updates;
 - Secret scanning and push protection; and
@@ -30,6 +32,11 @@ Before the first apply:
    variable. Do not put it in a `.tfvars` file.
 3. Review the import plan for the existing repository and security resources.
 4. Confirm that the expected status check names have run on `main`.
+
+The first apply enables repository auto-merge, automatic deletion of merged
+head branches, the strict `main` ruleset, and
+`DEPENDABOT_AUTOMERGE_ENABLED=true` together. Do not create that Actions
+variable manually before the ruleset is active.
 
 ## Local Validation
 
