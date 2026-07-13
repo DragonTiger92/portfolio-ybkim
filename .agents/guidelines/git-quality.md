@@ -25,6 +25,24 @@ Follow the public workflow in `docs/process/development-workflow.md`.
 - Do not rename, delete, or replace a local or remote branch without user
   approval.
 
+## Pull Request And Branch Lifecycle
+
+- After a human-created pull request is merged, confirm that its head commit is
+  an ancestor of `main` before deleting the local topic branch. Confirm the
+  remote topic branch was deleted or delete it with owner approval.
+- Treat automation pull requests and their generated branches as one lifecycle.
+  An open Dependabot pull request normally accounts for one remote branch; the
+  branch is not stale merely because it appears in the repository branch list.
+- Do not bulk-close automation pull requests based only on their count or a
+  failed check. Inspect each update and the first failing gate, then merge,
+  repair, defer, ignore, or close it with a reason appropriate to that update.
+- When closing an abandoned or superseded pull request manually, leave a concise
+  comment that records the reason and the replacement pull request or commit
+  when one exists. Confirm its remote branch is removed after close.
+- Preserve an unmerged `wip/*` branch until its commits and ownership are
+  understood. A temporary name is not sufficient evidence that its work is
+  disposable.
+
 ## Quality Checks
 
 Choose the smallest check that gives meaningful feedback while work is still

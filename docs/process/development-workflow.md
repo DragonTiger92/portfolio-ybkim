@@ -14,7 +14,8 @@ GitHub Issues.
 5. Open a draft pull request early when CI or review visibility is useful.
 6. Implement, verify, and update the tracked PBI and Phase status.
 7. Merge only after acceptance criteria, required checks, and review are complete.
-8. Delete the merged topic branch.
+8. Delete the merged remote topic branch and remove its local branch after
+   confirming that the branch tip is contained in `main`.
 
 ## Branch Name Format
 
@@ -66,6 +67,10 @@ metadata.
 
 - Dependabot and other explicitly approved automation may use their generated
   branch names.
+- Each open automation pull request normally retains its generated remote branch
+  until that pull request is merged or closed. Review these pull requests
+  individually; neither the branch count nor a failed check alone makes them
+  stale.
 - `wip/*` is reserved for temporary work that is not ready to become a pull
   request. It is not a merge-target naming convention.
 - Emergency or recovery branches may deviate only when the reason is recorded
