@@ -1,5 +1,9 @@
 locals {
   managed_labels = {
+    "deps:validated" = {
+      color       = "0e8a16"
+      description = "Dependency update passed repository-specific compatibility review"
+    }
     "release:major" = {
       color       = "b60205"
       description = "Production release contains a major product or UX change"
