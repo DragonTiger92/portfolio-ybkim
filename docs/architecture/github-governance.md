@@ -110,13 +110,29 @@ provider-boundary exceptions. They are verified through GitHub's API rather than
 represented as Terraform resources. Do not add a generic REST Terraform
 provider solely to cover these two settings.
 
+## State And Execution Boundary
+
+HCP Terraform stores and executes this root under organization
+`dragontiger92`, project `portfolio-ybkim-infrastructure`, and workspace
+`portfolio-ybkim-github`. The project is the broader portfolio-infrastructure
+grouping; the workspace is the state boundary for `infra/terraform/github`.
+Future Cloudflare infrastructure uses a separate Terraform root and workspace
+so deployment state is not coupled to repository-governance state.
+
+The workspace uses Remote execution, Terraform `1.15.6`, disabled automatic
+apply, and a CLI-driven workflow without a direct VCS connection. The GitHub
+provider credential is a fine-grained PAT stored only as the workspace's
+sensitive `GITHUB_TOKEN` environment variable. Terraform plans may run only
+after CLI authentication and backend initialization; apply still requires
+explicit owner approval after reviewing the plan.
+
 ## Bootstrap
 
 The ruleset cannot be applied before the baseline workflows exist on `main`.
 The first baseline pull request is therefore a documented bootstrap exception:
 Terraform is formatted, initialized without a backend, and validated on the
 feature branch; the imported plan and active ruleset are applied only after the
-baseline merge and remote-state configuration.
+baseline merge and HCP Terraform backend configuration.
 
 This post-merge governance closure belongs to `PH-001`, not `PH-003`. It may run
 before `PH-002` implementation so subsequent feature work is protected by the
