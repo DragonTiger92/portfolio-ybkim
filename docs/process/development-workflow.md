@@ -17,6 +17,30 @@ GitHub Issues.
 8. Delete the merged remote topic branch and remove its local branch after
    confirming that the branch tip is contained in `main`.
 
+## Branch Scope
+
+Choose branch scope by integration and review value, not by conversation or
+session boundaries. A branch may continue across multiple Codex or maintainer
+sessions, and one session may finish one branch before starting another.
+
+- Use a PBI branch when the change is independently reviewable, has a distinct
+  risk or rollback boundary, or can reach `main` without waiting for the rest of
+  a Phase.
+- Use a Phase branch when several related PBIs need one shared baseline and
+  splitting them into separate pull requests would add coordination without
+  materially improving review, verification, or rollback safety.
+- A Phase branch may include multiple related concerns. Keep commits focused and
+  list every included PBI in the pull request so the combined scope remains
+  reviewable.
+- Split work out of a Phase branch when it introduces an unrelated product or
+  governance decision, a materially different risk profile, an independent
+  release path, or a change that reviewers should be able to accept or revert
+  separately.
+
+There is no fixed branch lifetime, commit-count, or PBI-count limit. Prefer the
+smallest number of branches that still preserves useful review, verification,
+and rollback boundaries for this personal project.
+
 ## Branch Name Format
 
 Use this format for human-created branches intended for pull requests:
@@ -71,10 +95,15 @@ metadata.
   until that pull request is merged or closed. Review these pull requests
   individually; neither the branch count nor a failed check alone makes them
   stale.
+- A merged or closed automation pull request ends the generated branch's normal
+  lifecycle. Confirm the branch is removed when it no longer supports an open
+  update; the Terraform-managed repository setting deletes merged branches
+  automatically after PH-001 activation.
 - `wip/*` is reserved for temporary work that is not ready to become a pull
   request. It is not a merge-target naming convention.
+- Stacked branches are exceptional and require an actual dependency on unmerged
+  work. Base the child pull request on its parent, record the parent pull request
+  and merge order in `Notes`, merge from the bottom of the stack upward, and
+  retarget or update the child after its parent reaches `main`.
 - Emergency or recovery branches may deviate only when the reason is recorded
   in the pull request.
-
-The current workflow-baseline branch follows this policy as
-`feature/ph-001-product-foundation-baseline`.
