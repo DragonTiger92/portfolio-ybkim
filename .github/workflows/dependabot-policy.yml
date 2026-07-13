@@ -1,0 +1,115 @@
+name: Dependabot Policy
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - labeled
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dependabot-policy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  classify:
+    name: Classify Dependabot Update
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      automation_eligible: ${{ steps.metadata.outputs.automation_eligible }}
+      dependency_type: ${{ steps.metadata.outputs.dependency_type }}
+      ecosystem: ${{ steps.metadata.outputs.ecosystem }}
+      has_breaking_marker: ${{ steps.metadata.outputs.has_breaking_marker }}
+      update_type: ${{ steps.metadata.outputs.update_type }}
+      validation_attested: ${{ contains(github.event.pull_request.labels.*.name, 'deps:validated') }}
+    steps:
+      - name: Read Dependabot commit metadata
+        id: metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          commit_messages="$(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/commits" --jq '.[].commit.message')"
+          dependency_type="$(printf '%s\n' "$commit_messages" | sed -n 's/^[[:space:]]*dependency-type: //p' | sort -u)"
+          update_type="$(printf '%s\n' "$commit_messages" | sed -n 's/^[[:space:]]*update-type: //p' | sort -u)"
+
+          case "$HEAD_REF" in
+            dependabot/npm_and_yarn/*) ecosystem="npm_and_yarn" ;;
+            dependabot/github_actions/*) ecosystem="github_actions" ;;
+            *) ecosystem="unknown" ;;
+          esac
+
+          if [[ "$dependency_type" == *$'\n'* || -z "$dependency_type" ]]; then
+            dependency_type="unknown"
+          fi
+
+          if [[ "$update_type" == *$'\n'* || -z "$update_type" ]]; then
+            update_type="unknown"
+          fi
+
+          has_breaking_marker="false"
+          if printf '%s\n%s\n%s\n' "$PR_TITLE" "$PR_BODY" "$commit_messages" | grep -Eiq 'breaking([ -]change|:)'; then
+            has_breaking_marker="true"
+          fi
+
+          automation_eligible="false"
+          if [[ "$ecosystem" != "unknown" && "$has_breaking_marker" == "false" ]]; then
+            if [[ "$dependency_type" == "direct:development" || "$dependency_type" == "direct:production" ]]; then
+              if [[ "$update_type" == "version-update:semver-patch" || "$update_type" == "version-update:semver-minor" ]]; then
+                automation_eligible="true"
+              fi
+            fi
+          fi
+
+          echo "automation_eligible=$automation_eligible" >> "$GITHUB_OUTPUT"
+          echo "dependency_type=$dependency_type" >> "$GITHUB_OUTPUT"
+          echo "ecosystem=$ecosystem" >> "$GITHUB_OUTPUT"
+          echo "has_breaking_marker=$has_breaking_marker" >> "$GITHUB_OUTPUT"
+          echo "update_type=$update_type" >> "$GITHUB_OUTPUT"
+
+  enable-automerge:
+    name: Enable Policy-approved Auto-merge
+    needs: classify
+    if: >-
+      vars.DEPENDABOT_AUTOMERGE_ENABLED == 'true' &&
+      (needs.classify.outputs.automation_eligible == 'true' ||
+      needs.classify.outputs.validation_attested == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable merge after required checks pass
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --merge "$PR_URL"
+
+  request-owner-review:
+    name: Request Owner Review
+    needs: classify
+    if: >-
+      needs.classify.outputs.automation_eligible != 'true' &&
+      needs.classify.outputs.validation_attested != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Request review for a high-risk or unclassified update
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr edit "$PR_URL" --add-reviewer DragonTiger92

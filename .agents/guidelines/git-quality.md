@@ -22,8 +22,23 @@ Follow the public workflow in `docs/process/development-workflow.md`.
   `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`.
 - Use only the documented type prefixes and create from the latest `main` unless
   an explicit exception applies.
+- Choose a Phase branch when related PBIs genuinely benefit from one integration
+  baseline. Choose a PBI branch when independent review, verification, rollback,
+  or delivery is useful; do not create branches merely to mirror chat sessions.
+- Treat a branch as a review and integration boundary, not a session boundary.
+  Resume the same branch across sessions while its concern remains active, and
+  start a new branch when a new concern needs an independent boundary.
+- Keep one active branch per worktree. Use separate worktrees for parallel
+  branches so dirty changes and verification results cannot cross concerns.
 - Do not rename, delete, or replace a local or remote branch without user
   approval.
+
+## Exceptional Branches
+
+- Use stacked branches only when a child change truly depends on an unmerged
+  parent. Base the child pull request on the parent, record the parent pull
+  request and merge order in the template's `Notes`, integrate bottom-up, and
+  retarget or update the child after the parent reaches `main`.
 
 ## Pull Request And Branch Lifecycle
 
