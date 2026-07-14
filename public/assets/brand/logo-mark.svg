@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">portfolio-ybkim 로고 마크</title>
+  <desc id="desc">웹 개발자 포트폴리오를 나타내는 yb 모노그램</desc>
+  <defs>
+    <linearGradient id="g" x1="40" y1="24" x2="218" y2="228" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#60A5FA"/>
+      <stop offset="0.56" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1E40AF" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft)">
+    <path d="M45 48h34l39 73 39-73h34L91 226H57l43-76L45 48Z" fill="url(#g)"/>
+    <path d="M144 48h28v66c12-17 30-26 52-26 39 0 70 30 70 70s-31 70-70 70c-24 0-43-10-55-29v24h-25V48Zm74 150c23 0 41-17 41-40s-18-40-41-40c-24 0-42 17-42 40s18 40 42 40Z" transform="translate(-47 0)" fill="url(#g)" opacity="0.96"/>
+    <circle cx="104" cy="177" r="17" fill="#60A5FA"/>
+  </g>
+</svg>

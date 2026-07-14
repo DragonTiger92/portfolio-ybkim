@@ -196,6 +196,56 @@ for (const project of projectEvidence) {
   });
 }
 
+test("publishes the reviewed brand identity and install metadata", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator(".site-identity .site-logo")).toHaveAttribute(
+    "src",
+    "/assets/brand/logo-mark.svg",
+  );
+  await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute(
+    "href",
+    "/assets/brand/favicon.svg",
+  );
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+    "href",
+    "/assets/brand/apple-touch-icon.png",
+  );
+  await expect(page.locator('link[rel="manifest"]')).toHaveAttribute(
+    "href",
+    "/assets/brand/site.webmanifest",
+  );
+
+  const manifestResponse = await page.request.get("/assets/brand/site.webmanifest");
+  expect(manifestResponse.ok()).toBe(true);
+  expect(await manifestResponse.json()).toMatchObject({
+    lang: "ko",
+    name: "김용범 웹 개발자 포트폴리오",
+    short_name: "김용범 포트폴리오",
+  });
+});
+
+test("follows the system color theme until the visitor chooses one", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+
+  const documentElement = page.locator("html");
+  const themeColor = page.locator('meta[name="theme-color"]');
+
+  await expect(documentElement).toHaveAttribute("data-theme", "dark");
+  await expect(themeColor).toHaveAttribute("content", "#0d1117");
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(documentElement).toHaveAttribute("data-theme", "light");
+  await expect(themeColor).toHaveAttribute("content", "#f8fafc");
+
+  await page.locator("[data-theme-toggle]").click();
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(documentElement).toHaveAttribute("data-theme", "dark");
+  await expect(themeColor).toHaveAttribute("content", "#0d1117");
+});
+
 test("switches and persists the explicit color theme", async ({ page }) => {
   await page.goto("/");
 
@@ -207,6 +257,10 @@ test("switches and persists the explicit color theme", async ({ page }) => {
   await themeButton.click();
   await expect(documentElement).toHaveAttribute("data-theme", nextTheme);
   await expect(themeButton).toHaveAttribute("aria-pressed", String(nextTheme === "dark"));
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+    "content",
+    nextTheme === "dark" ? "#0d1117" : "#f8fafc",
+  );
 
   await page.reload();
   await expect(documentElement).toHaveAttribute("data-theme", nextTheme);

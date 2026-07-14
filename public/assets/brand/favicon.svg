@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">portfolio-ybkim 파비콘</title>
+  <desc id="desc">파란색 yb 모노그램이 있는 둥근 아이콘</desc>
+  <defs>
+    <linearGradient id="bg" x1="24" y1="16" x2="232" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/><stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="fg" x1="54" y1="50" x2="206" y2="208" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/><stop offset="0.6" stop-color="#2563EB"/><stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="52" fill="url(#bg)"/>
+  <path d="M54 62h34l40 71 39-71h35L101 215H67l43-67L54 62Z" fill="url(#fg)"/>
+  <path d="M134 64h26v55c11-14 26-21 46-21 34 0 60 26 60 59s-26 59-60 59c-22 0-38-8-49-24v20h-23V64Zm65 125c18 0 32-13 32-32s-14-32-32-32-33 13-33 32 15 32 33 32Z" transform="translate(-48 0)" fill="url(#fg)" opacity="0.96"/>
+  <circle cx="106" cy="177" r="15" fill="#60A5FA"/>
+</svg>

@@ -40,6 +40,36 @@ The implementation may keep this register in a dedicated repository document or
 other version-controlled structured file. Do not record secrets or private
 license credentials.
 
+## Reviewed Material
+
+### Owner-provided ChatGPT brand assets
+
+- **Item:** the selected logo, favicon, and home-screen icon files distributed
+  from `public/assets/brand/`.
+- **Material Type:** generated image and vector brand assets.
+- **Source:** an earlier owner-operated ChatGPT image-generation session; the
+  exact model version is unavailable. The owner supplied the resulting bundle
+  in `tmp/portfolio-ybkim-brand-assets/` and approved its use in this product.
+- **Author or Supplier:** YB Kim as the directing user; OpenAI supplied the
+  generation service.
+- **Version or Date:** imported and reviewed on 2026-07-14.
+- **License:** project-owned portfolio material under the All Rights Reserved
+  boundary in `NOTICE.md`. The current
+  [OpenAI Terms of Use](https://openai.com/policies/terms-of-use/) assign Output
+  ownership to the user as between the user and OpenAI.
+- **Modifications:** the graphic paths and raster artwork are unchanged. SVG
+  accessibility metadata and the web app manifest were localized for the
+  Korean product.
+- **Obligations:** no third-party attribution or redistribution obligation was
+  identified. The owner remains responsible for similarity and other
+  third-party-rights review because generated output may not be unique.
+- **Notice Location:** root `NOTICE.md` and the visible site footer.
+- **Evidence:** the owner statement in the implementation request, the retained
+  source bundle README, the linked provider terms, and manual asset review.
+- **Disposition:** Approved for the selected shipped subset. Unused wordmarks,
+  pattern, token CSS, and English social preview remain outside the production
+  asset tree.
+
 ## Review Workflow
 
 1. Inventory third-party material when it enters the repository, not only at
