@@ -63,7 +63,9 @@ for (const route of routes) {
       await expect(page.locator("h1")).toHaveCount(1);
 
       if (route === "/") {
-        await expect(page.locator("h1")).toHaveText("개발자 김용범의 포트폴리오");
+        await expect(page.locator("h1")).toHaveText(
+          "사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.",
+        );
       }
     });
 
@@ -92,6 +94,33 @@ for (const route of routes) {
     });
   });
 }
+
+test("presents the approved first viewport hierarchy", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator("#intro .status-tag")).toHaveText(
+    "새로운 웹 개발자 기회에 열려 있습니다",
+  );
+  await expect(page.locator("#intro .eyebrow")).toHaveText(
+    "Web Developer · Frontend-focused delivery",
+  );
+  await expect(page.locator("#intro .hero-summary")).toHaveText(
+    "프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.",
+  );
+
+  const actions = page.locator("#intro .action-list a");
+
+  await expect(actions).toHaveCount(3);
+  await expect(actions.nth(0)).toHaveText("이메일로 연락하기");
+  await expect(actions.nth(0)).toHaveAttribute("href", "mailto:dczwtu12b+portfolio@gmail.com");
+  await expect(actions.nth(1)).toHaveText("GitHub 보기");
+  await expect(actions.nth(1)).toHaveAttribute(
+    "href",
+    "https://github.com/DragonTiger92/portfolio-ybkim",
+  );
+  await expect(actions.nth(2)).toHaveAccessibleName("이력서 PDF 다운로드");
+  await expect(actions.nth(2)).toHaveAttribute("href", "/assets/resume/yb-kim-resume.pdf");
+});
 
 test("switches and persists the explicit color theme", async ({ page }) => {
   await page.goto("/");
