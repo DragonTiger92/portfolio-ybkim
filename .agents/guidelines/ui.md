@@ -57,6 +57,41 @@ Automated accessibility and standards checks are a safety net, not proof of full
 conformance. Preserve manual review for keyboard order, content meaning, zoom,
 reflow, contrast, and assistive-technology behavior.
 
+## Affordance And Interaction States
+
+For every interactive element, align native semantics, wording, and CSS so the
+control communicates both its role and its current state.
+
+- Make interaction recognizable in the default state. Do not depend on hover,
+  a pointer cursor, motion, or color alone to reveal that an element is usable.
+- Keep links recognizable as navigation and buttons recognizable as actions.
+  Do not make non-interactive cards, labels, or decoration look clickable.
+- Define only the states that the interaction can actually enter, choosing from
+  default, `:hover`, `:focus-visible`, `:active`, `:visited`, current or
+  selected, disabled, and busy. Do not invent visual states unsupported by the
+  element's behavior.
+- Treat hover as supplementary feedback. Preserve the same information and
+  operation for keyboard and touch input, where hover may be absent.
+- Keep `:focus-visible` clearly distinguishable from hover and never suppress
+  it without an equally visible replacement.
+- Pair persistent visual state with the matching semantic state, such as
+  `aria-current`, `aria-pressed`, `aria-expanded`, a native `disabled`
+  attribute, or an appropriate form state. Do not add ARIA when native HTML
+  already expresses the state.
+- Make disabled or busy controls visibly unavailable without reducing text or
+  status contrast below readable levels. Prevent the unavailable operation in
+  behavior as well as in CSS.
+- Use transitions to reinforce a state change, not to postpone it. Respect
+  `prefers-reduced-motion`, and keep essential feedback perceivable without
+  animation.
+- Use visited styling only where revisitation history helps users understand
+  content navigation; do not apply it to action-like controls or primary site
+  navigation merely for decoration.
+
+Before completing UI work, manually compare applicable states with keyboard and
+pointer input, at a touch-sized narrow viewport, and in light and dark themes.
+Confirm that the role and state remain understandable without hover or color.
+
 ## Styling
 
 The project uses layered pure CSS and CSS custom properties. Treat the shared
