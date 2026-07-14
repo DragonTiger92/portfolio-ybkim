@@ -123,7 +123,9 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.locator("#intro .status-tag")).toHaveText("웹 개발자 포지션을 찾고 있습니다");
-  await expect(page.locator("#intro .eyebrow")).toHaveText("웹 개발자 · 프론트엔드 중심");
+  await expect(page.locator("#intro .hero-meta .eyebrow")).toHaveText(
+    "웹 개발자 · 프론트엔드 중심",
+  );
   await expect(page.locator("#intro .hero-summary")).toHaveText(
     "프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.",
   );

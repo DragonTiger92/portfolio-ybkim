@@ -1,15 +1,25 @@
 @layer components {
+  .project-main {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--color-accent) 18%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 2rem 2rem;
+    background-position: calc(50% + 1rem) 0;
+  }
+
   .breadcrumb ol {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-2);
     list-style: none;
   }
 
   .breadcrumb li + li::before {
-    content: "/";
     margin-inline-end: var(--space-2);
     color: var(--color-text-muted);
+    content: "/";
   }
 
   .breadcrumb a {
@@ -26,20 +36,29 @@
   .project-header {
     display: grid;
     gap: var(--space-5);
-    padding-block: var(--space-7);
-    border-block: 1px solid var(--color-border);
+    padding: var(--space-6);
+    background: linear-gradient(145deg, var(--color-surface), var(--color-surface-muted));
+    border: 1px solid var(--color-border);
+    border-inline-start: 0.3rem solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .project-header h1 {
+    max-inline-size: 14ch;
   }
 
   .project-summary {
-    max-inline-size: 42rem;
+    max-inline-size: 44rem;
     color: var(--color-text-muted);
     font-size: var(--text-lead);
   }
 
   .project-facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: var(--space-4);
+    padding-block-start: var(--space-5);
+    border-block-start: 1px solid var(--color-border);
   }
 
   .project-facts div {
@@ -49,18 +68,32 @@
 
   .project-facts dt {
     color: var(--color-text-muted);
-    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  .project-facts dd {
+    font-weight: 680;
+  }
+
+  .project-review-grid,
+  .project-supporting {
+    display: grid;
+    gap: var(--space-7);
   }
 
   .prose {
     display: grid;
     max-inline-size: var(--prose-max);
     gap: var(--space-5);
+    align-content: start;
   }
 
   .prose h2 {
     margin-block-start: var(--space-5);
+    padding-block-start: var(--space-4);
     font-size: var(--text-h3);
+    border-block-start: 1px solid var(--color-border);
   }
 
   .project-links,
@@ -74,6 +107,7 @@
 
   .project-links {
     background: var(--color-surface-muted);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 28%, var(--color-border));
   }
 
   .project-links h2,
@@ -84,23 +118,45 @@
 
   .project-links > p,
   .project-stack > p {
-    max-inline-size: var(--prose-max);
     color: var(--color-text-muted);
   }
 
   .project-links ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
     list-style: none;
+  }
+
+  .project-links .button-link {
+    inline-size: 100%;
   }
 
   .project-stack,
   .project-navigation {
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
   }
 
+  .project-navigation {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-navigation::after {
+    position: absolute;
+    inline-size: 9rem;
+    block-size: 9rem;
+    inset-block-end: -5rem;
+    inset-inline-end: -3rem;
+    background: var(--color-accent-soft);
+    border-radius: 50%;
+    content: "";
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
   .project-navigation__links {
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2) var(--space-5);
@@ -108,5 +164,29 @@
 
   .project-navigation__links .text-link {
     justify-content: flex-start;
+  }
+
+  @media (min-width: 48rem) {
+    .project-header {
+      padding: var(--space-7);
+    }
+
+    .project-facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .project-review-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.46fr);
+      align-items: start;
+      gap: var(--space-8);
+    }
+
+    .project-supporting {
+      position: sticky;
+      inset-block-start: 7rem;
+      gap: var(--space-5);
+    }
   }
 }

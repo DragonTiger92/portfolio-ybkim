@@ -114,8 +114,9 @@
   }
 
   .section-heading {
+    position: relative;
     display: grid;
-    max-inline-size: 42rem;
+    max-inline-size: 48rem;
     gap: var(--space-3);
     margin-block-end: var(--space-7);
   }
