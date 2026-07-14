@@ -5,7 +5,7 @@ const routes = ["/", "/projects/portfolio-ybkim/", "/projects/karly/", "/project
 
 const projectEvidence = [
   {
-    classification: "Portfolio Product",
+    classification: "포트폴리오 제품",
     links: [
       "https://github.com/DragonTiger92/portfolio-ybkim",
       "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/docs/README.md",
@@ -16,12 +16,12 @@ const projectEvidence = [
     route: "/projects/portfolio-ybkim/",
   },
   {
-    classification: "Public Source Project",
+    classification: "공개 팀 프로젝트",
     links: ["https://github.com/FRONTENDSCHOOL8/Karly", "https://dragontiger92.github.io/Karly/"],
     route: "/projects/karly/",
   },
   {
-    classification: "Public Source Project",
+    classification: "공개 팀 프로젝트",
     links: ["https://github.com/FRONTENDSCHOOL8/Book-Kong", "https://bookong.netlify.app/"],
     route: "/projects/book-kong/",
   },
@@ -122,12 +122,8 @@ for (const route of routes) {
 test("presents the approved first viewport hierarchy", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.locator("#intro .status-tag")).toHaveText(
-    "새로운 웹 개발자 기회에 열려 있습니다",
-  );
-  await expect(page.locator("#intro .eyebrow")).toHaveText(
-    "Web Developer · Frontend-focused delivery",
-  );
+  await expect(page.locator("#intro .status-tag")).toHaveText("웹 개발자 포지션을 찾고 있습니다");
+  await expect(page.locator("#intro .eyebrow")).toHaveText("웹 개발자 · 프론트엔드 중심");
   await expect(page.locator("#intro .hero-summary")).toHaveText(
     "프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.",
   );
@@ -144,6 +140,11 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
   );
   await expect(actions.nth(2)).toHaveAccessibleName("이력서 PDF 다운로드");
   await expect(actions.nth(2)).toHaveAttribute("href", "/assets/resume/yb-kim-resume.pdf");
+
+  await expect(page.locator("#projects .eyebrow").first()).toHaveText("검토 가능한 작업");
+  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("실무 경험");
+  await expect(page.locator("#skills .eyebrow")).toHaveText("핵심 역량");
+  await expect(page.locator("#process .eyebrow")).toHaveText("작업 흐름");
 });
 
 test("presents inspectable public projects and disclosure-safe professional highlights", async ({

@@ -6,7 +6,7 @@ const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
   schema: z.object({
     title: z.string(),
-    classification: z.enum(["Portfolio Product", "Public Source Project"]),
+    classification: z.enum(["포트폴리오 제품", "공개 팀 프로젝트"]),
     summary: z.string(),
     role: z.string(),
     contribution: z.string(),
