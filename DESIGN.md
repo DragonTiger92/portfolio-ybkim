@@ -94,6 +94,28 @@ Design quality includes document structure.
 - ARIA is a supplement for missing semantics, not the default way to repair
   avoidable markup choices.
 
+### Affordance Is Perceivable And Truthful
+
+Users should be able to recognize what can be interacted with, what kind of
+interaction it supports, and how the interface responded. Semantics and visual
+treatment must communicate the same role.
+
+- Make links, buttons, form controls, and selectable items recognizable before
+  interaction; do not rely on hover, motion, color alone, or explanatory copy
+  elsewhere on the page.
+- Keep navigation, actions, and non-interactive content visually distinct. Do
+  not style static content like a control or make a control look inert.
+- Design every applicable interaction state as part of the component: default,
+  hover, keyboard focus, active or pressed, current or selected, visited,
+  disabled, and busy.
+- Treat hover as an enhancement. The same purpose and feedback must remain
+  available to keyboard and touch users.
+- Make state feedback immediate and proportionate. CSS transitions may soften a
+  change, but must not delay recognition or become the only evidence that an
+  action occurred.
+- Keep affordance coherent across light and dark themes, responsive layouts,
+  and repeated instances of the same interaction pattern.
+
 ### Responsive Means Preserved Intent
 
 Desktop recruiter review is the primary presentation context, but responsive
@@ -162,8 +184,12 @@ Before adding or changing UI:
    interaction, and layout should remain coherent with nearby UI.
 3. Check semantic structure before styling: heading level, landmark, list,
    button/link role, and accessible name.
-4. Check responsive behavior at narrow and wide viewports.
-5. Check light and dark themes when the component uses color, surface, border,
+4. Check that interactive roles are recognizable before interaction and that
+   every applicable state has perceivable, non-color-only feedback.
+5. Check the interaction with keyboard, pointer, and a touch-sized viewport;
+   hover must not reveal essential information or access.
+6. Check responsive behavior at narrow and wide viewports.
+7. Check light and dark themes when the component uses color, surface, border,
    shadow, or focus tokens.
-6. If a one-off exception is necessary, document why it is local and why it
+8. If a one-off exception is necessary, document why it is local and why it
    should not become a shared token.
