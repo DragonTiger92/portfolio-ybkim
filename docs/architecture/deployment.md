@@ -30,19 +30,20 @@ The generated `dist/` directory is the deployable artifact.
 
 ## Platform Components
 
-| Component                | Responsibility                                              | Phase / State                         |
-| ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
-| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
-| GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003    |
-| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                   |
-| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
-| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                        |
-| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                        |
-| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
-| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
-| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003           |
-| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                        |
-| Cloudflare DNS and TLS   | Serve an optional custom domain securely                    | Only if a custom domain is adopted    |
+| Component                | Responsibility                                              | Phase / State                           |
+| ------------------------ | ----------------------------------------------------------- | --------------------------------------- |
+| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                         |
+| GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003      |
+| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                     |
+| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                          |
+| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                          |
+| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                          |
+| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003   |
+| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                          |
+| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003             |
+| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                          |
+| Cloudflare DNS and TLS   | Serve an optional custom domain securely                    | Only if a custom domain is adopted      |
+| Cloudflare Email Routing | Receive domain contact mail at the portfolio Gmail address  | `PBI-049`, after custom-domain adoption |
 
 There is no separately managed staging machine, origin application server,
 database server, or logging server in the baseline architecture.

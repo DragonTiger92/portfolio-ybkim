@@ -88,18 +88,18 @@ architecture out of public copy.
 
 ## Link Inventory
 
-| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                             |
-| --------------------------- | -------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------ |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                             |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                          |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                             |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data           |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                             |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data           |
-| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                      |
-| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | Future contact action after production domain and Email Routing setup          |
-| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready              | Public Korean resume download action                                           |
-| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public             | Professional highlight and resume evidence; keep private operations detail out |
+| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                      |
+| --------------------------- | -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------- |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                                      |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                                   |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                      |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data                    |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                      |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data                    |
+| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                               |
+| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | `PBI-049`; publish only after production domain, destination, and delivery verification |
+| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready              | Public Korean resume download action                                                    |
+| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public             | Professional highlight and resume evidence; keep private operations detail out          |
 
 ## Private Evidence Intake
 
@@ -138,9 +138,11 @@ Gmail address separately in this inventory.
 During Phase 3, after the production domain is selected, configure Cloudflare
 Email Routing on the Free plan for a domain address such as
 `contact@{production-domain}` or `hello@{production-domain}`. Route incoming
-mail to the existing Gmail inbox. Do not configure custom reply-from behavior,
-Google Workspace, or another paid mailbox unless a later decision accepts that
-additional scope.
+mail to `dczwtu12b+portfolio@gmail.com`, verify the destination, and test
+delivery from another account before publishing the domain address. Keep the
+existing Gmail contact as the fallback. Do not configure custom reply-from
+behavior, Google Workspace, or another paid mailbox unless a later decision
+accepts that additional scope.
 
 ## Disclosure Review Timing
 

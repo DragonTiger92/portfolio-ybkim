@@ -69,7 +69,7 @@ showcase:
 | `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Ready            | Public project detail link after source and rights review                                         |
 | `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public           | Public product link; keep any demo credentials out of portfolio copy                              |
 | Public email                | `dczwtu12b+portfolio@gmail.com`                    | Ready            | Interim recruiter contact; manage with Gmail filters and labels                                   |
-| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Phase 3 Decision | Route incoming mail to Gmail on the Cloudflare Free plan; do not reconfigure reply-from behavior  |
+| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Phase 3 Decision | `PBI-049`; route to the verified portfolio Gmail destination before publication                   |
 | Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready            | Public Korean resume download after `PBI-041` final export                                        |
 | Academy product URL         | `https://academy.shine-edu.kr/`                    | Public           | Professional highlight and resume evidence; keep private operations detail out of portfolio copy  |
 
@@ -78,9 +78,11 @@ recruiter contact channel. The initial public contact email is
 `dczwtu12b+portfolio@gmail.com`, managed with Gmail filters and labels. After
 the Phase 3 domain decision, create a Cloudflare Email Routing address such as
 `contact@{production-domain}` or `hello@{production-domain}` on the Free plan
-and forward it to the existing Gmail inbox. Do not add paid Google Workspace or
-custom reply-from configuration unless a later product decision accepts that
-extra cost and operational scope.
+and forward it to `dczwtu12b+portfolio@gmail.com`. Verify the destination and
+test delivery from another account before replacing the public contact action.
+Keep the existing Gmail contact as the fallback. Do not add paid Google
+Workspace or custom reply-from configuration unless a later product decision
+accepts that extra cost and operational scope.
 
 ## Contact Source Data
 
