@@ -15,16 +15,16 @@ Use the following first-viewport copy as the Phase 2 implementation seed. The
 implementation may adjust line breaks for responsive layout, but it should keep
 the meaning, hierarchy, and action order intact.
 
-| Element       | Exact Copy                                                                                                                      | Product Role                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Status tag    | `새로운 웹 개발자 기회에 열려 있습니다`                                                                                         | Recruiter-facing availability cue                                                               |
-| Eyebrow       | `Web Developer · Frontend-focused delivery`                                                                                     | Compact role framing without leading with a tool list                                           |
-| Heading       | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                           | Above-the-fold positioning statement                                                            |
-| Lead          | `프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.`                       | Human-readable summary of UI care, maintainability, and verification                            |
-| Support copy  | `Astro 기반 포트폴리오, Karly, Book-Kong, 그리고 공개 가능한 전문 작업을 통해 구현·협업·인수인계 역량을 확인할 수 있게 합니다.` | Evidence bridge into project showcase and professional highlights                               |
-| Primary CTA   | `이메일로 연락하기`                                                                                                             | Recruiter contact through the ready public portfolio email                                      |
-| Secondary CTA | `GitHub 보기`                                                                                                                   | Technical reviewer path to public source and contribution history                               |
-| Tertiary CTA  | `이력서 PDF`                                                                                                                    | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
+| Element       | Exact Copy                                                                                                            | Product Role                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Status tag    | `웹 개발자 포지션을 찾고 있습니다`                                                                                    | Recruiter-facing availability cue                                                               |
+| Eyebrow       | `웹 개발자 · 프론트엔드 중심`                                                                                         | Compact Korean role framing without leading with a tool list                                    |
+| Heading       | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                 | Above-the-fold positioning statement                                                            |
+| Lead          | `프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.`             | Human-readable summary of UI care, maintainability, and verification                            |
+| Support copy  | `Astro로 만든 이 포트폴리오와 Karly, Book-Kong, 공개 가능한 실무 작업을 통해 구현·협업·인수인계 경험을 보여드립니다.` | Evidence bridge into project showcase and professional highlights                               |
+| Primary CTA   | `이메일로 연락하기`                                                                                                   | Recruiter contact through the ready public portfolio email                                      |
+| Secondary CTA | `GitHub 보기`                                                                                                         | Technical reviewer path to public source and contribution history                               |
+| Tertiary CTA  | `이력서 PDF`                                                                                                          | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
 
 Do not add a phone number, home address, production URL, or custom-domain email
 to the first viewport before the relevant Phase 3 decisions. Do not rewrite the
@@ -41,8 +41,8 @@ only after the destination is rechecked during implementation.
 
 - Card title: `portfolio-ybkim`
 - Card summary:
-  `Astro 정적 사이트 구조, 문서 기반 기획, ADR, PBI, 품질 게이트를 함께
-검토할 수 있는 현재 포트폴리오 제품입니다.`
+  `Astro 정적 사이트 구조, 문서 기반 기획, ADR, PBI, 품질 검증 절차를 함께
+살펴볼 수 있는 현재 포트폴리오 제품입니다.`
 - Primary detail angle:
   Explain how the repository itself shows product planning, static architecture,
   content boundaries, and verification discipline.
@@ -76,7 +76,7 @@ only after the destination is rechecked during implementation.
 - Card title: `Book-Kong`
 - Card summary:
   `독서 기록 SPA 팀 리드로 일정과 협업을 조율하고 데이터 사전 로딩·조회
-흐름, Storybook 유틸리티, 접근성 도우미를 구현했습니다.`
+흐름, Storybook 지원 도구, 접근성 도우미를 구현했습니다.`
 - Primary detail angle:
   Present team leadership, component thinking, server-state user experience, and
   reviewable frontend support utilities.
