@@ -6,7 +6,9 @@ interface ProjectLink {
 }
 
 interface Props {
+  cardNumber: string;
   classification: string;
+  featured: boolean;
   links: ProjectLink[];
   role: string;
   slug: string;
@@ -15,13 +17,17 @@ interface Props {
   title: string;
 }
 
-const { classification, links, role, slug, summary, tags, title } = Astro.props;
+const { cardNumber, classification, featured, links, role, slug, summary, tags, title } =
+  Astro.props;
 const cardLinks = links.filter((link) => link.showOnCard);
 ---
 
-<article class="project-card">
+<article class:list={["project-card", { "project-card--featured": featured }]}>
   <div class="project-card__content">
-    <p class="eyebrow">{classification}</p>
+    <div class="project-card__meta">
+      <p class="eyebrow">{classification}</p>
+      <span aria-hidden="true">{cardNumber}</span>
+    </div>
     <h3><a href={`/projects/${slug}/`}>{title}</a></h3>
     <p class="project-card__summary">{summary}</p>
     <p class="project-card__role">{role}</p>

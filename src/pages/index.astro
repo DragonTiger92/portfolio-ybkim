@@ -1,66 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
+import { professionalHighlights, skillGroups } from "../data/landing";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/showcase.css";
+import "../styles/landing-sections.css";
 
 const projects = (await getCollection("projects")).sort(
   (leftProject, rightProject) => leftProject.data.order - rightProject.data.order,
 );
-
-interface ProfessionalHighlight {
-  action?: {
-    href: string;
-    label: string;
-  };
-  description: string;
-  tags: string[];
-  title: string;
-}
-
-const professionalHighlights: ProfessionalHighlight[] = [
-  {
-    title: "학원 정보·상담 웹 서비스",
-    description:
-      "학원 정보 탐색과 상담 신청을 잇는 공개 서비스에서 기획, 화면 구성, API·데이터 연동, 배포 준비와 인수인계까지 맡았습니다.",
-    tags: ["기획부터 인수인계", "화면 · API · 데이터", "공개 서비스"],
-    action: {
-      label: "공개 서비스 보기",
-      href: "https://academy.shine-edu.kr/",
-    },
-  },
-  {
-    title: "과학 문항 개념·풀이 논리 구조화 도구",
-    description:
-      "로그인과 세션 처리, 초기 목록과 입력 화면, 타입 경계, 서버 상태 조회 흐름을 구현하고 후속 작업자가 이어갈 수 있도록 인계했습니다.",
-    tags: ["프론트엔드 기반", "타입 경계", "인수인계"],
-  },
-  {
-    title: "과학 교육 콘텐츠 제작·검수 플랫폼",
-    description:
-      "기존 내부 업무 플랫폼을 인계받아 데이터 일관성, 안전한 파일 처리, 복구 준비, 문서화와 운영 안정성을 관리했습니다.",
-    tags: ["인수받은 시스템", "안정성", "문서화"],
-  },
-];
-
-const skillGroups = [
-  {
-    title: "프론트엔드 구현",
-    description: "의미가 드러나는 HTML, TypeScript, CSS와 접근성을 제품 구조 안에서 함께 다룹니다.",
-  },
-  {
-    title: "제품 전달",
-    description: "요구사항, 범위, 문서와 검증 기준을 구현 과정과 연결합니다.",
-  },
-  {
-    title: "통합 이해",
-    description: "API, 데이터 흐름, 배포와 릴리스 경계를 이해하고 협업합니다.",
-  },
-  {
-    title: "유지보수",
-    description: "명확한 책임, 타입 안정성과 자동화된 품질 검증 절차를 중요하게 생각합니다.",
-  },
-];
 ---
 
 <BaseLayout
@@ -71,8 +19,10 @@ const skillGroups = [
     <section id="intro" class="hero-section" aria-labelledby="portfolio-title">
       <div class="site-shell hero-layout">
         <div class="hero-copy">
-          <p class="status-tag">웹 개발자 포지션을 찾고 있습니다</p>
-          <p class="eyebrow">웹 개발자 · 프론트엔드 중심</p>
+          <div class="hero-meta">
+            <p class="status-tag">웹 개발자 포지션을 찾고 있습니다</p>
+            <p class="eyebrow">웹 개발자 · 프론트엔드 중심</p>
+          </div>
           <h1 id="portfolio-title">
             사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.
           </h1>
@@ -85,7 +35,9 @@ const skillGroups = [
             구현·협업·인수인계 경험을 보여드립니다.
           </p>
           <div class="action-list">
-            <a class="button-link" href="mailto:dczwtu12b+portfolio@gmail.com">이메일로 연락하기</a>
+            <a class="button-link" href="mailto:dczwtu12b+portfolio@gmail.com">
+              <span class="button-link__label">이메일로 연락하기</span>
+            </a>
             <a
               class="button-link button-link--secondary"
               href="https://github.com/DragonTiger92/portfolio-ybkim">GitHub 보기</a
@@ -98,22 +50,51 @@ const skillGroups = [
             >
           </div>
         </div>
+
+        <aside class="hero-proof" aria-label="포트폴리오 검토 안내">
+          <div class="hero-proof__brand">
+            <img src="/assets/brand/logo-mark.svg" alt="" width="96" height="96" />
+            <div>
+              <p class="eyebrow">웹 제품 포트폴리오</p>
+              <strong>기획부터 검증까지</strong>
+            </div>
+          </div>
+          <dl>
+            <div>
+              <dt>공개 프로젝트</dt>
+              <dd>3개</dd>
+            </div>
+            <div>
+              <dt>검토 경로</dt>
+              <dd>소스 · 문서 · 배포 결과</dd>
+            </div>
+            <div>
+              <dt>구현 방식</dt>
+              <dd>Astro · TypeScript · CSS</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
     </section>
 
     <section id="projects" class="content-section" aria-labelledby="projects-title">
       <div class="site-shell">
-        <div class="section-heading">
-          <p class="eyebrow">검토 가능한 작업</p>
-          <h2 id="projects-title">프로젝트</h2>
+        <div class="section-heading section-heading--split">
+          <div class="section-heading__title">
+            <p class="eyebrow">검토 가능한 작업</p>
+            <h2 id="projects-title">프로젝트</h2>
+          </div>
           <p>맡은 역할과 해결한 문제, 결과를 빠르게 살펴볼 수 있는 공개 사례입니다.</p>
+          <span class="section-index" aria-hidden="true">01</span>
         </div>
 
         <div class="project-grid">
           {
-            projects.map((project) => (
+            projects.map((project, projectIndex) => (
               <ProjectCard
+                cardNumber={String(projectIndex + 1).padStart(2, "0")}
                 classification={project.data.classification}
+                featured={projectIndex === 0}
                 links={project.data.links}
                 role={project.data.role}
                 slug={project.id}
@@ -133,18 +114,24 @@ const skillGroups = [
       aria-labelledby="professional-highlights-title"
     >
       <div class="site-shell">
-        <div class="section-heading">
-          <p class="eyebrow">실무 경험</p>
-          <h2 id="professional-highlights-title">실무 작업</h2>
+        <div class="section-heading section-heading--split">
+          <div class="section-heading__title">
+            <p class="eyebrow">실무 경험</p>
+            <h2 id="professional-highlights-title">실무 작업</h2>
+          </div>
           <p>
             공개할 수 있는 범위에서 제품 전달, 프론트엔드 기반, 운영 안정성 경험을 정리했습니다.
           </p>
+          <span class="section-index" aria-hidden="true">02</span>
         </div>
 
         <div class="professional-grid">
           {
-            professionalHighlights.map((highlight) => (
+            professionalHighlights.map((highlight, highlightIndex) => (
               <article class="professional-card">
+                <span class="professional-card__index" aria-hidden="true">
+                  {String(highlightIndex + 1).padStart(2, "0")}
+                </span>
                 <div class="professional-card__content">
                   <h3>{highlight.title}</h3>
                   <p>{highlight.description}</p>
@@ -172,10 +159,13 @@ const skillGroups = [
       aria-labelledby="skills-title"
     >
       <div class="site-shell">
-        <div class="section-heading">
-          <p class="eyebrow">핵심 역량</p>
-          <h2 id="skills-title">역량</h2>
+        <div class="section-heading section-heading--split">
+          <div class="section-heading__title">
+            <p class="eyebrow">핵심 역량</p>
+            <h2 id="skills-title">역량</h2>
+          </div>
           <p>도구 목록보다 제품을 전달하는 책임을 중심으로 기술을 설명합니다.</p>
+          <span class="section-index" aria-hidden="true">03</span>
         </div>
 
         <ul class="capability-grid">
@@ -193,10 +183,13 @@ const skillGroups = [
 
     <section id="process" class="content-section" aria-labelledby="process-title">
       <div class="site-shell process-layout">
-        <div class="section-heading">
-          <p class="eyebrow">작업 흐름</p>
-          <h2 id="process-title">작업 방식</h2>
+        <div class="section-heading section-heading--split">
+          <div class="section-heading__title">
+            <p class="eyebrow">작업 흐름</p>
+            <h2 id="process-title">작업 방식</h2>
+          </div>
           <p>작은 제품에서도 의사결정과 검증 근거가 구현과 함께 남도록 합니다.</p>
+          <span class="section-index" aria-hidden="true">04</span>
         </div>
 
         <ol class="process-list">
