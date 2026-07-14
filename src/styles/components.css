@@ -57,14 +57,10 @@
     text-decoration: none;
   }
 
-  .site-identity > span:first-child {
-    display: grid;
+  .site-logo {
     inline-size: var(--target-size-min);
     block-size: var(--target-size-min);
-    place-items: center;
-    color: var(--color-surface);
-    background: var(--color-text);
-    border-radius: 50%;
+    flex: none;
   }
 
   .navigation-list {

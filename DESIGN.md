@@ -24,6 +24,13 @@ another creator's work as project-owned design content.
 - The referenced AI UI coherence article is adapted as a design-system
   discipline: choose a small set of visual axes, encode them as tokens or
   reusable patterns, and avoid inventing local variants for each component.
+- Getdesign's versioned design-analysis approach reinforces keeping rationale,
+  color, typography, spacing, and component decisions together. The selected
+  references contribute a structured blue ramp, restrained technical surfaces,
+  and blueprint-like precision without copying their layouts or assets.
+- Mobbin and Lazyweb are pattern-research indexes. Use them to compare hierarchy,
+  scanning flow, and responsive behavior across real products, never to import a
+  screen, brand expression, or proprietary asset into this portfolio.
 - When adding future design references, record the source, summarize only the
   reusable principle, and keep copied text, imagery, icons, and templates out of
   the project unless their license and attribution obligations are clear.
@@ -32,6 +39,13 @@ References:
 
 - [The Wayland Protocol: Protocol design patterns](https://wayland-book.com/protocol-design/design-patterns.html)
 - [AI가 만든 UI가 어딘가 '어색한' 이유 — 그리고 그걸 고치는 한 가지 원칙](https://dev.to/kiwibreaksme/aiga-mandeun-uiga-eodinga-eosaeghan-iyu-geurigo-geugeol-gocineun-han-gaji-weoncig-5e4p)
+- [Getdesign](https://getdesign.md/), including its
+  [IBM](https://getdesign.md/ibm/design-md),
+  [Together AI](https://getdesign.md/together.ai/design-md),
+  [Cal.com](https://getdesign.md/cal/design-md), and
+  [Vercel](https://getdesign.md/vercel/design-md) analyses
+- [Mobbin](https://mobbin.com/)
+- [Lazyweb](https://www.lazyweb.com/)
 
 ## Product Design Position
 
@@ -131,8 +145,10 @@ CSS must preserve the same content, hierarchy, and actions at other widths.
 
 ### Color
 
-Use the existing green accent family sparingly for identity, primary actions,
-and small emphasis. Keep text, surfaces, and borders on the neutral token ramp.
+Use the owner-provided blue `yb` identity family sparingly for primary actions
+and small emphasis. Keep text, surfaces, and borders on the slate neutral ramp.
+The light and dark token sets must preserve the same hierarchy rather than
+introducing theme-specific component colors.
 
 Do not introduce decorative rainbow accents. Add semantic colors only when the
 interface has a real status meaning such as success, warning, error, or info,
