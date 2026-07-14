@@ -2,20 +2,45 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+interface ProjectNavigationTarget {
+  slug: string;
+  title: string;
+}
 
-  return projects.map((project) => ({
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).sort(
+    (leftProject, rightProject) => leftProject.data.order - rightProject.data.order,
+  );
+  const toNavigationTarget = (
+    project: CollectionEntry<"projects"> | undefined,
+  ): ProjectNavigationTarget | null => {
+    if (!project) {
+      return null;
+    }
+
+    return {
+      slug: project.id,
+      title: project.data.title,
+    };
+  };
+
+  return projects.map((project, projectIndex) => ({
     params: { slug: project.id },
-    props: { project },
+    props: {
+      nextProject: toNavigationTarget(projects[projectIndex + 1]),
+      previousProject: toNavigationTarget(projects[projectIndex - 1]),
+      project,
+    },
   }));
 }
 
 interface Props {
+  nextProject: ProjectNavigationTarget | null;
+  previousProject: ProjectNavigationTarget | null;
   project: CollectionEntry<"projects">;
 }
 
-const { project } = Astro.props;
+const { nextProject, previousProject, project } = Astro.props;
 const { Content } = await render(project);
 ---
 
@@ -33,7 +58,7 @@ const { Content } = await render(project);
       </nav>
 
       <header class="project-header">
-        <p class="eyebrow">{project.data.role}</p>
+        <p class="eyebrow">{project.data.classification}</p>
         <h1>{project.data.title}</h1>
         <p class="project-summary">{project.data.summary}</p>
 
@@ -43,14 +68,14 @@ const { Content } = await render(project);
             <dd>{project.data.role}</dd>
           </div>
           <div>
+            <dt>기여 범위</dt>
+            <dd>{project.data.contribution}</dd>
+          </div>
+          <div>
             <dt>초점</dt>
             <dd>{project.data.focus}</dd>
           </div>
         </dl>
-
-        <ul class="tag-list">
-          {project.data.stack.map((technology) => <li>{technology}</li>)}
-        </ul>
       </header>
 
       <div class="prose">
@@ -60,11 +85,15 @@ const { Content } = await render(project);
       {
         project.data.links.length > 0 && (
           <section class="project-links" aria-labelledby="project-links-title">
-            <h2 id="project-links-title">관련 링크</h2>
+            <h2 id="project-links-title">공개 근거</h2>
+            <p>공개 저장소, 배포 결과와 문서에서 이 프로젝트의 범위와 결과를 확인할 수 있습니다.</p>
             <ul>
-              {project.data.links.map((link) => (
+              {project.data.links.map((link, linkIndex) => (
                 <li>
-                  <a class="button-link" href={link.href}>
+                  <a
+                    class:list={["button-link", { "button-link--secondary": linkIndex > 0 }]}
+                    href={link.href}
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -74,11 +103,34 @@ const { Content } = await render(project);
         )
       }
 
-      <aside class="next-step" aria-labelledby="next-step-title">
-        <h2 id="next-step-title">다음 탐색</h2>
-        <p>다른 프로젝트와 전체 역량은 landing page에서 이어서 볼 수 있습니다.</p>
-        <a class="text-link" href="/#projects">프로젝트 목록으로 이동</a>
-      </aside>
+      <section class="project-stack" aria-labelledby="project-stack-title">
+        <h2 id="project-stack-title">지원 기술</h2>
+        <p>기술은 프로젝트 책임과 결과를 설명하는 보조 근거로 정리했습니다.</p>
+        <ul class="tag-list">
+          {project.data.stack.map((technology) => <li>{technology}</li>)}
+        </ul>
+      </section>
+
+      <section class="project-navigation" aria-labelledby="project-navigation-title">
+        <h2 id="project-navigation-title">프로젝트 더 보기</h2>
+        <div class="project-navigation__links">
+          {
+            previousProject && (
+              <a class="text-link" href={`/projects/${previousProject.slug}/`}>
+                이전 · {previousProject.title}
+              </a>
+            )
+          }
+          <a class="text-link" href="/#projects">전체 프로젝트</a>
+          {
+            nextProject && (
+              <a class="text-link" href={`/projects/${nextProject.slug}/`}>
+                다음 · {nextProject.title}
+              </a>
+            )
+          }
+        </div>
+      </section>
     </article>
   </main>
 </BaseLayout>

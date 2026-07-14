@@ -3,6 +3,30 @@ import { expect, test, type Page } from "@playwright/test";
 
 const routes = ["/", "/projects/portfolio-ybkim/", "/projects/karly/", "/projects/book-kong/"];
 
+const projectEvidence = [
+  {
+    classification: "Portfolio Product",
+    links: [
+      "https://github.com/DragonTiger92/portfolio-ybkim",
+      "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/docs/README.md",
+      "https://github.com/DragonTiger92/portfolio-ybkim/tree/main/docs/adr",
+      "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/docs/planning/product-backlog.md",
+      "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/package.json",
+    ],
+    route: "/projects/portfolio-ybkim/",
+  },
+  {
+    classification: "Public Source Project",
+    links: ["https://github.com/FRONTENDSCHOOL8/Karly", "https://dragontiger92.github.io/Karly/"],
+    route: "/projects/karly/",
+  },
+  {
+    classification: "Public Source Project",
+    links: ["https://github.com/FRONTENDSCHOOL8/Book-Kong", "https://bookong.netlify.app/"],
+    route: "/projects/book-kong/",
+  },
+];
+
 interface TargetSizeFailure {
   height: number;
   label: string;
@@ -121,6 +145,55 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
   await expect(actions.nth(2)).toHaveAccessibleName("이력서 PDF 다운로드");
   await expect(actions.nth(2)).toHaveAttribute("href", "/assets/resume/yb-kim-resume.pdf");
 });
+
+test("presents inspectable public projects and disclosure-safe professional highlights", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const projectCards = page.locator("#projects .project-card");
+
+  await expect(projectCards).toHaveCount(3);
+  await expect(projectCards.locator("h3")).toHaveText(["portfolio-ybkim", "Karly", "Book-Kong"]);
+  await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
+  await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(3);
+  await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(3);
+
+  const professionalCards = page.locator("#professional-highlights .professional-card");
+
+  await expect(professionalCards).toHaveCount(3);
+  await expect(professionalCards.locator("h3")).toHaveText([
+    "학원 정보·상담 웹 서비스",
+    "과학 문항 개념·풀이 논리 구조화 도구",
+    "과학 교육 콘텐츠 제작·검수 플랫폼",
+  ]);
+  await expect(professionalCards.locator("a")).toHaveCount(1);
+  await expect(professionalCards.locator("a")).toHaveAttribute(
+    "href",
+    "https://academy.shine-edu.kr/",
+  );
+});
+
+for (const project of projectEvidence) {
+  test(`${project.route} exposes contribution, public evidence, stack, and navigation`, async ({
+    page,
+  }) => {
+    await page.goto(project.route);
+
+    await expect(page.locator(".project-header .eyebrow")).toHaveText(project.classification);
+    await expect(page.locator(".project-facts dt")).toHaveText(["역할", "기여 범위", "초점"]);
+    await expect(page.locator(".project-links a")).toHaveCount(project.links.length);
+    expect(
+      await page
+        .locator(".project-links a")
+        .evaluateAll((links) => links.map((link) => link.getAttribute("href"))),
+    ).toEqual(project.links);
+    await expect(page.locator(".project-stack .tag-list li").first()).toBeVisible();
+    await expect(page.locator(".project-navigation a[href='/#projects']")).toHaveText(
+      "전체 프로젝트",
+    );
+  });
+}
 
 test("switches and persists the explicit color theme", async ({ page }) => {
   await page.goto("/");

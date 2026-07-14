@@ -1,0 +1,76 @@
+@layer components {
+  .project-grid,
+  .professional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: var(--space-5);
+  }
+
+  .project-card,
+  .professional-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .project-card {
+    min-block-size: 26rem;
+    background: var(--color-surface);
+  }
+
+  .project-card__content,
+  .professional-card__content {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .project-card__summary,
+  .professional-card__content p {
+    color: var(--color-text-muted);
+  }
+
+  .project-card__role {
+    font-size: var(--text-sm);
+    font-weight: 720;
+  }
+
+  .project-card h3 a {
+    display: inline-flex;
+    min-block-size: var(--target-size-min);
+    min-inline-size: var(--target-size-min);
+    align-items: center;
+    color: var(--color-text);
+  }
+
+  .project-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-block-start: auto;
+    padding-block-start: var(--space-3);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .project-card__links .text-link,
+  .professional-card > .text-link {
+    justify-content: flex-start;
+  }
+
+  .professional-section {
+    background: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .professional-card {
+    min-block-size: 20rem;
+    background: var(--color-canvas);
+    border-block-start: 0.2rem solid var(--color-accent);
+  }
+
+  .professional-card .tag-list {
+    margin-block-start: auto;
+  }
+}
