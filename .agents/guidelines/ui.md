@@ -42,8 +42,9 @@ When editing UI:
 - Use `section` and `article` only for independently meaningful content, and give
   each one an accessible heading. Do not add an artificial hidden heading to
   `main`; `main` is a landmark, not sectioning content that requires a heading.
-- Keep heading levels logical. The landing-page `h1` is "개발자 김용범의
-  포트폴리오"; a project-detail page uses its project title as `h1`.
+- Keep heading levels logical. The landing-page `h1` is "사용자가 이해하기 쉬운
+  UI와 오래 관리할 수 있는 웹 제품을 만듭니다."; a project-detail page uses
+  its project title as `h1`.
 - Prefer concise noun phrases for headings when they still describe the content
   accurately and read naturally in a heading outline.
 - Use native `header`, `nav`, `main`, `article`, `section`, `aside`, and `footer`

@@ -106,6 +106,7 @@
 
   .hero-layout {
     display: grid;
+    max-inline-size: 56rem;
     gap: var(--space-7);
   }
 
@@ -114,36 +115,29 @@
     gap: var(--space-4);
   }
 
+  .hero-copy h1 {
+    max-inline-size: none;
+    font-size: clamp(2.5rem, 5vi, 4rem);
+  }
+
   .hero-summary {
-    max-inline-size: 40rem;
+    max-inline-size: var(--prose-max);
     color: var(--color-text-muted);
     font-size: var(--text-lead);
   }
 
-  .availability {
+  .hero-support {
+    max-inline-size: var(--prose-max);
+    color: var(--color-text-muted);
+  }
+
+  .status-tag {
     inline-size: fit-content;
     padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 720;
     background: var(--color-accent-soft);
     border-radius: 999px;
-  }
-
-  .hero-note {
-    padding: var(--space-5);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-  }
-
-  .hero-note h2 {
-    margin-block-end: var(--space-4);
-    font-size: var(--text-h3);
-  }
-
-  .hero-note ol {
-    display: grid;
-    gap: var(--space-3);
-    padding-inline-start: var(--space-5);
   }
 
   .action-list {
@@ -167,10 +161,23 @@
     transform: translateY(-0.12rem);
   }
 
+  .button-link:active {
+    transform: translateY(0);
+  }
+
   .button-link--secondary {
     color: var(--color-text);
     background: transparent;
     border-color: var(--color-border);
+  }
+
+  .button-link--tertiary {
+    padding-inline: var(--space-3);
+    color: var(--color-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    background: transparent;
+    border-color: transparent;
   }
 
   .project-grid,
@@ -318,7 +325,6 @@
   }
 
   @media (min-width: 62rem) {
-    .hero-layout,
     .process-layout {
       grid-template-columns: minmax(0, 1.65fr) minmax(18rem, 0.7fr);
       align-items: end;
