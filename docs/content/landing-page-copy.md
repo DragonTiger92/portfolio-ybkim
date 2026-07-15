@@ -17,7 +17,7 @@ the meaning, hierarchy, and action order intact.
 
 | Element       | Exact Copy                                                                                                                   | Product Role                                                                                    |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Status tag    | `함께할 팀을 찾고 있습니다`                                                                                                  | Recruiter-facing availability cue                                                               |
+| Status field  | `구직 상태` / `구직 중`                                                                                                      | Locale-aware recruiter availability field                                                       |
 | Eyebrow       | `프론트엔드에 강한 웹 개발자`                                                                                                | Compact Korean role framing without leading with a tool list                                    |
 | Page heading  | `웹 개발자 김용범의 포트폴리오`                                                                                              | Concise page identity for the document outline                                                  |
 | Positioning   | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                        | Above-the-fold positioning statement rendered as paragraph copy                                 |
