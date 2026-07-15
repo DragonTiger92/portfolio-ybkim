@@ -20,13 +20,25 @@ interface Props {
 const { cardNumber, classification, featured, links, role, slug, summary, tags, title } =
   Astro.props;
 const cardLinks = links.filter((link) => link.showOnCard);
+const projectMarks: Record<string, string> = {
+  "book-kong": "BK",
+  karly: "K",
+  "portfolio-ybkim": "YB",
+};
+const projectMark = projectMarks[slug] ?? title.slice(0, 2).toUpperCase();
 ---
 
-<article class:list={["project-card", { "project-card--featured": featured }]}>
+<article
+  class:list={["project-card", `project-card--${slug}`, { "project-card--featured": featured }]}
+>
   <div class="project-card__content">
     <div class="project-card__meta">
       <p class="eyebrow">{classification}</p>
       <span aria-hidden="true">{cardNumber}</span>
+    </div>
+    <div class="project-card__identity" aria-hidden="true">
+      <span class="project-card__mark">{projectMark}</span>
+      <span class="project-card__wordmark">{title}</span>
     </div>
     <h3><a href={`/projects/${slug}/`}>{title}</a></h3>
     <p class="project-card__summary">{summary}</p>
