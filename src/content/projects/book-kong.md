@@ -4,10 +4,10 @@ classification: "공개 팀 프로젝트"
 summary: "독서 기록 SPA 팀 리드로 일정과 협업을 조율하고 데이터 사전 로딩·조회 흐름, Storybook 지원 도구, 접근성 도우미를 구현했습니다."
 role: "프론트엔드 담당 · 팀 리드"
 contribution: "팀 리드, 데이터 사전 조회와 조회 흐름, Storybook 지원 도구, 접근성 도우미"
-focus: "컴포넌트 설계, 서버 상태 경험과 팀 단위 작업 조율"
+focus: "컴포넌트 설계, 서버 상태 관리와 팀 단위 작업 조율"
 tags:
   - React
-  - 서버 상태 경험
+  - 서버 상태 관리
   - 팀 리드
 stack:
   - React

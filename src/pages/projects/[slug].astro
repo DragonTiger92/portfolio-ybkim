@@ -109,7 +109,7 @@ const { Content } = await render(project);
 
           <section class="project-stack" aria-labelledby="project-stack-title">
             <h2 id="project-stack-title">지원 기술</h2>
-            <p>기술은 프로젝트 책임과 결과를 설명하는 보조 근거로 정리했습니다.</p>
+            <p>맡은 책임과 결과를 뒷받침하는 기술만 추렸습니다.</p>
             <ul class="tag-list">
               {project.data.stack.map((technology) => <li>{technology}</li>)}
             </ul>
@@ -118,7 +118,7 @@ const { Content } = await render(project);
       </div>
 
       <section class="project-navigation" aria-labelledby="project-navigation-title">
-        <h2 id="project-navigation-title">프로젝트 더 보기</h2>
+        <h2 id="project-navigation-title">다른 프로젝트</h2>
         <div class="project-navigation__links">
           {
             previousProject && (
