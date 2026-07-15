@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
+import { getJobStatusContent } from "../data/job-status";
 import { professionalHighlights, skillGroups } from "../data/landing";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/showcase.css";
@@ -9,6 +10,7 @@ import "../styles/landing-sections.css";
 const projects = (await getCollection("projects")).sort(
   (leftProject, rightProject) => leftProject.data.order - rightProject.data.order,
 );
+const jobStatus = getJobStatusContent("ko", "actively-looking");
 ---
 
 <BaseLayout
@@ -20,7 +22,12 @@ const projects = (await getCollection("projects")).sort(
       <div class="site-shell hero-layout">
         <div class="hero-copy">
           <div class="hero-meta">
-            <p class="status-tag">함께할 팀을 찾고 있습니다</p>
+            <dl class="job-status">
+              <div class="job-status__field">
+                <dt>{jobStatus.fieldLabel}</dt>
+                <dd>{jobStatus.valueLabel}</dd>
+              </div>
+            </dl>
             <p class="eyebrow">프론트엔드에 강한 웹 개발자</p>
           </div>
           <h1 id="portfolio-title">웹 개발자 김용범의 포트폴리오</h1>

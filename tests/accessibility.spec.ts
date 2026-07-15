@@ -106,7 +106,8 @@ for (const route of routes) {
 test("presents the approved first viewport hierarchy", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.locator("#intro .status-tag")).toHaveText("함께할 팀을 찾고 있습니다");
+  await expect(page.locator("#intro .job-status dt")).toHaveText("구직 상태");
+  await expect(page.locator("#intro .job-status dd")).toHaveText("구직 중");
   await expect(page.locator("#intro .hero-meta .eyebrow")).toHaveText(
     "프론트엔드에 강한 웹 개발자",
   );
