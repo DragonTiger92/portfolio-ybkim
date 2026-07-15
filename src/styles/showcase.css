@@ -43,9 +43,19 @@
   }
 
   .hero-copy h1 {
-    max-inline-size: 14ch;
-    font-size: clamp(2.6rem, 6vi, 5rem);
-    line-height: 0.98;
+    max-inline-size: none;
+    color: var(--color-accent-strong);
+    font-size: var(--text-h3);
+    line-height: 1.2;
+  }
+
+  .hero-positioning {
+    max-inline-size: 18ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 5vi, 4.4rem);
+    font-weight: 760;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
   }
 
   .hero-summary {

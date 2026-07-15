@@ -1,11 +1,26 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
+import {
+  getHeadingOutline,
+  getTargetSizeFailures,
+  getUntitledSectioningElements,
+} from "./helpers/semantics";
 
 const routes = ["/", "/projects/portfolio-ybkim/", "/projects/karly/", "/projects/book-kong/"];
 
 const projectEvidence = [
   {
     classification: "포트폴리오 제품",
+    headings: [
+      "portfolio-ybkim",
+      "해결 과제",
+      "기여 경계",
+      "구현 접근",
+      "결과",
+      "공개 근거",
+      "지원 기술",
+      "다른 프로젝트",
+    ],
     links: [
       "https://github.com/DragonTiger92/portfolio-ybkim",
       "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/docs/README.md",
@@ -17,64 +32,35 @@ const projectEvidence = [
   },
   {
     classification: "공개 팀 프로젝트",
+    headings: [
+      "Karly",
+      "프로젝트 맥락",
+      "기여 경계",
+      "구현 접근",
+      "결과",
+      "공개 근거",
+      "지원 기술",
+      "다른 프로젝트",
+    ],
     links: ["https://github.com/FRONTENDSCHOOL8/Karly", "https://dragontiger92.github.io/Karly/"],
     route: "/projects/karly/",
   },
   {
     classification: "공개 팀 프로젝트",
+    headings: [
+      "Book-Kong",
+      "프로젝트 맥락",
+      "기여 경계",
+      "구현 접근",
+      "결과",
+      "공개 근거",
+      "지원 기술",
+      "다른 프로젝트",
+    ],
     links: ["https://github.com/FRONTENDSCHOOL8/Book-Kong", "https://bookong.netlify.app/"],
     route: "/projects/book-kong/",
   },
 ];
-
-interface TargetSizeFailure {
-  height: number;
-  label: string;
-  width: number;
-}
-
-async function getTargetSizeFailures(page: Page) {
-  return page.evaluate<TargetSizeFailure[]>(() => {
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>('a, button, input, select, textarea, [role="button"]'),
-    );
-
-    function inspectTarget(target: HTMLElement): TargetSizeFailure | null {
-      const rectangle = target.getBoundingClientRect();
-      const isVisible = rectangle.width > 0 && rectangle.height > 0;
-      const isLargeEnough = rectangle.width >= 44 && rectangle.height >= 44;
-
-      if (!isVisible || isLargeEnough) {
-        return null;
-      }
-
-      const targetName = target.getAttribute("aria-label") ?? target.innerText.trim();
-
-      return {
-        height: Math.round(rectangle.height),
-        label: targetName || target.tagName,
-        width: Math.round(rectangle.width),
-      };
-    }
-
-    return targets.map(inspectTarget).filter((failure) => failure !== null);
-  });
-}
-
-async function getUntitledSectioningElements(page: Page) {
-  return page.evaluate<string[]>(() => {
-    const containers = Array.from(document.querySelectorAll<HTMLElement>("section, article"));
-
-    return containers.flatMap((container) => {
-      const headings = Array.from(container.querySelectorAll("h1, h2, h3, h4, h5, h6"));
-      const ownsHeading = headings.some(
-        (heading) => heading.closest("section, article") === container,
-      );
-
-      return ownsHeading ? [] : [container.id || container.className || container.tagName];
-    });
-  });
-}
 
 for (const route of routes) {
   test.describe(route, () => {
@@ -87,9 +73,7 @@ for (const route of routes) {
       await expect(page.locator("h1")).toHaveCount(1);
 
       if (route === "/") {
-        await expect(page.locator("h1")).toHaveText(
-          "사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.",
-        );
+        await expect(page.locator("h1")).toHaveText("웹 개발자 김용범의 포트폴리오");
       }
     });
 
@@ -122,12 +106,15 @@ for (const route of routes) {
 test("presents the approved first viewport hierarchy", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.locator("#intro .status-tag")).toHaveText("웹 개발자 포지션을 찾고 있습니다");
+  await expect(page.locator("#intro .status-tag")).toHaveText("함께할 팀을 찾고 있습니다");
   await expect(page.locator("#intro .hero-meta .eyebrow")).toHaveText(
-    "웹 개발자 · 프론트엔드 중심",
+    "프론트엔드에 강한 웹 개발자",
+  );
+  await expect(page.locator("#intro .hero-positioning")).toHaveText(
+    "사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.",
   );
   await expect(page.locator("#intro .hero-summary")).toHaveText(
-    "프론트엔드 구현을 중심으로 데이터 흐름, 문서화, 검증 가능한 결과물을 함께 정리하는 개발자 김용범입니다.",
+    "프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.",
   );
 
   const actions = page.locator("#intro .action-list a");
@@ -147,6 +134,29 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
   await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("실무 경험");
   await expect(page.locator("#skills .eyebrow")).toHaveText("핵심 역량");
   await expect(page.locator("#process .eyebrow")).toHaveText("작업 흐름");
+});
+
+test("exposes a concise landing-page heading outline", async ({ page }) => {
+  await page.goto("/");
+
+  expect(await getHeadingOutline(page)).toEqual([
+    { level: 1, text: "웹 개발자 김용범의 포트폴리오" },
+    { level: 2, text: "프로젝트" },
+    { level: 3, text: "portfolio-ybkim" },
+    { level: 3, text: "Karly" },
+    { level: 3, text: "Book-Kong" },
+    { level: 2, text: "실무 작업" },
+    { level: 3, text: "학원 정보·상담 웹 서비스" },
+    { level: 3, text: "과학 문항 개념·풀이 논리 구조화 도구" },
+    { level: 3, text: "과학 교육 콘텐츠 제작·검수 플랫폼" },
+    { level: 2, text: "역량" },
+    { level: 3, text: "프론트엔드 구현" },
+    { level: 3, text: "제품 전달" },
+    { level: 3, text: "통합 이해" },
+    { level: 3, text: "유지보수" },
+    { level: 2, text: "작업 방식" },
+    { level: 2, text: "저장소" },
+  ]);
 });
 
 test("presents inspectable public projects and disclosure-safe professional highlights", async ({
@@ -194,6 +204,9 @@ for (const project of projectEvidence) {
     await expect(page.locator(".project-stack .tag-list li").first()).toBeVisible();
     await expect(page.locator(".project-navigation a[href='/#projects']")).toHaveText(
       "전체 프로젝트",
+    );
+    expect((await getHeadingOutline(page)).map((heading) => heading.text)).toEqual(
+      project.headings,
     );
   });
 }
