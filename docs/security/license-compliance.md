@@ -70,6 +70,27 @@ license credentials.
   pattern, token CSS, and English social preview remain outside the production
   asset tree.
 
+### Pretendard Variable web font
+
+- **Item:** Pretendard Variable dynamic subset loaded by the portfolio pages.
+- **Material Type:** externally loaded font and stylesheet.
+- **Source:** the official
+  [Pretendard repository](https://github.com/orioncactus/pretendard) distributed
+  through jsDelivr at the version-pinned `v1.3.9` release path.
+- **Author or Supplier:** Kil Hyung-jin and Pretendard contributors; jsDelivr
+  supplies the CDN response.
+- **Version or Date:** `v1.3.9`, reviewed on 2026-07-15.
+- **License:** SIL Open Font License 1.1.
+- **Modifications:** none. The site requests the official variable dynamic
+  subset stylesheet and keeps system-font fallbacks in its typography tokens.
+- **Obligations:** retain the license and copyright notice when redistributing
+  font files. This repository does not redistribute the font binary.
+- **Notice Location:** this register; the upstream repository contains the
+  applicable license text.
+- **Evidence:** the upstream release README, license file, and exact CDN URL in
+  `src/layouts/BaseLayout.astro`.
+- **Disposition:** Approved for external loading at the pinned release path.
+
 ## Review Workflow
 
 1. Inventory third-party material when it enters the repository, not only at
