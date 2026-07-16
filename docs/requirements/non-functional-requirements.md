@@ -72,6 +72,31 @@ without unnecessary runtime dependencies or client-side data fetching.
 - Confirm `pnpm.cmd build` succeeds before release.
 - Prefer static content over client-side data fetching for portfolio copy.
 
+### NFR-002 Phase 2 Static Build Budget
+
+`pnpm.cmd validate:static-budget` enforces these deterministic raw-byte limits
+against the generated `dist/` directory:
+
+| Metric                                       |   Limit |
+| -------------------------------------------- | ------: |
+| Largest HTML document                        |  24 KiB |
+| Aggregate HTML                               |  48 KiB |
+| Aggregate CSS                                |  32 KiB |
+| Emitted plus executable inline JavaScript    |   8 KiB |
+| Aggregate non-download output, excluding PDF | 160 KiB |
+| Largest individual non-download file         |  64 KiB |
+| Public resume PDF                            | 600 KiB |
+
+The budget measures uncompressed same-origin build output. It does not claim to
+measure CDN responses, transfer compression, cache behavior, external font
+payloads, latency, or Core Web Vitals. Collect a non-blocking Lighthouse
+baseline from the real Cloudflare preview or production origin during PH-003,
+then promote only stable, repeatedly observed network metrics to a gate.
+
+Treat a threshold change as a reviewed rebaseline with measured evidence. Do
+not silently raise a limit to accommodate a regression. Route-count or locale
+expansion may justify a new aggregate baseline while preserving per-file limits.
+
 ## NFR-003: Inspectable And Verifiable Project Structure
 
 | Field               | Value                                         |

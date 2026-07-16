@@ -61,8 +61,9 @@ public branch naming convention instead.
 `pnpm check:docs` includes warning-free Markdown linting, strict documentation
 file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
 `AGENTS.md`. `pnpm check:static` includes warning-free type checking and
-linting, strict file size, governance tests, formatting, the Astro production
-build, HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
+linting, strict maintained-file size, governance and static-budget tests,
+formatting, the Astro production build, deterministic `dist/` budget validation,
+HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
 axe-core browser checks, including semantic structure and 44-by-44 CSS-pixel
 target checks. Terraform planning and apply are deliberately absent from pull
 requests until durable remote state and owner credentials are configured.
