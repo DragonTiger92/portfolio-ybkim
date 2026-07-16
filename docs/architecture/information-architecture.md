@@ -18,16 +18,15 @@ canonical production URL exists.
 
 ## Sitemap
 
-| Surface                    | URL or anchor       | Purpose                                           | Primary visitor question                            |
-| -------------------------- | ------------------- | ------------------------------------------------- | --------------------------------------------------- |
-| Landing page               | `/`                 | Main discovery surface for the whole portfolio    | Who is this developer and why should I continue?    |
-| Intro                      | `/#intro`           | First-viewport positioning and primary actions    | Is the role fit clear within a few seconds?         |
-| Project showcase           | `/#projects`        | Scannable evidence list with project entry points | Which project is most relevant to review first?     |
-| Project detail             | `/projects/{slug}/` | First-depth case-study evidence                   | What did this project prove, and where is evidence? |
-| Skills                     | `/#skills`          | Capability groups by delivery responsibility      | What strengths support the portfolio claims?        |
-| Process                    | `/#process`         | Working style and quality signal                  | How does this developer approach delivery?          |
-| Repository                 | `/#repository`      | Source, docs, and quality-gate inspection path    | Can I inspect how the project is managed?           |
-| Repository/contact actions | External links      | Recruiter and reviewer next actions               | Where can I continue the conversation or review?    |
+| Surface                 | URL or anchor               | Purpose                                           | Primary visitor question                            |
+| ----------------------- | --------------------------- | ------------------------------------------------- | --------------------------------------------------- |
+| Landing page            | `/`                         | Main discovery surface for the whole portfolio    | Who is this developer and why should I continue?    |
+| Intro                   | `/#intro`                   | First-viewport positioning and primary actions    | Is the role fit clear within a few seconds?         |
+| Project showcase        | `/#projects`                | Scannable evidence list with project entry points | Which project is most relevant to review first?     |
+| Project detail          | `/projects/{slug}/`         | First-depth case-study evidence                   | What did this project prove, and where is evidence? |
+| Skills                  | `/#skills`                  | Capability groups by delivery responsibility      | What strengths support the portfolio claims?        |
+| Process                 | `/#process`                 | Working style and quality signal                  | How does this developer approach delivery?          |
+| Profile/contact actions | External links and controls | Recruiter and reviewer next actions               | Where can I continue the conversation or review?    |
 
 Section anchors are navigation waypoints, not independent page routes. Add a
 new top-level route only when the content needs a durable page title,
@@ -39,17 +38,23 @@ description, shareable URL, or a substantially different review task.
   concrete route-level need.
 - Keep project details under `/projects/{slug}/` and generate them from the
   typed Astro content collection.
+- Keep public repository links within the corresponding project card or detail
+  evidence surface. A broad `GitHub` label points to the owner's profile rather
+  than a project repository.
 - Preserve static output and trailing slash behavior from the Astro
   configuration.
 - Do not add `/about`, `/skills`, `/contact`, or `/resume` by default. Use
   anchors or external links until the content volume and sharing need justify a
   separate route.
-- Select public contact and resume destinations in `PBI-006`; do not invent a
-  placeholder route before the disclosure and rights boundaries are clear.
-- Use the contact destinations selected in
-  [Portfolio Content Source](../content/portfolio-content-source.md): main Gmail
-  plus alias first, then Cloudflare-routed domain email after Phase 3 domain
-  setup. This does not require a separate contact route.
+- Use the public contact and resume destinations selected in `PBI-006`; do not
+  invent a placeholder route unless the content volume and sharing need
+  justify it.
+- Keep those contact destinations aligned with
+  [Portfolio Content Source](../content/portfolio-content-source.md): a
+  browser-based Gmail compose action plus a visible, copyable portfolio email
+  fallback first, then Cloudflare-routed domain email after Phase 3 domain
+  setup. This does not require a separate contact route or an operating-system
+  mail-client association.
 
 ## Post-launch Analytics Scope
 

@@ -26,36 +26,79 @@ and the public content sources when implementing `PH-002`.
 - Do not expose private professional source, internal names, private URLs,
   credentials, endpoints, screenshots, or confidential architecture.
 
+## Header Hierarchy
+
+Use one visible home-link wordmark, `김용범 포트폴리오`, rather than a
+heading-and-description identity lockup. At desktop widths, let the GNB use the
+available header space so `프로젝트`, `역량`, and `작업 방식` have
+comfortable separation instead of clustering beside the wordmark.
+
+Keep the theme control visible, keyboard-accessible, and fully operable, but
+style it as a neutral secondary utility. It must not use the same visual weight
+as the site identity, primary contact action, or other recruiter-critical
+features. Preserve the same priority and usable target sizes when the header
+reflows at narrower widths.
+
 ## Landing Page Section Order
 
 1. Intro / first viewport.
 2. Public project showcase.
 3. Professional highlights.
 4. Skills and delivery capabilities.
-5. Process and repository review path.
+5. Process and delivery review path.
 6. Contact and footer.
 
 ## First Viewport Layout
 
 ```txt
 ┌──────────────────────────────────────────────────────┐
-│ status tag                                           │
-│ Web Developer · Frontend-focused delivery             │
+│ static metadata: 구직 상태 · 구직 중                 │
+│ 프론트엔드에 강한 웹 개발자                          │
 │                                                      │
-│ H1: 사용자 이해 + 유지보수 가능한 웹 제품             │
-│ Lead: frontend-centered delivery, data flow, docs, QA │
+│ H1: 웹 개발자 김용범의 포트폴리오                    │
+│ Positioning: 사용자가 이해하기 쉬운 UI와              │
+│              오래 관리할 수 있는 웹 제품을 만듭니다. │
+│ Lead + public-project / professional-summary boundary │
 │                                                      │
-│ [이메일로 연락하기] [GitHub 보기] [이력서 PDF]        │
+│ [Gmail에서 메일 쓰기] [이메일 주소 복사]              │
+│ [GitHub 프로필] [이력서 PDF]                          │
 └──────────────────────────────────────────────────────┘
 ```
 
-- Primary CTA: `이메일로 연락하기`.
-- Secondary CTA: `GitHub 보기`.
+- Render `구직 상태` / `구직 중` as static metadata, not as a toggle,
+  button, switch, or selectable control.
+- Keep the positioning statement as paragraph content with restrained type
+  scale and readable line length. Apply small, non-color-only emphasis only to
+  `이해하기 쉬운 UI` and `오래 관리할 수 있는 웹 제품`.
+- Preserve the exact intro, PBI-055 publication-boundary, review-guide, and CTA
+  copy. PBI-054 changes presentation hierarchy, not content scope or action
+  destinations.
+- Primary CTA: `Gmail에서 메일 쓰기` in a new browser context with the public
+  portfolio email pre-addressed.
+- Contact fallback: keep the email address visible and copyable through
+  `이메일 주소 복사`, with clear interaction feedback.
+- Secondary CTA: `GitHub 프로필` in a new browser context, targeting the owner's
+  GitHub profile.
 - Tertiary CTA: `이력서 PDF`.
-- Keep source-repository review visible near the first viewport, but do not make
-  it compete with the recruiter contact action.
+- Keep the `portfolio-ybkim` source repository within that project's card and
+  detail evidence. Do not repeat it as a broad first-viewport, standalone
+  repository-section, or footer action.
 - Do not add a separate contact route or resume route for the first
   implementation.
+
+Pair the intro with one compact, portfolio-wide review guide:
+
+- eyebrow: `포트폴리오 검토 안내`;
+- title: `공개 근거와 경험 요약`;
+- `공개 프로젝트`: the three projects whose source or result can be
+  inspected;
+- `실무 경험`: the three disclosure-safe professional summaries;
+- `검토 순서`: `프로젝트 → 실무 경험 → 역량 → 작업 방식`.
+
+Use a named complementary `aside` with a definition list so each label and
+value remains explicit. Derive counts from the rendered data. Do not mix a
+portfolio-wide label with project-specific implementation details such as the
+`portfolio-ybkim` technology stack.
 
 ## Project Showcase Structure
 
@@ -65,13 +108,23 @@ Render three public-source project cards in this order:
 2. `Karly`.
 3. `Book-Kong`.
 
+Frame the section with `공개 프로젝트` / `프로젝트` and explain that the
+three cards expose source or deployment results, owner role, implementation
+scope, and public evidence.
+
 Each card should include:
 
 - project title;
 - short summary from [Landing Page Copy](../content/landing-page-copy.md);
+- owner role;
 - compact tags or capability cues;
 - detail-page link;
 - public repository and demo links where available and rechecked.
+
+Use the project title and reviewable content as each card's identity. Do not add
+initial-based marks, duplicate wordmarks, logo-like placeholders, or another
+decorative panel solely to fill space. A real project logo or screenshot
+requires a separate rights and asset review before publication.
 
 Project cards should make the source-review path obvious without forcing every
 card into the same link set. `portfolio-ybkim` should emphasize repository,
@@ -94,17 +147,22 @@ The academy highlight may link its public product URL. The other two
 professional highlights should not expose private URLs, source, routes,
 screenshots, workflows, or internal names.
 
-## Skills, Process, Repository, Contact, Footer Flow
+Frame this section with `공개 범위로 요약` / `실무 경험`. Explain that
+private material and internal details are excluded, and give every highlight
+the visible `실무 경험 · 공개 범위 요약` scope cue so it is not mistaken for
+an inspectable public-source case study.
+
+## Skills, Process, Contact, Footer Flow
 
 - Skills: use responsibility-centered groups from Portfolio Content Source,
   not a proficiency-ranked tool list.
 - Process: show planning, implementation, verification, documentation, and
   handoff as delivery habits.
-- Repository: provide a technical-review path to source, docs, ADRs, backlog,
-  and quality-gate history.
-- Contact: keep email primary, GitHub/repository secondary, and resume download
-  available.
-- Footer: include GitHub, email, resume, rights notice, and production URL only
+- Contact: keep Gmail web compose primary, provide a visible and copyable email
+  fallback, use the GitHub profile as the secondary broad action, and keep the
+  resume download available.
+- Footer: keep the rights notice and GitHub profile visible without duplicating
+  the first-viewport email and resume actions. Add the production URL only
   after the Phase 3 decision exists.
 
 ## Project Detail Template

@@ -1,6 +1,15 @@
+---
+import { publicContact } from "../data/contact";
+---
+
 <footer class="site-footer">
   <div class="site-shell footer-layout">
     <p>© 2026 YB Kim. All rights reserved.</p>
-    <a href="https://github.com/DragonTiger92/portfolio-ybkim">GitHub</a>
+    <a
+      href={publicContact.githubProfileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub 프로필 보기(새 창)">GitHub 프로필 <span aria-hidden="true">↗</span></a
+    >
   </div>
 </footer>

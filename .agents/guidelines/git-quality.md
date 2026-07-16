@@ -70,10 +70,11 @@ check when possible:
 pnpm.cmd check
 ```
 
-The check runs type checking, strict linting, strict file-size validation,
-governance and file-size tests, formatting verification, the production Astro
-build, strict HTML checks, W3C Nu validation, and browser accessibility tests in
-fail-fast order. After it passes, do not rerun every component command separately.
+The check runs type checking, strict linting, strict maintained-file validation,
+governance, file-size, and static-budget tests, formatting verification, the
+production Astro build, deterministic `dist/` budget validation, strict HTML
+checks, W3C Nu validation, and browser accessibility tests in fail-fast order.
+After it passes, do not rerun every component command separately.
 
 For a documentation-only iteration that only touches `docs/`, `.agents/`, or
 `AGENTS.md`, use the focused docs check for the active feedback loop:
@@ -97,8 +98,10 @@ pnpm.cmd lint:strict
 pnpm.cmd lint:size:strict
 pnpm.cmd test:governance
 pnpm.cmd test:file-size
+pnpm.cmd test:static-budget
 pnpm.cmd format:check
 pnpm.cmd build:bundle
+pnpm.cmd validate:static-budget
 pnpm.cmd validate:html:strict
 pnpm.cmd validate:standards:strict
 pnpm.cmd test:a11y

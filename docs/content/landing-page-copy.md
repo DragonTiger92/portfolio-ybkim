@@ -15,17 +15,78 @@ Use the following first-viewport copy as the Phase 2 implementation seed. The
 implementation may adjust line breaks for responsive layout, but it should keep
 the meaning, hierarchy, and action order intact.
 
-| Element       | Exact Copy                                                                                                                   | Product Role                                                                                    |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Status field  | `구직 상태` / `구직 중`                                                                                                      | Locale-aware recruiter availability field                                                       |
-| Eyebrow       | `프론트엔드에 강한 웹 개발자`                                                                                                | Compact Korean role framing without leading with a tool list                                    |
-| Page heading  | `웹 개발자 김용범의 포트폴리오`                                                                                              | Concise page identity for the document outline                                                  |
-| Positioning   | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                        | Above-the-fold positioning statement rendered as paragraph copy                                 |
-| Lead          | `프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.` | Human-readable summary of UI care, maintainability, and verification                            |
-| Support copy  | `Astro로 만든 이 사이트와 Karly, Book-Kong, 공개 가능한 실무 작업에 구현·협업·인수인계 경험을 담았습니다.`                   | Evidence bridge into project showcase and professional highlights                               |
-| Primary CTA   | `이메일로 연락하기`                                                                                                          | Recruiter contact through the ready public portfolio email                                      |
-| Secondary CTA | `GitHub 보기`                                                                                                                | Technical reviewer path to public source and contribution history                               |
-| Tertiary CTA  | `이력서 PDF`                                                                                                                 | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
+| Element          | Exact Copy                                                                                                                                                       | Product Role                                                                                    |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Status field     | `구직 상태` / `구직 중`                                                                                                                                          | Locale-aware recruiter availability field                                                       |
+| Eyebrow          | `프론트엔드에 강한 웹 개발자`                                                                                                                                    | Compact Korean role framing without leading with a tool list                                    |
+| Page heading     | `웹 개발자 김용범의 포트폴리오`                                                                                                                                  | Concise page identity for the document outline                                                  |
+| Positioning      | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                                                            | Above-the-fold positioning statement rendered as paragraph copy                                 |
+| Lead             | `프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.`                                     | Human-readable summary of UI care, maintainability, and verification                            |
+| Support copy     | `Astro로 만든 이 포트폴리오와 Karly, Book-Kong은 소스와 결과를 확인할 수 있는 공개 프로젝트입니다. 실무 경험은 공개 가능한 범위에서 역할과 기여를 요약했습니다.` | Distinguishes inspectable public projects from disclosure-safe professional summaries           |
+| Primary CTA      | `Gmail에서 메일 쓰기`                                                                                                                                            | Browser-based recruiter contact through the ready public portfolio email                        |
+| Contact fallback | `이메일 주소 복사`                                                                                                                                               | Visible, copyable contact path that does not depend on a configured default mail client         |
+| Secondary CTA    | `GitHub 프로필`                                                                                                                                                  | Owner GitHub profile and contribution overview                                                  |
+| Tertiary CTA     | `이력서 PDF`                                                                                                                                                     | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
+
+## Header And Hero Presentation Contract
+
+Keep the exact first-viewport copy above while refining its visual hierarchy:
+
+| Surface               | Visible Content                                                       | Presentation Contract                                                                                                     |
+| --------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Header wordmark       | `김용범 포트폴리오`                                                   | Present one concise site title rather than a heading-and-description lockup                                               |
+| Global navigation     | `프로젝트`, `역량`, `작업 방식`                                       | Use the available desktop width so the three destinations remain comfortably separated and easy to scan                   |
+| Theme control         | Existing light/dark mode action                                       | Keep it discoverable and fully operable, but visually secondary to identity, navigation, and recruiter actions            |
+| Job-status metadata   | `구직 상태` / `구직 중`                                               | Render static profile metadata; do not style or expose it as a toggle, button, switch, or selectable control              |
+| Positioning statement | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.` | Keep paragraph semantics and restrained sizing; visually accent only `이해하기 쉬운 UI` and `오래 관리할 수 있는 웹 제품` |
+
+The two positioning accents may use restrained color, weight, or an inline
+surface treatment, but they must preserve the sentence's reading order and
+remain understandable without color. Do not enlarge the positioning statement
+until it dominates the first viewport or makes the supporting copy feel like a
+separate page.
+
+Open `Gmail에서 메일 쓰기` in a new browser context with the public portfolio
+email pre-addressed. Keep the email address visible and copyable through
+`이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 프로필`
+in a new browser context and point it to the owner's GitHub profile. Keep the
+`portfolio-ybkim` source repository link within that project's card and detail
+evidence rather than repeating it as a broad landing-page action.
+
+## First Viewport Review Guide
+
+Render the hero review guide as complementary portfolio-wide context. Every
+definition row must describe the whole landing-page review path rather than mix
+portfolio-wide counts with one project's implementation details. Derive the two
+counts from the rendered project and professional-highlight data so they do not
+become stale.
+
+| Element                    | Exact Copy                                | Scope                                      |
+| -------------------------- | ----------------------------------------- | ------------------------------------------ |
+| Review-guide eyebrow       | `포트폴리오 검토 안내`                    | Names the complementary first-viewport cue |
+| Review-guide title         | `공개 근거와 경험 요약`                   | Frames the two publication boundaries      |
+| Public-project label       | `공개 프로젝트`                           | Inspectable public-source work             |
+| Public-project value       | `3개 · 소스와 결과 확인 가능`             | Count plus reviewable evidence boundary    |
+| Professional-summary label | `실무 경험`                               | Disclosure-safe professional work          |
+| Professional-summary value | `3개 · 공개 가능한 범위로 요약`           | Count plus publication boundary            |
+| Review-order label         | `검토 순서`                               | Portfolio-wide reading path                |
+| Review-order value         | `프로젝트 → 실무 경험 → 역량 → 작업 방식` | Matches the landing-page section order     |
+
+Do not put a project-specific tool list such as `Astro · TypeScript · CSS` in
+this portfolio-wide guide. Keep project-specific implementation evidence inside
+the corresponding project card and detail.
+
+## Landing Section Scope Copy
+
+| Element                          | Exact Copy                                                                                                                        |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Public-project eyebrow           | `공개 프로젝트`                                                                                                                   |
+| Public-project heading           | `프로젝트`                                                                                                                        |
+| Public-project description       | `소스 또는 배포 결과를 확인할 수 있는 세 프로젝트입니다. 각 카드에서 맡은 역할과 구현 범위, 공개 근거를 함께 살펴볼 수 있습니다.` |
+| Professional-summary eyebrow     | `공개 범위로 요약`                                                                                                                |
+| Professional-summary heading     | `실무 경험`                                                                                                                       |
+| Professional-summary description | `비공개 자료와 내부 세부사항은 제외하고, 공개 가능한 범위에서 확인된 역할과 기여를 요약했습니다.`                                 |
+| Professional-card scope label    | `실무 경험 · 공개 범위 요약`                                                                                                      |
 
 Do not add a phone number, home address, production URL, or custom-domain email
 to the first viewport before the relevant Phase 3 decisions. Do not rewrite the
@@ -93,4 +154,6 @@ Professional highlights should appear as a separate section below the
 public-source showcase. They may use the public-safe labels from
 [Portfolio Content Source](portfolio-content-source.md#project-source-data), but
 they must not be promoted as inspectable source-code case studies unless a later
-disclosure review approves a public route, screenshot, or source artifact.
+disclosure review approves a public route, screenshot, or source artifact. Keep
+the visible `실무 경험 · 공개 범위 요약` scope label on every professional
+highlight so each item remains understandable outside the surrounding section.

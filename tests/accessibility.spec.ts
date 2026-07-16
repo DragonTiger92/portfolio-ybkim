@@ -17,7 +17,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -38,7 +38,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -53,7 +53,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -118,21 +118,11 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
     "프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.",
   );
 
-  const actions = page.locator("#intro .action-list a");
+  await expect(page.locator("#intro .action-list a")).toHaveCount(3);
+  await expect(page.getByRole("button", { name: "주소 복사" })).toBeVisible();
 
-  await expect(actions).toHaveCount(3);
-  await expect(actions.nth(0)).toHaveText("이메일로 연락하기");
-  await expect(actions.nth(0)).toHaveAttribute("href", "mailto:dczwtu12b+portfolio@gmail.com");
-  await expect(actions.nth(1)).toHaveText("GitHub 보기");
-  await expect(actions.nth(1)).toHaveAttribute(
-    "href",
-    "https://github.com/DragonTiger92/portfolio-ybkim",
-  );
-  await expect(actions.nth(2)).toHaveAccessibleName("이력서 PDF 다운로드");
-  await expect(actions.nth(2)).toHaveAttribute("href", "/assets/resume/yb-kim-resume.pdf");
-
-  await expect(page.locator("#projects .eyebrow").first()).toHaveText("검토 가능한 작업");
-  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("실무 경험");
+  await expect(page.locator("#projects .eyebrow").first()).toHaveText("공개 프로젝트");
+  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("공개 범위로 요약");
   await expect(page.locator("#skills .eyebrow")).toHaveText("핵심 역량");
   await expect(page.locator("#process .eyebrow")).toHaveText("작업 흐름");
 });
@@ -146,7 +136,7 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
     { level: 3, text: "portfolio-ybkim" },
     { level: 3, text: "Karly" },
     { level: 3, text: "Book-Kong" },
-    { level: 2, text: "실무 작업" },
+    { level: 2, text: "실무 경험" },
     { level: 3, text: "학원 정보·상담 웹 서비스" },
     { level: 3, text: "과학 문항 개념·풀이 논리 구조화 도구" },
     { level: 3, text: "과학 교육 콘텐츠 제작·검수 플랫폼" },
@@ -156,7 +146,6 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
     { level: 3, text: "통합 이해" },
     { level: 3, text: "유지보수" },
     { level: 2, text: "작업 방식" },
-    { level: 2, text: "저장소" },
   ]);
 });
 
@@ -172,7 +161,6 @@ test("presents inspectable public projects and disclosure-safe professional high
   await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
   await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(3);
   await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(3);
-
   const professionalCards = page.locator("#professional-highlights .professional-card");
 
   await expect(professionalCards).toHaveCount(3);
@@ -196,6 +184,12 @@ for (const project of projectEvidence) {
 
     await expect(page.locator(".project-header .eyebrow")).toHaveText(project.classification);
     await expect(page.locator(".project-facts dt")).toHaveText(["역할", "기여 범위", "초점"]);
+    await expect(page.locator(".project-supporting")).toHaveAccessibleName(
+      "프로젝트 검토 링크와 지원 기술",
+    );
+    await expect(page.locator(".project-links > p")).toHaveText(
+      "제공된 저장소, 배포 또는 문서 링크에서 이 프로젝트의 범위와 결과를 확인할 수 있습니다.",
+    );
     await expect(page.locator(".project-links a")).toHaveCount(project.links.length);
     expect(
       await page
