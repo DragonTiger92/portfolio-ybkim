@@ -32,7 +32,7 @@ and the public content sources when implementing `PH-002`.
 2. Public project showcase.
 3. Professional highlights.
 4. Skills and delivery capabilities.
-5. Process and repository review path.
+5. Process and delivery review path.
 6. Contact and footer.
 
 ## First Viewport Layout
@@ -45,15 +45,21 @@ and the public content sources when implementing `PH-002`.
 │ H1: 사용자 이해 + 유지보수 가능한 웹 제품             │
 │ Lead: frontend-centered delivery, data flow, docs, QA │
 │                                                      │
-│ [이메일로 연락하기] [GitHub 보기] [이력서 PDF]        │
+│ [Gmail에서 메일 쓰기] [이메일 주소 복사]              │
+│ [GitHub 보기] [이력서 PDF]                            │
 └──────────────────────────────────────────────────────┘
 ```
 
-- Primary CTA: `이메일로 연락하기`.
-- Secondary CTA: `GitHub 보기`.
+- Primary CTA: `Gmail에서 메일 쓰기` in a new browser context with the public
+  portfolio email pre-addressed.
+- Contact fallback: keep the email address visible and copyable through
+  `이메일 주소 복사`, with clear interaction feedback.
+- Secondary CTA: `GitHub 보기` in a new browser context, targeting the owner's
+  GitHub profile.
 - Tertiary CTA: `이력서 PDF`.
-- Keep source-repository review visible near the first viewport, but do not make
-  it compete with the recruiter contact action.
+- Keep the `portfolio-ybkim` source repository within that project's card and
+  detail evidence. Do not repeat it as a broad first-viewport, standalone
+  repository-section, or footer action.
 - Do not add a separate contact route or resume route for the first
   implementation.
 
@@ -94,18 +100,17 @@ The academy highlight may link its public product URL. The other two
 professional highlights should not expose private URLs, source, routes,
 screenshots, workflows, or internal names.
 
-## Skills, Process, Repository, Contact, Footer Flow
+## Skills, Process, Contact, Footer Flow
 
 - Skills: use responsibility-centered groups from Portfolio Content Source,
   not a proficiency-ranked tool list.
 - Process: show planning, implementation, verification, documentation, and
   handoff as delivery habits.
-- Repository: provide a technical-review path to source, docs, ADRs, backlog,
-  and quality-gate history.
-- Contact: keep email primary, GitHub/repository secondary, and resume download
-  available.
-- Footer: include GitHub, email, resume, rights notice, and production URL only
-  after the Phase 3 decision exists.
+- Contact: keep Gmail web compose primary, provide a visible and copyable email
+  fallback, use the GitHub profile as the secondary broad action, and keep the
+  resume download available.
+- Footer: include the GitHub profile, email, resume, and rights notice. Add the
+  production URL only after the Phase 3 decision exists.
 
 ## Project Detail Template
 

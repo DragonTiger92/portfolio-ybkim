@@ -1,0 +1,55 @@
+---
+import { publicContact } from "../data/contact";
+---
+
+<div class="contact-actions">
+  <div class="action-list">
+    <a
+      class="button-link"
+      href={publicContact.gmailComposeUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Gmail에서 메일 쓰기(새 창)"
+    >
+      <span class="button-link__label">Gmail에서 메일 쓰기 <span aria-hidden="true">↗</span></span>
+    </a>
+    <a
+      class="button-link button-link--secondary"
+      href={publicContact.githubProfileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub 프로필 보기(새 창)"
+    >
+      GitHub 프로필 <span aria-hidden="true">↗</span>
+    </a>
+    <a
+      class="button-link button-link--tertiary"
+      href="/assets/resume/yb-kim-resume.pdf"
+      aria-label="이력서 PDF 다운로드"
+      download>이력서 PDF</a
+    >
+  </div>
+
+  <div class="contact-copy">
+    <span class="contact-copy__label">이메일</span>
+    <code id="public-email-address">{publicContact.email}</code>
+    <button
+      class="contact-copy__button"
+      type="button"
+      data-copy-email
+      data-email={publicContact.email}
+      aria-describedby="public-email-address copy-email-status"
+    >
+      주소 복사
+    </button>
+    <span
+      id="copy-email-status"
+      class="contact-copy__status"
+      data-copy-email-status
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"></span>
+  </div>
+</div>
+
+<script src="../scripts/contact.ts"></script>

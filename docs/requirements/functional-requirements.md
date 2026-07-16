@@ -58,12 +58,17 @@ The site must provide a scannable project showcase section.
 | Priority | P1                                            |
 | Source   | [Project Brief](../planning/project-brief.md) |
 
-Visitors must be able to access the public GitHub repository and contact paths.
+Visitors must be able to access the owner's public GitHub profile,
+project-scoped public repositories, and usable contact paths.
 
 ### FR-003 Acceptance Criteria
 
-- Repository access is visible from persistent or repeated navigation.
-- Contact actions use the contact channels selected for the public portfolio.
+- Broad GitHub labels lead to the owner's public GitHub profile.
+- Repository links appear within the corresponding project card or detail
+  evidence surface and use destination-specific labels.
+- Contact actions use the contact channels selected for the public portfolio
+  and include browser-based Gmail compose plus a visible, copyable email
+  fallback that does not depend on an operating-system mail-client association.
 - Labels make the destination and purpose clear.
 
 ## FR-004: Skills Section

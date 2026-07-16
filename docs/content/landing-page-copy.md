@@ -15,17 +15,25 @@ Use the following first-viewport copy as the Phase 2 implementation seed. The
 implementation may adjust line breaks for responsive layout, but it should keep
 the meaning, hierarchy, and action order intact.
 
-| Element       | Exact Copy                                                                                                                   | Product Role                                                                                    |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Status field  | `구직 상태` / `구직 중`                                                                                                      | Locale-aware recruiter availability field                                                       |
-| Eyebrow       | `프론트엔드에 강한 웹 개발자`                                                                                                | Compact Korean role framing without leading with a tool list                                    |
-| Page heading  | `웹 개발자 김용범의 포트폴리오`                                                                                              | Concise page identity for the document outline                                                  |
-| Positioning   | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                        | Above-the-fold positioning statement rendered as paragraph copy                                 |
-| Lead          | `프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.` | Human-readable summary of UI care, maintainability, and verification                            |
-| Support copy  | `Astro로 만든 이 사이트와 Karly, Book-Kong, 공개 가능한 실무 작업에 구현·협업·인수인계 경험을 담았습니다.`                   | Evidence bridge into project showcase and professional highlights                               |
-| Primary CTA   | `이메일로 연락하기`                                                                                                          | Recruiter contact through the ready public portfolio email                                      |
-| Secondary CTA | `GitHub 보기`                                                                                                                | Technical reviewer path to public source and contribution history                               |
-| Tertiary CTA  | `이력서 PDF`                                                                                                                 | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
+| Element          | Exact Copy                                                                                                                   | Product Role                                                                                    |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Status field     | `구직 상태` / `구직 중`                                                                                                      | Locale-aware recruiter availability field                                                       |
+| Eyebrow          | `프론트엔드에 강한 웹 개발자`                                                                                                | Compact Korean role framing without leading with a tool list                                    |
+| Page heading     | `웹 개발자 김용범의 포트폴리오`                                                                                              | Concise page identity for the document outline                                                  |
+| Positioning      | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.`                                                        | Above-the-fold positioning statement rendered as paragraph copy                                 |
+| Lead             | `프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.` | Human-readable summary of UI care, maintainability, and verification                            |
+| Support copy     | `Astro로 만든 이 사이트와 Karly, Book-Kong, 공개 가능한 실무 작업에 구현·협업·인수인계 경험을 담았습니다.`                   | Evidence bridge into project showcase and professional highlights                               |
+| Primary CTA      | `Gmail에서 메일 쓰기`                                                                                                        | Browser-based recruiter contact through the ready public portfolio email                        |
+| Contact fallback | `이메일 주소 복사`                                                                                                           | Visible, copyable contact path that does not depend on a configured default mail client         |
+| Secondary CTA    | `GitHub 보기`                                                                                                                | Owner GitHub profile and contribution overview                                                  |
+| Tertiary CTA     | `이력서 PDF`                                                                                                                 | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
+
+Open `Gmail에서 메일 쓰기` in a new browser context with the public portfolio
+email pre-addressed. Keep the email address visible and copyable through
+`이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 보기`
+in a new browser context and point it to the owner's GitHub profile. Keep the
+`portfolio-ybkim` source repository link within that project's card and detail
+evidence rather than repeating it as a broad landing-page action.
 
 Do not add a phone number, home address, production URL, or custom-domain email
 to the first viewport before the relevant Phase 3 decisions. Do not rewrite the

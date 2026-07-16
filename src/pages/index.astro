@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import ContactActions from "../components/ContactActions.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { getJobStatusContent } from "../data/job-status";
 import { professionalHighlights, skillGroups } from "../data/landing";
@@ -43,21 +44,7 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
             Astro로 만든 이 사이트와 Karly, Book-Kong, 공개 가능한 실무 작업에 구현·협업·인수인계
             경험을 담았습니다.
           </p>
-          <div class="action-list">
-            <a class="button-link" href="mailto:dczwtu12b+portfolio@gmail.com">
-              <span class="button-link__label">이메일로 연락하기</span>
-            </a>
-            <a
-              class="button-link button-link--secondary"
-              href="https://github.com/DragonTiger92/portfolio-ybkim">GitHub 보기</a
-            >
-            <a
-              class="button-link button-link--tertiary"
-              href="/assets/resume/yb-kim-resume.pdf"
-              aria-label="이력서 PDF 다운로드"
-              download>이력서 PDF</a
-            >
-          </div>
+          <ContactActions />
         </div>
 
         <aside class="hero-proof" aria-label="포트폴리오 검토 안내">
@@ -211,25 +198,6 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
             <strong>검증</strong><span>정적 분석, 접근성 검사와 운영용 빌드로 확인합니다.</span>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <section
-      id="repository"
-      class="content-section repository-section"
-      aria-labelledby="repository-title"
-    >
-      <div class="site-shell repository-layout">
-        <div>
-          <p class="eyebrow">공개 저장소</p>
-          <h2 id="repository-title">저장소</h2>
-          <p>
-            요구사항, ADR, 소스 코드와 품질 검증 절차를 함께 공개해 작업 과정을 살펴볼 수 있습니다.
-          </p>
-        </div>
-        <a class="button-link" href="https://github.com/DragonTiger92/portfolio-ybkim"
-          >GitHub에서 확인</a
-        >
       </div>
     </section>
   </main>

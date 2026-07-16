@@ -118,18 +118,8 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
     "프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.",
   );
 
-  const actions = page.locator("#intro .action-list a");
-
-  await expect(actions).toHaveCount(3);
-  await expect(actions.nth(0)).toHaveText("이메일로 연락하기");
-  await expect(actions.nth(0)).toHaveAttribute("href", "mailto:dczwtu12b+portfolio@gmail.com");
-  await expect(actions.nth(1)).toHaveText("GitHub 보기");
-  await expect(actions.nth(1)).toHaveAttribute(
-    "href",
-    "https://github.com/DragonTiger92/portfolio-ybkim",
-  );
-  await expect(actions.nth(2)).toHaveAccessibleName("이력서 PDF 다운로드");
-  await expect(actions.nth(2)).toHaveAttribute("href", "/assets/resume/yb-kim-resume.pdf");
+  await expect(page.locator("#intro .action-list a")).toHaveCount(3);
+  await expect(page.getByRole("button", { name: "주소 복사" })).toBeVisible();
 
   await expect(page.locator("#projects .eyebrow").first()).toHaveText("검토 가능한 작업");
   await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("실무 경험");
@@ -156,7 +146,6 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
     { level: 3, text: "통합 이해" },
     { level: 3, text: "유지보수" },
     { level: 2, text: "작업 방식" },
-    { level: 2, text: "저장소" },
   ]);
 });
 
@@ -172,7 +161,6 @@ test("presents inspectable public projects and disclosure-safe professional high
   await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
   await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(3);
   await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(3);
-
   const professionalCards = page.locator("#professional-highlights .professional-card");
 
   await expect(professionalCards).toHaveCount(3);

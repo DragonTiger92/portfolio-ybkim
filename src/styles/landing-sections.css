@@ -48,8 +48,7 @@
     content: "0" counter(capability);
   }
 
-  .process-layout,
-  .repository-layout {
+  .process-layout {
     display: grid;
     gap: var(--space-7);
   }
@@ -81,43 +80,6 @@
     color: var(--color-text-muted);
   }
 
-  .repository-section {
-    position: relative;
-    overflow: hidden;
-    color: var(--color-canvas);
-    background: var(--color-text);
-  }
-
-  .repository-section::before {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(currentcolor 1px, transparent 1px);
-    background-size: 1.75rem 1.75rem;
-    content: "";
-    opacity: 0.08;
-  }
-
-  .repository-section .eyebrow {
-    color: inherit;
-    opacity: 0.72;
-  }
-
-  .repository-layout {
-    position: relative;
-    align-items: center;
-  }
-
-  .repository-layout > div {
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .repository-layout .button-link {
-    color: var(--color-text);
-    background: var(--color-canvas);
-    border-color: var(--color-canvas);
-  }
-
   @media (min-width: 48rem) {
     .professional-card {
       grid-template-columns: 2rem minmax(20rem, 1.2fr) minmax(15rem, 0.8fr) auto;
@@ -142,10 +104,6 @@
     .process-layout {
       grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
       align-items: end;
-    }
-
-    .repository-layout {
-      grid-template-columns: minmax(0, 1fr) auto;
     }
   }
 }

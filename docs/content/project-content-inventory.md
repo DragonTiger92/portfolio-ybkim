@@ -82,21 +82,20 @@ architecture out of public copy.
 | Project detail template | Problem, role, approach, result, stack, public evidence, next navigation    | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
 | Skills                  | Capability groups, not a long tool list                                     | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
 | Process                 | Planning, implementation, verification, documentation, and handover mindset | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
-| Repository              | Link to this repository, docs, ADRs, and quality-gate review path           | [Content Model](../architecture/content-model.md)     | `PBI-006`                       | Ready     |
-| Contact and footer      | GitHub profile, repository source, owner email, resume PDF, rights notice   | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
+| Contact and footer      | GitHub profile, owner email, resume PDF, rights notice                      | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
 | Professional highlights | Generalized professional work cards or cues with disclosure-safe claims     | This inventory and private context after review       | `PBI-022`                       | Ready     |
 
 ## Link Inventory
 
 | Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                      |
 | --------------------------- | -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Header, footer, or contact section                                                      |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | Hero secondary action, repository section, and footer                                   |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Hero secondary action, footer, or contact area                                          |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | `portfolio-ybkim` project card and detail evidence only                                 |
 | `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                      |
 | `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data                    |
 | `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                      |
 | `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data                    |
-| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Interim contact action with Gmail filter/label management                               |
+| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters   |
 | Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | `PBI-049`; publish only after production domain, destination, and delivery verification |
 | Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready              | Public Korean resume download action                                                    |
 | Academy product URL         | `https://academy.shine-edu.kr/`                    | Public             | Professional highlight and resume evidence; keep private operations detail out          |
@@ -135,6 +134,11 @@ Use `dczwtu12b+portfolio@gmail.com` for the first public contact action. Manage
 recruiter messages through Gmail filters and labels. Do not publish the base
 Gmail address separately in this inventory.
 
+Open the primary email action in a pre-addressed Gmail web compose view and
+keep the portfolio email visible and copyable as a fallback with clear user
+feedback. Do not rely on `mailto:` or an operating-system mail-client
+association as the only contact path.
+
 During Phase 3, after the production domain is selected, configure Cloudflare
 Email Routing on the Free plan for a domain address such as
 `contact@{production-domain}` or `hello@{production-domain}`. Route incoming
@@ -163,8 +167,10 @@ may appear in wireframes after `PBI-041` publishes the approved Korean PDF.
 The next wireframe or mockup task can start from these decisions:
 
 - public-first project order: `portfolio-ybkim`, `Karly`, `Book-Kong`;
-- prominent but secondary source-repository action for `portfolio-ybkim`;
-- section model: intro, projects, skills, process, repository, contact/footer;
+- source-repository actions scoped to the `portfolio-ybkim` project card and
+  detail evidence;
+- section model: intro, projects, professional highlights, skills, process,
+  contact/footer;
 - project detail template available for public-source projects;
 - Karly and Book-Kong media optional after exact-asset review;
 - professional highlights included as generalized disclosure-safe cues while
