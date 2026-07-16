@@ -1,6 +1,10 @@
-import { readdir, readFile, stat } from "node:fs/promises";
+import { open, readdir } from "node:fs/promises";
 import { extname, relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
+
+import { countInlineJavaScriptBytes } from "./measure-inline-javascript.mjs";
+
+export { countInlineJavaScriptBytes };
 
 const kibibyte = 1024;
 
@@ -15,65 +19,8 @@ export const staticBudget = Object.freeze({
 });
 
 const javaScriptExtensions = new Set([".cjs", ".js", ".mjs"]);
-const javaScriptMimeTypes = new Set([
-  "application/ecmascript",
-  "application/javascript",
-  "application/x-ecmascript",
-  "application/x-javascript",
-  "text/ecmascript",
-  "text/javascript",
-  "text/javascript1.0",
-  "text/javascript1.1",
-  "text/javascript1.2",
-  "text/javascript1.3",
-  "text/javascript1.4",
-  "text/javascript1.5",
-  "text/jscript",
-  "text/livescript",
-  "text/x-ecmascript",
-  "text/x-javascript",
-]);
-
-function getAttributeValue(attributes, targetName) {
-  const attributePattern =
-    /(?:^|\s)([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/gu;
-  const attribute = [...attributes.matchAll(attributePattern)].find(
-    (match) => match[1].toLowerCase() === targetName,
-  );
-
-  if (attribute === undefined) {
-    return undefined;
-  }
-
-  return attribute[2] ?? attribute[3] ?? attribute[4] ?? "";
-}
-
-function isExecutableInlineScript(attributes) {
-  if (getAttributeValue(attributes, "src") !== undefined) {
-    return false;
-  }
-
-  const scriptType = getAttributeValue(attributes, "type")?.trim().toLowerCase() ?? "";
-
-  if (scriptType === "" || scriptType === "module") {
-    return true;
-  }
-
-  const mimeEssence = scriptType.split(";", 1)[0].trim();
-
-  return javaScriptMimeTypes.has(mimeEssence);
-}
-
-export function countInlineJavaScriptBytes(html) {
-  const scriptPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/giu;
-
-  return [...html.matchAll(scriptPattern)]
-    .filter((match) => isExecutableInlineScript(match[1]))
-    .reduce((total, match) => total + Buffer.byteLength(match[2], "utf8"), 0);
-}
-
-async function listBuildFiles(directory) {
-  const directoryEntries = await readdir(directory, { withFileTypes: true });
+async function listBuildFiles(directory, knownEntries) {
+  const directoryEntries = knownEntries ?? (await readdir(directory, { withFileTypes: true }));
   const nestedFiles = await Promise.all(
     directoryEntries.map((entry) => {
       const entryPath = resolve(directory, entry.name);
@@ -85,29 +32,41 @@ async function listBuildFiles(directory) {
   return nestedFiles.flat();
 }
 
-export async function collectStaticBuildEntries(buildDirectory = resolve("dist")) {
-  const buildStats = await stat(buildDirectory).catch(() => null);
-
-  if (buildStats?.isDirectory() !== true) {
-    throw new Error(`Static build directory not found: ${buildDirectory}`);
+function rethrowBuildDirectoryError(error, buildDirectory) {
+  if (error?.code === "ENOENT" || error?.code === "ENOTDIR") {
+    throw new Error(`Static build directory not found: ${buildDirectory}`, { cause: error });
   }
 
-  const filePaths = await listBuildFiles(buildDirectory);
+  throw error;
+}
 
-  return Promise.all(
-    filePaths.map(async (filePath) => {
-      const fileStats = await stat(filePath);
-      const extension = extname(filePath).toLowerCase();
-      const html = extension === ".html" ? await readFile(filePath, "utf8") : "";
+async function inspectBuildFile(buildDirectory, filePath) {
+  const extension = extname(filePath).toLowerCase();
+  const fileHandle = await open(filePath, "r");
 
-      return {
-        bytes: fileStats.size,
-        extension,
-        inlineJavaScriptBytes: countInlineJavaScriptBytes(html),
-        path: relative(buildDirectory, filePath).split(sep).join("/"),
-      };
-    }),
+  try {
+    const htmlContents = extension === ".html" ? await fileHandle.readFile() : null;
+    const bytes = htmlContents?.byteLength ?? (await fileHandle.stat()).size;
+    const html = htmlContents?.toString("utf8") ?? "";
+
+    return {
+      bytes,
+      extension,
+      inlineJavaScriptBytes: countInlineJavaScriptBytes(html),
+      path: relative(buildDirectory, filePath).split(sep).join("/"),
+    };
+  } finally {
+    await fileHandle.close();
+  }
+}
+
+export async function collectStaticBuildEntries(buildDirectory = resolve("dist")) {
+  const rootEntries = await readdir(buildDirectory, { withFileTypes: true }).catch((error) =>
+    rethrowBuildDirectoryError(error, buildDirectory),
   );
+  const filePaths = await listBuildFiles(buildDirectory, rootEntries);
+
+  return Promise.all(filePaths.map((filePath) => inspectBuildFile(buildDirectory, filePath)));
 }
 
 function sumBytes(entries) {
