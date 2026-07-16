@@ -25,7 +25,7 @@ the meaning, hierarchy, and action order intact.
 | Support copy     | `Astro로 만든 이 포트폴리오와 Karly, Book-Kong은 소스와 결과를 확인할 수 있는 공개 프로젝트입니다. 실무 경험은 공개 가능한 범위에서 역할과 기여를 요약했습니다.` | Distinguishes inspectable public projects from disclosure-safe professional summaries           |
 | Primary CTA      | `Gmail에서 메일 쓰기`                                                                                                                                            | Browser-based recruiter contact through the ready public portfolio email                        |
 | Contact fallback | `이메일 주소 복사`                                                                                                                                               | Visible, copyable contact path that does not depend on a configured default mail client         |
-| Secondary CTA    | `GitHub 보기`                                                                                                                                                    | Owner GitHub profile and contribution overview                                                  |
+| Secondary CTA    | `GitHub 프로필`                                                                                                                                                  | Owner GitHub profile and contribution overview                                                  |
 | Tertiary CTA     | `이력서 PDF`                                                                                                                                                     | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
 
 ## Header And Hero Presentation Contract
@@ -48,7 +48,7 @@ separate page.
 
 Open `Gmail에서 메일 쓰기` in a new browser context with the public portfolio
 email pre-addressed. Keep the email address visible and copyable through
-`이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 보기`
+`이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 프로필`
 in a new browser context and point it to the owner's GitHub profile. Keep the
 `portfolio-ybkim` source repository link within that project's card and detail
 evidence rather than repeating it as a broad landing-page action.

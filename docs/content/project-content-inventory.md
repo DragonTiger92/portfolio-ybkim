@@ -82,7 +82,7 @@ architecture out of public copy.
 | Project detail template | Problem, role, approach, result, stack, public evidence, next navigation    | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
 | Skills                  | Capability groups, not a long tool list                                     | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
 | Process                 | Planning, implementation, verification, documentation, and handover mindset | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
-| Contact and footer      | GitHub profile, owner email, resume PDF, rights notice                      | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Partial   |
+| Contact and footer      | Contact: GitHub profile, email, resume; footer: profile and rights notice   | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Ready     |
 | Professional highlights | Generalized professional work cards or cues with disclosure-safe claims     | This inventory and private context after review       | `PBI-022`                       | Ready     |
 
 ## Link Inventory

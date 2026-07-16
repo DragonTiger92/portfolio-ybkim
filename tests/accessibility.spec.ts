@@ -17,7 +17,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -38,7 +38,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -53,7 +53,7 @@ const projectEvidence = [
       "기여 경계",
       "구현 접근",
       "결과",
-      "공개 근거",
+      "검토 링크",
       "지원 기술",
       "다른 프로젝트",
     ],
@@ -184,6 +184,12 @@ for (const project of projectEvidence) {
 
     await expect(page.locator(".project-header .eyebrow")).toHaveText(project.classification);
     await expect(page.locator(".project-facts dt")).toHaveText(["역할", "기여 범위", "초점"]);
+    await expect(page.locator(".project-supporting")).toHaveAccessibleName(
+      "프로젝트 검토 링크와 지원 기술",
+    );
+    await expect(page.locator(".project-links > p")).toHaveText(
+      "제공된 저장소, 배포 또는 문서 링크에서 이 프로젝트의 범위와 결과를 확인할 수 있습니다.",
+    );
     await expect(page.locator(".project-links a")).toHaveCount(project.links.length);
     expect(
       await page

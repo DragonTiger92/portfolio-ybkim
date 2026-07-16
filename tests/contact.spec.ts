@@ -33,6 +33,12 @@ test("provides correctly scoped profile, repository, and contact actions", async
   await expect(gmailAction).toHaveAttribute("target", "_blank");
   await expect(gmailAction).toHaveAttribute("rel", "noopener noreferrer");
   await expect(profileActions).toHaveCount(2);
+  await expect(
+    page.locator(".contact-actions a[href='https://github.com/DragonTiger92']"),
+  ).toHaveText("GitHub 프로필 ↗");
+  await expect(page.locator(".site-footer a[href='https://github.com/DragonTiger92']")).toHaveText(
+    "GitHub 프로필 ↗",
+  );
 
   for (const profileAction of await profileActions.all()) {
     await expect(profileAction).toHaveAttribute("href", githubProfileUrl);

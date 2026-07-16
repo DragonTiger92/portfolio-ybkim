@@ -61,7 +61,7 @@ reflows at narrower widths.
 │ Lead + public-project / professional-summary boundary │
 │                                                      │
 │ [Gmail에서 메일 쓰기] [이메일 주소 복사]              │
-│ [GitHub 보기] [이력서 PDF]                            │
+│ [GitHub 프로필] [이력서 PDF]                          │
 └──────────────────────────────────────────────────────┘
 ```
 
@@ -77,7 +77,7 @@ reflows at narrower widths.
   portfolio email pre-addressed.
 - Contact fallback: keep the email address visible and copyable through
   `이메일 주소 복사`, with clear interaction feedback.
-- Secondary CTA: `GitHub 보기` in a new browser context, targeting the owner's
+- Secondary CTA: `GitHub 프로필` in a new browser context, targeting the owner's
   GitHub profile.
 - Tertiary CTA: `이력서 PDF`.
 - Keep the `portfolio-ybkim` source repository within that project's card and
@@ -161,8 +161,9 @@ an inspectable public-source case study.
 - Contact: keep Gmail web compose primary, provide a visible and copyable email
   fallback, use the GitHub profile as the secondary broad action, and keep the
   resume download available.
-- Footer: include the GitHub profile, email, resume, and rights notice. Add the
-  production URL only after the Phase 3 decision exists.
+- Footer: keep the rights notice and GitHub profile visible without duplicating
+  the first-viewport email and resume actions. Add the production URL only
+  after the Phase 3 decision exists.
 
 ## Project Detail Template
 
