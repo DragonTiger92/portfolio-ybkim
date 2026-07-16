@@ -178,7 +178,6 @@
 
   .project-card {
     display: flex;
-    min-block-size: 23rem;
     flex-direction: column;
     gap: var(--space-5);
     padding: var(--space-5);
@@ -272,15 +271,6 @@
       grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.65fr);
       align-items: center;
       gap: var(--space-8);
-    }
-
-    .project-grid {
-      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.85fr);
-    }
-
-    .project-card--featured {
-      grid-column: auto;
-      grid-row: span 2;
     }
   }
 }

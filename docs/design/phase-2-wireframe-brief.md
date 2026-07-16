@@ -116,9 +116,15 @@ Each card should include:
 
 - project title;
 - short summary from [Landing Page Copy](../content/landing-page-copy.md);
+- owner role;
 - compact tags or capability cues;
 - detail-page link;
 - public repository and demo links where available and rechecked.
+
+Use the project title and reviewable content as each card's identity. Do not add
+initial-based marks, duplicate wordmarks, logo-like placeholders, or another
+decorative panel solely to fill space. A real project logo or screenshot
+requires a separate rights and asset review before publication.
 
 Project cards should make the source-review path obvious without forcing every
 card into the same link set. `portfolio-ybkim` should emphasize repository,
