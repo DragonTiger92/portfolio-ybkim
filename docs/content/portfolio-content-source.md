@@ -215,6 +215,8 @@ The initial Phase 2 content input is frozen as follows:
 - Add a separate professional highlights surface for the academy service, the
   concept and solution-logic structuring tool, and the internal production and
   review platform. Keep these summaries generalized and disclosure-safe.
+- Give every professional highlight the visible `실무 경험 · 공개 범위 요약`
+  cue so it cannot be mistaken for an inspectable public-source case study.
 - Use public project cards and details with approved public repositories and
   demos. Karly and Book-Kong media/design assets may be used if the exact asset
   passes privacy, attribution, and presentation-context review.
@@ -238,7 +240,8 @@ copy or assets change.
 
 - Use the public project order from this document.
 - Render the three public-source project details and a professional highlights
-  section with generalized claims.
+  section with generalized claims. Give each professional highlight the visible
+  `실무 경험 · 공개 범위 요약` scope cue.
 - Use selected Karly and Book-Kong media only after exact-asset review; keep
   professional screenshots and private media out of the first implementation.
 - Treat the GitHub profile as the destination for broad `GitHub` actions.

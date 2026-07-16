@@ -26,6 +26,14 @@
     align-self: start;
   }
 
+  .professional-card__scope {
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
   .capability-grid {
     display: grid;
     gap: var(--space-6) var(--space-5);

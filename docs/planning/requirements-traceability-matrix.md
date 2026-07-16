@@ -59,9 +59,11 @@ governance work rather than product behavior.
 | `FR-001`       | `PBI-045` | Define        |
 | `FR-001`       | `PBI-021` | Implement     |
 | `FR-001`       | `PBI-043` | Implement     |
+| `FR-001`       | `PBI-055` | Implement     |
 | `FR-002`       | `PBI-040` | Define        |
 | `FR-002`       | `PBI-045` | Define        |
 | `FR-002`       | `PBI-022` | Implement     |
+| `FR-002`       | `PBI-055` | Implement     |
 | `FR-003`       | `PBI-040` | Define        |
 | `FR-003`       | `PBI-041` | Define        |
 | `FR-003`       | `PBI-045` | Define        |
@@ -77,6 +79,7 @@ governance work rather than product behavior.
 | `NFR-001`      | `PBI-008` | Verify        |
 | `NFR-001`      | `PBI-023` | Verify        |
 | `NFR-001`      | `PBI-024` | Verify        |
+| `NFR-001`      | `PBI-055` | Verify        |
 | `NFR-002`      | `PBI-009` | Verify        |
 | `NFR-003`      | `PBI-008` | Verify        |
 | `NFR-003`      | `PBI-009` | Verify        |
@@ -85,8 +88,10 @@ governance work rather than product behavior.
 | `NFR-004`      | `PBI-045` | Verify        |
 | `NFR-004`      | `PBI-021` | Verify        |
 | `NFR-004`      | `PBI-022` | Verify        |
+| `NFR-004`      | `PBI-055` | Verify        |
 | `NFR-006`      | `PBI-024` | Implement     |
 | `NFR-006`      | `PBI-008` | Verify        |
+| `NFR-006`      | `PBI-055` | Verify        |
 | `NFR-007`      | `PBI-040` | Define        |
 | `NFR-007`      | `PBI-045` | Define        |
 | `NFR-007`      | `PBI-025` | Implement     |

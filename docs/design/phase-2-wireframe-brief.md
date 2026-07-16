@@ -63,6 +63,20 @@ and the public content sources when implementing `PH-002`.
 - Do not add a separate contact route or resume route for the first
   implementation.
 
+Pair the intro with one compact, portfolio-wide review guide:
+
+- eyebrow: `포트폴리오 검토 안내`;
+- title: `공개 근거와 경험 요약`;
+- `공개 프로젝트`: the three projects whose source or result can be
+  inspected;
+- `실무 경험`: the three disclosure-safe professional summaries;
+- `검토 순서`: `프로젝트 → 실무 경험 → 역량 → 작업 방식`.
+
+Use a named complementary `aside` with a definition list so each label and
+value remains explicit. Derive counts from the rendered data. Do not mix a
+portfolio-wide label with project-specific implementation details such as the
+`portfolio-ybkim` technology stack.
+
 ## Project Showcase Structure
 
 Render three public-source project cards in this order:
@@ -70,6 +84,10 @@ Render three public-source project cards in this order:
 1. `portfolio-ybkim`.
 2. `Karly`.
 3. `Book-Kong`.
+
+Frame the section with `공개 프로젝트` / `프로젝트` and explain that the
+three cards expose source or deployment results, owner role, implementation
+scope, and public evidence.
 
 Each card should include:
 
@@ -99,6 +117,11 @@ Use three generalized highlight cards:
 The academy highlight may link its public product URL. The other two
 professional highlights should not expose private URLs, source, routes,
 screenshots, workflows, or internal names.
+
+Frame this section with `공개 범위로 요약` / `실무 경험`. Explain that
+private material and internal details are excluded, and give every highlight
+the visible `실무 경험 · 공개 범위 요약` scope cue so it is not mistaken for
+an inspectable public-source case study.
 
 ## Skills, Process, Contact, Footer Flow
 

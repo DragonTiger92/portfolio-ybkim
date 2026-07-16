@@ -8,6 +8,69 @@ interface ProfessionalHighlight {
   title: string;
 }
 
+interface LandingScopeCopy {
+  heroProof: {
+    eyebrow: string;
+    professionalExperience: {
+      detail: string;
+      label: string;
+    };
+    publicProjects: {
+      detail: string;
+      label: string;
+    };
+    reviewOrder: {
+      label: string;
+      value: string;
+    };
+    title: string;
+  };
+  heroSupport: string;
+  professionalExperience: {
+    description: string;
+    eyebrow: string;
+    scopeLabel: string;
+    title: string;
+  };
+  projects: {
+    description: string;
+    eyebrow: string;
+  };
+}
+
+export const landingScopeCopy = {
+  heroProof: {
+    eyebrow: "포트폴리오 검토 안내",
+    professionalExperience: {
+      detail: "공개 가능한 범위로 요약",
+      label: "실무 경험",
+    },
+    publicProjects: {
+      detail: "소스와 결과 확인 가능",
+      label: "공개 프로젝트",
+    },
+    reviewOrder: {
+      label: "검토 순서",
+      value: "프로젝트 → 실무 경험 → 역량 → 작업 방식",
+    },
+    title: "공개 근거와 경험 요약",
+  },
+  heroSupport:
+    "Astro로 만든 이 포트폴리오와 Karly, Book-Kong은 소스와 결과를 확인할 수 있는 공개 프로젝트입니다. 실무 경험은 공개 가능한 범위에서 역할과 기여를 요약했습니다.",
+  professionalExperience: {
+    description:
+      "비공개 자료와 내부 세부사항은 제외하고, 공개 가능한 범위에서 확인된 역할과 기여를 요약했습니다.",
+    eyebrow: "공개 범위로 요약",
+    scopeLabel: "실무 경험 · 공개 범위 요약",
+    title: "실무 경험",
+  },
+  projects: {
+    description:
+      "소스 또는 배포 결과를 확인할 수 있는 세 프로젝트입니다. 각 카드에서 맡은 역할과 구현 범위, 공개 근거를 함께 살펴볼 수 있습니다.",
+    eyebrow: "공개 프로젝트",
+  },
+} as const satisfies LandingScopeCopy;
+
 export const professionalHighlights: ProfessionalHighlight[] = [
   {
     title: "학원 정보·상담 웹 서비스",

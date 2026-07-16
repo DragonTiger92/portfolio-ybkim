@@ -3,9 +3,10 @@ import { getCollection } from "astro:content";
 import ContactActions from "../components/ContactActions.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { getJobStatusContent } from "../data/job-status";
-import { professionalHighlights, skillGroups } from "../data/landing";
+import { landingScopeCopy, professionalHighlights, skillGroups } from "../data/landing";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/showcase.css";
+import "../styles/hero-proof.css";
 import "../styles/project-card-identity.css";
 import "../styles/landing-sections.css";
 
@@ -41,32 +42,39 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
             검증 가능한 결과물을 함께 남깁니다.
           </p>
           <p class="hero-support">
-            Astro로 만든 이 사이트와 Karly, Book-Kong, 공개 가능한 실무 작업에 구현·협업·인수인계
-            경험을 담았습니다.
+            {landingScopeCopy.heroSupport}
           </p>
           <ContactActions />
         </div>
 
-        <aside class="hero-proof" aria-label="포트폴리오 검토 안내">
-          <div class="hero-proof__brand">
+        <aside class="hero-proof" aria-labelledby="hero-proof-title">
+          <div class="hero-proof__header">
             <img src="/assets/brand/logo-mark.svg" alt="" width="96" height="96" />
             <div>
-              <p class="eyebrow">웹 제품 포트폴리오</p>
-              <strong>기획부터 검증까지</strong>
+              <p class="eyebrow">{landingScopeCopy.heroProof.eyebrow}</p>
+              <p id="hero-proof-title" class="hero-proof__title">
+                {landingScopeCopy.heroProof.title}
+              </p>
             </div>
           </div>
           <dl>
             <div>
-              <dt>공개 프로젝트</dt>
-              <dd>3개</dd>
+              <dt>{landingScopeCopy.heroProof.publicProjects.label}</dt>
+              <dd>
+                {projects.length}개 · {landingScopeCopy.heroProof.publicProjects.detail}
+              </dd>
             </div>
             <div>
-              <dt>검토 경로</dt>
-              <dd>소스 · 문서 · 배포 결과</dd>
+              <dt>{landingScopeCopy.heroProof.professionalExperience.label}</dt>
+              <dd>
+                {professionalHighlights.length}개 · {
+                  landingScopeCopy.heroProof.professionalExperience.detail
+                }
+              </dd>
             </div>
             <div>
-              <dt>구현 방식</dt>
-              <dd>Astro · TypeScript · CSS</dd>
+              <dt>{landingScopeCopy.heroProof.reviewOrder.label}</dt>
+              <dd>{landingScopeCopy.heroProof.reviewOrder.value}</dd>
             </div>
           </dl>
         </aside>
@@ -77,10 +85,10 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
       <div class="site-shell">
         <div class="section-heading section-heading--split">
           <div class="section-heading__title">
-            <p class="eyebrow">검토 가능한 작업</p>
+            <p class="eyebrow">{landingScopeCopy.projects.eyebrow}</p>
             <h2 id="projects-title">프로젝트</h2>
           </div>
-          <p>맡은 역할과 해결한 문제, 결과를 빠르게 살펴볼 수 있는 공개 사례입니다.</p>
+          <p>{landingScopeCopy.projects.description}</p>
           <span class="section-index" aria-hidden="true">01</span>
         </div>
 
@@ -112,13 +120,12 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
       <div class="site-shell">
         <div class="section-heading section-heading--split">
           <div class="section-heading__title">
-            <p class="eyebrow">실무 경험</p>
-            <h2 id="professional-highlights-title">실무 작업</h2>
+            <p class="eyebrow">{landingScopeCopy.professionalExperience.eyebrow}</p>
+            <h2 id="professional-highlights-title">
+              {landingScopeCopy.professionalExperience.title}
+            </h2>
           </div>
-          <p>
-            공개 가능한 범위에서 제품을 전달하고, 프론트엔드 기반을 다지고, 운영 안정성을 높인
-            경험을 정리했습니다.
-          </p>
+          <p>{landingScopeCopy.professionalExperience.description}</p>
           <span class="section-index" aria-hidden="true">02</span>
         </div>
 
@@ -130,8 +137,11 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
                   {String(highlightIndex + 1).padStart(2, "0")}
                 </span>
                 <div class="professional-card__content">
+                  <p class="professional-card__scope">
+                    {landingScopeCopy.professionalExperience.scopeLabel}
+                  </p>
                   <h3>{highlight.title}</h3>
-                  <p>{highlight.description}</p>
+                  <p class="professional-card__description">{highlight.description}</p>
                 </div>
                 <ul class="tag-list">
                   {highlight.tags.map((tag) => (

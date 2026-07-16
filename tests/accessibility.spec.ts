@@ -121,8 +121,8 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
   await expect(page.locator("#intro .action-list a")).toHaveCount(3);
   await expect(page.getByRole("button", { name: "주소 복사" })).toBeVisible();
 
-  await expect(page.locator("#projects .eyebrow").first()).toHaveText("검토 가능한 작업");
-  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("실무 경험");
+  await expect(page.locator("#projects .eyebrow").first()).toHaveText("공개 프로젝트");
+  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("공개 범위로 요약");
   await expect(page.locator("#skills .eyebrow")).toHaveText("핵심 역량");
   await expect(page.locator("#process .eyebrow")).toHaveText("작업 흐름");
 });
@@ -136,7 +136,7 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
     { level: 3, text: "portfolio-ybkim" },
     { level: 3, text: "Karly" },
     { level: 3, text: "Book-Kong" },
-    { level: 2, text: "실무 작업" },
+    { level: 2, text: "실무 경험" },
     { level: 3, text: "학원 정보·상담 웹 서비스" },
     { level: 3, text: "과학 문항 개념·풀이 논리 구조화 도구" },
     { level: 3, text: "과학 교육 콘텐츠 제작·검수 플랫폼" },
