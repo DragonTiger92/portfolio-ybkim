@@ -26,6 +26,19 @@ and the public content sources when implementing `PH-002`.
 - Do not expose private professional source, internal names, private URLs,
   credentials, endpoints, screenshots, or confidential architecture.
 
+## Header Hierarchy
+
+Use one visible home-link wordmark, `김용범 포트폴리오`, rather than a
+heading-and-description identity lockup. At desktop widths, let the GNB use the
+available header space so `프로젝트`, `역량`, and `작업 방식` have
+comfortable separation instead of clustering beside the wordmark.
+
+Keep the theme control visible, keyboard-accessible, and fully operable, but
+style it as a neutral secondary utility. It must not use the same visual weight
+as the site identity, primary contact action, or other recruiter-critical
+features. Preserve the same priority and usable target sizes when the header
+reflows at narrower widths.
+
 ## Landing Page Section Order
 
 1. Intro / first viewport.
@@ -39,17 +52,27 @@ and the public content sources when implementing `PH-002`.
 
 ```txt
 ┌──────────────────────────────────────────────────────┐
-│ status tag                                           │
-│ Web Developer · Frontend-focused delivery             │
+│ static metadata: 구직 상태 · 구직 중                 │
+│ 프론트엔드에 강한 웹 개발자                          │
 │                                                      │
-│ H1: 사용자 이해 + 유지보수 가능한 웹 제품             │
-│ Lead: frontend-centered delivery, data flow, docs, QA │
+│ H1: 웹 개발자 김용범의 포트폴리오                    │
+│ Positioning: 사용자가 이해하기 쉬운 UI와              │
+│              오래 관리할 수 있는 웹 제품을 만듭니다. │
+│ Lead + public-project / professional-summary boundary │
 │                                                      │
 │ [Gmail에서 메일 쓰기] [이메일 주소 복사]              │
 │ [GitHub 보기] [이력서 PDF]                            │
 └──────────────────────────────────────────────────────┘
 ```
 
+- Render `구직 상태` / `구직 중` as static metadata, not as a toggle,
+  button, switch, or selectable control.
+- Keep the positioning statement as paragraph content with restrained type
+  scale and readable line length. Apply small, non-color-only emphasis only to
+  `이해하기 쉬운 UI` and `오래 관리할 수 있는 웹 제품`.
+- Preserve the exact intro, PBI-055 publication-boundary, review-guide, and CTA
+  copy. PBI-054 changes presentation hierarchy, not content scope or action
+  destinations.
 - Primary CTA: `Gmail에서 메일 쓰기` in a new browser context with the public
   portfolio email pre-addressed.
 - Contact fallback: keep the email address visible and copyable through

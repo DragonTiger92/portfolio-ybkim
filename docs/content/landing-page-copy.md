@@ -28,6 +28,24 @@ the meaning, hierarchy, and action order intact.
 | Secondary CTA    | `GitHub 보기`                                                                                                                                                    | Owner GitHub profile and contribution overview                                                  |
 | Tertiary CTA     | `이력서 PDF`                                                                                                                                                     | Direct resume download after the reviewed Korean PDF remains available at the public asset path |
 
+## Header And Hero Presentation Contract
+
+Keep the exact first-viewport copy above while refining its visual hierarchy:
+
+| Surface               | Visible Content                                                       | Presentation Contract                                                                                                     |
+| --------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Header wordmark       | `김용범 포트폴리오`                                                   | Present one concise site title rather than a heading-and-description lockup                                               |
+| Global navigation     | `프로젝트`, `역량`, `작업 방식`                                       | Use the available desktop width so the three destinations remain comfortably separated and easy to scan                   |
+| Theme control         | Existing light/dark mode action                                       | Keep it discoverable and fully operable, but visually secondary to identity, navigation, and recruiter actions            |
+| Job-status metadata   | `구직 상태` / `구직 중`                                               | Render static profile metadata; do not style or expose it as a toggle, button, switch, or selectable control              |
+| Positioning statement | `사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.` | Keep paragraph semantics and restrained sizing; visually accent only `이해하기 쉬운 UI` and `오래 관리할 수 있는 웹 제품` |
+
+The two positioning accents may use restrained color, weight, or an inline
+surface treatment, but they must preserve the sentence's reading order and
+remain understandable without color. Do not enlarge the positioning statement
+until it dominates the first viewport or makes the supporting copy feel like a
+separate page.
+
 Open `Gmail에서 메일 쓰기` in a new browser context with the public portfolio
 email pre-addressed. Keep the email address visible and copyable through
 `이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 보기`
