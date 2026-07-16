@@ -20,7 +20,7 @@ portfolio site. Implementation and verification are tracked through the
 | Field               | Value                                         |
 | ------------------- | --------------------------------------------- |
 | Category            | Accessibility                                 |
-| Status              | Draft                                         |
+| Status              | Verified                                      |
 | Severity            | High                                          |
 | Applicability       | WebFE                                         |
 | Verification Method | Manual, StaticAnalysis, BrowserTest           |
@@ -50,7 +50,7 @@ visual presentation.
 | Field               | Value                                                                |
 | ------------------- | -------------------------------------------------------------------- |
 | Category            | Performance                                                          |
-| Status              | Draft                                                                |
+| Status              | Verified                                                             |
 | Severity            | High                                                                 |
 | Applicability       | WebFE                                                                |
 | Verification Method | StaticAnalysis, Manual                                               |
@@ -102,7 +102,7 @@ expansion may justify a new aggregate baseline while preserving per-file limits.
 | Field               | Value                                         |
 | ------------------- | --------------------------------------------- |
 | Category            | Maintainability                               |
-| Status              | Draft                                         |
+| Status              | Verified                                      |
 | Severity            | High                                          |
 | Applicability       | All                                           |
 | Verification Method | CodeReview, StaticAnalysis, Manual            |
@@ -127,7 +127,7 @@ modify, and verify from the repository.
 | Field               | Value                                                        |
 | ------------------- | ------------------------------------------------------------ |
 | Category            | Compliance                                                   |
-| Status              | Draft                                                        |
+| Status              | Verified                                                     |
 | Severity            | High                                                         |
 | Applicability       | All                                                          |
 | Verification Method | Checklist, CodeReview                                        |
@@ -175,7 +175,7 @@ provider is not required.
 | Field               | Value                 |
 | ------------------- | --------------------- |
 | Category            | Usability             |
-| Status              | Draft                 |
+| Status              | Verified              |
 | Severity            | High                  |
 | Applicability       | WebFE                 |
 | Verification Method | Manual, BrowserReview |
@@ -196,7 +196,7 @@ controls across supported mobile and desktop viewports.
 | Field               | Value                                                              |
 | ------------------- | ------------------------------------------------------------------ |
 | Category            | Compliance                                                         |
-| Status              | Draft                                                              |
+| Status              | Implemented                                                        |
 | Severity            | High                                                               |
 | Applicability       | All                                                                |
 | Verification Method | Checklist, CodeReview                                              |
@@ -218,7 +218,7 @@ from All Rights Reserved portfolio materials and third-party asset terms.
 | Field               | Value                                              |
 | ------------------- | -------------------------------------------------- |
 | Category            | Security, Compliance                               |
-| Status              | Draft                                              |
+| Status              | Verified                                           |
 | Severity            | High                                               |
 | Applicability       | Repository                                         |
 | Verification Method | AutomatedReview, CodeReview                        |
@@ -243,7 +243,7 @@ licenses, version intent, and package provenance before integration.
 | Field               | Value                                                    |
 | ------------------- | -------------------------------------------------------- |
 | Category            | Release, Maintainability                                 |
-| Status              | Draft                                                    |
+| Status              | Approved                                                 |
 | Severity            | High                                                     |
 | Applicability       | Repository, Production                                   |
 | Verification Method | AutomatedReview, Checklist                               |
@@ -314,7 +314,7 @@ portfolio's operational needs and respect visitor privacy.
 | Field               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |
 | Category            | Compliance                                                     |
-| Status              | Draft                                                          |
+| Status              | Approved                                                       |
 | Severity            | High                                                           |
 | Applicability       | Repository, Production                                         |
 | Verification Method | AutomatedReview, Checklist, Manual                             |
