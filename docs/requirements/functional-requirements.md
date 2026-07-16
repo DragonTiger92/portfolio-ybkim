@@ -16,7 +16,7 @@ implementation and verification are tracked through the
 
 | Field    | Value                                         |
 | -------- | --------------------------------------------- |
-| Status   | Draft                                         |
+| Status   | Implemented                                   |
 | Priority | P1                                            |
 | Source   | [Project Brief](../planning/project-brief.md) |
 
@@ -35,7 +35,7 @@ Kim as a frontend-specialized full-stack web developer.
 
 | Field    | Value                                             |
 | -------- | ------------------------------------------------- |
-| Status   | Draft                                             |
+| Status   | Implemented                                       |
 | Priority | P1                                                |
 | Source   | [Content Model](../architecture/content-model.md) |
 
@@ -54,7 +54,7 @@ The site must provide a scannable project showcase section.
 
 | Field    | Value                                         |
 | -------- | --------------------------------------------- |
-| Status   | Draft                                         |
+| Status   | Implemented                                   |
 | Priority | P1                                            |
 | Source   | [Project Brief](../planning/project-brief.md) |
 
@@ -75,7 +75,7 @@ project-scoped public repositories, and usable contact paths.
 
 | Field    | Value                                             |
 | -------- | ------------------------------------------------- |
-| Status   | Draft                                             |
+| Status   | Implemented                                       |
 | Priority | P1                                                |
 | Source   | [Content Model](../architecture/content-model.md) |
 
@@ -93,7 +93,7 @@ capabilities.
 
 | Field    | Value         |
 | -------- | ------------- |
-| Status   | Draft         |
+| Status   | Implemented   |
 | Priority | P1            |
 | Source   | Project Owner |
 
@@ -110,7 +110,7 @@ Visitors must be able to use the portfolio in a light or dark color theme.
 
 | Field    | Value         |
 | -------- | ------------- |
-| Status   | Draft         |
+| Status   | Implemented   |
 | Priority | P1            |
 | Source   | Project Owner |
 
@@ -128,7 +128,7 @@ actions from mobile through desktop viewports.
 
 | Field    | Value                                                              |
 | -------- | ------------------------------------------------------------------ |
-| Status   | Draft                                                              |
+| Status   | Implemented                                                        |
 | Priority | P1                                                                 |
 | Source   | [ADR-0005](../adr/0005-scope-code-license-and-portfolio-rights.md) |
 

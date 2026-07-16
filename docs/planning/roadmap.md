@@ -5,12 +5,12 @@ fixed calendar promise. Product Backlog Items provide the implementation-sized
 view, while GitHub Pull Requests provide review and CI integration without
 duplicating roadmap state in GitHub Issues or Milestones.
 
-| Phase    | Name                                | Status      | Release Target        | Goal                                                                |
-| -------- | ----------------------------------- | ----------- | --------------------- | ------------------------------------------------------------------- |
-| `PH-001` | Product Foundation Baseline         | Completed   | No production tag     | Establish docs, workflow, governance, and content base              |
-| `PH-002` | Static Portfolio Implementation     | In Progress | No production tag     | Complete the portfolio content and experience                       |
-| `PH-003` | Deployment And Operations Readiness | Planned     | `v1.0.0`              | Prepare release, deployment, contact routing, and operations        |
-| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, English reach, observability, and insights |
+| Phase    | Name                                | Status    | Release Target        | Goal                                                                |
+| -------- | ----------------------------------- | --------- | --------------------- | ------------------------------------------------------------------- |
+| `PH-001` | Product Foundation Baseline         | Completed | No production tag     | Establish docs, workflow, governance, and content base              |
+| `PH-002` | Static Portfolio Implementation     | Completed | No production tag     | Complete the portfolio content and experience                       |
+| `PH-003` | Deployment And Operations Readiness | Planned   | `v1.0.0`              | Prepare release, deployment, contact routing, and operations        |
+| `PH-004` | Post-Launch Optimization            | Planned   | `v1.1.0+` or `v1.0.x` | Improve discoverability, English reach, observability, and insights |
 
 ## Phase Notes
 
