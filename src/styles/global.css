@@ -15,6 +15,7 @@
   h1,
   h2,
   h3,
+  h4,
   p,
   ol,
   ul,
@@ -64,7 +65,8 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 760;
     line-height: 1.05;
@@ -81,6 +83,10 @@
   }
 
   h3 {
+    font-size: var(--text-h3);
+  }
+
+  h4 {
     font-size: var(--text-h3);
   }
 

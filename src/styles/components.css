@@ -73,7 +73,7 @@
   }
 
   .site-identity__wordmark {
-    font-size: var(--text-body);
+    font-size: var(--text-site-identity);
     font-weight: 780;
     line-height: 1.2;
     letter-spacing: -0.03em;
@@ -93,7 +93,7 @@
     min-inline-size: var(--target-size-min);
     padding-inline: var(--space-2);
     color: var(--color-text-muted);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: 700;
     text-decoration: none;
     border: 1px solid transparent;
@@ -191,8 +191,7 @@
   .button-link--tertiary {
     padding-inline: var(--space-3);
     color: var(--color-accent-strong);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
+    text-decoration: none;
     background: transparent;
     border-color: transparent;
     box-shadow: none;
@@ -204,7 +203,7 @@
 
   .contact-actions {
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
   }
 
   .contact-copy {
@@ -313,7 +312,7 @@
 
     .navigation-list {
       min-inline-size: auto;
-      gap: var(--space-5);
+      gap: var(--space-7);
       justify-content: flex-start;
     }
 
@@ -327,5 +326,19 @@
       align-items: center;
       flex-direction: row;
     }
+  }
+}
+
+@layer utilities {
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
   }
 }

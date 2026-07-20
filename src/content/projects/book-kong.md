@@ -1,6 +1,6 @@
 ---
 title: "Book-Kong"
-classification: "공개 팀 프로젝트"
+classification: "부트캠프 공개 팀 프로젝트"
 summary: "독서 기록 SPA 팀 리드로 일정과 협업을 조율하고 데이터 사전 로딩·조회 흐름, Storybook 지원 도구, 접근성 도우미를 구현했습니다."
 role: "프론트엔드 담당 · 팀 리드"
 contribution: "팀 리드, 데이터 사전 조회와 조회 흐름, Storybook 지원 도구, 접근성 도우미"

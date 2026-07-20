@@ -1,6 +1,6 @@
 ---
 title: "Karly"
-classification: "공개 팀 프로젝트"
+classification: "부트캠프 공개 팀 프로젝트"
 summary: "Vanilla JavaScript 팀 프로젝트에서 상품 목록·상세 UI, 의미 있는 HTML 구조, CSS 변수 기반 스타일링을 구현한 초기 프론트엔드 실습입니다."
 role: "프론트엔드 담당"
 contribution: "상품 목록·상세 UI, 의미가 드러나는 HTML 구조, CSS 변수 기반 스타일링, 발표"

@@ -16,12 +16,14 @@ test("preserves the portfolio hierarchy from wide to narrow layouts", async ({ p
   await page.setViewportSize({ height: 1000, width: 1440 });
   await page.goto("/");
 
+  const heroLayout = await getVisibleBox(page.locator(".hero-layout"));
   const heroCopy = await getVisibleBox(page.locator(".hero-copy"));
-  const heroProof = await getVisibleBox(page.locator(".hero-proof"));
   const featuredProject = await getVisibleBox(page.locator(".project-card--featured"));
   const secondaryProject = await getVisibleBox(page.locator(".project-card").nth(1));
 
-  expect(heroProof.x).toBeGreaterThan(heroCopy.x + heroCopy.width);
+  expect(heroCopy.x).toBeGreaterThanOrEqual(heroLayout.x);
+  expect(heroCopy.width).toBeGreaterThan(heroLayout.width * 0.6);
+  await expect(page.locator(".hero-proof")).toHaveCount(0);
   expect(featuredProject.width).toBeGreaterThan(secondaryProject.width);
 
   const primaryActionColors = await page.locator(".button-link__label").evaluate((label) => {
@@ -48,10 +50,10 @@ test("preserves the portfolio hierarchy from wide to narrow layouts", async ({ p
   await page.setViewportSize({ height: 844, width: 390 });
 
   const narrowHeroCopy = await getVisibleBox(page.locator(".hero-copy"));
-  const narrowHeroProof = await getVisibleBox(page.locator(".hero-proof"));
   const projectCards = page.locator(".project-card");
 
-  expect(narrowHeroProof.y).toBeGreaterThan(narrowHeroCopy.y + narrowHeroCopy.height);
+  expect(narrowHeroCopy.width).toBeGreaterThan(0);
+  await expect(page.locator(".hero-proof")).toHaveCount(0);
   expect((await getVisibleBox(projectCards.nth(1))).y).toBeGreaterThan(
     (await getVisibleBox(projectCards.nth(0))).y,
   );

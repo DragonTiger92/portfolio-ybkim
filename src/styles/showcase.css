@@ -25,47 +25,16 @@
 
   .hero-layout {
     position: relative;
-    display: grid;
-    gap: var(--space-7);
   }
 
   .hero-copy {
     display: grid;
-    max-inline-size: 49rem;
-    gap: var(--space-4);
-  }
-
-  .hero-meta {
-    display: flex;
-    inline-size: fit-content;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-3);
-  }
-
-  .hero-copy h1 {
-    display: flex;
-    max-inline-size: fit-content;
-    align-items: center;
-    gap: var(--space-3);
-    color: var(--color-text-muted);
-    font-size: var(--text-body);
-    line-height: 1.4;
-    letter-spacing: -0.01em;
-    word-break: keep-all;
-  }
-
-  .hero-copy h1::before {
-    inline-size: 2.25rem;
-    block-size: 0.2rem;
-    flex: none;
-    background: var(--color-accent);
-    border-radius: 999px;
-    content: "";
+    max-inline-size: 60rem;
+    gap: var(--space-5);
   }
 
   .hero-positioning {
-    max-inline-size: 22ch;
+    max-inline-size: 24ch;
     font-family: var(--font-display);
     font-size: clamp(2.25rem, 4vi, 3.45rem);
     font-weight: 780;
@@ -83,19 +52,6 @@
     );
   }
 
-  .hero-summary {
-    max-inline-size: var(--prose-max);
-    color: var(--color-text-muted);
-    font-size: var(--text-lead);
-    word-break: keep-all;
-  }
-
-  .hero-support {
-    max-inline-size: var(--prose-max);
-    color: var(--color-text-muted);
-    word-break: keep-all;
-  }
-
   .job-status {
     inline-size: fit-content;
   }
@@ -108,7 +64,7 @@
 
   .job-status dt {
     color: var(--color-text-muted);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     font-weight: 700;
   }
 
@@ -117,7 +73,7 @@
     align-items: center;
     gap: var(--space-2);
     color: var(--color-accent-strong);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: 750;
   }
 
@@ -130,14 +86,6 @@
     content: "";
   }
 
-  .hero-meta .eyebrow {
-    padding-inline-start: var(--space-3);
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
-    letter-spacing: -0.01em;
-    border-inline-start: 1px solid var(--color-border);
-  }
-
   .action-list {
     display: flex;
     flex-wrap: wrap;
@@ -145,9 +93,30 @@
     margin-block-start: var(--space-2);
   }
 
+  .button-link__download-label {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+  }
+
+  .button-link__download-icon {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin-inline-start: var(--space-1);
+    flex: none;
+    fill: none;
+    stroke: currentcolor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .contact-copy code + .contact-copy__button {
+    margin-inline-start: var(--space-1);
+  }
+
   .section-heading--split {
     max-inline-size: none;
-    padding-inline-end: var(--space-7);
   }
 
   .section-heading__title {
@@ -161,19 +130,39 @@
     font-size: var(--text-lead);
   }
 
-  .section-index {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--text-h3);
-  }
-
   .project-grid,
   .professional-grid {
     display: grid;
     gap: var(--space-5);
+  }
+
+  .project-groups,
+  .project-group {
+    display: grid;
+  }
+
+  .project-groups {
+    gap: var(--space-8);
+  }
+
+  .project-group {
+    gap: var(--space-5);
+  }
+
+  .project-group__heading {
+    display: grid;
+    max-inline-size: 58rem;
+    gap: var(--space-3);
+  }
+
+  .project-group__heading > div {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .project-group__heading > p {
+    max-inline-size: var(--prose-max);
+    color: var(--color-text-muted);
   }
 
   .project-card {
@@ -228,7 +217,7 @@
     font-weight: 720;
   }
 
-  .project-card h3 a {
+  .project-card h4 a {
     display: inline-flex;
     min-block-size: var(--target-size-min);
     min-inline-size: var(--target-size-min);
@@ -261,16 +250,20 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .project-group__heading {
+      grid-template-columns: minmax(15rem, 0.8fr) minmax(20rem, 1.2fr);
+      align-items: end;
+      column-gap: var(--space-7);
+    }
+
     .project-card--featured {
       grid-column: 1 / -1;
     }
   }
 
   @media (min-width: 68rem) {
-    .hero-layout {
-      grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.65fr);
-      align-items: center;
-      gap: var(--space-8);
+    .hero-copy {
+      padding-inline-end: var(--space-8);
     }
   }
 }

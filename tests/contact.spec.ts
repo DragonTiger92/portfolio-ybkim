@@ -53,6 +53,30 @@ test("provides correctly scoped profile, repository, and contact actions", async
   ).toBe(email);
   await expect(page.getByRole("status")).toHaveText("이메일 주소를 복사했습니다.");
 
+  const copyStatus = page.getByRole("status");
+
+  await expect(copyStatus).toHaveCount(1);
+  await page.waitForTimeout(500);
+  await page.getByRole("button", { name: "주소 복사" }).click();
+  await page.waitForTimeout(2600);
+  await expect(copyStatus).toHaveText("이메일 주소를 복사했습니다.");
+  await expect(copyStatus).toBeEmpty({ timeout: 1000 });
+
+  const resumeDownload = page.getByRole("link", { name: "이력서 PDF 다운로드" });
+
+  await expect(resumeDownload).toHaveAttribute("download", "");
+  await expect(resumeDownload.locator(".button-link__download-label")).toHaveText(
+    "이력서 PDF 다운로드",
+  );
+  await expect(resumeDownload.locator("svg.button-link__download-icon")).toHaveCount(1);
+  await expect(resumeDownload.locator("svg")).toHaveAttribute("aria-hidden", "true");
+
+  const contactRowGap = await page
+    .locator(".contact-actions")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).rowGap));
+
+  expect(contactRowGap).toBeGreaterThanOrEqual(16);
+
   await expect(
     page.locator("#projects .project-card").first().getByRole("link", { name: "GitHub 저장소" }),
   ).toHaveAttribute("href", portfolioRepositoryUrl);

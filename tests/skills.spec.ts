@@ -1,39 +1,58 @@
 import { expect, test } from "@playwright/test";
 
-const capabilityGroups = [
-  {
-    title: "프론트엔드 구현",
-    description: "의미가 드러나는 HTML, TypeScript, CSS와 접근성을 제품 구조 안에서 함께 다룹니다.",
-  },
-  {
-    title: "제품 전달",
-    description: "요구사항, 범위, 문서와 검증 기준을 구현 과정과 연결합니다.",
-  },
-  {
-    title: "통합 이해",
-    description: "API, 데이터 흐름, 배포와 릴리스 경계를 이해하고 협업합니다.",
-  },
-  {
-    title: "유지보수",
-    description: "명확한 책임, 타입 안정성과 자동화된 품질 검증 절차를 중요하게 생각합니다.",
-  },
+const techStackCategories = [
+  "언어",
+  "프론트엔드",
+  "백엔드 · API",
+  "데이터베이스 · 스토리지",
+  "클라우드 · 인프라",
+  "DevOps · CI/CD",
+  "테스트 · 품질",
+  "보안 · 소프트웨어 공급망",
+  "버전 관리 · 협업",
 ];
 
-test("groups skills by delivery responsibility instead of tool proficiency", async ({ page }) => {
+const capabilityTitles = [
+  "기계적인 품질 피드백",
+  "안전한 Agent 개발 환경",
+  "문서 Architecture와 작업 추적",
+  "웹 표준과 접근성",
+  "자동화된 회귀 검증",
+];
+
+test("presents the reviewed resume stack with optional local marks", async ({ page }) => {
   await page.goto("/");
 
-  const skills = page.locator("#skills");
-  const groups = skills.locator(".capability-grid > li");
+  const stack = page.locator("#skills .tech-stack");
 
-  await expect(skills).toContainText(
-    "기술 이름을 나열하기보다 제품을 끝까지 전달하는 데 어떻게 활용했는지 설명합니다.",
+  await expect(stack).toHaveAccessibleName("기술 스택");
+  await expect(stack.locator(".tech-stack__group dt")).toHaveText(techStackCategories);
+  await expect(stack.locator(".tech-stack__items > li")).toHaveCount(33);
+  await expect(stack.locator(".tech-stack__mark")).toHaveCount(25);
+  await expect(
+    stack.locator("[class*='tech-stack__icon--']:not(.tech-stack__icon--fallback)"),
+  ).toHaveCount(25);
+  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(8);
+});
+
+test("compares implementation capabilities through one evidence matrix", async ({ page }) => {
+  await page.goto("/");
+
+  const matrix = page.locator("#skills .capability-matrix");
+  const rows = matrix.locator("tbody tr");
+
+  await expect(matrix).toHaveAccessibleName("구현 역량");
+  await expect(matrix.locator("thead th")).toHaveText([
+    "역량",
+    "설계 기준",
+    "자동화 경로",
+    "확인 근거",
+  ]);
+  await expect(rows).toHaveCount(capabilityTitles.length);
+  await expect(rows.locator("th[scope='row'] strong")).toHaveText(capabilityTitles);
+  await expect(rows.locator("a")).toHaveCount(capabilityTitles.length);
+  await expect(rows.locator("a[target='_blank'][rel='noopener noreferrer']")).toHaveCount(
+    capabilityTitles.length,
   );
-  await expect(groups).toHaveCount(capabilityGroups.length);
-
-  for (const [index, capabilityGroup] of capabilityGroups.entries()) {
-    const group = groups.nth(index);
-
-    await expect(group.locator("h3")).toHaveText(capabilityGroup.title);
-    await expect(group.locator("p")).toHaveText(capabilityGroup.description);
-  }
+  await expect(matrix).not.toContainText("visual regression");
 });

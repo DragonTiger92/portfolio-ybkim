@@ -14,7 +14,6 @@
     --color-on-accent: #ffffff;
     --color-focus: #b45309;
     --color-shadow: rgb(15 23 42 / 12%);
-
     --font-body: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
     --font-display: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
     --font-mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
@@ -22,6 +21,7 @@
     --text-xs: 0.78rem;
     --text-sm: 0.9rem;
     --text-body: 1rem;
+    --text-site-identity: clamp(1.05rem, 1.5vw, 1.18rem);
     --text-lead: clamp(1.08rem, 2vw, 1.3rem);
     --text-h3: clamp(1.25rem, 2vw, 1.55rem);
     --text-h2: clamp(2rem, 5vw, 3.4rem);

@@ -1,6 +1,6 @@
 ---
 title: "portfolio-ybkim"
-classification: "포트폴리오 제품"
+classification: "개인 공개 프로젝트"
 summary: "Astro 정적 사이트 구조, 문서 기반 기획, ADR, PBI, 품질 검증 절차를 함께 살펴볼 수 있는 현재 포트폴리오 제품입니다."
 role: "기획 · 구현"
 contribution: "제품 기획, 콘텐츠 경계, Astro 구현, 문서와 품질 검증 절차 전반"

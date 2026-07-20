@@ -1,0 +1,127 @@
+@layer components {
+  .tech-stack__icon--typescript {
+    --technology-mark-color: #3178c6;
+    --technology-mark-image: url("/assets/tech/typescript.svg");
+  }
+
+  .tech-stack__icon--python {
+    --technology-mark-color: #3776ab;
+    --technology-mark-image: url("/assets/tech/python.svg");
+  }
+
+  .tech-stack__icon--solidity {
+    --technology-mark-color: #363636;
+    --technology-mark-color-dark: #b8b8b8;
+    --technology-mark-image: url("/assets/tech/solidity.svg");
+  }
+
+  .tech-stack__icon--nextdotjs {
+    --technology-mark-color: #000000;
+    --technology-mark-color-dark: #ffffff;
+    --technology-mark-image: url("/assets/tech/nextdotjs.svg");
+  }
+
+  .tech-stack__icon--tailwindcss {
+    --technology-mark-color: #06b6d4;
+    --technology-mark-image: url("/assets/tech/tailwindcss.svg");
+  }
+
+  .tech-stack__icon--reactquery {
+    --technology-mark-color: #ff4154;
+    --technology-mark-image: url("/assets/tech/reactquery.svg");
+  }
+
+  .tech-stack__icon--framer {
+    --technology-mark-color: #0055ff;
+    --technology-mark-image: url("/assets/tech/framer.svg");
+  }
+
+  .tech-stack__icon--jquery {
+    --technology-mark-color: #0769ad;
+    --technology-mark-image: url("/assets/tech/jquery.svg");
+  }
+
+  .tech-stack__icon--bootstrap {
+    --technology-mark-color: #7952b3;
+    --technology-mark-image: url("/assets/tech/bootstrap.svg");
+  }
+
+  .tech-stack__icon--django {
+    --technology-mark-color: #092e20;
+    --technology-mark-color-dark: #44b78b;
+    --technology-mark-image: url("/assets/tech/django.svg");
+  }
+
+  .tech-stack__icon--fastapi {
+    --technology-mark-color: #009688;
+    --technology-mark-image: url("/assets/tech/fastapi.svg");
+  }
+
+  .tech-stack__icon--postgresql {
+    --technology-mark-color: #4169e1;
+    --technology-mark-image: url("/assets/tech/postgresql.svg");
+  }
+
+  .tech-stack__icon--sqlite {
+    --technology-mark-color: #003b57;
+    --technology-mark-color-dark: #44a2c9;
+    --technology-mark-image: url("/assets/tech/sqlite.svg");
+  }
+
+  .tech-stack__icon--docker {
+    --technology-mark-color: #2496ed;
+    --technology-mark-image: url("/assets/tech/docker.svg");
+  }
+
+  .tech-stack__icon--terraform {
+    --technology-mark-color: #844fba;
+    --technology-mark-image: url("/assets/tech/terraform.svg");
+  }
+
+  .tech-stack__icon--nginx {
+    --technology-mark-color: #009639;
+    --technology-mark-image: url("/assets/tech/nginx.svg");
+  }
+
+  .tech-stack__icon--githubactions {
+    --technology-mark-color: #2088ff;
+    --technology-mark-image: url("/assets/tech/githubactions.svg");
+  }
+
+  .tech-stack__icon--vitest {
+    --technology-mark-color: #00ff74;
+    --technology-mark-image: url("/assets/tech/vitest.svg");
+  }
+
+  .tech-stack__icon--eslint {
+    --technology-mark-color: #4b32c3;
+    --technology-mark-image: url("/assets/tech/eslint.svg");
+  }
+
+  .tech-stack__icon--prettier {
+    --technology-mark-color: #f7b93e;
+    --technology-mark-image: url("/assets/tech/prettier.svg");
+  }
+
+  .tech-stack__icon--mockserviceworker {
+    --technology-mark-color: #ff6a33;
+    --technology-mark-image: url("/assets/tech/mockserviceworker.svg");
+  }
+
+  .tech-stack__icon--github {
+    --technology-mark-color: #181717;
+    --technology-mark-color-dark: #ffffff;
+    --technology-mark-image: url("/assets/tech/github.svg");
+  }
+
+  .tech-stack__icon--notion {
+    --technology-mark-color: #000000;
+    --technology-mark-color-dark: #ffffff;
+    --technology-mark-image: url("/assets/tech/notion.svg");
+  }
+
+  .tech-stack__icon--storybook {
+    --technology-mark-color: #ff4785;
+    --technology-mark-image: url("/assets/tech/storybook.svg");
+  }
+}

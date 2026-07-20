@@ -1,7 +1,9 @@
 @layer components {
-  .professional-section {
-    background: var(--color-surface);
-    border-block: 1px solid var(--color-border);
+  .project-group--company {
+    padding: var(--space-5);
+    background: color-mix(in srgb, var(--color-surface) 82%, var(--color-canvas));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
   }
 
   .professional-grid {
@@ -34,61 +36,189 @@
     letter-spacing: 0.08em;
   }
 
-  .capability-grid {
+  .tech-stack,
+  .capability-matrix {
     display: grid;
-    gap: var(--space-6) var(--space-5);
-    list-style: none;
-    counter-reset: capability;
+    gap: var(--space-6);
   }
 
-  .capability-grid li {
-    display: grid;
-    gap: var(--space-3);
-    padding-block-start: var(--space-4);
-    border-block-start: 0.2rem solid var(--color-accent);
-    counter-increment: capability;
+  .tech-stack {
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
   }
 
-  .capability-grid li::before {
+  .tech-stack__intro,
+  .capability-section__intro {
+    display: grid;
+    max-inline-size: var(--prose-max);
+    gap: var(--space-2);
+  }
+
+  .tech-stack__intro p,
+  .capability-section__intro p {
     color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    content: "0" counter(capability);
   }
 
-  .process-layout {
+  .tech-stack__groups {
     display: grid;
-    gap: var(--space-7);
   }
 
-  .process-list {
+  .tech-stack__group {
     display: grid;
     gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .tech-stack__group dt {
+    font-weight: 750;
+  }
+
+  .tech-stack__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
     list-style: none;
-    counter-reset: process;
   }
 
-  .process-list li {
+  .tech-stack__items li {
+    display: inline-flex;
+    min-block-size: var(--target-size-min);
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: 680;
+  }
+
+  .tech-stack__icon {
+    --technology-mark-color-active: var(--technology-mark-color);
+
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--space-3);
-    padding-block: var(--space-4);
-    border-block-end: 1px solid var(--color-border);
-    counter-increment: process;
+    inline-size: 2rem;
+    block-size: 2rem;
+    flex: none;
+    place-items: center;
+    background: color-mix(
+      in srgb,
+      var(--technology-mark-color-active, var(--color-accent)) 12%,
+      var(--color-surface)
+    );
+    border: 1px solid
+      color-mix(
+        in srgb,
+        var(--technology-mark-color-active, var(--color-accent)) 34%,
+        var(--color-border)
+      );
+    border-radius: 50%;
   }
 
-  .process-list li::before {
-    color: var(--color-accent);
+  .tech-stack__mark {
+    inline-size: 1.2rem;
+    block-size: 1.2rem;
+    background: var(--technology-mark-color-active);
+    -webkit-mask: var(--technology-mark-image) center / contain no-repeat;
+    /* eslint-disable-next-line css/use-baseline -- the prefixed declaration keeps Safari support */
+    mask: var(--technology-mark-image) center / contain no-repeat;
+  }
+
+  .tech-stack__icon--fallback {
+    color: var(--color-accent-strong);
     font-family: var(--font-mono);
-    content: "0" counter(process);
+    font-size: 0.65rem;
+    font-weight: 750;
+    letter-spacing: -0.04em;
   }
 
-  .process-list span {
+  :root[data-theme="dark"] .tech-stack__icon {
+    --technology-mark-color-active: var(--technology-mark-color-dark, var(--technology-mark-color));
+  }
+
+  .capability-matrix {
+    margin-block-start: var(--space-8);
+  }
+
+  .capability-matrix table {
+    inline-size: 100%;
+    border-collapse: collapse;
+  }
+
+  .capability-matrix thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .capability-matrix tr {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .capability-matrix tbody {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .capability-matrix th[scope="row"] {
+    display: grid;
+    gap: var(--space-2);
+    text-align: start;
+  }
+
+  .capability-matrix th[scope="row"] strong {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.15;
+  }
+
+  .capability-matrix th[scope="row"] span,
+  .capability-matrix td {
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .capability-matrix td {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .capability-matrix td::before {
+    color: var(--color-text);
+    font-weight: 720;
+    content: attr(data-label);
+  }
+
+  .capability-matrix td:last-child > span,
+  .capability-matrix td:last-child > a {
     grid-column: 2;
-    color: var(--color-text-muted);
+  }
+
+  .capability-matrix a {
+    display: inline-flex;
+    inline-size: fit-content;
+    min-block-size: var(--target-size-min);
+    align-items: center;
+    font-weight: 720;
   }
 
   @media (min-width: 48rem) {
+    .project-group--company {
+      padding: var(--space-6);
+    }
+
     .professional-card {
       grid-template-columns: 2rem minmax(20rem, 1.2fr) minmax(15rem, 0.8fr) auto;
       align-items: start;
@@ -99,19 +229,79 @@
       grid-column: auto;
     }
 
-    .capability-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 68rem) {
-    .capability-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    .tech-stack {
+      padding: var(--space-6);
     }
 
-    .process-layout {
-      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
-      align-items: end;
+    .tech-stack__group {
+      grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr);
+      align-items: start;
+      column-gap: var(--space-6);
+    }
+
+    .capability-matrix thead {
+      position: static;
+      inline-size: auto;
+      block-size: auto;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+    }
+
+    .capability-matrix tbody {
+      gap: 0;
+      border-block-end: 1px solid var(--color-border);
+    }
+
+    .capability-matrix tr {
+      display: grid;
+      grid-template-columns: minmax(13rem, 1.25fr) repeat(3, minmax(8rem, 1fr));
+      gap: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-block-start: 1px solid var(--color-border);
+      border-radius: 0;
+    }
+
+    .capability-matrix thead th,
+    .capability-matrix tbody th,
+    .capability-matrix tbody td {
+      padding: var(--space-4);
+      text-align: start;
+      border-inline-start: 1px solid var(--color-border);
+    }
+
+    .capability-matrix thead th:last-child,
+    .capability-matrix tbody td:last-child {
+      border-inline-end: 1px solid var(--color-border);
+    }
+
+    .capability-matrix thead th {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .capability-matrix th[scope="row"] strong {
+      font-size: var(--text-body);
+    }
+
+    .capability-matrix td {
+      display: block;
+    }
+
+    .capability-matrix td::before {
+      content: none;
+    }
+
+    .capability-matrix td:last-child > span,
+    .capability-matrix td:last-child > a {
+      grid-column: auto;
+    }
+
+    .capability-matrix td:last-child > a {
+      display: inline-flex;
+      margin-block-start: var(--space-3);
     }
   }
 }

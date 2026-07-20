@@ -1,0 +1,52 @@
+---
+import type { CapabilityGroup } from "../data/skills";
+
+interface Props {
+  capabilities: CapabilityGroup[];
+}
+
+const { capabilities } = Astro.props;
+---
+
+<section class="capability-matrix" aria-labelledby="capabilities-title">
+  <div class="capability-section__intro">
+    <h3 id="capabilities-title">구현 역량</h3>
+    <p>실천 항목마다 설계 기준, 자동화 경로와 저장소에서 확인할 수 있는 근거를 연결했습니다.</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">역량</th>
+        <th scope="col">설계 기준</th>
+        <th scope="col">자동화 경로</th>
+        <th scope="col">확인 근거</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        capabilities.map((capability) => (
+          <tr>
+            <th scope="row">
+              <strong>{capability.title}</strong>
+              <span>{capability.description}</span>
+            </th>
+            <td data-label="설계 기준">{capability.standard}</td>
+            <td data-label="자동화 경로">{capability.automation}</td>
+            <td data-label="확인 근거">
+              <span>{capability.evidence}</span>
+              <a
+                href={capability.evidenceLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${capability.evidenceLink.label}(새 창)`}
+              >
+                {capability.evidenceLink.label} <span aria-hidden="true">↗</span>
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</section>

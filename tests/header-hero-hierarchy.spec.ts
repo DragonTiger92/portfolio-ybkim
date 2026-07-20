@@ -23,28 +23,45 @@ test("presents a concise site wordmark and a secondary theme utility", async ({ 
   await expect(identity.locator(".site-identity__copy")).toHaveCount(0);
   await expect(themeToggle).toHaveAttribute("aria-pressed", /^(true|false)$/);
   await expect(themeToggle).not.toHaveClass(/button-link/);
-  await expect(page.locator(".navigation-list a")).toHaveText(["프로젝트", "역량", "작업 방식"]);
+  await expect(page.locator(".navigation-list a")).toHaveText(["프로젝트", "역량"]);
 });
 
 test("keeps job status static and accents only the positioning phrases", async ({ page }) => {
   await page.goto("/");
 
-  const heroMeta = page.locator("#intro .hero-meta");
-  const jobStatus = heroMeta.locator(".job-status");
+  const jobStatus = page.locator("#intro .job-status");
   const positioning = page.locator("#intro .hero-positioning");
 
-  await expect(heroMeta.getByRole("button")).toHaveCount(0);
+  await expect(page.locator("#intro .hero-meta")).toHaveCount(0);
+  await expect(page.locator("#intro > .hero-layout .eyebrow")).toHaveCount(0);
   expect(await jobStatus.getAttribute("role")).toBeNull();
   expect(await jobStatus.getAttribute("aria-pressed")).toBeNull();
   await expect(jobStatus.locator("dt")).toHaveText("구직 상태");
   await expect(jobStatus.locator("dd")).toHaveText("구직 중");
   await expect(positioning).toHaveText(
-    "사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.",
+    "최종 사용자와 개발자 모두를 만족시키는 제품 구현을 지향합니다.",
   );
   await expect(positioning.locator(".hero-positioning__accent")).toHaveText([
-    "이해하기 쉬운 UI",
-    "오래 관리할 수 있는 웹 제품",
+    "최종 사용자",
+    "개발자",
   ]);
+  await expect(page.locator("#intro .hero-summary")).toHaveCount(0);
+  await expect(page.locator("#intro .hero-support")).toHaveCount(0);
+});
+
+test("keeps the page title in the document outline without rendering a visual title row", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const pageTitle = page.locator("#portfolio-title");
+
+  await expect(pageTitle).toHaveText("웹 개발자 김용범의 포트폴리오");
+  await expect(pageTitle).toHaveClass(/visually-hidden/);
+  expect(
+    await pageTitle.evaluate((element) => window.getComputedStyle(element, "::before").content),
+  ).toBe("none");
+  await expect(pageTitle).toHaveCSS("clip-path", "inset(50%)");
 });
 
 test("preserves a restrained hierarchy from desktop to mobile", async ({ page }) => {
@@ -61,6 +78,21 @@ test("preserves a restrained hierarchy from desktop to mobile", async ({ page })
   const desktopPositioningSize = await page
     .locator(".hero-positioning")
     .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
+  const desktopWordmarkSize = await page
+    .locator(".site-identity__wordmark")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
+  const desktopBodySize = await page
+    .locator("body")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
+  const desktopNavigationSize = await navigationLinks
+    .first()
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
+  const jobStatusLabelSize = await page
+    .locator(".job-status dt")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
+  const jobStatusValueSize = await page
+    .locator(".job-status dd")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).fontSize));
   const themeBackground = await themeToggle.evaluate(
     (element) => window.getComputedStyle(element).backgroundColor,
   );
@@ -73,8 +105,12 @@ test("preserves a restrained hierarchy from desktop to mobile", async ({ page })
     .locator(".job-status dd")
     .evaluate((element) => window.getComputedStyle(element).backgroundColor);
 
-  expect(desktopNavigationGap).toBeGreaterThanOrEqual(20);
+  expect(desktopNavigationGap).toBeGreaterThanOrEqual(40);
   expect(desktopPositioningSize).toBeLessThanOrEqual(56);
+  expect(desktopWordmarkSize).toBeGreaterThan(desktopBodySize);
+  expect(desktopNavigationSize).toBeGreaterThanOrEqual(desktopBodySize);
+  expect(jobStatusLabelSize).toBeGreaterThanOrEqual(desktopBodySize * 0.9);
+  expect(jobStatusValueSize).toBeGreaterThanOrEqual(desktopBodySize);
   expect(desktopThemeBox.width).toBeGreaterThanOrEqual(44);
   expect(desktopThemeBox.height).toBeGreaterThanOrEqual(44);
   expect(headerSourceOrder).toEqual(["a", "nav", "button"]);
@@ -103,4 +139,12 @@ test("preserves a restrained hierarchy from desktop to mobile", async ({ page })
   expect(Math.abs(navigationCenter - themeCenter)).toBeLessThanOrEqual(4);
   expect(mobilePositioningSize).toBeLessThanOrEqual(36);
   expect(hasHorizontalOverflow).toBe(false);
+});
+
+test("uses root-document fragments for landing navigation", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator('.navigation-list a[href="#projects"]')).toHaveCount(1);
+  await expect(page.locator('.navigation-list a[href="#skills"]')).toHaveCount(1);
+  await expect(page.locator('.navigation-list a[href="#process"]')).toHaveCount(0);
 });

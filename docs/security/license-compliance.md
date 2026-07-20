@@ -91,6 +91,34 @@ license credentials.
   `src/layouts/BaseLayout.astro`.
 - **Disposition:** Approved for external loading at the pinned release path.
 
+### Simple Icons technology marks
+
+- **Item:** the 24 technology-mark SVG files distributed from
+  `public/assets/tech/`.
+- **Material Type:** third-party vector brand icons.
+- **Source:** the official `simple-icons` package, retrieved from jsDelivr at
+  the exact `16.21.0` package version.
+- **Author or Supplier:** Simple Icons contributors; the depicted names and
+  marks remain associated with their respective trademark owners.
+- **Version or Date:** `16.21.0`, retrieved and reviewed on 2026-07-20.
+- **License:** CC0-1.0 for the Simple Icons project. The project disclaimer
+  states that CC0 does not waive third-party trademark rights.
+- **Modifications:** none to the distributed SVG paths or `0 0 24 24` view
+  boxes. Runtime CSS classes map each mark to its corresponding `16.21.0`
+  package metadata color, with explicit contrast variants for very dark marks
+  in the dark theme, and a consistent rendered size; technologies without a
+  reviewed source asset use a typographic fallback rather than a substituted
+  brand mark.
+- **Obligations:** use the marks only to identify technologies, do not imply
+  endorsement, and recheck upstream legal or brand guidance when replacing or
+  materially modifying an icon.
+- **Notice Location:** this register. CC0 does not require product attribution.
+- **Evidence:** the pinned jsDelivr source path, the upstream license and legal
+  disclaimer, and local format and byte-size inspection. The selected set is
+  30,440 bytes in aggregate and the largest file is 5,205 bytes.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
 ## Review Workflow
 
 1. Inventory third-party material when it enters the repository, not only at

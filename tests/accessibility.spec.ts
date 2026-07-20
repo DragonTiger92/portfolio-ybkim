@@ -10,7 +10,7 @@ const routes = ["/", "/projects/portfolio-ybkim/", "/projects/karly/", "/project
 
 const projectEvidence = [
   {
-    classification: "포트폴리오 제품",
+    classification: "개인 공개 프로젝트",
     headings: [
       "portfolio-ybkim",
       "해결 과제",
@@ -31,7 +31,7 @@ const projectEvidence = [
     route: "/projects/portfolio-ybkim/",
   },
   {
-    classification: "공개 팀 프로젝트",
+    classification: "부트캠프 공개 팀 프로젝트",
     headings: [
       "Karly",
       "프로젝트 맥락",
@@ -46,7 +46,7 @@ const projectEvidence = [
     route: "/projects/karly/",
   },
   {
-    classification: "공개 팀 프로젝트",
+    classification: "부트캠프 공개 팀 프로젝트",
     headings: [
       "Book-Kong",
       "프로젝트 맥락",
@@ -108,23 +108,20 @@ test("presents the approved first viewport hierarchy", async ({ page }) => {
 
   await expect(page.locator("#intro .job-status dt")).toHaveText("구직 상태");
   await expect(page.locator("#intro .job-status dd")).toHaveText("구직 중");
-  await expect(page.locator("#intro .hero-meta .eyebrow")).toHaveText(
-    "프론트엔드에 강한 웹 개발자",
-  );
+  await expect(page.locator("#intro .hero-meta")).toHaveCount(0);
   await expect(page.locator("#intro .hero-positioning")).toHaveText(
-    "사용자가 이해하기 쉬운 UI와 오래 관리할 수 있는 웹 제품을 만듭니다.",
+    "최종 사용자와 개발자 모두를 만족시키는 제품 구현을 지향합니다.",
   );
-  await expect(page.locator("#intro .hero-summary")).toHaveText(
-    "프론트엔드 구현에 강점을 둔 개발자 김용범입니다. 데이터 흐름을 명확히 설계하고, 문서와 검증 가능한 결과물을 함께 남깁니다.",
-  );
+  await expect(page.locator("#intro .hero-summary")).toHaveCount(0);
 
   await expect(page.locator("#intro .action-list a")).toHaveCount(3);
   await expect(page.getByRole("button", { name: "주소 복사" })).toBeVisible();
 
-  await expect(page.locator("#projects .eyebrow").first()).toHaveText("공개 프로젝트");
-  await expect(page.locator("#professional-highlights .eyebrow")).toHaveText("공개 범위로 요약");
-  await expect(page.locator("#skills .eyebrow")).toHaveText("핵심 역량");
-  await expect(page.locator("#process .eyebrow")).toHaveText("작업 흐름");
+  await expect(page.locator(".section-heading .eyebrow")).toHaveCount(0);
+  await expect(page.locator(".project-group__heading .eyebrow")).toHaveCount(0);
+  await expect(page.locator(".section-index")).toHaveCount(0);
+  await expect(page.locator("#company-projects-title")).toHaveText("회사 비공개 프로젝트");
+  await expect(page.locator("#process")).toHaveCount(0);
 });
 
 test("exposes a concise landing-page heading outline", async ({ page }) => {
@@ -133,23 +130,21 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
   expect(await getHeadingOutline(page)).toEqual([
     { level: 1, text: "웹 개발자 김용범의 포트폴리오" },
     { level: 2, text: "프로젝트" },
-    { level: 3, text: "portfolio-ybkim" },
-    { level: 3, text: "Karly" },
-    { level: 3, text: "Book-Kong" },
-    { level: 2, text: "실무 경험" },
-    { level: 3, text: "학원 정보·상담 웹 서비스" },
-    { level: 3, text: "과학 문항 개념·풀이 논리 구조화 도구" },
-    { level: 3, text: "과학 교육 콘텐츠 제작·검수 플랫폼" },
+    { level: 3, text: "공개 결과물" },
+    { level: 4, text: "portfolio-ybkim" },
+    { level: 4, text: "Karly" },
+    { level: 4, text: "Book-Kong" },
+    { level: 3, text: "회사 비공개 프로젝트" },
+    { level: 4, text: "학원 정보·상담 웹 서비스" },
+    { level: 4, text: "과학 문항 개념·풀이 논리 구조화 도구" },
+    { level: 4, text: "과학 교육 콘텐츠 제작·검수 플랫폼" },
     { level: 2, text: "역량" },
-    { level: 3, text: "프론트엔드 구현" },
-    { level: 3, text: "제품 전달" },
-    { level: 3, text: "통합 이해" },
-    { level: 3, text: "유지보수" },
-    { level: 2, text: "작업 방식" },
+    { level: 3, text: "기술 스택" },
+    { level: 3, text: "구현 역량" },
   ]);
 });
 
-test("presents inspectable public projects and disclosure-safe professional highlights", async ({
+test("presents inspectable public results and disclosure-safe company projects", async ({
   page,
 }) => {
   await page.goto("/");
@@ -157,14 +152,14 @@ test("presents inspectable public projects and disclosure-safe professional high
   const projectCards = page.locator("#projects .project-card");
 
   await expect(projectCards).toHaveCount(3);
-  await expect(projectCards.locator("h3")).toHaveText(["portfolio-ybkim", "Karly", "Book-Kong"]);
+  await expect(projectCards.locator("h4")).toHaveText(["portfolio-ybkim", "Karly", "Book-Kong"]);
   await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
   await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(3);
   await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(3);
-  const professionalCards = page.locator("#professional-highlights .professional-card");
+  const professionalCards = page.locator("#projects .professional-card");
 
   await expect(professionalCards).toHaveCount(3);
-  await expect(professionalCards.locator("h3")).toHaveText([
+  await expect(professionalCards.locator("h4")).toHaveText([
     "학원 정보·상담 웹 서비스",
     "과학 문항 개념·풀이 논리 구조화 도구",
     "과학 교육 콘텐츠 제작·검수 플랫폼",
