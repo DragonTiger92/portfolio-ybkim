@@ -1,27 +1,24 @@
 ---
 import { publicContact } from "../data/contact";
+import NewWindowLink from "./NewWindowLink.astro";
 ---
 
 <div class="contact-actions">
   <div class="action-list">
-    <a
+    <NewWindowLink
       class="button-link"
       href={publicContact.gmailComposeUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Gmail에서 메일 쓰기(새 창)"
+      accessibleLabel="Gmail에서 메일 쓰기"
     >
-      <span class="button-link__label">Gmail에서 메일 쓰기 <span aria-hidden="true">↗</span></span>
-    </a>
-    <a
+      <span class="button-link__label">Gmail에서 메일 쓰기</span>
+    </NewWindowLink>
+    <NewWindowLink
       class="button-link button-link--secondary"
       href={publicContact.githubProfileUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="GitHub 프로필 보기(새 창)"
+      accessibleLabel="GitHub 프로필 보기"
     >
-      GitHub 프로필 <span aria-hidden="true">↗</span>
-    </a>
+      GitHub 프로필
+    </NewWindowLink>
     <a
       class="button-link button-link--tertiary"
       href="/assets/resume/yb-kim-resume.pdf"

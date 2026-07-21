@@ -1,4 +1,6 @@
 ---
+import TagList from "./TagList.astro";
+
 interface ProjectLink {
   href: string;
   label: string;
@@ -33,9 +35,7 @@ const cardLinks = links.filter((link) => link.showOnCard);
     <p class="project-card__role">{role}</p>
   </div>
 
-  <ul class="tag-list">
-    {tags.map((tag) => <li>{tag}</li>)}
-  </ul>
+  <TagList items={tags} />
 
   <div class="project-card__links">
     <a class="text-link" href={`/projects/${slug}/`} aria-label={`${title} 상세 설명`}>상세 설명</a>

@@ -2,7 +2,9 @@
 import { getCollection } from "astro:content";
 import CapabilityMatrix from "../components/CapabilityMatrix.astro";
 import ContactActions from "../components/ContactActions.astro";
+import NewWindowLink from "../components/NewWindowLink.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import TagList from "../components/TagList.astro";
 import TechStack from "../components/TechStack.astro";
 import { getJobStatusContent } from "../data/job-status";
 import { companyProjectHighlights, landingScopeCopy } from "../data/landing";
@@ -106,21 +108,15 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
                       <h4>{highlight.title}</h4>
                       <p class="professional-card__description">{highlight.description}</p>
                     </div>
-                    <ul class="tag-list">
-                      {highlight.tags.map((tag) => (
-                        <li>{tag}</li>
-                      ))}
-                    </ul>
+                    <TagList items={highlight.tags} />
                     {highlight.action && (
-                      <a
+                      <NewWindowLink
                         class="text-link"
                         href={highlight.action.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${highlight.action.label}(새 창)`}
+                        accessibleLabel={highlight.action.label}
                       >
-                        {highlight.action.label} <span aria-hidden="true">↗</span>
-                      </a>
+                        {highlight.action.label}
+                      </NewWindowLink>
                     )}
                   </article>
                 ))

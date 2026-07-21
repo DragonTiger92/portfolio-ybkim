@@ -1,5 +1,6 @@
 ---
 import type { CapabilityGroup } from "../data/skills";
+import NewWindowLink from "./NewWindowLink.astro";
 
 interface Props {
   capabilities: CapabilityGroup[];
@@ -35,14 +36,12 @@ const { capabilities } = Astro.props;
             <td data-label="자동화 경로">{capability.automation}</td>
             <td data-label="확인 근거">
               <span>{capability.evidence}</span>
-              <a
+              <NewWindowLink
                 href={capability.evidenceLink.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${capability.evidenceLink.label}(새 창)`}
+                accessibleLabel={capability.evidenceLink.label}
               >
-                {capability.evidenceLink.label} <span aria-hidden="true">↗</span>
-              </a>
+                {capability.evidenceLink.label}
+              </NewWindowLink>
             </td>
           </tr>
         ))
