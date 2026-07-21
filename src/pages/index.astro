@@ -45,20 +45,21 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
 
     <section id="projects" class="content-section" aria-labelledby="projects-title">
       <div class="site-shell">
-        <div class="section-heading section-heading--split">
+        <div class="section-heading section-heading--compact">
           <div class="section-heading__title">
             <h2 id="projects-title">프로젝트</h2>
           </div>
-          <p>{landingScopeCopy.projects.description}</p>
         </div>
 
         <div class="project-groups">
-          <section class="project-group" aria-labelledby="public-projects-title">
+          <section
+            class="project-group project-group--compact"
+            aria-labelledby="public-projects-title"
+          >
             <div class="project-group__heading">
               <div>
                 <h3 id="public-projects-title">{landingScopeCopy.projects.publicGroup.title}</h3>
               </div>
-              <p>{landingScopeCopy.projects.publicGroup.description}</p>
             </div>
 
             <div class="project-grid">

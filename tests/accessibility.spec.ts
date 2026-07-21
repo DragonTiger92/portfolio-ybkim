@@ -130,7 +130,7 @@ test("exposes a concise landing-page heading outline", async ({ page }) => {
   expect(await getHeadingOutline(page)).toEqual([
     { level: 1, text: "웹 개발자 김용범의 포트폴리오" },
     { level: 2, text: "프로젝트" },
-    { level: 3, text: "공개 결과물" },
+    { level: 3, text: "공개 프로젝트" },
     { level: 4, text: "portfolio-ybkim" },
     { level: 4, text: "Karly" },
     { level: 4, text: "Book-Kong" },

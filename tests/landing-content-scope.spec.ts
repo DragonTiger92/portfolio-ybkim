@@ -23,10 +23,11 @@ test("distinguishes project evidence and business context without splitting the 
   await expect(page.locator(".project-group__heading .eyebrow")).toHaveCount(0);
   await expect(page.locator(".section-index")).toHaveCount(0);
   await expect(page.locator("#process")).toHaveCount(0);
-  await expect(page.locator("#projects .section-heading--split > p")).toHaveText(
-    "소스와 배포 결과를 확인할 수 있는 공개 결과물부터 회사에서 수행한 비공개 비즈니스 프로젝트까지, 개발 작업을 성격과 공개 범위에 따라 한곳에 정리했습니다.",
-  );
-  await expect(page.locator("#public-projects-title")).toHaveText("공개 결과물");
+  await expect(page.locator("#projects .section-heading > p")).toHaveCount(0);
+  await expect(page.locator("#public-projects-title")).toHaveText("공개 프로젝트");
+  await expect(
+    page.locator("#projects .project-group").first().locator(".project-group__heading > p"),
+  ).toHaveCount(0);
   await expect(page.locator("#company-projects-title")).toHaveText("회사 비공개 프로젝트");
 
   const scopeLabels = companyProjectCards.locator(".professional-card__scope");

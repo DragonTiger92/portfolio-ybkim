@@ -15,9 +15,7 @@ interface LandingScopeCopy {
       scopeLabel: string;
       title: string;
     };
-    description: string;
     publicGroup: {
-      description: string;
       title: string;
     };
   };
@@ -31,12 +29,8 @@ export const landingScopeCopy = {
       scopeLabel: "회사 비즈니스 프로젝트 · 공개 범위 요약",
       title: "회사 비공개 프로젝트",
     },
-    description:
-      "소스와 배포 결과를 확인할 수 있는 공개 결과물부터 회사에서 수행한 비공개 비즈니스 프로젝트까지, 개발 작업을 성격과 공개 범위에 따라 한곳에 정리했습니다.",
     publicGroup: {
-      description:
-        "소스 코드나 배포 결과물을 직접 확인할 수 있습니다. 카드의 분류에서 개인 프로젝트와 부트캠프 팀 프로젝트를 구분했습니다.",
-      title: "공개 결과물",
+      title: "공개 프로젝트",
     },
   },
 } as const satisfies LandingScopeCopy;
