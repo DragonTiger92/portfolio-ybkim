@@ -48,15 +48,16 @@ export const techStackGroups: TechStackGroup[] = [
   },
   {
     label: "백엔드 · API",
-    items: [withBrandMark("Django", "django"), withBrandMark("FastAPI", "fastapi")],
+    items: [
+      withBrandMark("Django", "django"),
+      withBrandMark("FastAPI", "fastapi"),
+      withBrandMark("SQLAlchemy", "sqlalchemy"),
+      { name: "Alembic" },
+    ],
   },
   {
     label: "데이터베이스 · 스토리지",
-    items: [
-      { name: "Amazon S3" },
-      withBrandMark("PostgreSQL", "postgresql"),
-      withBrandMark("SQLite", "sqlite"),
-    ],
+    items: [{ name: "Amazon S3" }, withBrandMark("PostgreSQL", "postgresql")],
   },
   {
     label: "클라우드 · 인프라",

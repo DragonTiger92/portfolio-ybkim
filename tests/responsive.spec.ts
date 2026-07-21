@@ -18,11 +18,25 @@ test("preserves the portfolio hierarchy from wide to narrow layouts", async ({ p
 
   const heroLayout = await getVisibleBox(page.locator(".hero-layout"));
   const heroCopy = await getVisibleBox(page.locator(".hero-copy"));
+  const projectsHeading = await getVisibleBox(page.locator("#projects-title"));
   const featuredProject = await getVisibleBox(page.locator(".project-card--featured"));
   const secondaryProject = await getVisibleBox(page.locator(".project-card").nth(1));
 
   expect(heroCopy.x).toBeGreaterThanOrEqual(heroLayout.x);
   expect(heroCopy.width).toBeGreaterThan(heroLayout.width * 0.6);
+  expect(projectsHeading.y).toBeLessThan(1000);
+  const sectionPadding = await page
+    .locator(".content-section")
+    .first()
+    .evaluate((section) => {
+      const styles = window.getComputedStyle(section);
+
+      return {
+        bottom: Number.parseFloat(styles.paddingBottom),
+        top: Number.parseFloat(styles.paddingTop),
+      };
+    });
+  expect(sectionPadding.top).toBeLessThan(sectionPadding.bottom);
   await expect(page.locator(".hero-proof")).toHaveCount(0);
   expect(featuredProject.width).toBeGreaterThan(secondaryProject.width);
 

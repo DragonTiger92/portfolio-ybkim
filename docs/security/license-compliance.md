@@ -101,8 +101,9 @@ license credentials.
 - **Author or Supplier:** Simple Icons contributors; the depicted names and
   marks remain associated with their respective trademark owners.
 - **Version or Date:** `16.21.0`, retrieved and reviewed on 2026-07-20.
-- **License:** CC0-1.0 for the Simple Icons project. The project disclaimer
-  states that CC0 does not waive third-party trademark rights.
+- **License:** CC0-1.0 for the Simple Icons project; the SQLAlchemy icon carries
+  MIT metadata in the pinned catalog. The project disclaimer states that CC0
+  does not waive third-party trademark rights.
 - **Modifications:** none to the distributed SVG paths or `0 0 24 24` view
   boxes. Runtime CSS classes map each mark to its corresponding `16.21.0`
   package metadata color, with explicit contrast variants for very dark marks
@@ -115,7 +116,7 @@ license credentials.
 - **Notice Location:** this register. CC0 does not require product attribution.
 - **Evidence:** the pinned jsDelivr source path, the upstream license and legal
   disclaimer, and local format and byte-size inspection. The selected set is
-  30,440 bytes in aggregate and the largest file is 5,205 bytes.
+  31,478 bytes in aggregate and the largest file is 5,205 bytes.
 - **Disposition:** Approved for nominative technology identification in the
   landing-page skill inventory.
 

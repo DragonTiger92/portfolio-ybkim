@@ -112,7 +112,7 @@
   }
 
   .content-section {
-    padding-block: var(--space-8);
+    padding-block: var(--space-7) var(--space-8);
   }
 
   .content-section--tinted {
@@ -142,7 +142,7 @@
     }
 
     .content-section {
-      padding-block: var(--space-9);
+      padding-block: var(--space-8) var(--space-9);
     }
   }
 

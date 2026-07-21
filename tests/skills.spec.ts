@@ -24,15 +24,22 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
   await page.goto("/");
 
   const stack = page.locator("#skills .tech-stack");
+  const backendStack = stack.locator(".tech-stack__group", { hasText: "백엔드 · API" });
 
   await expect(stack).toHaveAccessibleName("기술 스택");
   await expect(stack.locator(".tech-stack__group dt")).toHaveText(techStackCategories);
-  await expect(stack.locator(".tech-stack__items > li")).toHaveCount(33);
+  await expect(backendStack.locator(".tech-stack__items > li > span:last-child")).toHaveText([
+    "Django",
+    "FastAPI",
+    "SQLAlchemy",
+    "Alembic",
+  ]);
+  await expect(stack.locator(".tech-stack__items > li")).toHaveCount(34);
   await expect(stack.locator(".tech-stack__mark")).toHaveCount(25);
   await expect(
     stack.locator("[class*='tech-stack__icon--']:not(.tech-stack__icon--fallback)"),
   ).toHaveCount(25);
-  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(8);
+  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(9);
 });
 
 test("compares implementation capabilities through one evidence matrix", async ({ page }) => {

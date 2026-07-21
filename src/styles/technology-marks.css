@@ -62,10 +62,9 @@
     --technology-mark-image: url("/assets/tech/postgresql.svg");
   }
 
-  .tech-stack__icon--sqlite {
-    --technology-mark-color: #003b57;
-    --technology-mark-color-dark: #44a2c9;
-    --technology-mark-image: url("/assets/tech/sqlite.svg");
+  .tech-stack__icon--sqlalchemy {
+    --technology-mark-color: #d71f00;
+    --technology-mark-image: url("/assets/tech/sqlalchemy.svg");
   }
 
   .tech-stack__icon--docker {

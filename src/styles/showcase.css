@@ -2,7 +2,7 @@
   .hero-section {
     position: relative;
     display: grid;
-    min-block-size: min(50rem, calc(100svb - 4rem));
+    min-block-size: min(42rem, calc(100svb - 8rem));
     overflow: hidden;
     align-items: center;
     padding-block: var(--space-8);

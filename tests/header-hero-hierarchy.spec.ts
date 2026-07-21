@@ -23,7 +23,7 @@ test("presents a concise site wordmark and a secondary theme utility", async ({ 
   await expect(identity.locator(".site-identity__copy")).toHaveCount(0);
   await expect(themeToggle).toHaveAttribute("aria-pressed", /^(true|false)$/);
   await expect(themeToggle).not.toHaveClass(/button-link/);
-  await expect(page.locator(".navigation-list a")).toHaveText(["프로젝트", "역량"]);
+  await expect(page.locator(".navigation-list a")).toHaveText(["소개", "프로젝트", "역량"]);
 });
 
 test("keeps job status static and accents only the positioning phrases", async ({ page }) => {
@@ -144,7 +144,26 @@ test("preserves a restrained hierarchy from desktop to mobile", async ({ page })
 test("uses root-document fragments for landing navigation", async ({ page }) => {
   await page.goto("/");
 
+  await expect(page.locator('.navigation-list a[href="#intro"]')).toHaveCount(1);
   await expect(page.locator('.navigation-list a[href="#projects"]')).toHaveCount(1);
   await expect(page.locator('.navigation-list a[href="#skills"]')).toHaveCount(1);
   await expect(page.locator('.navigation-list a[href="#process"]')).toHaveCount(0);
+});
+
+test("shows the current landing section and overall reading progress", async ({ page }) => {
+  await page.goto("/");
+
+  const introLink = page.locator('.navigation-list a[href="#intro"]');
+  const skillsLink = page.locator('.navigation-list a[href="#skills"]');
+
+  await expect(introLink).toHaveAttribute("aria-current", "location");
+  await page.locator("#skills").scrollIntoViewIfNeeded();
+  await expect(skillsLink).toHaveAttribute("aria-current", "location");
+  await expect(introLink).not.toHaveAttribute("aria-current", "location");
+
+  const progress = await page
+    .locator("[data-page-progress]")
+    .evaluate((element) => Number.parseFloat(element.style.getPropertyValue("--page-progress")));
+
+  expect(progress).toBeGreaterThan(0);
 });
