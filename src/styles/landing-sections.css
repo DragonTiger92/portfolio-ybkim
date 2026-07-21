@@ -79,7 +79,7 @@
   .tech-stack__items {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: var(--space-3);
     list-style: none;
   }
 
@@ -125,6 +125,13 @@
     -webkit-mask: var(--technology-mark-image) center / contain no-repeat;
     /* eslint-disable-next-line css/use-baseline -- the prefixed declaration keeps Safari support */
     mask: var(--technology-mark-image) center / contain no-repeat;
+  }
+
+  .tech-stack__icon--playwright .tech-stack__mark {
+    background: var(--technology-mark-image) center / contain no-repeat;
+    -webkit-mask: none;
+    /* eslint-disable-next-line css/use-baseline -- reset the shared mask for the multicolor SVG */
+    mask: none;
   }
 
   .tech-stack__icon--fallback {

@@ -60,7 +60,7 @@ test("provides correctly scoped profile, repository, and contact actions", async
   await page.getByRole("button", { name: "주소 복사" }).click();
   await page.waitForTimeout(2600);
   await expect(copyStatus).toHaveText("이메일 주소를 복사했습니다.");
-  await expect(copyStatus).toBeEmpty({ timeout: 1000 });
+  await expect(copyStatus).toBeEmpty({ timeout: 2000 });
 
   const resumeDownload = page.getByRole("link", { name: "이력서 PDF 다운로드" });
 

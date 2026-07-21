@@ -77,9 +77,9 @@ export const techStackGroups: TechStackGroup[] = [
     label: "테스트 · 품질",
     items: [
       withBrandMark("Vitest", "vitest"),
-      withBrandMark("ESLint", "eslint"),
-      withBrandMark("Prettier", "prettier"),
+      withBrandMark("Playwright", "playwright"),
       withBrandMark("Mock Service Worker", "mockserviceworker"),
+      withBrandMark("ESLint", "eslint"),
       { name: "Husky" },
     ],
   },

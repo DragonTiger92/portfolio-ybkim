@@ -36,7 +36,7 @@ test("preserves the portfolio hierarchy from wide to narrow layouts", async ({ p
         top: Number.parseFloat(styles.paddingTop),
       };
     });
-  expect(sectionPadding.top).toBeLessThan(sectionPadding.bottom);
+  expect(sectionPadding.top).toBe(sectionPadding.bottom);
   await expect(page.locator(".hero-proof")).toHaveCount(0);
   expect(featuredProject.width).toBeGreaterThan(secondaryProject.width);
 
@@ -64,9 +64,13 @@ test("preserves the portfolio hierarchy from wide to narrow layouts", async ({ p
   await page.setViewportSize({ height: 844, width: 390 });
 
   const narrowHeroCopy = await getVisibleBox(page.locator(".hero-copy"));
+  const narrowSectionShell = await getVisibleBox(
+    page.locator(".content-section > .site-shell").first(),
+  );
   const projectCards = page.locator(".project-card");
 
   expect(narrowHeroCopy.width).toBeGreaterThan(0);
+  expect(narrowSectionShell.x).toBe(12);
   await expect(page.locator(".hero-proof")).toHaveCount(0);
   expect((await getVisibleBox(projectCards.nth(1))).y).toBeGreaterThan(
     (await getVisibleBox(projectCards.nth(0))).y,

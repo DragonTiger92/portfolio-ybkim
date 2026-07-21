@@ -93,7 +93,7 @@ license credentials.
 
 ### Simple Icons technology marks
 
-- **Item:** the 24 technology-mark SVG files distributed from
+- **Item:** the 23 Simple Icons technology-mark SVG files distributed from
   `public/assets/tech/`.
 - **Material Type:** third-party vector brand icons.
 - **Source:** the official `simple-icons` package, retrieved from jsDelivr at
@@ -116,7 +116,28 @@ license credentials.
 - **Notice Location:** this register. CC0 does not require product attribution.
 - **Evidence:** the pinned jsDelivr source path, the upstream license and legal
   disclaimer, and local format and byte-size inspection. The selected set is
-  31,478 bytes in aggregate and the largest file is 5,205 bytes.
+  29,662 bytes in aggregate and the largest file is 5,205 bytes.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
+### Playwright technology mark
+
+- **Item:** `public/assets/tech/playwright.svg`.
+- **Material Type:** third-party vector brand logo.
+- **Source:** the official `microsoft/playwright.dev` repository at commit
+  `80f49a3a606302c96e0681bed399079a20456ec6`, file
+  `static/img/playwright-logo.svg`.
+- **Author or Supplier:** Microsoft and Playwright contributors.
+- **Version or Date:** source commit reviewed on 2026-07-21.
+- **License:** CC BY 4.0.
+- **Modifications:** whitespace-only SVG minification; the paths, colors, and
+  `400 × 400` view box are unchanged. CSS renders the multicolor artwork at the
+  same `1.2rem` visual slot used by the other technology marks.
+- **Obligations:** retain attribution, link the license, indicate whether the
+  asset was modified, and do not imply Microsoft or Playwright endorsement.
+- **Notice Location:** this register.
+- **Evidence:** the immutable GitHub source commit, repository license metadata,
+  and local SVG format and byte-size inspection. The local file is 4,993 bytes.
 - **Disposition:** Approved for nominative technology identification in the
   landing-page skill inventory.
 

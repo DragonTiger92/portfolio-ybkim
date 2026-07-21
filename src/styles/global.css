@@ -112,7 +112,11 @@
   }
 
   .content-section {
-    padding-block: var(--space-7) var(--space-8);
+    padding-block: var(--space-7);
+  }
+
+  .content-section > .site-shell {
+    inline-size: min(100% - 1.5rem, var(--content-max));
   }
 
   .content-section--tinted {
@@ -142,7 +146,11 @@
     }
 
     .content-section {
-      padding-block: var(--space-8) var(--space-9);
+      padding-block: var(--space-8);
+    }
+
+    .content-section > .site-shell {
+      inline-size: min(100% - 3rem, var(--content-max));
     }
   }
 

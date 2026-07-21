@@ -25,6 +25,7 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
 
   const stack = page.locator("#skills .tech-stack");
   const backendStack = stack.locator(".tech-stack__group", { hasText: "백엔드 · API" });
+  const testingStack = stack.locator(".tech-stack__group", { hasText: "테스트 · 품질" });
 
   await expect(stack).toHaveAccessibleName("기술 스택");
   await expect(stack.locator(".tech-stack__group dt")).toHaveText(techStackCategories);
@@ -33,6 +34,13 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
     "FastAPI",
     "SQLAlchemy",
     "Alembic",
+  ]);
+  await expect(testingStack.locator(".tech-stack__items > li > span:last-child")).toHaveText([
+    "Vitest",
+    "Playwright",
+    "Mock Service Worker",
+    "ESLint",
+    "Husky",
   ]);
   await expect(stack.locator(".tech-stack__items > li")).toHaveCount(34);
   await expect(stack.locator(".tech-stack__mark")).toHaveCount(25);

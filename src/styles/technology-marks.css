@@ -92,14 +92,14 @@
     --technology-mark-image: url("/assets/tech/vitest.svg");
   }
 
+  .tech-stack__icon--playwright {
+    --technology-mark-color: #2d4552;
+    --technology-mark-image: url("/assets/tech/playwright.svg");
+  }
+
   .tech-stack__icon--eslint {
     --technology-mark-color: #4b32c3;
     --technology-mark-image: url("/assets/tech/eslint.svg");
-  }
-
-  .tech-stack__icon--prettier {
-    --technology-mark-color: #f7b93e;
-    --technology-mark-image: url("/assets/tech/prettier.svg");
   }
 
   .tech-stack__icon--mockserviceworker {
