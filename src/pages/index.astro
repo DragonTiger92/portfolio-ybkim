@@ -36,9 +36,12 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
             </div>
           </dl>
           <p class="hero-positioning">
-            <span class="hero-positioning__accent">최종 사용자</span>와 <span
-              class="hero-positioning__accent">개발자</span
-            > 모두를 만족시키는 제품 구현을 지향합니다.
+            <span class="hero-positioning__line">
+              <span class="hero-positioning__accent">최종 사용자</span>와 <span
+                class="hero-positioning__accent">개발자</span
+              > 모두를 만족시키는{" "}
+            </span>
+            <span class="hero-positioning__line">제품 구현을 지향합니다.</span>
           </p>
           <ContactActions />
         </div>
@@ -54,10 +57,7 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
         </div>
 
         <div class="project-groups">
-          <section
-            class="project-group project-group--compact"
-            aria-labelledby="public-projects-title"
-          >
+          <section class="project-group" aria-labelledby="public-projects-title">
             <div class="project-group__heading">
               <div>
                 <h3 id="public-projects-title">{landingScopeCopy.projects.publicGroup.title}</h3>

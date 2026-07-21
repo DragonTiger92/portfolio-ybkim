@@ -34,7 +34,9 @@
   }
 
   .hero-positioning {
+    display: grid;
     max-inline-size: 24ch;
+    gap: var(--space-2);
     font-family: var(--font-display);
     font-size: clamp(2.25rem, 4vi, 3.45rem);
     font-weight: 780;
@@ -64,7 +66,7 @@
 
   .job-status dt {
     color: var(--color-text-muted);
-    font-size: var(--text-sm);
+    font-size: var(--text-body);
     font-weight: 700;
   }
 
@@ -73,13 +75,13 @@
     align-items: center;
     gap: var(--space-2);
     color: var(--color-accent-strong);
-    font-size: var(--text-body);
+    font-size: var(--text-lead);
     font-weight: 750;
   }
 
   .job-status dd::before {
-    inline-size: 0.5rem;
-    block-size: 0.5rem;
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
     flex: none;
     background: var(--color-accent);
     border-radius: 50%;
@@ -151,10 +153,6 @@
 
   .project-group {
     gap: var(--space-5);
-  }
-
-  .project-group--compact {
-    gap: var(--space-4);
   }
 
   .project-group__heading {
