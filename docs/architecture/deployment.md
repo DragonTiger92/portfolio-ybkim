@@ -21,6 +21,19 @@ the build for any other value. Because Astro resolves it while generating the
 static artifact, visitors cannot restore an omitted email action by changing
 client-side state. Changing the status requires a new build and deployment.
 
+### Build Runtime Contract
+
+`PBI-010` must select and document one supported Node.js version contract for
+the production build. Apply that contract consistently to repository metadata,
+GitHub Actions, and the Cloudflare Pages build or upload environment. The
+current CI version is implementation evidence, not yet the durable production
+contract.
+
+Before accepting the contract, run the frozen install and canonical build in a
+clean environment, record the effective Node.js and pnpm versions, and compare
+the generated route and static-budget results with CI. Do not add an application
+server runtime; Node.js remains a build-time tool only.
+
 ## Hosting Assumptions
 
 - Production uses a Cloudflare Pages project when the PH-003 decision is
@@ -173,6 +186,31 @@ change while preserving the static, privacy-oriented output boundary.
 - Run `pnpm.cmd check` before treating a release candidate as ready.
 - Verify built asset paths under the selected production base path.
 - Review public copy for private information before publishing.
+
+## Production Response Policy
+
+`PBI-060` owns the first-release response-header and cache contract at the
+Cloudflare edge. Implement the policy through a version-controlled Pages
+configuration or another reviewable provider-native surface selected during
+PH-003.
+
+The baseline covers CSP, MIME sniffing protection, referrer policy, permissions
+policy, framing protection, and cache behavior. Keep the policy proportional to
+this static site:
+
+- allow external style and font delivery only for the pinned Pretendard resource
+  already reviewed through jsDelivr;
+- do not require self-hosting that font without production reliability or policy
+  evidence;
+- verify browser-written theme and navigation state before tightening inline
+  style-related CSP directives;
+- cache content-hashed build assets as immutable while keeping HTML and stable
+  public downloads on separately reviewed rules; and
+- inspect response headers and rerun production smoke behavior against the real
+  Cloudflare URL rather than treating a configuration file as sufficient proof.
+
+Do not preselect HSTS or custom-domain-only behavior before the production domain
+and TLS ownership are settled.
 
 ## Release Versioning
 
