@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-const companyProjectScopeLabel = "회사 비즈니스 프로젝트 · 공개 범위 요약";
 test("distinguishes project evidence and business context without splitting the IA", async ({
   page,
 }) => {
@@ -30,13 +29,40 @@ test("distinguishes project evidence and business context without splitting the 
   ).toHaveCount(0);
   await expect(page.locator("#company-projects-title")).toHaveText("회사 비공개 프로젝트");
 
-  const scopeLabels = companyProjectCards.locator(".professional-card__scope");
+  await expect(companyProjectCards.locator(".professional-card__scope")).toHaveCount(0);
+  await expect(page.locator(".project-group--company .project-group__heading > p")).toHaveText(
+    "회사에서 비즈니스 목적으로 수행한 실무 프로젝트입니다. 비공개 소스 코드를 포함한 내부 정보는 제외하였습니다.",
+  );
+  await expect(page.locator(".project-group--company .project-group__heading > p br")).toHaveCount(
+    0,
+  );
+  const projectGroupLayout = await page.evaluate(() => {
+    const publicGroup = document.querySelector<HTMLElement>(".project-group--public");
+    const companyHeading = document.querySelector<HTMLElement>(
+      ".project-group--company .project-group__heading",
+    );
+    const companyDescription = companyHeading?.querySelector<HTMLElement>(":scope > p");
 
-  await expect(scopeLabels).toHaveCount(companyProjectCount);
+    if (!publicGroup || !companyHeading || !companyDescription) {
+      return null;
+    }
 
-  for (const scopeLabel of await scopeLabels.all()) {
-    await expect(scopeLabel).toBeVisible();
-    await expect(scopeLabel).toHaveText(companyProjectScopeLabel);
+    return {
+      companyAlignItems: getComputedStyle(companyHeading).alignItems,
+      companyDescriptionMaxInlineSize: getComputedStyle(companyDescription).maxInlineSize,
+      companyHeadingMaxInlineSize: getComputedStyle(companyHeading).maxInlineSize,
+      publicGap: getComputedStyle(publicGroup).rowGap,
+    };
+  });
+
+  expect(projectGroupLayout?.publicGap).toBe("32px");
+
+  if ((page.viewportSize()?.width ?? 0) >= 768) {
+    expect(projectGroupLayout).toMatchObject({
+      companyAlignItems: "center",
+      companyDescriptionMaxInlineSize: "none",
+      companyHeadingMaxInlineSize: "none",
+    });
   }
 });
 

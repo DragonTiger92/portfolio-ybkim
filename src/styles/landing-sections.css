@@ -6,6 +6,10 @@
     border-radius: var(--radius-lg);
   }
 
+  .project-group--public {
+    gap: var(--space-6);
+  }
+
   .professional-grid {
     display: grid;
     gap: 0;
@@ -26,14 +30,6 @@
 
   .professional-card .tag-list {
     align-self: start;
-  }
-
-  .professional-card__scope {
-    color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.08em;
   }
 
   .tech-stack,
@@ -234,6 +230,16 @@
 
     .professional-card > :not(.professional-card__index) {
       grid-column: auto;
+    }
+
+    .project-group--company .project-group__heading {
+      max-inline-size: none;
+      align-items: center;
+    }
+
+    .project-group--company .project-group__heading > p {
+      max-inline-size: none;
+      justify-self: stretch;
     }
 
     .tech-stack {

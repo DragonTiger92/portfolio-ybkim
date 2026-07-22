@@ -12,7 +12,6 @@ interface LandingScopeCopy {
   projects: {
     companyGroup: {
       description: string;
-      scopeLabel: string;
       title: string;
     };
     publicGroup: {
@@ -25,8 +24,7 @@ export const landingScopeCopy = {
   projects: {
     companyGroup: {
       description:
-        "회사에서 비즈니스 목적으로 실무자로서 수행한 프로젝트입니다. 비공개 자료와 내부 세부사항은 제외하고 역할과 기여를 요약했습니다.",
-      scopeLabel: "회사 비즈니스 프로젝트 · 공개 범위 요약",
+        "회사에서 비즈니스 목적으로 수행한 실무 프로젝트입니다. 비공개 소스 코드를 포함한 내부 정보는 제외하였습니다.",
       title: "회사 비공개 프로젝트",
     },
     publicGroup: {
