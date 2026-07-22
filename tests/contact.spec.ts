@@ -35,15 +35,15 @@ test("provides correctly scoped profile, repository, and contact actions", async
   await expect(profileActions).toHaveCount(2);
   await expect(
     page.locator(".contact-actions a[href='https://github.com/DragonTiger92']"),
-  ).toHaveText("GitHub 프로필 ↗");
-  await expect(page.locator(".site-footer a[href='https://github.com/DragonTiger92']")).toHaveText(
-    "GitHub 프로필 ↗",
-  );
-
+  ).toContainText("GitHub 프로필");
+  await expect(
+    page.locator(".site-footer a[href='https://github.com/DragonTiger92']"),
+  ).toContainText("GitHub 프로필");
   for (const profileAction of await profileActions.all()) {
     await expect(profileAction).toHaveAttribute("href", githubProfileUrl);
     await expect(profileAction).toHaveAttribute("target", "_blank");
     await expect(profileAction).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(profileAction.locator(".new-window-link__icon")).toHaveText("↗");
   }
 
   await expect(page.locator("#public-email-address")).toHaveText(email);

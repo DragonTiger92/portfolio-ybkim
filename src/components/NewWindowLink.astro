@@ -9,12 +9,18 @@ const { accessibleLabel, class: className, href } = Astro.props;
 ---
 
 <a
-  class:list={className}
+  class:list={["new-window-link", className]}
   href={href}
   target="_blank"
   rel="noopener noreferrer"
   aria-label={`${accessibleLabel}(새 창)`}
 >
-  <slot />{" "}
-  <span aria-hidden="true">↗</span>
+  <span class="new-window-link__label"><slot /></span>
+  <span class="new-window-link__icon" aria-hidden="true">↗</span>
 </a>
+
+<style>
+  .new-window-link {
+    gap: var(--space-1);
+  }
+</style>

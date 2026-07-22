@@ -68,7 +68,6 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
               {
                 projects.map((project, projectIndex) => (
                   <ProjectCard
-                    cardNumber={String(projectIndex + 1).padStart(2, "0")}
                     classification={project.data.classification}
                     featured={projectIndex === 0}
                     links={project.data.links}

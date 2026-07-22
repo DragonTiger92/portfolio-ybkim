@@ -47,7 +47,8 @@ test("opens the public company service without replacing the portfolio", async (
 
   await expect(publicService).toHaveAttribute("target", "_blank");
   await expect(publicService).toHaveAttribute("rel", "noopener noreferrer");
-  await expect(publicService).toHaveText("공개 서비스 보기 ↗");
+  await expect(publicService.locator(".new-window-link__label")).toHaveText("공개 서비스 보기");
+  await expect(publicService.locator(".new-window-link__icon")).toHaveText("↗");
 });
 
 test("removes the previous mixed-scope landing copy", async ({ page }) => {
