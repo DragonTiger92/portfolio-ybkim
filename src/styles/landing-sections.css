@@ -26,10 +26,7 @@
 
   .professional-card > :not(.professional-card__index) {
     grid-column: 2;
-  }
-
-  .professional-card .tag-list {
-    align-self: start;
+    align-self: center;
   }
 
   .tech-stack,

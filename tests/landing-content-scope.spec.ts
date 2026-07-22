@@ -30,12 +30,42 @@ test("distinguishes project evidence and business context without splitting the 
   await expect(page.locator("#company-projects-title")).toHaveText("회사 비공개 프로젝트");
 
   await expect(companyProjectCards.locator(".professional-card__scope")).toHaveCount(0);
+  await expect(companyProjectCards.first().locator(".tag-list li")).toHaveText([
+    "기획 및 제품 설계",
+    "아키텍처 구현",
+    "1인 유지보수성 확보",
+  ]);
+  await expect(companyProjectCards.nth(1).locator(".professional-card__description")).toHaveText(
+    "인증 흐름과 초기 UI mockup을 포함한 프론트엔드 구조 전반을 구축 후, 다음 작업자가 프론트엔드 작업을 이어나갈 수 있도록 인계했습니다.",
+  );
+  await expect(companyProjectCards.nth(1).locator(".tag-list li")).toHaveText([
+    "프론트엔드 구축",
+    "로그인 흐름 설계",
+    "API 응답·도메인 타입 분리",
+  ]);
+  await expect(companyProjectCards.nth(2).locator(".professional-card__description")).toHaveText(
+    "기존 내부 업무 플랫폼을 인수받아 운영 안정성을 보강하고, 트러블 슈팅 도구를 만들어 운영상 발생하는 문제들을 해결하였습니다. 또한 제품 인계를 위한 문서 작업 등을 진행하였습니다.",
+  );
+  await expect(companyProjectCards.nth(2).locator(".tag-list li")).toHaveText([
+    "인수인계",
+    "풀스택",
+    "트러블 슈팅",
+  ]);
   await expect(page.locator(".project-group--company .project-group__heading > p")).toHaveText(
     "회사에서 비즈니스 목적으로 수행한 실무 프로젝트입니다. 비공개 소스 코드를 포함한 내부 정보는 제외하였습니다.",
   );
   await expect(page.locator(".project-group--company .project-group__heading > p br")).toHaveCount(
     0,
   );
+});
+
+test("aligns company project content and shares the public project tag treatment", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const publicProjectCards = page.locator("#projects .project-card");
+  const companyProjectCards = page.locator("#projects .professional-card");
   const projectGroupLayout = await page.evaluate(() => {
     const publicGroup = document.querySelector<HTMLElement>(".project-group--public");
     const companyHeading = document.querySelector<HTMLElement>(
@@ -64,6 +94,36 @@ test("distinguishes project evidence and business context without splitting the 
       companyHeadingMaxInlineSize: "none",
     });
   }
+
+  const firstCompanyCard = companyProjectCards.first();
+  await expect(firstCompanyCard.locator(".professional-card__index")).toHaveCSS(
+    "align-self",
+    "auto",
+  );
+  await expect(firstCompanyCard.locator(".professional-card__content")).toHaveCSS(
+    "align-self",
+    "center",
+  );
+  await expect(firstCompanyCard.locator(".tag-list")).toHaveCSS("align-self", "center");
+  await expect(firstCompanyCard.locator(":scope > .text-link")).toHaveCSS("align-self", "center");
+
+  const tagStyleProperties = ["background-image", "border-color", "box-shadow", "font-weight"];
+  const publicTag = publicProjectCards.first().locator(":scope > .tag-list li").first();
+  const companyTag = firstCompanyCard.locator(":scope > .tag-list li").first();
+  const [publicTagStyles, companyTagStyles] = await Promise.all([
+    publicTag.evaluate(
+      (element, properties) =>
+        properties.map((property) => getComputedStyle(element).getPropertyValue(property)),
+      tagStyleProperties,
+    ),
+    companyTag.evaluate(
+      (element, properties) =>
+        properties.map((property) => getComputedStyle(element).getPropertyValue(property)),
+      tagStyleProperties,
+    ),
+  ]);
+
+  expect(companyTagStyles).toEqual(publicTagStyles);
 });
 
 test("opens the public company service without replacing the portfolio", async ({ page }) => {

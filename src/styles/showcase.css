@@ -262,7 +262,8 @@
     text-underline-offset: 0.2em;
   }
 
-  .project-card > .tag-list li {
+  .project-card > .tag-list li,
+  .professional-card > .tag-list li {
     display: inline-flex;
     min-block-size: 1.9rem;
     align-items: center;
