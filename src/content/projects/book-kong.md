@@ -7,7 +7,8 @@ contribution: "팀 리드, 데이터 사전 조회와 조회 흐름, Storybook �
 focus: "컴포넌트 설계, 서버 상태 관리와 팀 단위 작업 조율"
 tags:
   - React
-  - 서버 상태 관리
+  - 기술 공유
+  - 문제 해결
   - 팀 리드
 stack:
   - React
@@ -15,7 +16,7 @@ stack:
   - CSS
 order: 3
 links:
-  - label: "팀 저장소"
+  - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Book-Kong"
     showOnCard: true
   - label: "배포 데모"

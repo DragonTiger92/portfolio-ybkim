@@ -6,9 +6,9 @@ role: "기획 · 구현"
 contribution: "제품 기획, 콘텐츠 경계, Astro 구현, 문서와 품질 검증 절차 전반"
 focus: "정적 포트폴리오, 문서화, 품질 검증과 배포 준비"
 tags:
-  - 정적 구조
+  - 아키텍처 설계
+  - 하네스 구축
   - 문서 기반 개발
-  - 품질 검증
 stack:
   - Astro
   - TypeScript

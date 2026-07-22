@@ -21,11 +21,16 @@ interface Props {
 
 const { classification, featured, links, role, slug, summary, tags, title } = Astro.props;
 const cardLinks = links.filter((link) => link.showOnCard);
+const classificationLabel =
+  classification === "개인 공개 프로젝트" ? "개인 프로젝트" : "부트캠프 팀 프로젝트";
 ---
 
 <article class:list={["project-card", { "project-card--featured": featured }]}>
   <div class="project-card__content">
-    <h4><a href={`/projects/${slug}/`}>{title}</a></h4>
+    <div class="project-card__heading">
+      <p class="project-card__classification">{classificationLabel}</p>
+      <h4><a href={`/projects/${slug}/`}>{title}</a></h4>
+    </div>
     <p class="project-card__summary">{summary}</p>
     <dl class="project-card__role">
       <div>
@@ -35,7 +40,7 @@ const cardLinks = links.filter((link) => link.showOnCard);
     </dl>
   </div>
 
-  <TagList items={[classification, ...tags]} />
+  <TagList items={tags} />
 
   <div class="project-card__links">
     <a class="text-link" href={`/projects/${slug}/`} aria-label={`${title} 상세 설명`}>상세 설명</a>

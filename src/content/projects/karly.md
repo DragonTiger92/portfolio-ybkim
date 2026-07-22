@@ -7,8 +7,9 @@ contribution: "상품 목록·상세 UI, 의미가 드러나는 HTML 구조, CSS
 focus: "표준 기반 UI 구현과 팀 협업"
 tags:
   - 웹 표준
-  - 의미 있는 HTML
-  - 팀 협업
+  - Pure CSS
+  - Vanilla JavaScript
+  - 협업
 stack:
   - JavaScript
   - HTML
@@ -16,7 +17,7 @@ stack:
   - Vite
 order: 2
 links:
-  - label: "팀 저장소"
+  - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Karly"
     showOnCard: true
   - label: "배포 데모"
