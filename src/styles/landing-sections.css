@@ -120,7 +120,8 @@
     mask: var(--technology-mark-image) center / contain no-repeat;
   }
 
-  .tech-stack__icon--playwright .tech-stack__mark {
+  .tech-stack__icon--playwright .tech-stack__mark,
+  .tech-stack__icon--slack .tech-stack__mark {
     background: var(--technology-mark-image) center / contain no-repeat;
     -webkit-mask: none;
     /* eslint-disable-next-line css/use-baseline -- reset the shared mask for the multicolor SVG */

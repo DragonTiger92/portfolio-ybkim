@@ -119,6 +119,11 @@
     --technology-mark-image: url("/assets/tech/notion.svg");
   }
 
+  .tech-stack__icon--slack {
+    --technology-mark-color: #4a154b;
+    --technology-mark-image: url("/assets/tech/slack.png");
+  }
+
   .tech-stack__icon--storybook {
     --technology-mark-color: #ff4785;
     --technology-mark-image: url("/assets/tech/storybook.svg");

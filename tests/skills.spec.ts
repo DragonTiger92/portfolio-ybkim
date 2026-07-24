@@ -43,11 +43,11 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
     "Husky",
   ]);
   await expect(stack.locator(".tech-stack__items > li")).toHaveCount(34);
-  await expect(stack.locator(".tech-stack__mark")).toHaveCount(25);
+  await expect(stack.locator(".tech-stack__mark")).toHaveCount(26);
   await expect(
     stack.locator("[class*='tech-stack__icon--']:not(.tech-stack__icon--fallback)"),
-  ).toHaveCount(25);
-  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(9);
+  ).toHaveCount(26);
+  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(8);
 });
 
 test("compares implementation capabilities through one evidence matrix", async ({ page }) => {

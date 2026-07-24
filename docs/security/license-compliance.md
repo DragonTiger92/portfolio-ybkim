@@ -141,6 +141,29 @@ license credentials.
 - **Disposition:** Approved for nominative technology identification in the
   landing-page skill inventory.
 
+### Slack technology mark
+
+- **Item:** `public/assets/tech/slack.png`.
+- **Material Type:** third-party raster brand icon.
+- **Source:** the official Slack CDN asset
+  `https://a.slack-edge.com/80588/marketing/img/meta/slack_hash_256.png`,
+  referenced alongside the current Slack Media Kit and brand guidance.
+- **Author or Supplier:** Slack Technologies, LLC.
+- **Version or Date:** retrieved and reviewed on 2026-07-24; source SHA-256
+  `fff0ab554a4dc202afd1cbf2033a3ad340cf25b4991035d2d31407b5e7e4c366`.
+- **License:** Slack trademark and media-kit usage terms.
+- **Modifications:** none; the 256 × 256 PNG bytes are unchanged. CSS renders
+  the multicolor artwork in the existing technology-mark slot.
+- **Obligations:** use only to identify Slack, preserve the supplied artwork,
+  follow the current Slack brand guidance, and do not imply sponsorship or
+  endorsement.
+- **Notice Location:** this register.
+- **Evidence:** the current Slack Media Kit and brand-guideline URLs, successful
+  response metadata from the official CDN, the recorded source hash, and local
+  format inspection.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
 ## Review Workflow
 
 1. Inventory third-party material when it enters the repository, not only at

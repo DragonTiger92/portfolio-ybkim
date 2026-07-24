@@ -92,7 +92,7 @@ export const techStackGroups: TechStackGroup[] = [
     items: [
       withBrandMark("GitHub", "github"),
       withBrandMark("Notion", "notion"),
-      { name: "Slack" },
+      withBrandMark("Slack", "slack"),
       withBrandMark("Storybook", "storybook"),
     ],
   },
