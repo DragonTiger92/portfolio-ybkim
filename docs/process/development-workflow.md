@@ -41,6 +41,26 @@ There is no fixed branch lifetime, commit-count, or PBI-count limit. Prefer the
 smallest number of branches that still preserves useful review, verification,
 and rollback boundaries for this personal project.
 
+## Post-Merge Branch Synchronization
+
+After a pull request merges into `main`, `Sync Open PR Branches` checks each
+open, same-repository pull request that targets `main`. When its head is behind,
+the workflow asks GitHub to merge the current `main` into that branch with an
+expected-head-SHA guard.
+
+The workflow intentionally excludes:
+
+- Dependabot and fork-owned pull requests;
+- `wip/*` branches;
+- branches without an open pull request; and
+- stacked pull requests whose base is another topic branch.
+
+These exclusions keep automation within an explicit review boundary. Refresh a
+local-only branch when work resumes. For a stacked branch, preserve the parent
+base and documented merge order, then retarget or update it after the parent
+reaches `main`. A failed automatic update remains visible as a workflow failure
+and requires an owner-reviewed conflict resolution.
+
 ## Branch Name Format
 
 Use this format for human-created branches intended for pull requests:
