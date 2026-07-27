@@ -24,11 +24,18 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
   await page.goto("/");
 
   const stack = page.locator("#skills .tech-stack");
+  const languageStack = stack.locator(".tech-stack__group", { hasText: "언어" });
   const backendStack = stack.locator(".tech-stack__group", { hasText: "백엔드 · API" });
   const testingStack = stack.locator(".tech-stack__group", { hasText: "테스트 · 품질" });
 
   await expect(stack).toHaveAccessibleName("기술 스택");
   await expect(stack.locator(".tech-stack__group dt")).toHaveText(techStackCategories);
+  await expect(languageStack.locator(".tech-stack__items > li > span:last-child")).toHaveText([
+    "TypeScript",
+    "Python",
+    "SQL",
+    "Solidity",
+  ]);
   await expect(backendStack.locator(".tech-stack__items > li > span:last-child")).toHaveText([
     "Django",
     "FastAPI",
@@ -42,12 +49,12 @@ test("presents the reviewed resume stack with optional local marks", async ({ pa
     "ESLint",
     "Husky",
   ]);
-  await expect(stack.locator(".tech-stack__items > li")).toHaveCount(34);
+  await expect(stack.locator(".tech-stack__items > li")).toHaveCount(35);
   await expect(stack.locator(".tech-stack__mark")).toHaveCount(26);
   await expect(
     stack.locator("[class*='tech-stack__icon--']:not(.tech-stack__icon--fallback)"),
   ).toHaveCount(26);
-  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(8);
+  await expect(stack.locator(".tech-stack__icon--fallback")).toHaveCount(9);
 });
 
 test("compares implementation capabilities through one evidence matrix", async ({ page }) => {

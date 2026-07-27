@@ -33,6 +33,7 @@ export const techStackGroups: TechStackGroup[] = [
     items: [
       withBrandMark("TypeScript", "typescript"),
       withBrandMark("Python", "python"),
+      { name: "SQL" },
       withBrandMark("Solidity", "solidity"),
     ],
   },

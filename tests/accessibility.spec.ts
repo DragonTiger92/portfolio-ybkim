@@ -177,7 +177,9 @@ for (const project of projectEvidence) {
   }) => {
     await page.goto(project.route);
 
-    await expect(page.locator(".project-header .eyebrow")).toHaveText(project.classification);
+    await expect(page.locator(".project-header .project-classification")).toHaveText(
+      project.classification,
+    );
     await expect(page.locator(".project-facts dt")).toHaveText(["역할", "기여 범위", "초점"]);
     await expect(page.locator(".project-supporting")).toHaveAccessibleName(
       "프로젝트 검토 링크와 지원 기술",
@@ -193,7 +195,7 @@ for (const project of projectEvidence) {
     ).toEqual(project.links);
     await expect(page.locator(".project-stack .tag-list li").first()).toBeVisible();
     await expect(page.locator(".project-navigation a[href='/#projects']")).toHaveText(
-      "전체 프로젝트",
+      /프로젝트 목록/,
     );
     expect((await getHeadingOutline(page)).map((heading) => heading.text)).toEqual(
       project.headings,

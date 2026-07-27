@@ -12,8 +12,11 @@ tags:
   - 팀 리드
 stack:
   - React
-  - JavaScript
-  - CSS
+  - React Router
+  - TanStack Query
+  - TailwindCSS
+  - PocketBase
+  - Storybook
 order: 3
 links:
   - label: "GitHub 저장소"
@@ -31,8 +34,8 @@ links:
 
 ## 기여 경계
 
-일정과 작업 분배를 조율하고, 서버 상태 사전 조회와 조회 흐름, Storybook 지원 도구, 접근성
-도우미를 구현했습니다. 다른 팀원이 담당한 화면과 기능은 팀 결과로만 설명합니다.
+일정을 조율하고 작업을 역할에 따라 분배하였습니다. 기능 레벨에서는 서버 상태 사전 조회 기능과 조회
+흐름, Storybook 지원 도구와 접근성 도우미 등을 구현하였습니다.
 
 ## 구현 접근
 
