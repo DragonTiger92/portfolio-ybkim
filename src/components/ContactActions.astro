@@ -1,17 +1,27 @@
 ---
 import { publicContact } from "../data/contact";
 import NewWindowLink from "./NewWindowLink.astro";
+
+interface Props {
+  acceptsEmailContact: boolean;
+}
+
+const { acceptsEmailContact } = Astro.props;
 ---
 
 <div class="contact-actions">
   <div class="action-list">
-    <NewWindowLink
-      class="button-link"
-      href={publicContact.gmailComposeUrl}
-      accessibleLabel="Gmail에서 메일 쓰기"
-    >
-      <span class="button-link__label">Gmail에서 메일 쓰기</span>
-    </NewWindowLink>
+    {
+      acceptsEmailContact && (
+        <NewWindowLink
+          class="button-link"
+          href={publicContact.gmailComposeUrl}
+          accessibleLabel="Gmail에서 메일 쓰기"
+        >
+          <span class="button-link__label">Gmail에서 메일 쓰기</span>
+        </NewWindowLink>
+      )
+    }
     <NewWindowLink
       class="button-link button-link--secondary"
       href={publicContact.githubProfileUrl}
@@ -39,26 +49,33 @@ import NewWindowLink from "./NewWindowLink.astro";
     </a>
   </div>
 
-  <div class="contact-copy">
-    <span class="contact-copy__label">이메일</span>
-    <code id="public-email-address">{publicContact.email}</code>
-    <button
-      class="contact-copy__button"
-      type="button"
-      data-copy-email
-      data-email={publicContact.email}
-      aria-describedby="public-email-address copy-email-status"
-    >
-      주소 복사
-    </button>
-    <span
-      id="copy-email-status"
-      class="contact-copy__status"
-      data-copy-email-status
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"></span>
-  </div>
+  {
+    acceptsEmailContact ? (
+      <div class="contact-copy">
+        <span class="contact-copy__label">이메일</span>
+        <code id="public-email-address">{publicContact.email}</code>
+        <button
+          class="contact-copy__button"
+          type="button"
+          data-copy-email
+          data-email={publicContact.email}
+          aria-describedby="public-email-address copy-email-status"
+        >
+          주소 복사
+        </button>
+        <span
+          id="copy-email-status"
+          class="contact-copy__status"
+          data-copy-email-status
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        />
+      </div>
+    ) : (
+      <p class="contact-availability">현재 이메일 연락을 받고 있지 않습니다.</p>
+    )
+  }
 </div>
 
-<script src="../scripts/contact.ts"></script>
+{acceptsEmailContact && <script src="../scripts/contact.ts" />}

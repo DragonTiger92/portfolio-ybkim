@@ -6,7 +6,7 @@ import NewWindowLink from "../components/NewWindowLink.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import TagList from "../components/TagList.astro";
 import TechStack from "../components/TechStack.astro";
-import { getJobStatusContent } from "../data/job-status";
+import { getJobStatusContent, resolveJobStatusCode } from "../data/job-status";
 import { companyProjectHighlights, landingScopeCopy } from "../data/landing";
 import { capabilityGroups, techStackGroups } from "../data/skills";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -18,7 +18,8 @@ import "../styles/technology-marks.css";
 const projects = (await getCollection("projects")).sort(
   (leftProject, rightProject) => leftProject.data.order - rightProject.data.order,
 );
-const jobStatus = getJobStatusContent("ko", "actively-looking");
+const jobStatusCode = resolveJobStatusCode(import.meta.env.PORTFOLIO_JOB_STATUS);
+const jobStatus = getJobStatusContent("ko", jobStatusCode);
 ---
 
 <BaseLayout
@@ -33,7 +34,9 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
           <dl class="job-status">
             <div class="job-status__field">
               <dt>{jobStatus.fieldLabel}</dt>
-              <dd>{jobStatus.valueLabel}</dd>
+              <dd class:list={{ "job-status__value--inactive": !jobStatus.acceptsEmailContact }}>
+                {jobStatus.valueLabel}
+              </dd>
             </div>
           </dl>
           <p class="hero-positioning">
@@ -44,7 +47,7 @@ const jobStatus = getJobStatusContent("ko", "actively-looking");
             </span>
             <span class="hero-positioning__line">제품 구현을 지향합니다.</span>
           </p>
-          <ContactActions />
+          <ContactActions acceptsEmailContact={jobStatus.acceptsEmailContact} />
         </div>
       </div>
     </section>
