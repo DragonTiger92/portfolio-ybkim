@@ -59,17 +59,28 @@ test("compares implementation capabilities through one evidence matrix", async (
   await expect(matrix).toHaveAccessibleName("구현 역량");
   await expect(matrix.locator("thead th")).toHaveText([
     "역량",
-    "설계 기준",
+    "대표 설계 기준",
+    "핵심 특징",
     "자동화 경로",
     "확인 근거",
   ]);
   await expect(rows).toHaveCount(capabilityTitles.length);
   await expect(rows.locator("th[scope='row'] strong")).toHaveText(capabilityTitles);
-  await expect(rows.locator("a")).toHaveCount(capabilityTitles.length);
-  await expect(rows.locator("a[target='_blank'][rel='noopener noreferrer']")).toHaveCount(
-    capabilityTitles.length,
+  await expect(rows.locator("a")).toHaveCount(7);
+  await expect(rows.locator("a[target='_blank'][rel='noopener noreferrer']")).toHaveCount(7);
+  await expect(rows.first().locator(".capability-matrix__feature-list li")).toHaveText([
+    "개발 단계별로 강화되는 품질 기준",
+    "Agent 완료는 warning-free, 일반 lint는 예외 대응용으로 분리",
+  ]);
+  await expect(rows.first().locator(".capability-matrix__evidence a")).toHaveText([
+    "ESLint 품질 규칙↗",
+    "품질 게이트 설계↗",
+  ]);
+  await expect(rows.nth(1).locator("[data-label='자동화 경로']")).toHaveText(
+    "Agent guideline harness · sandbox · 승인 절차",
   );
   await expect(matrix).not.toContainText("visual regression");
+  await expect(matrix).not.toContainText("Agent strict lint");
 });
 
 test("uses one surface vocabulary across the skills subsections", async ({ page }) => {

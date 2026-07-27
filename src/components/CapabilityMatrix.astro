@@ -12,14 +12,15 @@ const { capabilities } = Astro.props;
 <section class="capability-matrix" aria-labelledby="capabilities-title">
   <div class="capability-section__intro">
     <h3 id="capabilities-title">구현 역량</h3>
-    <p>실천 항목마다 설계 기준, 자동화 경로와 저장소에서 확인할 수 있는 근거를 연결했습니다.</p>
+    <p>실천 항목마다 대표 설계 기준, 핵심 특징, 자동화 경로와 공개 근거를 연결했습니다.</p>
   </div>
 
   <table>
     <thead>
       <tr>
         <th scope="col">역량</th>
-        <th scope="col">설계 기준</th>
+        <th scope="col">대표 설계 기준</th>
+        <th scope="col">핵심 특징</th>
         <th scope="col">자동화 경로</th>
         <th scope="col">확인 근거</th>
       </tr>
@@ -32,16 +33,26 @@ const { capabilities } = Astro.props;
               <strong>{capability.title}</strong>
               <span>{capability.description}</span>
             </th>
-            <td data-label="설계 기준">{capability.standard}</td>
+            <td data-label="대표 설계 기준">{capability.standard}</td>
+            <td data-label="핵심 특징">
+              <ul class="capability-matrix__feature-list">
+                {capability.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+            </td>
             <td data-label="자동화 경로">{capability.automation}</td>
             <td data-label="확인 근거">
-              <span>{capability.evidence}</span>
-              <NewWindowLink
-                href={capability.evidenceLink.href}
-                accessibleLabel={capability.evidenceLink.label}
-              >
-                {capability.evidenceLink.label}
-              </NewWindowLink>
+              <div class="capability-matrix__evidence">
+                <div class="capability-matrix__evidence-links">
+                  {capability.evidenceLinks.map((evidenceLink) => (
+                    <NewWindowLink href={evidenceLink.href} accessibleLabel={evidenceLink.label}>
+                      {evidenceLink.label}
+                    </NewWindowLink>
+                  ))}
+                </div>
+                <span>{capability.evidence}</span>
+              </div>
             </td>
           </tr>
         ))
