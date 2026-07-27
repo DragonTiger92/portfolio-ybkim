@@ -33,9 +33,6 @@
   .capability-matrix {
     display: grid;
     gap: var(--space-6);
-  }
-
-  .tech-stack {
     padding: var(--space-5);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -240,7 +237,8 @@
       justify-self: stretch;
     }
 
-    .tech-stack {
+    .tech-stack,
+    .capability-matrix {
       padding: var(--space-6);
     }
 

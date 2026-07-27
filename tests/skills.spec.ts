@@ -71,3 +71,24 @@ test("compares implementation capabilities through one evidence matrix", async (
   );
   await expect(matrix).not.toContainText("visual regression");
 });
+
+test("uses one surface vocabulary across the skills subsections", async ({ page }) => {
+  await page.goto("/");
+
+  const surfaces = page.locator("#skills .tech-stack, #skills .capability-matrix");
+  const surfaceStyles = await surfaces.evaluateAll((elements) =>
+    elements.map((element) => {
+      const style = getComputedStyle(element);
+
+      return {
+        backgroundColor: style.backgroundColor,
+        border: style.border,
+        borderRadius: style.borderRadius,
+        padding: style.padding,
+      };
+    }),
+  );
+
+  await expect(surfaces).toHaveCount(2);
+  expect(surfaceStyles[1]).toEqual(surfaceStyles[0]);
+});
