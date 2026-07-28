@@ -4,6 +4,30 @@
 
 - Use Conventional Commits style for commit messages.
 - If the working directory or staging area contains multiple concerns, separate them into focused commits.
+- When one file contains changes for more than one concern, stage only the
+  current concern with `git add --patch -- <path>` or an equivalent
+  patch-staging interface. Prefer splitting a hunk before editing it manually.
+- If a mixed hunk cannot be separated with confidence, leave it unstaged and
+  reshape the working-tree change into reviewable hunks. Do not discard,
+  overwrite, or temporarily hide user-owned changes merely to make staging
+  convenient.
+- Before committing a partially staged file, review both sides of the boundary:
+
+```bash
+git diff --cached -- <path>
+git diff -- <path>
+git status --short
+```
+
+- Confirm that the staged patch is coherent without the remaining unstaged
+  change. Avoid broad staging commands such as `git add .` or `git add -A` when
+  the intended commit covers only one concern.
+- Remember that ordinary checks run against the complete working tree, including
+  unstaged changes. If those changes can affect the result, verify the exact
+  staged snapshot separately or report that limitation rather than attributing
+  the combined result to the commit alone.
+- After the commit, confirm that every intentionally unstaged change remains
+  intact.
 - For Codex-led work, include the official co-author trailer in the commit message footer:
 
 ```txt
