@@ -15,6 +15,8 @@ stack:
   - HTML
   - CSS
   - Vite
+  - Git
+  - GitHub
 order: 2
 links:
   - label: "GitHub 저장소"

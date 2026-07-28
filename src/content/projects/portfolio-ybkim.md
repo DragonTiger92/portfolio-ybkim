@@ -12,9 +12,11 @@ tags:
 stack:
   - Astro
   - TypeScript
-  - Semantic HTML
-  - CSS
-  - pnpm
+  - Terraform
+  - Wrangler
+  - Husky
+  - Playwright
+  - PNPM
 order: 1
 links:
   - label: "GitHub 저장소"
@@ -44,9 +46,10 @@ links:
 
 ## 구현 접근
 
-Astro의 정적 출력과 개별 프로젝트 상세 페이지를 사용하고, 10개 ADR과 40개 이상의 PBI로 제품 결정과
-작업 상태를 소스 코드와 함께 관리하였습니다. TypeScript, 의미가 드러나는 HTML, CSS, 접근성, 빌드
-검증을 하나의 통합 검증 절차로 연결해 사람과 자동화 작업이 같은 기준을 통과하게 구성했습니다.
+Astro의 정적 출력과 개별 프로젝트 상세 페이지를 사용하고, 아키텍처 결정 기록(ADR)과 제품
+백로그(PBI)로 제품 결정과 작업 상태를 소스 코드와 함께 관리하였습니다. TypeScript, 의미가 드러나는
+HTML, CSS, 접근성, 빌드 검증을 연결하고, 사람과 agent가 각 작업 환경에 맞는 절차로 같은 품질 방향을
+따를 수 있도록 공통 규칙과 검증 harness를 구성했습니다.
 
 ## 결과
 

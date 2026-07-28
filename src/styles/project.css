@@ -21,13 +21,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-1);
     list-style: none;
   }
 
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+  }
+
   .breadcrumb li + li::before {
-    margin-inline: var(--space-1);
+    margin-inline: var(--space-2);
     color: var(--color-text-muted);
+    font-size: var(--text-lead);
+    line-height: 1;
     content: "›";
   }
 
@@ -77,6 +83,7 @@
 
   .project-header h1 {
     max-inline-size: 14ch;
+    font-size: clamp(2.5rem, 6vi, 5rem);
   }
 
   .project-classification {
