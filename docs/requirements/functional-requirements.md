@@ -69,6 +69,8 @@ project-scoped public repositories, and usable contact paths.
 - Contact actions use the contact channels selected for the public portfolio
   and include browser-based Gmail compose plus a visible, copyable email
   fallback that does not depend on an operating-system mail-client association.
+- Project details that require demo login provide a project-specific request
+  through the selected public email channel without publishing credentials.
 - Labels make the destination and purpose clear.
 
 ## FR-004: Skills Section

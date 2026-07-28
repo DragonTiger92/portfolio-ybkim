@@ -15,6 +15,7 @@ stack:
   - CSS
   - Vite
 order: 2
+demoAccess: true
 links:
   - label: "팀 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Karly"

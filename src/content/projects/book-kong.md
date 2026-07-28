@@ -14,6 +14,7 @@ stack:
   - JavaScript
   - CSS
 order: 3
+demoAccess: true
 links:
   - label: "팀 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Book-Kong"

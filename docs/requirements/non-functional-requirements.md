@@ -147,6 +147,8 @@ information.
 - Remove private repository paths, internal endpoints, infra identifiers, and
   company-confidential workflow detail from public docs and site copy.
 - Use only the selected public contact channels in website contact actions.
+- Keep demo credentials, secure delivery links, recruiter addresses, and access
+  history out of public files, generated output, analytics, and CI logs.
 
 ## NFR-005: Static Cloudflare Deployment
 

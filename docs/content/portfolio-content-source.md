@@ -141,15 +141,15 @@ supporting proof.
 
 ## Disclosure Source Data
 
-| Content Area                 | Public Rule                                                                                                                                                    |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Professional project labels  | Use generic public labels unless the owner approves exact names                                                                                                |
-| Company and internal systems | Employer name is approved for the resume; keep internal system names, repository paths, architecture, private URLs, and endpoints out                          |
-| Auth, workflow, and data     | Generalize authentication, workflow, domain model, database, and operational details                                                                           |
-| Recommendation letter        | Do not publish or quote; keep as applicant-only supporting material                                                                                            |
-| Demo credentials             | Do not publish credentials from earlier project notes or screenshots                                                                                           |
-| Screenshots and media        | Karly and Book-Kong media/design assets are owner-approved for portfolio use; still check exact assets for private data, attribution, and presentation context |
-| Resume                       | Publish only a reviewed PDF following the resume/portfolio boundary                                                                                            |
+| Content Area                 | Public Rule                                                                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Professional project labels  | Use generic public labels unless the owner approves exact names                                                                                                          |
+| Company and internal systems | Employer name is approved for the resume; keep internal system names, repository paths, architecture, private URLs, and endpoints out                                    |
+| Auth, workflow, and data     | Generalize authentication, workflow, domain model, database, and operational details                                                                                     |
+| Recommendation letter        | Do not publish or quote; keep as applicant-only supporting material                                                                                                      |
+| Demo credentials             | Do not publish credentials or reusable delivery links; expose only the reviewed request path and use a password-protected expiring link with a separate password channel |
+| Screenshots and media        | Karly and Book-Kong media/design assets are owner-approved for portfolio use; still check exact assets for private data, attribution, and presentation context           |
+| Resume                       | Publish only a reviewed PDF following the resume/portfolio boundary                                                                                                      |
 
 ## Disclosure Review Timing
 

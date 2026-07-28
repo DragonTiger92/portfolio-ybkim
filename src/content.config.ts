@@ -14,6 +14,7 @@ const projects = defineCollection({
     tags: z.array(z.string()).min(1),
     stack: z.array(z.string()),
     order: z.number().int().nonnegative(),
+    demoAccess: z.boolean().default(false),
     links: z
       .array(
         z.object({

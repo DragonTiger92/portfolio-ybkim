@@ -9,13 +9,13 @@ const projectCards = [
   },
   {
     classification: "공개 팀 프로젝트",
-    links: ["상세 설명", "팀 저장소", "배포 데모"],
+    links: ["상세 설명", "팀 저장소", "배포 데모", "테스트 계정 요청 ↗"],
     role: "프론트엔드 담당",
     title: "Karly",
   },
   {
     classification: "공개 팀 프로젝트",
-    links: ["상세 설명", "팀 저장소", "배포 데모"],
+    links: ["상세 설명", "팀 저장소", "배포 데모", "테스트 계정 요청 ↗"],
     role: "프론트엔드 담당 · 팀 리드",
     title: "Book-Kong",
   },
