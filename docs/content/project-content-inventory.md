@@ -9,8 +9,8 @@ is tracked in [Portfolio Content Source](portfolio-content-source.md).
 
 It is not a design specification and it is not a private evidence store. Use it
 to decide which projects, surfaces, links, and claims are eligible for the
-public portfolio. Keep private source notes in `.contexts/` or `tmp/` until the
-project owner approves a public-safe summary.
+public portfolio. Keep private source notes in owner-controlled storage outside
+the public repository until the project owner approves a public-safe summary.
 
 ## Entity Decision
 
@@ -122,11 +122,11 @@ Before adding a professional project to the public portfolio, record:
 
 Current private evidence source categories:
 
-| Source Material                         | Storage Boundary                         | Public Use Boundary                                                                   |
-| --------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------- |
-| Professional capacity and contribution  | Gitignored owner-provided source context | Use for sanitized capability and project summaries; do not copy private detail        |
-| Recommendation letter                   | Gitignored owner-provided source context | Keep as applicant-only evidence; do not publish recommendation-letter contents        |
-| Future professional project source docs | `.contexts/` or owner-provided tmp       | Read only when requested; write public summaries from scratch after disclosure review |
+| Source Material                         | Storage Boundary                 | Public Use Boundary                                                                   |
+| --------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
+| Professional capacity and contribution  | Owner-controlled private context | Use for sanitized capability and project summaries; do not copy private detail        |
+| Recommendation letter                   | Owner-controlled private context | Keep as applicant-only evidence; do not publish recommendation-letter contents        |
+| Future professional project source docs | Owner-provided private workspace | Read only when requested; write public summaries from scratch after disclosure review |
 
 ## Contact Routing Decision
 

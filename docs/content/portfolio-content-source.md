@@ -117,7 +117,7 @@ downloadable resume.
 | Employer        | `주식회사 룰메이커스` is approved for the public resume; use `Rulemakers` in English   |
 | Portfolio URL   | Add after Phase 3 production URL decision                                              |
 | GitHub          | Include `https://github.com/DragonTiger92`                                             |
-| Editable source | Keep draft DOCX under private `.contexts/` until owner approval                        |
+| Editable source | Keep the draft DOCX in owner-controlled private storage until approval                 |
 | Public PDF path | Publish reviewed PDF at `/assets/resume/yb-kim-resume.pdf`                             |
 
 Resume content should summarize current fit, recent professional experience,
@@ -187,8 +187,7 @@ claim outside the map below.
 | Screenshots and media                                             | Exact-asset review                               | Karly and Book-Kong assets are eligible; professional screenshots remain deferred until separately approved     |
 | Portfolio claims                                                  | Publish mapped claims                            | Publish only claims in the claim-evidence map below; keep private evidence generalized                          |
 
-Private claim-level notes live in
-`.contexts/portfolio-evidence/disclosure-review-working-notes.md`.
+Private claim-level notes remain outside the public repository.
 
 ## Claim-Evidence Map
 
