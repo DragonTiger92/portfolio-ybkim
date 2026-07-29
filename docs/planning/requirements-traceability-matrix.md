@@ -125,6 +125,7 @@ governance work rather than product behavior.
 | `NFR-005`      | `PBI-011` | Implement     |
 | `NFR-005`      | `PBI-012` | Implement     |
 | `NFR-005`      | `PBI-026` | Operate       |
+| `NFR-005`      | `PBI-065` | Implement     |
 | `NFR-008`      | `PBI-028` | Verify        |
 | `NFR-009`      | `PBI-011` | Implement     |
 | `NFR-009`      | `PBI-027` | Operate       |

@@ -46,6 +46,10 @@ Follow the public workflow in `docs/process/development-workflow.md`.
   `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`.
 - Use only the documented type prefixes and create from the latest `main` unless
   an explicit exception applies.
+- Treat `feature/`, `fix/`, and `content/` as the planned automatic protected
+  preview allow-list. Do not select or change a prefix merely to force or bypass
+  preview deployment; use the documented manual path when another branch type
+  needs remote QA.
 - Choose a Phase branch when related PBIs genuinely benefit from one integration
   baseline. Choose a PBI branch when independent review, verification, rollback,
   or delivery is useful; do not create branches merely to mirror chat sessions.

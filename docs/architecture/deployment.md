@@ -52,7 +52,7 @@ server runtime; Node.js remains a build-time tool only.
 | Component                | Responsibility                                              | Phase / State                           |
 | ------------------------ | ----------------------------------------------------------- | --------------------------------------- |
 | GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                         |
-| GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003      |
+| GitHub Actions           | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003      |
 | Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                     |
 | Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                          |
 | Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                          |
@@ -94,6 +94,8 @@ PH-003 makes Direct Upload operational in this order:
 4. The workflow builds and verifies `dist/`, uploads that exact directory with
    Wrangler Direct Upload, runs production smoke checks, and preserves
    deployment and rollback evidence.
+5. `PBI-065` reuses the checked build and upload path for eligible pull request
+   revisions only after `PBI-026` verifies the preview Access policy.
 
 Do not use a floating `npx wrangler` download in CI. Dependency installation,
 Cloudflare resource creation, and credential configuration occur only during
@@ -120,12 +122,30 @@ but it is a Cloudflare Pages deployment with its own URL and static artifact.
 
 - Verify every build locally with the normal check/build path and use
   `astro preview` when browser inspection is needed.
-- Create a remote preview manually through `workflow_dispatch` only when shared
-  QA, production-like edge serving, or release-candidate evidence is useful.
 - Protect preview hostnames through Cloudflare Access. The exact identity
   provider and allowlist are selected while implementing `PBI-026`.
+- Until that Access boundary is verified, create remote previews only through an
+  owner-reviewed `workflow_dispatch`.
+- After `PBI-065` is activated, automatically deploy same-repository, non-draft
+  pull requests whose head branch starts with `feature/`, `fix/`, or `content/`.
+  Run the deployment only after required checks pass and deploy the exact checked
+  revision.
+- Keep `docs/`, `ci/`, `infra/`, `security/`, `refactor/`, and `chore/` branches
+  manual by default. Exclude Dependabot, forks, drafts, `wip/*`, and invalid
+  branch names from automatic credential-bearing preview jobs.
 - Do not tag ordinary previews. Use an `-rc.N` tag only when the deployed preview
   is an actual candidate for the target production release.
+
+The preview workflow must use the `pull_request` event rather than
+`pull_request_target`, keep permissions least-privileged, and use one concurrency
+group per pull request so a newer revision cancels a stale preview run. Record
+the eligibility decision, source revision, protected preview URL, and smoke-check
+result in the job summary. Retain complete logs for diagnosis, but review the
+summary and first failed step before loading verbose output.
+
+The existing `PR Metadata` gate rejects invalid human branch names. `PBI-065`
+must also encode the allow-list in the deployment workflow's eligibility job so
+the public workflow and agent guidance are not the only controls.
 
 ## Deployment Workflow Boundary
 
@@ -135,7 +155,8 @@ workflow should be callable by both the automatic and manual entry points.
 PH-003 implements:
 
 1. full repository checks and a reproducible Astro build;
-2. optional, manually dispatched protected preview deployment;
+2. automatic protected previews for the documented branch allow-list plus a
+   manually dispatched exception path;
 3. automatic production deployment on each push to `main`;
 4. production smoke checks and rollback evidence; and
 5. production tag, generated release notes, and CycloneDX SBOM publication.
