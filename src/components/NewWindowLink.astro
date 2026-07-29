@@ -3,9 +3,10 @@ interface Props {
   accessibleLabel: string;
   class?: string;
   href: string;
+  windowLabel?: string;
 }
 
-const { accessibleLabel, class: className, href } = Astro.props;
+const { accessibleLabel, class: className, href, windowLabel = "새 창" } = Astro.props;
 ---
 
 <a
@@ -13,7 +14,7 @@ const { accessibleLabel, class: className, href } = Astro.props;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  aria-label={`${accessibleLabel}(새 창)`}
+  aria-label={`${accessibleLabel}(${windowLabel})`}
 >
   <span class="new-window-link__label"><slot /></span>
   <span class="new-window-link__icon" aria-hidden="true">↗</span>

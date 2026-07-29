@@ -18,6 +18,7 @@ stack:
   - Git
   - GitHub
 order: 2
+demoAccess: true
 links:
   - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Karly"

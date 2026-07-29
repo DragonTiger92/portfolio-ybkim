@@ -161,6 +161,7 @@
   }
 
   .project-links,
+  .demo-access,
   .project-stack,
   .project-navigation {
     display: grid;
@@ -175,12 +176,14 @@
   }
 
   .project-links h2,
+  .demo-access h2,
   .project-stack h2,
   .project-navigation h2 {
     font-size: var(--text-h3);
   }
 
   .project-links > p,
+  .demo-access > p,
   .project-stack > p {
     color: var(--color-text-muted);
   }
@@ -194,6 +197,15 @@
   .project-links .button-link {
     inline-size: 100%;
     justify-content: space-between;
+  }
+
+  .demo-access {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .demo-access .button-link {
+    inline-size: 100%;
   }
 
   .project-stack,

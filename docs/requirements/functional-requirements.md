@@ -74,6 +74,8 @@ project-scoped public repositories, and usable contact paths.
 - When the current job status is `not-looking`, the static build omits the Gmail
   URL, email address, copy control, and email data while preserving non-email
   review paths.
+- Project details that require demo login provide a project-specific request
+  through the selected public email channel without publishing credentials.
 - Labels make the destination and purpose clear.
 
 ## FR-004: Skills Section

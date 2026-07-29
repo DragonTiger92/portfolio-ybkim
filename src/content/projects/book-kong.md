@@ -18,6 +18,7 @@ stack:
   - PocketBase
   - Storybook
 order: 3
+demoAccess: true
 links:
   - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Book-Kong"

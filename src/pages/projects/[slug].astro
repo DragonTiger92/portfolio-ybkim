@@ -1,7 +1,9 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import DemoAccessRequest from "../../components/DemoAccessRequest.astro";
 import NewWindowLink from "../../components/NewWindowLink.astro";
 import TagList from "../../components/TagList.astro";
+import { getJobStatusContent, resolveJobStatusCode } from "../../data/job-status";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 interface ProjectNavigationTarget {
@@ -44,6 +46,10 @@ interface Props {
 
 const { nextProject, previousProject, project } = Astro.props;
 const { Content } = await render(project);
+const jobStatus = getJobStatusContent(
+  "ko",
+  resolveJobStatusCode(import.meta.env.PORTFOLIO_JOB_STATUS),
+);
 const featuredProject = nextProject ?? previousProject;
 const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 프로젝트";
 ---
@@ -87,7 +93,12 @@ const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 �
           <Content />
         </div>
 
-        <aside class="project-supporting" aria-label="프로젝트 검토 링크와 지원 기술">
+        <aside
+          class="project-supporting"
+          aria-label={project.data.demoAccess && jobStatus.acceptsEmailContact
+            ? "프로젝트 검토 링크, 데모 로그인과 지원 기술"
+            : "프로젝트 검토 링크와 지원 기술"}
+        >
           {
             project.data.links.length > 0 && (
               <section class="project-links" aria-labelledby="project-links-title">
@@ -110,6 +121,12 @@ const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 �
                   ))}
                 </ul>
               </section>
+            )
+          }
+
+          {
+            project.data.demoAccess && jobStatus.acceptsEmailContact && (
+              <DemoAccessRequest projectId={project.id} projectTitle={project.data.title} />
             )
           }
 

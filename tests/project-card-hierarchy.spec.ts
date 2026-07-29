@@ -10,14 +10,14 @@ const projectCards = [
   },
   {
     classification: "부트캠프 팀 프로젝트",
-    links: ["상세 설명", "GitHub 저장소", "배포 데모"],
+    links: ["상세 설명", "GitHub 저장소", "배포 데모", "테스트 계정 요청"],
     role: "프론트엔드 담당",
     tags: ["웹 표준", "Pure CSS", "Vanilla JavaScript", "협업"],
     title: "Karly",
   },
   {
     classification: "부트캠프 팀 프로젝트",
-    links: ["상세 설명", "GitHub 저장소", "배포 데모"],
+    links: ["상세 설명", "GitHub 저장소", "배포 데모", "테스트 계정 요청"],
     role: "프론트엔드 담당 · 팀 리드",
     tags: ["React", "기술 공유", "문제 해결", "팀 리드"],
     title: "Book-Kong",

@@ -29,6 +29,7 @@ const projectEvidence = [
       "https://github.com/DragonTiger92/portfolio-ybkim/blob/main/package.json",
     ],
     route: "/projects/portfolio-ybkim/",
+    supportingLabel: "프로젝트 검토 링크와 지원 기술",
   },
   {
     classification: "부트캠프 공개 팀 프로젝트",
@@ -39,11 +40,13 @@ const projectEvidence = [
       "구현 접근",
       "결과",
       "검토 링크",
+      "데모 로그인",
       "지원 기술",
       "프로젝트 탐색",
     ],
     links: ["https://github.com/FRONTENDSCHOOL8/Karly", "https://dragontiger92.github.io/Karly/"],
     route: "/projects/karly/",
+    supportingLabel: "프로젝트 검토 링크, 데모 로그인과 지원 기술",
   },
   {
     classification: "부트캠프 공개 팀 프로젝트",
@@ -54,11 +57,13 @@ const projectEvidence = [
       "구현 접근",
       "결과",
       "검토 링크",
+      "데모 로그인",
       "지원 기술",
       "프로젝트 탐색",
     ],
     links: ["https://github.com/FRONTENDSCHOOL8/Book-Kong", "https://bookong.netlify.app/"],
     route: "/projects/book-kong/",
+    supportingLabel: "프로젝트 검토 링크, 데모 로그인과 지원 기술",
   },
 ];
 
@@ -154,8 +159,8 @@ test("presents inspectable public results and disclosure-safe company projects",
   await expect(projectCards).toHaveCount(3);
   await expect(projectCards.locator("h4")).toHaveText(["portfolio-ybkim", "Karly", "Book-Kong"]);
   await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
-  await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(3);
-  await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(3);
+  await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(4);
+  await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(4);
   const professionalCards = page.locator("#projects .professional-card");
 
   await expect(professionalCards).toHaveCount(3);
@@ -181,9 +186,7 @@ for (const project of projectEvidence) {
       project.classification,
     );
     await expect(page.locator(".project-facts dt")).toHaveText(["역할", "기여 범위", "초점"]);
-    await expect(page.locator(".project-supporting")).toHaveAccessibleName(
-      "프로젝트 검토 링크와 지원 기술",
-    );
+    await expect(page.locator(".project-supporting")).toHaveAccessibleName(project.supportingLabel);
     await expect(page.locator(".project-links > p")).toHaveText(
       "제공된 저장소, 배포 또는 문서 링크에서 이 프로젝트의 범위와 결과를 확인할 수 있습니다.",
     );

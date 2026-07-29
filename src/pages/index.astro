@@ -76,6 +76,7 @@ const jobStatus = getJobStatusContent("ko", jobStatusCode);
                 projects.map((project, projectIndex) => (
                   <ProjectCard
                     classification={project.data.classification}
+                    demoAccess={project.data.demoAccess && jobStatus.acceptsEmailContact}
                     featured={projectIndex === 0}
                     links={project.data.links}
                     role={project.data.role}
