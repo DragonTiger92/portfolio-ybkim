@@ -44,10 +44,11 @@ test("omits email data and actions from a not-looking static build", async () =>
     assert.equal(build.status, 0, build.stderr || build.stdout);
 
     const landingHtml = await readFile(path.join(outputDirectory, "index.html"), "utf8");
+    const hrefValues = [...landingHtml.matchAll(/\bhref="([^"]+)"/g)].map((match) => match[1]);
 
     assert.ok(landingHtml.includes("구직 중이 아님"));
     assert.ok(landingHtml.includes("현재 이메일 연락을 받고 있지 않습니다."));
-    assert.ok(landingHtml.includes("https://github.com/DragonTiger92"));
+    assert.ok(hrefValues.includes("https://github.com/DragonTiger92"));
     assert.ok(landingHtml.includes("/assets/resume/yb-kim-resume.pdf"));
     assert.ok(!landingHtml.includes(publicEmail));
     assert.ok(!landingHtml.includes("mail.google.com/mail"));
