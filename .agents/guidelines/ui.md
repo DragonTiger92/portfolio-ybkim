@@ -38,12 +38,15 @@ When editing UI:
 - Avoid removing focus styles without replacing them.
 - Preserve readable text contrast.
 - Give each generated page exactly one visible `main` landmark and one page-level
-  `h1`.
+  `h1`. Keep the `h1` visible by default; the landing page may visually hide its
+  concise document title when the adjacent positioning statement and header
+  identity already provide the intended visual hierarchy.
 - Use `section` and `article` only for independently meaningful content, and give
   each one an accessible heading. Do not add an artificial hidden heading to
   `main`; `main` is a landmark, not sectioning content that requires a heading.
 - Keep heading levels logical. The landing-page `h1` is the concise page title
-  "웹 개발자 김용범의 포트폴리오"; its positioning statement belongs in a
+  "웹 개발자 김용범의 포트폴리오" and remains available to the document
+  outline even when visually hidden; its positioning statement belongs in a
   paragraph. A project-detail page uses its project title as `h1`.
 - Prefer concise noun phrases for headings when they still describe the content
   accurately and read naturally in a heading outline.

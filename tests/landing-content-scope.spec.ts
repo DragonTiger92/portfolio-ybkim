@@ -1,68 +1,156 @@
 import { expect, test } from "@playwright/test";
 
-const heroSupportCopy =
-  "Astro로 만든 이 포트폴리오와 Karly, Book-Kong은 소스와 결과를 확인할 수 있는 공개 프로젝트입니다. 실무 경험은 공개 가능한 범위에서 역할과 기여를 요약했습니다.";
-const professionalScopeLabel = "실무 경험 · 공개 범위 요약";
-const reviewOrder = "프로젝트 → 실무 경험 → 역량 → 작업 방식";
-
-test("distinguishes public project evidence from summarized professional experience", async ({
+test("distinguishes project evidence and business context without splitting the IA", async ({
   page,
 }) => {
   await page.goto("/");
 
-  await expect(page.locator("#intro .hero-support")).toHaveText(heroSupportCopy);
+  await expect(page.locator("#intro .hero-support")).toHaveCount(0);
 
-  const heroProof = page.locator("#intro .hero-proof");
-  const projectCards = page.locator("#projects .project-card");
-  const professionalCards = page.locator("#professional-highlights .professional-card");
-  const projectCount = await projectCards.count();
-  const professionalCount = await professionalCards.count();
+  const publicProjectCards = page.locator("#projects .project-card");
+  const companyProjectCards = page.locator("#projects .professional-card");
+  const publicProjectCount = await publicProjectCards.count();
+  const companyProjectCount = await companyProjectCards.count();
 
-  expect(projectCount).toBe(3);
-  expect(professionalCount).toBe(3);
-  await expect(heroProof).toHaveAccessibleName("공개 근거와 경험 요약");
-  await expect(heroProof.locator(".eyebrow")).toHaveText("포트폴리오 검토 안내");
-  await expect(heroProof.locator(".hero-proof__title")).toHaveText("공개 근거와 경험 요약");
-  await expect(heroProof.locator("dt")).toHaveText(["공개 프로젝트", "실무 경험", "검토 순서"]);
-  await expect(heroProof.locator("dd")).toHaveText([
-    `${projectCount}개 · 소스와 결과 확인 가능`,
-    `${professionalCount}개 · 공개 가능한 범위로 요약`,
-    reviewOrder,
+  expect(publicProjectCount).toBe(3);
+  expect(companyProjectCount).toBe(3);
+  await expect(page.locator("#professional-highlights")).toHaveCount(0);
+  await expect(page.locator("#intro .hero-proof")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "포트폴리오 확인 가이드" })).toHaveCount(0);
+
+  await expect(page.locator(".section-heading .eyebrow")).toHaveCount(0);
+  await expect(page.locator(".project-group__heading .eyebrow")).toHaveCount(0);
+  await expect(page.locator(".section-index")).toHaveCount(0);
+  await expect(page.locator("#process")).toHaveCount(0);
+  await expect(page.locator("#projects .section-heading > p")).toHaveCount(0);
+  await expect(page.locator("#public-projects-title")).toHaveText("공개 프로젝트");
+  await expect(
+    page.locator("#projects .project-group").first().locator(".project-group__heading > p"),
+  ).toHaveCount(0);
+  await expect(page.locator("#company-projects-title")).toHaveText("회사 비공개 프로젝트");
+
+  await expect(companyProjectCards.locator(".professional-card__scope")).toHaveCount(0);
+  await expect(companyProjectCards.first().locator(".tag-list li")).toHaveText([
+    "기획 및 제품 설계",
+    "아키텍처 구현",
+    "1인 유지보수성 확보",
+  ]);
+  await expect(companyProjectCards.nth(1).locator(".professional-card__description")).toHaveText(
+    "인증 흐름과 초기 UI mockup을 포함한 프론트엔드 구조 전반을 구축 후, 다음 작업자가 프론트엔드 작업을 이어나갈 수 있도록 인계했습니다.",
+  );
+  await expect(companyProjectCards.nth(1).locator(".tag-list li")).toHaveText([
+    "프론트엔드 구축",
+    "로그인 흐름 설계",
+    "API 응답·도메인 타입 분리",
+  ]);
+  await expect(companyProjectCards.nth(2).locator(".professional-card__description")).toHaveText(
+    "기존 내부 업무 플랫폼을 인수받아 운영 안정성을 보강하고, 트러블 슈팅 도구를 만들어 운영상 발생하는 문제들을 해결하였습니다. 또한 제품 인계를 위한 문서 작업 등을 진행하였습니다.",
+  );
+  await expect(companyProjectCards.nth(2).locator(".tag-list li")).toHaveText([
+    "인수인계",
+    "풀스택",
+    "트러블 슈팅",
+  ]);
+  await expect(page.locator(".project-group--company .project-group__heading > p")).toHaveText(
+    "회사에서 비즈니스 목적으로 수행한 실무 프로젝트입니다. 비공개 소스 코드를 포함한 내부 정보는 제외하였습니다.",
+  );
+  await expect(page.locator(".project-group--company .project-group__heading > p br")).toHaveCount(
+    0,
+  );
+});
+
+test("aligns company project content and shares the public project tag treatment", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const publicProjectCards = page.locator("#projects .project-card");
+  const companyProjectCards = page.locator("#projects .professional-card");
+  const projectGroupLayout = await page.evaluate(() => {
+    const publicGroup = document.querySelector<HTMLElement>(".project-group--public");
+    const companyHeading = document.querySelector<HTMLElement>(
+      ".project-group--company .project-group__heading",
+    );
+    const companyDescription = companyHeading?.querySelector<HTMLElement>(":scope > p");
+
+    if (!publicGroup || !companyHeading || !companyDescription) {
+      return null;
+    }
+
+    return {
+      companyAlignItems: getComputedStyle(companyHeading).alignItems,
+      companyDescriptionMaxInlineSize: getComputedStyle(companyDescription).maxInlineSize,
+      companyHeadingMaxInlineSize: getComputedStyle(companyHeading).maxInlineSize,
+      publicGap: getComputedStyle(publicGroup).rowGap,
+    };
+  });
+
+  expect(projectGroupLayout?.publicGap).toBe("32px");
+
+  if ((page.viewportSize()?.width ?? 0) >= 768) {
+    expect(projectGroupLayout).toMatchObject({
+      companyAlignItems: "center",
+      companyDescriptionMaxInlineSize: "none",
+      companyHeadingMaxInlineSize: "none",
+    });
+  }
+
+  const firstCompanyCard = companyProjectCards.first();
+  await expect(firstCompanyCard.locator(".professional-card__index")).toHaveCSS(
+    "align-self",
+    "auto",
+  );
+  await expect(firstCompanyCard.locator(".professional-card__content")).toHaveCSS(
+    "align-self",
+    "center",
+  );
+  await expect(firstCompanyCard.locator(".tag-list")).toHaveCSS("align-self", "center");
+  await expect(firstCompanyCard.locator(":scope > .text-link")).toHaveCSS("align-self", "center");
+
+  const tagStyleProperties = ["background-image", "border-color", "box-shadow", "font-weight"];
+  const publicTag = publicProjectCards.first().locator(":scope > .tag-list li").first();
+  const companyTag = firstCompanyCard.locator(":scope > .tag-list li").first();
+  const [publicTagStyles, companyTagStyles] = await Promise.all([
+    publicTag.evaluate(
+      (element, properties) =>
+        properties.map((property) => getComputedStyle(element).getPropertyValue(property)),
+      tagStyleProperties,
+    ),
+    companyTag.evaluate(
+      (element, properties) =>
+        properties.map((property) => getComputedStyle(element).getPropertyValue(property)),
+      tagStyleProperties,
+    ),
   ]);
 
-  await expect(page.locator("#projects .section-heading__title .eyebrow")).toHaveText(
-    "공개 프로젝트",
-  );
-  await expect(page.locator("#projects .section-heading--split > p")).toHaveText(
-    "소스 또는 배포 결과를 확인할 수 있는 세 프로젝트입니다. 각 카드에서 맡은 역할과 구현 범위, 공개 근거를 함께 살펴볼 수 있습니다.",
-  );
-  await expect(
-    page.locator("#professional-highlights .section-heading__title .eyebrow"),
-  ).toHaveText("공개 범위로 요약");
-  await expect(page.locator("#professional-highlights h2")).toHaveText("실무 경험");
-  await expect(page.locator("#professional-highlights .section-heading--split > p")).toHaveText(
-    "비공개 자료와 내부 세부사항은 제외하고, 공개 가능한 범위에서 확인된 역할과 기여를 요약했습니다.",
-  );
+  expect(companyTagStyles).toEqual(publicTagStyles);
+});
 
-  const scopeLabels = professionalCards.locator(".professional-card__scope");
+test("opens the public company service without replacing the portfolio", async ({ page }) => {
+  await page.goto("/");
 
-  await expect(scopeLabels).toHaveCount(professionalCount);
+  const publicService = page.getByRole("link", { name: "공개 서비스 보기(새 창)" });
 
-  for (const scopeLabel of await scopeLabels.all()) {
-    await expect(scopeLabel).toBeVisible();
-    await expect(scopeLabel).toHaveText(professionalScopeLabel);
-  }
+  await expect(publicService).toHaveAttribute("target", "_blank");
+  await expect(publicService).toHaveAttribute("rel", "noopener noreferrer");
+  await expect(publicService.locator(".new-window-link__label")).toHaveText("공개 서비스 보기");
+  await expect(publicService.locator(".new-window-link__icon")).toHaveText("↗");
 });
 
 test("removes the previous mixed-scope landing copy", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.locator("#intro .hero-support")).not.toContainText("공개 가능한 실무 작업");
+  await expect(page.locator("#intro .hero-support")).toHaveCount(0);
 
-  const heroProof = page.locator("#intro .hero-proof");
-
-  for (const previousCopy of ["검토 경로", "구현 방식", "Astro · TypeScript · CSS"]) {
-    await expect(heroProof.getByText(previousCopy, { exact: true })).toHaveCount(0);
+  for (const previousCopy of [
+    "포트폴리오 확인 가이드",
+    "추천 확인 순서",
+    "검토 경로",
+    "구현 방식",
+    "Astro · TypeScript · CSS",
+    "실무 경험",
+  ]) {
+    await expect(page.getByText(previousCopy, { exact: true })).toHaveCount(0);
   }
 });
 

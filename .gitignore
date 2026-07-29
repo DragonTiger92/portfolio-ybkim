@@ -29,6 +29,7 @@ test-results
 # Temporary files
 tmp/
 .contexts/
+.lazyweb/
 .agents/handoffs/
 
 # Generated supply-chain artifacts
