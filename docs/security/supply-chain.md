@@ -53,6 +53,9 @@ to policy review instead of inventing a license conclusion.
 
 - Dependabot checks npm package metadata and GitHub Actions updates on a weekly
   schedule.
+- GitHub Actions version updates use a seven-day cooldown before Dependabot can
+  propose them. Security updates remain eligible immediately and are not delayed
+  by the cooldown.
 - Dependabot requests owner review only when an update is major, indirect,
   unclassified, non-SemVer, grouped ambiguously, or carries an explicit breaking
   marker. The review request is the owner notification and manual-action trigger;
