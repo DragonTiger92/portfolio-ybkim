@@ -44,19 +44,20 @@ public branch naming convention instead.
 
 ## Quality Gate Matrix
 
-| Trigger                     | Required work                                                             | Purpose                                                                    |
-| --------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Local docs iteration        | `pnpm.cmd check:docs`                                                     | Validate documentation without repeating the full gate                     |
-| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command         | Give fast feedback without repeating the full gate                         |
-| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged           | Keep the commit feedback loop fast                                         |
-| Local `pre-push`            | `pnpm check:static`                                                       | Block static-analysis, build, and HTML regressions                         |
-| Local completion / PR prep  | Full `pnpm.cmd check`                                                     | Verify the complete change once before handoff                             |
-| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`            | Gate merge readiness and policy metadata                                   |
-| Dependabot pull request     | Policy classification; routine auto-merge; exceptional review attestation | Route updates by metadata, breaking markers, and `deps:validated` evidence |
-| Terraform-related PR change | Terraform format, provider initialization without backend, and validation | Reject invalid IaC before merge                                            |
-| Push to `main`              | `Check` (`pnpm check`)                                                    | Verify the integrated default branch                                       |
-| Weekly schedule             | `pnpm audit --audit-level moderate`                                       | Surface dependency advisories without blocking a PR                        |
-| Manual dispatch             | Security audit or Terraform validation as needed                          | Support owner-driven recovery and explicit rechecks                        |
+| Trigger                     | Required work                                                                | Purpose                                                                    |
+| --------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Local docs iteration        | `pnpm.cmd check:docs`                                                        | Validate documentation without repeating the full gate                     |
+| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command            | Give fast feedback without repeating the full gate                         |
+| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged              | Keep the commit feedback loop fast                                         |
+| Local `pre-push`            | `pnpm check:static`                                                          | Block static-analysis, build, and HTML regressions                         |
+| Local completion / PR prep  | Full `pnpm.cmd check`                                                        | Verify the complete change once before handoff                             |
+| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`               | Gate merge readiness and policy metadata                                   |
+| Merged pull request         | Compare and update eligible open PR branches through `Sync Open PR Branches` | Preserve the integrated `main` history in active same-repository work      |
+| Dependabot pull request     | Policy classification; routine auto-merge; exceptional review attestation    | Route updates by metadata, breaking markers, and `deps:validated` evidence |
+| Terraform-related PR change | Terraform format, provider initialization without backend, and validation    | Reject invalid IaC before merge                                            |
+| Push to `main`              | `Check` (`pnpm check`)                                                       | Verify the integrated default branch                                       |
+| Weekly schedule             | `pnpm audit --audit-level moderate`                                          | Surface dependency advisories without blocking a PR                        |
+| Manual dispatch             | Security audit or Terraform validation as needed                             | Support owner-driven recovery and explicit rechecks                        |
 
 `pnpm check:docs` includes warning-free Markdown linting, strict documentation
 file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
@@ -64,14 +65,32 @@ file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
 linting, strict maintained-file size, governance and static-budget tests,
 formatting, the Astro production build, deterministic `dist/` budget validation,
 HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
-axe-core browser checks, including semantic structure and 44-by-44 CSS-pixel
-target checks. Terraform planning and apply are deliberately absent from pull
+axe-core Chromium checks, including semantic structure and 44-by-44 CSS-pixel
+target checks, plus a focused WebKit smoke suite for core rendering and
+interaction compatibility. Terraform planning and apply are deliberately absent from pull
 requests until durable remote state and owner credentials are configured.
+
+`Sync Open PR Branches` runs after a pull request is merged into `main` and can
+also be dispatched manually. It compares open, same-repository pull requests
+whose base is `main`, then calls GitHub's update-branch API only when the head is
+behind. Dependabot, `wip/*`, fork-owned, non-`main`-based, and unopened branches
+remain outside the mutation boundary. A conflict or stale head SHA fails the
+workflow so the owner can resolve it without hidden history rewriting.
+
+The workflow does not check out or execute pull request code. It uses the
+repository-scoped `GITHUB_TOKEN` with only the contents and pull-request write
+permissions required by the update-branch endpoint. GitHub may require owner
+approval before checks triggered by a `GITHUB_TOKEN` branch update run; do not
+treat the update request alone as completed PR validation.
 
 The pre-push hook runs the static subset so obvious standards failures do not
 leave the workstation. Browser installation and rendering remain in the explicit
 local completion check and pull request CI. CI repeats the full check in a clean
 Linux runner as the authoritative merge gate.
+
+Every external GitHub Action reference must use a verified immutable commit SHA
+with the reviewed release tag retained in a comment. Dependabot may propose SHA
+updates, but a floating major tag is not the repository's final workflow form.
 
 The required `Check` workflow runs for every pull request without path filters.
 The repository is small, documentation and configuration are included in lint and

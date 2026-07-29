@@ -91,6 +91,79 @@ license credentials.
   `src/layouts/BaseLayout.astro`.
 - **Disposition:** Approved for external loading at the pinned release path.
 
+### Simple Icons technology marks
+
+- **Item:** the 23 Simple Icons technology-mark SVG files distributed from
+  `public/assets/tech/`.
+- **Material Type:** third-party vector brand icons.
+- **Source:** the official `simple-icons` package, retrieved from jsDelivr at
+  the exact `16.21.0` package version.
+- **Author or Supplier:** Simple Icons contributors; the depicted names and
+  marks remain associated with their respective trademark owners.
+- **Version or Date:** `16.21.0`, retrieved and reviewed on 2026-07-20.
+- **License:** CC0-1.0 for the Simple Icons project; the SQLAlchemy icon carries
+  MIT metadata in the pinned catalog. The project disclaimer states that CC0
+  does not waive third-party trademark rights.
+- **Modifications:** none to the distributed SVG paths or `0 0 24 24` view
+  boxes. Runtime CSS classes map each mark to its corresponding `16.21.0`
+  package metadata color, with explicit contrast variants for very dark marks
+  in the dark theme, and a consistent rendered size; technologies without a
+  reviewed source asset use a typographic fallback rather than a substituted
+  brand mark.
+- **Obligations:** use the marks only to identify technologies, do not imply
+  endorsement, and recheck upstream legal or brand guidance when replacing or
+  materially modifying an icon.
+- **Notice Location:** this register. CC0 does not require product attribution.
+- **Evidence:** the pinned jsDelivr source path, the upstream license and legal
+  disclaimer, and local format and byte-size inspection. The selected set is
+  29,662 bytes in aggregate and the largest file is 5,205 bytes.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
+### Playwright technology mark
+
+- **Item:** `public/assets/tech/playwright.svg`.
+- **Material Type:** third-party vector brand logo.
+- **Source:** the official `microsoft/playwright.dev` repository at commit
+  `80f49a3a606302c96e0681bed399079a20456ec6`, file
+  `static/img/playwright-logo.svg`.
+- **Author or Supplier:** Microsoft and Playwright contributors.
+- **Version or Date:** source commit reviewed on 2026-07-21.
+- **License:** CC BY 4.0.
+- **Modifications:** whitespace-only SVG minification; the paths, colors, and
+  `400 × 400` view box are unchanged. CSS renders the multicolor artwork at the
+  same `1.2rem` visual slot used by the other technology marks.
+- **Obligations:** retain attribution, link the license, indicate whether the
+  asset was modified, and do not imply Microsoft or Playwright endorsement.
+- **Notice Location:** this register.
+- **Evidence:** the immutable GitHub source commit, repository license metadata,
+  and local SVG format and byte-size inspection. The local file is 4,993 bytes.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
+### Slack technology mark
+
+- **Item:** `public/assets/tech/slack.png`.
+- **Material Type:** third-party raster brand icon.
+- **Source:** the official Slack CDN asset
+  `https://a.slack-edge.com/80588/marketing/img/meta/slack_hash_256.png`,
+  referenced alongside the current Slack Media Kit and brand guidance.
+- **Author or Supplier:** Slack Technologies, LLC.
+- **Version or Date:** retrieved and reviewed on 2026-07-24; source SHA-256
+  `fff0ab554a4dc202afd1cbf2033a3ad340cf25b4991035d2d31407b5e7e4c366`.
+- **License:** Slack trademark and media-kit usage terms.
+- **Modifications:** none; the 256 × 256 PNG bytes are unchanged. CSS renders
+  the multicolor artwork in the existing technology-mark slot.
+- **Obligations:** use only to identify Slack, preserve the supplied artwork,
+  follow the current Slack brand guidance, and do not imply sponsorship or
+  endorsement.
+- **Notice Location:** this register.
+- **Evidence:** the current Slack Media Kit and brand-guideline URLs, successful
+  response metadata from the official CDN, the recorded source hash, and local
+  format inspection.
+- **Disposition:** Approved for nominative technology identification in the
+  landing-page skill inventory.
+
 ## Review Workflow
 
 1. Inventory third-party material when it enters the repository, not only at
