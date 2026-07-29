@@ -169,11 +169,18 @@ Use spacing to express grouping. Space inside a group should be smaller than the
 space between groups. Prefer existing `--space-*` tokens and layout containers
 before adding component-specific measurements.
 
-The landing page uses an editorial, portfolio-specific hierarchy: an asymmetric
-intro pairs positioning with a compact review guide, the owner portfolio leads
-the public project grid as the featured case study, and professional work uses a
-quieter list treatment so it is not mistaken for a public-source project card.
-At narrow widths these regions return to the same single-column reading order.
+The landing page uses an editorial, portfolio-specific hierarchy: one focused
+intro presents positioning and recruiter actions without a parallel guide card,
+and one Projects section groups all development work by evidence boundary.
+Inspectable public results use cards, while company-confidential business
+projects use a quieter list treatment and explicit disclosure cues. At narrow
+widths these regions retain the same single-column reading order.
+
+Landing section headings stand on their own without decorative indices or blue
+eyebrow copy. Preserve small technical labels only where they classify a
+project or communicate an evidence boundary. The Skills section uses a grouped
+technology inventory followed by one comparison matrix so evidence density does
+not become another fragmented card wall.
 
 Use `--content-max` and `--prose-max` to keep content readable. If a new layout
 needs a different measure, treat it as a shared layout decision rather than a

@@ -117,10 +117,10 @@ different detail levels.
 
 Use a two-artifact workflow:
 
-| Artifact             | Path Or Location                                               | Publication Rule                                       |
-| -------------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
-| Editable DOCX source | `.contexts/portfolio-evidence/resume/yb-kim-resume-draft.docx` | Private draft until owner approval                     |
-| Public PDF output    | `/assets/resume/yb-kim-resume.pdf`                             | Publish only after content, privacy, and visual review |
+| Artifact             | Path Or Location                   | Publication Rule                                       |
+| -------------------- | ---------------------------------- | ------------------------------------------------------ |
+| Editable DOCX source | Owner-controlled private workspace | Private draft until owner approval                     |
+| Public PDF output    | `/assets/resume/yb-kim-resume.pdf` | Publish only after content, privacy, and visual review |
 
 The DOCX source should stay private by default so contact details, application
 variants, and draft wording do not become public repository content. If

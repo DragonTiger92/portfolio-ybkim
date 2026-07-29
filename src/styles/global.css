@@ -15,6 +15,7 @@
   h1,
   h2,
   h3,
+  h4,
   p,
   ol,
   ul,
@@ -64,7 +65,8 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 760;
     line-height: 1.05;
@@ -81,6 +83,10 @@
   }
 
   h3 {
+    font-size: var(--text-h3);
+  }
+
+  h4 {
     font-size: var(--text-h3);
   }
 
@@ -106,7 +112,11 @@
   }
 
   .content-section {
-    padding-block: var(--space-8);
+    padding-block: var(--space-7);
+  }
+
+  .content-section > .site-shell {
+    inline-size: min(100% - 1.5rem, var(--content-max));
   }
 
   .content-section--tinted {
@@ -136,7 +146,11 @@
     }
 
     .content-section {
-      padding-block: var(--space-9);
+      padding-block: var(--space-8);
+    }
+
+    .content-section > .site-shell {
+      inline-size: min(100% - 3rem, var(--content-max));
     }
   }
 

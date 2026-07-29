@@ -23,6 +23,6 @@ or third-party personal data in the report.
 
 ## Private Material
 
-Private source context, company-confidential material, and recommendation-letter
-content must not be published in this repository. Local private notes belong in
-gitignored `.contexts/`.
+Private or confidential source material must not be published in this
+repository. Keep it in owner-controlled storage outside the public repository,
+and publish only disclosure-reviewed summaries.

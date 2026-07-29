@@ -8,6 +8,9 @@
 - Prefer platform-native solutions for this small static site.
 - Keep peer dependencies explicit. `autoInstallPeers` is disabled so optional
   peers do not silently enter the graph.
+- Pin every GitHub Action to a verified immutable commit SHA and retain the
+  reviewed release tag in a comment. Use Dependabot to propose Action updates
+  without returning workflows to floating tags.
 
 ## SBOM
 
@@ -53,6 +56,9 @@ to policy review instead of inventing a license conclusion.
 
 - Dependabot checks npm package metadata and GitHub Actions updates on a weekly
   schedule.
+- GitHub Actions version updates use a seven-day cooldown before Dependabot can
+  propose them. Security updates remain eligible immediately and are not delayed
+  by the cooldown.
 - Dependabot requests owner review only when an update is major, indirect,
   unclassified, non-SemVer, grouped ambiguously, or carries an explicit breaking
   marker. The review request is the owner notification and manual-action trigger;

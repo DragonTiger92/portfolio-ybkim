@@ -8,7 +8,8 @@ tool list.
 | Type              | Purpose                                           |
 | ----------------- | ------------------------------------------------- |
 | Profile Summary   | Introduce the developer positioning in one screen |
-| Skill Group       | Connect capabilities to delivery responsibility   |
+| Technology Group  | Inventory reviewed tools by implementation role   |
+| Capability Matrix | Connect delivery practices to public evidence     |
 | Case Study        | Show a project problem, role, action, and result  |
 | Project Detail    | Give each case study a stable first-depth route   |
 | Project Link      | Send visitors to public repositories or demos     |
@@ -31,13 +32,18 @@ tool list.
 - Implementation-ready project, link, contact, skill, and disclosure source data
   is tracked in [Portfolio Content Source](../content/portfolio-content-source.md).
 
-## Skill Groups
+## Skills Model
 
-- Frontend implementation: UI structure, TypeScript, CSS, accessibility.
-- Product delivery: planning, scope control, documentation, review.
-- Integration literacy: API concepts, data flow, and typed boundaries.
-- Deployment literacy: static hosting, build artifacts, and release checks.
-- Maintenance mindset: readable structure, documentation, and verification.
+- Technology groups reproduce the reviewed resume inventory without proficiency
+  rankings and use recruiter-recognizable Korean category labels.
+- The capability matrix compares five delivery practices through the same
+  fields: design standard, automation path, and public evidence.
+- Technology marks are supplementary visual identifiers. Visible names remain
+  the source of meaning, reviewed mark classes use pinned brand colors with
+  explicit dark-theme contrast variants where needed, and unreviewed marks use
+  a typographic fallback.
+- Troubleshooting narratives remain outside the landing page until a compact
+  detail surface has a stronger recruiter-review need.
 
 ## Localization Model
 

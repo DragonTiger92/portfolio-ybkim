@@ -1,0 +1,56 @@
+---
+import type { TechStackGroup } from "../data/skills";
+
+interface Props {
+  groups: TechStackGroup[];
+}
+
+const { groups } = Astro.props;
+
+function getInitials(name: string) {
+  return name
+    .split(/[\s.-]+/u)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
+---
+
+<article class="tech-stack" aria-labelledby="tech-stack-title">
+  <div class="tech-stack__intro">
+    <h3 id="tech-stack-title">기술 스택</h3>
+    <p>제품 구현과 운영 과정에서 사용한 기술을 역할별로 정리했습니다.</p>
+  </div>
+
+  <dl class="tech-stack__groups">
+    {
+      groups.map((group) => (
+        <div class="tech-stack__group">
+          <dt>{group.label}</dt>
+          <dd>
+            <ul class="tech-stack__items">
+              {group.items.map((item) => (
+                <li>
+                  {item.icon ? (
+                    <span
+                      class:list={["tech-stack__icon", `tech-stack__icon--${item.icon.slug}`]}
+                      aria-hidden="true"
+                    >
+                      <span class="tech-stack__mark" />
+                    </span>
+                  ) : (
+                    <span class="tech-stack__icon tech-stack__icon--fallback" aria-hidden="true">
+                      {getInitials(item.name)}
+                    </span>
+                  )}
+                  <span>{item.name}</span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</article>

@@ -19,7 +19,10 @@ Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
 
 ## Documentation
 
-프로젝트 문서는 [`docs/`](docs/)에 정리합니다. `docs/`는 공개 가능한 일반 프로젝트 문서만 담고, agent-only guideline은 `.agents/`, private source context는 gitignored `.contexts/`에 둡니다.
+프로젝트 문서는 [`docs/`](docs/)에 정리합니다. `docs/`는 공개 가능한 일반
+프로젝트 문서만 담고, agent-only guideline은 `.agents/`에서 관리합니다.
+비공개 source material은 공개 저장소 밖의 owner-controlled storage에
+보관하고, disclosure review를 통과한 요약만 공개합니다.
 
 Root [`DESIGN.md`](DESIGN.md)는 이 포트폴리오의 디자인 판단 기준을
 정리한 harness입니다. 사람이 읽을 수 있게 작성하되, 새 UI를 만들거나
