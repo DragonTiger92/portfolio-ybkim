@@ -149,7 +149,7 @@ information.
 
 - Use only public or disclosure-reviewed source material for public project
   summaries.
-- Keep private evidence in gitignored `.contexts/`.
+- Keep private evidence outside the public repository.
 - Keep applicant-only or private work evidence out of public case-study source
   docs unless it receives a fresh disclosure review.
 - Do not publish recommendation-letter content on the web portfolio.

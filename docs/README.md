@@ -6,8 +6,8 @@ ordinary project docs: requirements, architecture, decisions, planning, content
 models, and supply-chain notes.
 
 Agent-only guidelines and private source context belong outside this directory.
-Use `.agents/` for operational guidance and `.contexts/` for gitignored private
-evidence.
+Use `.agents/` for operational guidance. Keep private evidence in
+owner-controlled storage outside the public repository.
 
 ## Document Map
 
@@ -54,5 +54,5 @@ evidence.
 - Prefer public-safe claims over private implementation detail.
 - Link related documents instead of duplicating the same explanation.
 - Treat IDs such as `FR-001`, `NFR-001`, and `PBI-001` as stable once published.
-- Keep confidential evidence in `.contexts/`, not in `docs/`.
+- Keep confidential evidence outside the public repository, not in `docs/`.
 - Keep licensing scope aligned with root `LICENSE`, `NOTICE.md`, and the SBOM.
