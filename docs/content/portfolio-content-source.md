@@ -83,18 +83,21 @@ Keep the existing Gmail contact as the fallback. Do not add paid Google
 Workspace or custom reply-from configuration unless a later product decision
 accepts that extra cost and operational scope.
 
-For the initial static contact experience, open a pre-addressed Gmail web
-compose view in a new browser context and keep the portfolio email visible and
-copyable with clear feedback. Do not rely on `mailto:` or an operating-system
-mail-client association as the only contact path.
+While the build-time job status accepts email contact, open a pre-addressed
+Gmail web compose view in a new browser context and keep the portfolio email
+visible and copyable with clear feedback. Do not rely on `mailto:` or an
+operating-system mail-client association as the only contact path. When the
+status is `not-looking`, keep the source address available for future builds but
+omit its Gmail URL, visible value, copy control, and data attributes from the
+generated page.
 
 ## Contact Source Data
 
 | Contact Action     | Implementation Readiness | Copy Direction                                     | Notes                                                                         |
 | ------------------ | ------------------------ | -------------------------------------------------- | ----------------------------------------------------------------------------- |
 | GitHub profile     | Ready                    | Continue the review or conversation through GitHub | Every broad `GitHub` label points to the owner profile                        |
-| Gmail compose      | Ready                    | Write an email in Gmail                            | Open a pre-addressed Gmail web compose view in a new browser context          |
-| Email address copy | Ready                    | Copy the portfolio email                           | Keep the address visible and copyable and announce clear interaction feedback |
+| Gmail compose      | Status-dependent         | Write an email in Gmail                            | Include a pre-addressed Gmail action only while email contact is accepted     |
+| Email address copy | Status-dependent         | Copy the portfolio email                           | Include the address and feedback only while email contact is accepted         |
 | Domain email       | Phase 3 Decision         | Contact for opportunities                          | Use Cloudflare Email Routing for receiving only after production domain setup |
 | Resume PDF         | Ready                    | Download Korean resume                             | Link `/assets/resume/yb-kim-resume.pdf` after the public asset exists         |
 

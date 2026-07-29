@@ -88,6 +88,14 @@
     content: "";
   }
 
+  .job-status dd.job-status__value--inactive {
+    color: var(--color-text-muted);
+  }
+
+  .job-status dd.job-status__value--inactive::before {
+    background: var(--color-text-muted);
+  }
+
   .action-list {
     display: flex;
     flex-wrap: wrap;
@@ -115,6 +123,11 @@
 
   .contact-copy code + .contact-copy__button {
     margin-inline-start: var(--space-1);
+  }
+
+  .contact-availability {
+    max-inline-size: var(--prose-max);
+    color: var(--color-text-muted);
   }
 
   .section-heading--split {

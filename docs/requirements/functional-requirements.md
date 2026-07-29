@@ -68,9 +68,12 @@ project-scoped public repositories, and usable contact paths.
 - Broad GitHub labels lead to the owner's public GitHub profile.
 - Repository links appear within the corresponding project card or detail
   evidence surface and use destination-specific labels.
-- Contact actions use the contact channels selected for the public portfolio
-  and include browser-based Gmail compose plus a visible, copyable email
-  fallback that does not depend on an operating-system mail-client association.
+- While the current job status accepts email contact, contact actions include
+  browser-based Gmail compose plus a visible, copyable email fallback that does
+  not depend on an operating-system mail-client association.
+- When the current job status is `not-looking`, the static build omits the Gmail
+  URL, email address, copy control, and email data while preserving non-email
+  review paths.
 - Labels make the destination and purpose clear.
 
 ## FR-004: Skills Section

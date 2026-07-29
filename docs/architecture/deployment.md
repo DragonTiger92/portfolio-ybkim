@@ -15,6 +15,12 @@ pnpm.cmd build
 
 The generated `dist/` directory is the deployable artifact.
 
+`PORTFOLIO_JOB_STATUS` is an optional non-public build variable. It accepts
+`actively-looking` or `not-looking`, defaults to `actively-looking`, and fails
+the build for any other value. Because Astro resolves it while generating the
+static artifact, visitors cannot restore an omitted email action by changing
+client-side state. Changing the status requires a new build and deployment.
+
 ## Hosting Assumptions
 
 - Production uses a Cloudflare Pages project when the PH-003 decision is

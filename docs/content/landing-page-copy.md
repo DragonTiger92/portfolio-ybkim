@@ -25,6 +25,11 @@ the meaning, hierarchy, and action order intact.
 | Secondary CTA    | `GitHub 프로필`                                                  | Owner GitHub profile and contribution overview                                          |
 | Tertiary CTA     | `이력서 PDF 다운로드`                                            | Text plus a vector download icon identifies local-file download before activation       |
 
+When the build-time job status is `not-looking`, render `구직 중이 아님`
+(`Currently Not Looking` in English) and replace the Gmail action and visible
+email fallback with `현재 이메일 연락을 받고 있지 않습니다.` Keep the GitHub
+profile and resume actions available because they remain valid review paths.
+
 The contact fallback reuses one polite live-status region. Each copy attempt
 replaces the current message, resets its timer, and clears the message after
 three seconds so repeated clicks never append duplicate feedback.
@@ -48,10 +53,13 @@ until it overwhelms the contact actions. Do not render a separate role eyebrow,
 visible title row, supporting description, or complementary review-guide card in
 the intro unless a later owner review reintroduces one.
 
-Open `Gmail에서 메일 쓰기` in a new browser context with the public portfolio
-email pre-addressed. Keep the email address visible and copyable through
-`이메일 주소 복사`, and provide clear interaction feedback. Open `GitHub 프로필`
-in a new browser context and point it to the owner's GitHub profile. Keep the
+While the job status accepts email contact, open `Gmail에서 메일 쓰기` in a new
+browser context with the public portfolio email pre-addressed. Keep the email
+address visible and copyable through `이메일 주소 복사`, and provide clear
+interaction feedback. For `not-looking`, omit the Gmail URL, email address, copy
+control, and associated data from the generated page rather than hiding or
+disabling them with client-side CSS or JavaScript. Open `GitHub 프로필` in a new
+browser context and point it to the owner's GitHub profile. Keep the
 `portfolio-ybkim` source repository link within that project's card and detail
 evidence rather than repeating it as a broad landing-page action.
 
