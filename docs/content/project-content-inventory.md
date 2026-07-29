@@ -9,8 +9,8 @@ is tracked in [Portfolio Content Source](portfolio-content-source.md).
 
 It is not a design specification and it is not a private evidence store. Use it
 to decide which projects, surfaces, links, and claims are eligible for the
-public portfolio. Keep private source notes in `.contexts/` or `tmp/` until the
-project owner approves a public-safe summary.
+public portfolio. Keep private source notes in owner-controlled storage outside
+the public repository until the project owner approves a public-safe summary.
 
 ## Entity Decision
 
@@ -67,23 +67,22 @@ The initial public portfolio should prioritize:
 2. `Karly` as compact standards-aware Vanilla JavaScript evidence.
 3. `Book-Kong` as compact React, server-state, and team-leadership evidence.
 
-Professional products should appear as a separate professional highlights layer,
-not as inspectable public-source case studies. This lets the first wireframe
-show core professional work while keeping private source, internal names,
+All six entries appear under one Projects section. Public-source work and
+company-confidential business work remain separate subgroups so the IA stays
+semantic without implying identical evidence. Private source, internal names,
 private URLs, screenshots, credentials, endpoints, workflows, and confidential
-architecture out of public copy.
+architecture remain outside public copy.
 
 ## Surface Plan
 
-| Surface                 | Content Payload                                                             | Source Of Truth                                       | Related PBI                     | Readiness |
-| ----------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------- | --------- |
-| Intro                   | Positioning, current job-seeking status, primary review action              | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021`            | Ready     |
-| Project showcase        | Ordered project cards, project classifications, short summaries, safe links | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022`            | Ready     |
-| Project detail template | Problem, role, approach, result, stack, public evidence, next navigation    | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
-| Skills                  | Capability groups, not a long tool list                                     | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
-| Process                 | Planning, implementation, verification, documentation, and handover mindset | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
-| Contact and footer      | Contact: GitHub profile, email, resume; footer: profile and rights notice   | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Ready     |
-| Professional highlights | Generalized professional work cards or cues with disclosure-safe claims     | This inventory and private context after review       | `PBI-022`                       | Ready     |
+| Surface                 | Content Payload                                                                     | Source Of Truth                                       | Related PBI                     | Readiness |
+| ----------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------- | --------- |
+| Intro                   | Positioning, current job-seeking status, primary review action                      | [Project Brief](../planning/project-brief.md)         | `PBI-004`, `PBI-021`            | Ready     |
+| Project showcase        | Public-result cards plus company-project summaries, classifications, and safe links | This inventory and [Case Studies](case-studies.md)    | `PBI-005`, `PBI-022`            | Ready     |
+| Project detail template | Problem, role, approach, result, stack, public evidence, next navigation            | Astro project collection schema and this inventory    | `PBI-022`                       | Ready     |
+| Skills                  | Capability groups, not a long tool list                                             | [Content Model](../architecture/content-model.md)     | `PBI-007`                       | Ready     |
+| Process                 | Planning, implementation, verification, documentation, and handover mindset         | Existing docs, ADRs, and public-safe summaries        | `PBI-007`, `PBI-022`            | Ready     |
+| Contact and footer      | Contact: GitHub profile, email, resume; footer: profile and rights notice           | This inventory and owner-provided public destinations | `PBI-006`, `PBI-025`, `PBI-041` | Ready     |
 
 ## Link Inventory
 
@@ -122,11 +121,11 @@ Before adding a professional project to the public portfolio, record:
 
 Current private evidence source categories:
 
-| Source Material                         | Storage Boundary                         | Public Use Boundary                                                                   |
-| --------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------- |
-| Professional capacity and contribution  | Gitignored owner-provided source context | Use for sanitized capability and project summaries; do not copy private detail        |
-| Recommendation letter                   | Gitignored owner-provided source context | Keep as applicant-only evidence; do not publish recommendation-letter contents        |
-| Future professional project source docs | `.contexts/` or owner-provided tmp       | Read only when requested; write public summaries from scratch after disclosure review |
+| Source Material                         | Storage Boundary                 | Public Use Boundary                                                                   |
+| --------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
+| Professional capacity and contribution  | Owner-controlled private context | Use for sanitized capability and project summaries; do not copy private detail        |
+| Recommendation letter                   | Owner-controlled private context | Keep as applicant-only evidence; do not publish recommendation-letter contents        |
+| Future professional project source docs | Owner-provided private workspace | Read only when requested; write public summaries from scratch after disclosure review |
 
 ## Contact Routing Decision
 
@@ -169,11 +168,11 @@ The next wireframe or mockup task can start from these decisions:
 - public-first project order: `portfolio-ybkim`, `Karly`, `Book-Kong`;
 - source-repository actions scoped to the `portfolio-ybkim` project card and
   detail evidence;
-- section model: intro, projects, professional highlights, skills, process,
-  contact/footer;
+- section model: intro, projects with public-result and company-confidential
+  subgroups, skills with technology and capability evidence, contact/footer;
 - project detail template available for public-source projects;
 - Karly and Book-Kong media optional after exact-asset review;
-- professional highlights included as generalized disclosure-safe cues while
-  private details remain excluded;
+- company projects included as generalized disclosure-safe cues inside the
+  Projects section while private details remain excluded;
 - implementation source data available in
   [Portfolio Content Source](portfolio-content-source.md).

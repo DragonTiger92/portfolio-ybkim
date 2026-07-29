@@ -83,3 +83,25 @@ Keep repository resources only while they have an active purpose.
   private source material, or still referenced. Do not delete user source files,
   dependency installations, build outputs, or caches merely for cosmetic cleanup.
 - Report any temporary artifact that must remain and the reason it was retained.
+
+## Task Resource Lifecycle
+
+Treat processes and interactive resources opened for a task as temporary unless
+the user needs them after the task.
+
+- Track resources the agent starts, opens, or claims, including development
+  servers, background helpers, browser tabs, report previews, listeners, and
+  temporary upload or test sessions.
+- Before the final report or commit handoff, inspect task-relevant resources and
+  close or stop agent-created resources that no longer serve an active purpose.
+- Preserve a browser tab only when it is a user-facing deliverable or an explicit
+  handoff. Close intermediate research, duplicate, report-preview, blank, and
+  error tabs after their useful result has been captured.
+- Stop an agent-started local server or background helper when validation is
+  complete unless same-session continuation still depends on it.
+- Do not terminate user-started or ambiguously owned processes merely because
+  they use a familiar executable or development port. Resolve the exact process,
+  command, port, and task ownership first; ask before stopping it when ownership
+  or continued use is uncertain.
+- Avoid broad process-name termination. Target only the exact resource created
+  for the task, and report any retained resource with the reason it remains.

@@ -13,7 +13,8 @@ not leak company-confidential or personal sensitive information.
 ## Decision
 
 Do not place private or applicant-only case-study source material in `docs/`.
-Store private evidence notes in gitignored `.contexts/` when needed.
+Keep private evidence notes in owner-controlled storage outside the public
+repository when needed.
 
 ## Consequences
 

@@ -15,17 +15,16 @@ Astro pages, components, and content collections
 
 ## Responsibilities
 
-| Area         | Responsibility                                       |
-| ------------ | ---------------------------------------------------- |
-| Astro pages  | Route ownership, document structure, and metadata    |
-| Components   | Reusable presentation with explicit data contracts   |
-| Content      | Typed project-detail data and Markdown narratives    |
-| IA docs      | Product sitemap, route boundaries, and review paths  |
-| TypeScript   | Progressive interaction behavior                     |
-| CSS          | Layout, visual design, responsiveness, accessibility |
-| `docs/`      | Public project documentation                         |
-| `.agents/`   | Agent-only operational guidance                      |
-| `.contexts/` | Gitignored private evidence and source context       |
+| Area        | Responsibility                                       |
+| ----------- | ---------------------------------------------------- |
+| Astro pages | Route ownership, document structure, and metadata    |
+| Components  | Reusable presentation with explicit data contracts   |
+| Content     | Typed project-detail data and Markdown narratives    |
+| IA docs     | Product sitemap, route boundaries, and review paths  |
+| TypeScript  | Progressive interaction behavior                     |
+| CSS         | Layout, visual design, responsiveness, accessibility |
+| `docs/`     | Public project documentation                         |
+| `.agents/`  | Agent-only operational guidance                      |
 
 ## Constraints
 

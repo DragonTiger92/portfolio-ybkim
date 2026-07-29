@@ -1,8 +1,9 @@
 ---
-const homePrefix = Astro.url.pathname === "/" ? "" : "/";
+const isLandingPage = Astro.url.pathname === "/";
+const homePrefix = isLandingPage ? "" : "/";
 ---
 
-<header class="site-header">
+<header class="site-header" data-page-progress={isLandingPage ? "" : undefined}>
   <div class="site-shell header-layout">
     <a class="site-identity" href="/" aria-label="김용범 포트폴리오 홈">
       <img class="site-logo" src="/assets/brand/logo-mark.svg" alt="" width="44" height="44" />
@@ -11,9 +12,15 @@ const homePrefix = Astro.url.pathname === "/" ? "" : "/";
 
     <nav aria-label="주요 메뉴">
       <ul class="navigation-list">
-        <li><a href={`${homePrefix}#projects`}>프로젝트</a></li>
-        <li><a href={`${homePrefix}#skills`}>역량</a></li>
-        <li><a href={`${homePrefix}#process`}>작업 방식</a></li>
+        <li>
+          <a
+            href={`${homePrefix}#intro`}
+            data-section-link
+            aria-current={isLandingPage ? "location" : undefined}>소개</a
+          >
+        </li>
+        <li><a href={`${homePrefix}#projects`} data-section-link>프로젝트</a></li>
+        <li><a href={`${homePrefix}#skills`} data-section-link>역량</a></li>
       </ul>
     </nav>
 

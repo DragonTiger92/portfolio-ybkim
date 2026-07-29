@@ -26,5 +26,10 @@ export default defineConfig({
       name: "mobile-chromium",
       use: { ...devices["Pixel 7"] },
     },
+    {
+      name: "webkit-smoke",
+      testMatch: "**/cross-browser-smoke.spec.ts",
+      use: { ...devices["Desktop Safari"] },
+    },
   ],
 });

@@ -1,0 +1,27 @@
+---
+interface Props {
+  accessibleLabel: string;
+  class?: string;
+  href: string;
+  windowLabel?: string;
+}
+
+const { accessibleLabel, class: className, href, windowLabel = "새 창" } = Astro.props;
+---
+
+<a
+  class:list={["new-window-link", className]}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`${accessibleLabel}(${windowLabel})`}
+>
+  <span class="new-window-link__label"><slot /></span>
+  <span class="new-window-link__icon" aria-hidden="true">↗</span>
+</a>
+
+<style>
+  .new-window-link {
+    gap: var(--space-1);
+  }
+</style>

@@ -79,11 +79,11 @@ against the generated `dist/` directory:
 
 | Metric                                       |   Limit |
 | -------------------------------------------- | ------: |
-| Largest HTML document                        |  24 KiB |
-| Aggregate HTML                               |  48 KiB |
+| Largest HTML document                        |  32 KiB |
+| Aggregate HTML                               |  64 KiB |
 | Aggregate CSS                                |  32 KiB |
 | Emitted plus executable inline JavaScript    |   8 KiB |
-| Aggregate non-download output, excluding PDF | 160 KiB |
+| Aggregate non-download output, excluding PDF | 256 KiB |
 | Largest individual non-download file         |  64 KiB |
 | Public resume PDF                            | 600 KiB |
 
@@ -96,6 +96,15 @@ then promote only stable, repeatedly observed network metrics to a gate.
 Treat a threshold change as a reviewed rebaseline with measured evidence. Do
 not silently raise a limit to accommodate a regression. Route-count or locale
 expansion may justify a new aggregate baseline while preserving per-file limits.
+
+The 2026-07-20 landing-page skill inventory rebaseline raised the aggregate
+non-download limit from 160 KiB to 256 KiB, the largest HTML limit from 24 KiB to
+32 KiB, and aggregate HTML from 48 KiB to 64 KiB. The reviewed technology-mark
+set adds 24 local SVG files totaling 30,440 bytes, while the expanded
+recruiter-facing landing content needs sustainable review headroom. CSS,
+JavaScript, PDF, and individual non-download file limits remain unchanged, so
+the rebaseline cannot hide a concentrated stylesheet, script, document, or
+asset regression.
 
 ## NFR-003: Inspectable And Verifiable Project Structure
 
@@ -140,13 +149,17 @@ information.
 
 - Use only public or disclosure-reviewed source material for public project
   summaries.
-- Keep private evidence in gitignored `.contexts/`.
+- Keep private evidence outside the public repository.
 - Keep applicant-only or private work evidence out of public case-study source
   docs unless it receives a fresh disclosure review.
 - Do not publish recommendation-letter content on the web portfolio.
 - Remove private repository paths, internal endpoints, infra identifiers, and
   company-confidential workflow detail from public docs and site copy.
 - Use only the selected public contact channels in website contact actions.
+- Keep demo credentials, secure delivery links, recruiter addresses, and access
+  history out of public files, generated output, analytics, and CI logs.
+- Do not emit status-unavailable contact values or actions into deployed HTML
+  for client-side code to hide.
 
 ## NFR-005: Static Cloudflare Deployment
 
@@ -363,3 +376,34 @@ site maintained by one owner.
 - Keep a concise incident triage and rollback runbook.
 - Verify the selected host's rollback mechanism before the first public release.
 - Confirm recovery with the same smoke checks used after deployment.
+
+## NFR-014: Production Edge Security
+
+| Field               | Value                                                    |
+| ------------------- | -------------------------------------------------------- |
+| Category            | Security, Reliability                                    |
+| Status              | Draft                                                    |
+| Severity            | High                                                     |
+| Applicability       | Production                                               |
+| Verification Method | StaticAnalysis, HeaderInspection, BrowserTest            |
+| Source              | [Deployment Architecture](../architecture/deployment.md) |
+
+The production portfolio must apply a small, explicit response-header policy at
+the Cloudflare edge without breaking the static site, its reviewed external
+font, or its browser interactions.
+
+### NFR-014 Verification
+
+- Serve a reviewed `Content-Security-Policy`, `X-Content-Type-Options`,
+  `Referrer-Policy`, and `Permissions-Policy` from the production origin.
+- Prevent unauthorized framing through `frame-ancestors` or an equivalent
+  provider-managed control.
+- Keep CSP sources limited to origins and capabilities used by the generated
+  site. Retain the pinned jsDelivr Pretendard stylesheet and font delivery unless
+  production evidence justifies a separate self-hosting decision.
+- Verify that theme initialization, navigation progress, contact behavior, local
+  assets, and the external font still work under the deployed policy.
+- Define cache behavior separately for HTML, content-hashed build assets, and
+  stable public downloads; do not cache HTML as immutable.
+- Inspect the headers and run production smoke checks against the real
+  Cloudflare URL before the first public release.
