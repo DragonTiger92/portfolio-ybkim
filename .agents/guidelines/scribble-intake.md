@@ -62,6 +62,22 @@ following field order, even when the export has no field labels:
   explicitly requests publication. Route only durable requirements to the
   appropriate repository surface.
 
+## Explicit Type Prefixes
+
+Treat a leading type prefix in a scribble list item as an explicit classification
+signal:
+
+- `Q)` marks a question that should be answered directly.
+- `REQ)` marks a requested change or acceptance condition.
+- `Q & REQ)` marks a combined item: answer the question, then apply the
+  requirement when its requested outcome remains valid after that answer.
+
+Preserve any nested context, suggestions, and constraints under the prefixed
+item. Do not classify nearby unprefixed items as requirements merely because a
+`REQ)` item appears in the same scribble; the owner uses `REQ)` selectively.
+When a combined item contains a conditional requirement, resolve the question
+before editing so the implementation does not assume the answer.
+
 ## Intake Procedure
 
 1. Identify any declared input schema before interpreting free-form prose. For a

@@ -1,0 +1,97 @@
+name: Sync Open PR Branches
+
+on:
+  pull_request_target:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: sync-open-pr-branches
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Merge main into behind PR branches
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Update eligible pull request branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          updated_count=0
+          current_count=0
+          failed_count=0
+
+          pull_requests="$(
+            gh api --paginate \
+              "repos/$GITHUB_REPOSITORY/pulls?state=open&base=main&per_page=100" \
+              --jq '.[] |
+                select(.head.repo.full_name == .base.repo.full_name) |
+                select(.user.login != "dependabot[bot]") |
+                select((.head.ref | startswith("wip/")) | not) |
+                [.number, .head.ref, .head.sha] |
+                @tsv'
+          )"
+
+          while IFS=$'\t' read -r pr_number head_ref head_sha; do
+            if [[ -z "$pr_number" ]]; then
+              continue
+            fi
+
+            if ! behind_by="$(
+              gh api \
+                "repos/$GITHUB_REPOSITORY/compare/main...$head_ref" \
+                --jq '.behind_by'
+            )"; then
+              echo "::warning title=Branch comparison failed::PR #$pr_number ($head_ref)"
+              failed_count=$((failed_count + 1))
+              continue
+            fi
+
+            if [[ "$behind_by" -eq 0 ]]; then
+              echo "PR #$pr_number ($head_ref) already contains main."
+              current_count=$((current_count + 1))
+              continue
+            fi
+
+            if update_output="$(
+              gh api \
+                --method PUT \
+                "repos/$GITHUB_REPOSITORY/pulls/$pr_number/update-branch" \
+                -f "expected_head_sha=$head_sha" 2>&1
+            )"; then
+              echo "Requested main merge for PR #$pr_number ($head_ref)."
+              updated_count=$((updated_count + 1))
+              continue
+            fi
+
+            update_message="${update_output//$'\n'/ }"
+            echo "::warning title=Branch update failed::PR #$pr_number ($head_ref): $update_message"
+            failed_count=$((failed_count + 1))
+          done <<< "$pull_requests"
+
+          {
+            echo "## Open PR branch synchronization"
+            echo
+            echo "- Updated: $updated_count"
+            echo "- Already current: $current_count"
+            echo "- Failed: $failed_count"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ "$failed_count" -gt 0 ]]; then
+            exit 1
+          fi

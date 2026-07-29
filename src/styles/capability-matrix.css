@@ -80,7 +80,7 @@
   .capability-matrix__evidence-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
+    gap: var(--space-1) var(--space-4);
   }
 
   .capability-matrix__evidence > span {
