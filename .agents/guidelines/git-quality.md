@@ -81,6 +81,16 @@ Follow the public workflow in `docs/process/development-workflow.md`.
 - Preserve an unmerged `wip/*` branch until its commits and ownership are
   understood. A temporary name is not sufficient evidence that its work is
   disposable.
+- Let `Sync Open PR Branches` update open, same-repository pull request branches
+  that target `main`. Do not duplicate that automation with a bulk local merge.
+- Before synchronizing a retained human topic branch that has no open pull
+  request, confirm ownership and a clean worktree, merge the latest
+  `origin/main`, run the branch-appropriate verification, and push without
+  rebasing or force-pushing.
+- Do not synchronize work that is already merged. Confirm the topic tip is an
+  ancestor of `main`, then delete the branch. Exclude Dependabot, `wip/*`,
+  fork-owned branches, and dirty detached worktrees from retained-branch bulk
+  synchronization.
 
 ## Quality Checks
 
