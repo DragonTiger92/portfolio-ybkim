@@ -113,7 +113,6 @@
     block-size: 1.2rem;
     background: var(--technology-mark-color-active);
     -webkit-mask: var(--technology-mark-image) center / contain no-repeat;
-    /* eslint-disable-next-line css/use-baseline -- the prefixed declaration keeps Safari support */
     mask: var(--technology-mark-image) center / contain no-repeat;
   }
 
@@ -121,7 +120,6 @@
   .tech-stack__icon--slack .tech-stack__mark {
     background: var(--technology-mark-image) center / contain no-repeat;
     -webkit-mask: none;
-    /* eslint-disable-next-line css/use-baseline -- reset the shared mask for the multicolor SVG */
     mask: none;
   }
 

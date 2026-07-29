@@ -56,9 +56,9 @@ test("provides correctly scoped profile, repository, and contact actions", async
   const copyStatus = page.getByRole("status");
 
   await expect(copyStatus).toHaveCount(1);
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(1000);
   await page.getByRole("button", { name: "주소 복사" }).click();
-  await page.waitForTimeout(2600);
+  await page.waitForTimeout(2100);
   await expect(copyStatus).toHaveText("이메일 주소를 복사했습니다.");
   await expect(copyStatus).toBeEmpty({ timeout: 2000 });
 
