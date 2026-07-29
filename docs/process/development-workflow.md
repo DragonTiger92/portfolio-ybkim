@@ -55,11 +55,21 @@ The workflow intentionally excludes:
 - branches without an open pull request; and
 - stacked pull requests whose base is another topic branch.
 
-These exclusions keep automation within an explicit review boundary. Refresh a
-local-only branch when work resumes. For a stacked branch, preserve the parent
-base and documented merge order, then retarget or update it after the parent
-reaches `main`. A failed automatic update remains visible as a workflow failure
-and requires an owner-reviewed conflict resolution.
+These exclusions keep automation within an explicit review boundary. When a
+human topic branch without an open pull request must remain available, confirm
+its owner and a clean worktree, merge the latest `origin/main`, run the
+branch-appropriate verification, and push the resulting merge commit. Do not
+rebase or force-push the retained branch.
+
+Do not synchronize a branch whose work is already merged. Confirm that its tip
+is an ancestor of `main`, then delete the merged branch. Dependabot branches,
+`wip/*`, fork-owned branches, and dirty detached worktrees require individual
+handling and are excluded from retained-branch bulk synchronization.
+
+For a stacked branch, preserve the parent base and documented merge order, then
+retarget or update it after the parent reaches `main`. A failed automatic update
+remains visible as a workflow failure and requires an owner-reviewed conflict
+resolution.
 
 ## Branch Name Format
 
