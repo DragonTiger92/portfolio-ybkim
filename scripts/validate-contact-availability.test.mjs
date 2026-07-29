@@ -10,6 +10,18 @@ import { getJobStatusContent, resolveJobStatusCode } from "../src/data/job-statu
 const unavailableStatus = "not-looking";
 const publicEmail = "dczwtu12b+portfolio@gmail.com";
 
+function isExpectedGitHubProfile(href) {
+  if (!URL.canParse(href)) {
+    return false;
+  }
+
+  const url = new URL(href);
+
+  return (
+    url.protocol === "https:" && url.hostname === "github.com" && url.pathname === "/DragonTiger92"
+  );
+}
+
 test("keeps Korean and English unavailable labels on one status policy", () => {
   const koreanStatus = getJobStatusContent("ko", unavailableStatus);
   const englishStatus = getJobStatusContent("en", unavailableStatus);
@@ -48,7 +60,7 @@ test("omits email data and actions from a not-looking static build", async () =>
 
     assert.ok(landingHtml.includes("구직 중이 아님"));
     assert.ok(landingHtml.includes("현재 이메일 연락을 받고 있지 않습니다."));
-    assert.ok(hrefValues.includes("https://github.com/DragonTiger92"));
+    assert.ok(hrefValues.some(isExpectedGitHubProfile));
     assert.ok(landingHtml.includes("/assets/resume/yb-kim-resume.pdf"));
     assert.ok(!landingHtml.includes(publicEmail));
     assert.ok(!landingHtml.includes("mail.google.com/mail"));
