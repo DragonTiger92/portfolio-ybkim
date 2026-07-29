@@ -41,6 +41,36 @@ There is no fixed branch lifetime, commit-count, or PBI-count limit. Prefer the
 smallest number of branches that still preserves useful review, verification,
 and rollback boundaries for this personal project.
 
+## Post-Merge Branch Synchronization
+
+After a pull request merges into `main`, `Sync Open PR Branches` checks each
+open, same-repository pull request that targets `main`. When its head is behind,
+the workflow asks GitHub to merge the current `main` into that branch with an
+expected-head-SHA guard.
+
+The workflow intentionally excludes:
+
+- Dependabot and fork-owned pull requests;
+- `wip/*` branches;
+- branches without an open pull request; and
+- stacked pull requests whose base is another topic branch.
+
+These exclusions keep automation within an explicit review boundary. When a
+human topic branch without an open pull request must remain available, confirm
+its owner and a clean worktree, merge the latest `origin/main`, run the
+branch-appropriate verification, and push the resulting merge commit. Do not
+rebase or force-push the retained branch.
+
+Do not synchronize a branch whose work is already merged. Confirm that its tip
+is an ancestor of `main`, then delete the merged branch. Dependabot branches,
+`wip/*`, fork-owned branches, and dirty detached worktrees require individual
+handling and are excluded from retained-branch bulk synchronization.
+
+For a stacked branch, preserve the parent base and documented merge order, then
+retarget or update it after the parent reaches `main`. A failed automatic update
+remains visible as a workflow failure and requires an owner-reviewed conflict
+resolution.
+
 ## Branch Name Format
 
 Use this format for human-created branches intended for pull requests:
@@ -86,6 +116,26 @@ infra/ph-003-cloudflare-delivery
 Choose the most specific prefix that describes the primary reason for the
 branch. The prefix does not replace pull request labels or release-impact
 metadata.
+
+## Preview Eligibility
+
+Branch prefixes also provide the stable input for the PH-003 protected-preview
+workflow without replacing their change-type meaning.
+
+| Pull request head                                    | Planned preview behavior                                            |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
+| Same-repository, non-draft `feature/*`               | Deploy automatically after required checks pass                     |
+| Same-repository, non-draft `fix/*`                   | Deploy automatically after required checks pass                     |
+| Same-repository, non-draft `content/*`               | Deploy automatically after required checks pass                     |
+| `docs/*`, `ci/*`, `infra/*`, `security/*`            | Do not deploy automatically; use the reviewed manual path if needed |
+| `refactor/*`, `chore/*`                              | Do not deploy automatically; use the reviewed manual path if needed |
+| Dependabot, forks, drafts, `wip/*`, or invalid names | Never receive an automatic credential-bearing preview               |
+
+Choose the prefix from the actual change type, not to obtain or avoid a preview.
+When a normally ineligible branch needs production-like QA, record the reason in
+the pull request and use the manually dispatched preview workflow after the
+required checks pass. `PBI-065` activates this trigger contract only after
+`PBI-026` verifies the Cloudflare Access boundary.
 
 ## Exceptions
 

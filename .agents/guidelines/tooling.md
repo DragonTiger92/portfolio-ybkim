@@ -46,6 +46,12 @@ flooding the agent context.
 - Do not suppress warnings or errors from authoritative checks merely to reduce output.
   Prefer filtering successful progress output only when the savings are material.
 
+For machine-consumed values that must remain exact, command timeout planning,
+and project-budget headroom, also follow
+`execution-integrity-and-budgets.md`. Output-bounding guidance never authorizes
+shortening Base64, signed URLs, hashes, opaque identifiers, or serialized
+payloads passed to another tool.
+
 ## Windows Shell Compatibility
 
 Use the Codex native Windows agent with PowerShell for this Windows-hosted

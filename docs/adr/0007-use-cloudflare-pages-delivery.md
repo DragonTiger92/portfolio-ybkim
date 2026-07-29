@@ -21,9 +21,12 @@ GitHub Actions and Wrangler Direct Upload rather than Cloudflare Git integration
 
 - Pushes to `main` automatically run the production deployment and smoke-check
   path.
-- Manually requested protected previews use Cloudflare Pages preview deployments
-  and Cloudflare Access. They serve the staging purpose without representing a
-  separately managed staging machine.
+- Same-repository, non-draft pull requests from `feature/`, `fix/`, and
+  `content/` branches automatically use Cloudflare Pages preview deployments
+  after required checks pass. Other reviewed branches can request the same path
+  manually. Every remote preview remains protected by Cloudflare Access and
+  serves the staging purpose without representing a separately managed staging
+  machine.
 - A manual formal-release workflow reuses the production deployment
   implementation, then creates the production tag and GitHub Release only after
   the deployed product passes smoke checks.
@@ -39,6 +42,8 @@ verification behavior.
 ## Consequences
 
 - Preview authentication and production delivery use one static edge platform.
+- Branch names provide a deterministic, reviewable preview trigger without
+  granting deployment credentials to drafts, forks, automation, or `wip/*`.
 - No application server, database, or dedicated staging machine is required.
 - Every `main` push can update production, but only intentional formal releases
   receive SemVer tags and GitHub Releases.

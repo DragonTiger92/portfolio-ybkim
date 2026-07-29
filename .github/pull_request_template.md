@@ -41,8 +41,8 @@
 - [ ] `pnpm.cmd check`
 - [ ] Documentation or ADR impact reviewed
 - [ ] Public/private information boundary reviewed
-- [ ] Preview deployment needed
-- [ ] Preview deployment not needed
+- [ ] Preview handling follows the documented branch-prefix policy
+- [ ] Manual preview reason is recorded in Notes when an exception is requested
 
 ## Notes
 

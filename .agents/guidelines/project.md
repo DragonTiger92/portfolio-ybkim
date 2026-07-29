@@ -90,6 +90,22 @@ When changing build or routing behavior:
 - Avoid features that require a backend unless explicitly planned.
 - Keep Cloudflare Pages static deployment compatibility in mind.
 
+## Portfolio Content Currency
+
+Treat the `portfolio-ybkim` project detail entry as a maintained description of
+the product, not as phase-frozen copy.
+
+- When a phase changes the product's implemented scope, deployment state,
+  evidence links, or reviewable outcome, re-check
+  `src/content/projects/portfolio-ybkim.md` in the same concern.
+- Keep the summary, contribution boundary, implementation approach, and result
+  aligned with reviewed public project truth. Do not copy temporary handoff
+  status, private context, or an unverified future plan into recruiter-facing
+  copy.
+- Preserve deliberately stable aggregate wording such as `40개 이상의 PBI`
+  unless the owner requests a more precise count or the wording becomes
+  materially misleading.
+
 ## Out of Scope Unless Requested
 
 Do not perform the following unless explicitly requested:
