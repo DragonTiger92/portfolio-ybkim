@@ -30,6 +30,7 @@ test-results/
 *.local
 tmp/
 .contexts/
+.lazyweb/
 .agents/handoffs/
 
 # Generated supply-chain and release artifacts
