@@ -15,6 +15,8 @@ that match the task. Do not load every guideline by default.
   deployment, build, or routing behavior
 - `.agents/guidelines/engineering.md`: source code, configuration, or scripts
 - `.agents/guidelines/tooling.md`: external tools, command execution, or output handling
+- `.agents/guidelines/execution-integrity-and-budgets.md`: machine payloads,
+  truncation, command timeouts, static budgets, or file-line headroom
 - `.agents/guidelines/supply-chain-security.md`: dependencies, lockfiles, audits, or
   package-manager policy
 - `.agents/guidelines/ui.md`: HTML, CSS, DOM rendering, responsiveness, or accessibility

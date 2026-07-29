@@ -1,21 +1,25 @@
 ---
 title: "Book-Kong"
-classification: "공개 팀 프로젝트"
+classification: "부트캠프 공개 팀 프로젝트"
 summary: "독서 기록 SPA 팀 리드로 일정과 협업을 조율하고 데이터 사전 로딩·조회 흐름, Storybook 지원 도구, 접근성 도우미를 구현했습니다."
 role: "프론트엔드 담당 · 팀 리드"
 contribution: "팀 리드, 데이터 사전 조회와 조회 흐름, Storybook 지원 도구, 접근성 도우미"
 focus: "컴포넌트 설계, 서버 상태 관리와 팀 단위 작업 조율"
 tags:
   - React
-  - 서버 상태 관리
+  - 기술 공유
+  - 문제 해결
   - 팀 리드
 stack:
   - React
-  - JavaScript
-  - CSS
+  - React Router
+  - TanStack Query
+  - TailwindCSS
+  - PocketBase
+  - Storybook
 order: 3
 links:
-  - label: "팀 저장소"
+  - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Book-Kong"
     showOnCard: true
   - label: "배포 데모"
@@ -30,8 +34,8 @@ links:
 
 ## 기여 경계
 
-일정과 작업 분배를 조율하고, 서버 상태 사전 조회와 조회 흐름, Storybook 지원 도구, 접근성
-도우미를 구현했습니다. 다른 팀원이 담당한 화면과 기능은 팀 결과로만 설명합니다.
+일정을 조율하고 작업을 역할에 따라 분배하였습니다. 기능 레벨에서는 서버 상태 사전 조회 기능과 조회
+흐름, Storybook 지원 도구와 접근성 도우미 등을 구현하였습니다.
 
 ## 구현 접근
 

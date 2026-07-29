@@ -35,15 +35,15 @@ test("provides correctly scoped profile, repository, and contact actions", async
   await expect(profileActions).toHaveCount(2);
   await expect(
     page.locator(".contact-actions a[href='https://github.com/DragonTiger92']"),
-  ).toHaveText("GitHub 프로필 ↗");
-  await expect(page.locator(".site-footer a[href='https://github.com/DragonTiger92']")).toHaveText(
-    "GitHub 프로필 ↗",
-  );
-
+  ).toContainText("GitHub 프로필");
+  await expect(
+    page.locator(".site-footer a[href='https://github.com/DragonTiger92']"),
+  ).toContainText("GitHub 프로필");
   for (const profileAction of await profileActions.all()) {
     await expect(profileAction).toHaveAttribute("href", githubProfileUrl);
     await expect(profileAction).toHaveAttribute("target", "_blank");
     await expect(profileAction).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(profileAction.locator(".new-window-link__icon")).toHaveText("↗");
   }
 
   await expect(page.locator("#public-email-address")).toHaveText(email);
@@ -52,6 +52,30 @@ test("provides correctly scoped profile, repository, and contact actions", async
     await page.evaluate(() => (window as typeof window & { __copiedEmail: string }).__copiedEmail),
   ).toBe(email);
   await expect(page.getByRole("status")).toHaveText("이메일 주소를 복사했습니다.");
+
+  const copyStatus = page.getByRole("status");
+
+  await expect(copyStatus).toHaveCount(1);
+  await page.waitForTimeout(1000);
+  await page.getByRole("button", { name: "주소 복사" }).click();
+  await page.waitForTimeout(2100);
+  await expect(copyStatus).toHaveText("이메일 주소를 복사했습니다.");
+  await expect(copyStatus).toBeEmpty({ timeout: 2000 });
+
+  const resumeDownload = page.getByRole("link", { name: "이력서 PDF 다운로드" });
+
+  await expect(resumeDownload).toHaveAttribute("download", "");
+  await expect(resumeDownload.locator(".button-link__download-label")).toHaveText(
+    "이력서 PDF 다운로드",
+  );
+  await expect(resumeDownload.locator("svg.button-link__download-icon")).toHaveCount(1);
+  await expect(resumeDownload.locator("svg")).toHaveAttribute("aria-hidden", "true");
+
+  const contactRowGap = await page
+    .locator(".contact-actions")
+    .evaluate((element) => Number.parseFloat(window.getComputedStyle(element).rowGap));
+
+  expect(contactRowGap).toBeGreaterThanOrEqual(16);
 
   await expect(
     page.locator("#projects .project-card").first().getByRole("link", { name: "GitHub 저장소" }),

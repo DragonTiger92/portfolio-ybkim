@@ -1,15 +1,13 @@
 ---
 import { publicContact } from "../data/contact";
+import NewWindowLink from "./NewWindowLink.astro";
 ---
 
 <footer class="site-footer">
   <div class="site-shell footer-layout">
     <p>© 2026 YB Kim. All rights reserved.</p>
-    <a
-      href={publicContact.githubProfileUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="GitHub 프로필 보기(새 창)">GitHub 프로필 <span aria-hidden="true">↗</span></a
-    >
+    <NewWindowLink href={publicContact.githubProfileUrl} accessibleLabel="GitHub 프로필 보기">
+      GitHub 프로필
+    </NewWindowLink>
   </div>
 </footer>

@@ -24,8 +24,7 @@ canonical production URL exists.
 | Intro                   | `/#intro`                   | First-viewport positioning and primary actions    | Is the role fit clear within a few seconds?         |
 | Project showcase        | `/#projects`                | Scannable evidence list with project entry points | Which project is most relevant to review first?     |
 | Project detail          | `/projects/{slug}/`         | First-depth case-study evidence                   | What did this project prove, and where is evidence? |
-| Skills                  | `/#skills`                  | Capability groups by delivery responsibility      | What strengths support the portfolio claims?        |
-| Process                 | `/#process`                 | Working style and quality signal                  | How does this developer approach delivery?          |
+| Skills                  | `/#skills`                  | Technology inventory and implementation evidence  | What strengths support the portfolio claims?        |
 | Profile/contact actions | External links and controls | Recruiter and reviewer next actions               | Where can I continue the conversation or review?    |
 
 Section anchors are navigation waypoints, not independent page routes. Add a
@@ -41,6 +40,8 @@ description, shareable URL, or a substantially different review task.
 - Keep public repository links within the corresponding project card or detail
   evidence surface. A broad `GitHub` label points to the owner's profile rather
   than a project repository.
+- Keep working-method evidence inside the Skills capability matrix instead of
+  maintaining a separate Process navigation waypoint.
 - Preserve static output and trailing slash behavior from the Astro
   configuration.
 - Do not add `/about`, `/skills`, `/contact`, or `/resume` by default. Use
