@@ -1,23 +1,26 @@
 ---
 title: "Karly"
-classification: "공개 팀 프로젝트"
+classification: "부트캠프 공개 팀 프로젝트"
 summary: "Vanilla JavaScript 팀 프로젝트에서 상품 목록·상세 UI, 의미 있는 HTML 구조, CSS 변수 기반 스타일링을 구현한 초기 프론트엔드 실습입니다."
 role: "프론트엔드 담당"
 contribution: "상품 목록·상세 UI, 의미가 드러나는 HTML 구조, CSS 변수 기반 스타일링, 발표"
 focus: "표준 기반 UI 구현과 팀 협업"
 tags:
   - 웹 표준
-  - 의미 있는 HTML
-  - 팀 협업
+  - Pure CSS
+  - Vanilla JavaScript
+  - 협업
 stack:
   - JavaScript
   - HTML
   - CSS
   - Vite
+  - Git
+  - GitHub
 order: 2
 demoAccess: true
 links:
-  - label: "팀 저장소"
+  - label: "GitHub 저장소"
     href: "https://github.com/FRONTENDSCHOOL8/Karly"
     showOnCard: true
   - label: "배포 데모"
@@ -33,8 +36,7 @@ links:
 ## 기여 경계
 
 상품 목록과 상품 상세 페이지를 맡아 의미가 드러나는 HTML 구조, CSS 변수 기반 스타일링, DOM 상호작용을
-구현하고 결과 발표에 참여했습니다. 로그인, 회원가입, 장바구니 등 다른 팀원의 담당 기능은 제 기여로
-표현하지 않습니다.
+구현하고 결과 발표에 참여했습니다.
 
 ## 구현 접근
 

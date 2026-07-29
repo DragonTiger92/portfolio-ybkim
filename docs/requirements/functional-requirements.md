@@ -30,6 +30,8 @@ Kim as a frontend-specialized full-stack web developer.
 - Current job-seeking status is easy to understand without scrolling deeply.
 - The first viewport includes a clear next action such as project review,
   resume/contact access, or repository inspection.
+- Positioning and contact actions remain the focused composition without a
+  parallel review-guide card.
 
 ## FR-002: Project Showcase
 
@@ -66,9 +68,12 @@ project-scoped public repositories, and usable contact paths.
 - Broad GitHub labels lead to the owner's public GitHub profile.
 - Repository links appear within the corresponding project card or detail
   evidence surface and use destination-specific labels.
-- Contact actions use the contact channels selected for the public portfolio
-  and include browser-based Gmail compose plus a visible, copyable email
-  fallback that does not depend on an operating-system mail-client association.
+- While the current job status accepts email contact, contact actions include
+  browser-based Gmail compose plus a visible, copyable email fallback that does
+  not depend on an operating-system mail-client association.
+- When the current job status is `not-looking`, the static build omits the Gmail
+  URL, email address, copy control, and email data while preserving non-email
+  review paths.
 - Project details that require demo login provide a project-specific request
   through the selected public email channel without publishing credentials.
 - Labels make the destination and purpose clear.
@@ -81,13 +86,19 @@ project-scoped public repositories, and usable contact paths.
 | Priority | P1                                                |
 | Source   | [Content Model](../architecture/content-model.md) |
 
-The site must provide a skills section that explains the developer's delivery
-capabilities.
+The site must provide a skills section that connects the reviewed technology
+inventory to implementation capabilities and public evidence.
 
 ### FR-004 Acceptance Criteria
 
-- Skills are grouped by delivery responsibility, not only by tool name.
-- Skill groups align with the portfolio content model.
+- Resume technology items are grouped by implementation role without
+  proficiency rankings.
+- Capability rows compare design standards, automation paths, and public
+  repository evidence.
+- Technology icons supplement visible text labels and never carry meaning
+  alone.
+- Reviewed technology marks use pinned brand colors on theme-aware surfaces;
+  unreviewed marks retain a text fallback.
 - The section stays short enough to scan from a recruiter or engineering-review
   context.
 
