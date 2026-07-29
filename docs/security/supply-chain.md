@@ -8,6 +8,9 @@
 - Prefer platform-native solutions for this small static site.
 - Keep peer dependencies explicit. `autoInstallPeers` is disabled so optional
   peers do not silently enter the graph.
+- Pin every GitHub Action to a verified immutable commit SHA and retain the
+  reviewed release tag in a comment. Use Dependabot to propose Action updates
+  without returning workflows to floating tags.
 
 ## SBOM
 

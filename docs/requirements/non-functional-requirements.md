@@ -376,3 +376,34 @@ site maintained by one owner.
 - Keep a concise incident triage and rollback runbook.
 - Verify the selected host's rollback mechanism before the first public release.
 - Confirm recovery with the same smoke checks used after deployment.
+
+## NFR-014: Production Edge Security
+
+| Field               | Value                                                    |
+| ------------------- | -------------------------------------------------------- |
+| Category            | Security, Reliability                                    |
+| Status              | Draft                                                    |
+| Severity            | High                                                     |
+| Applicability       | Production                                               |
+| Verification Method | StaticAnalysis, HeaderInspection, BrowserTest            |
+| Source              | [Deployment Architecture](../architecture/deployment.md) |
+
+The production portfolio must apply a small, explicit response-header policy at
+the Cloudflare edge without breaking the static site, its reviewed external
+font, or its browser interactions.
+
+### NFR-014 Verification
+
+- Serve a reviewed `Content-Security-Policy`, `X-Content-Type-Options`,
+  `Referrer-Policy`, and `Permissions-Policy` from the production origin.
+- Prevent unauthorized framing through `frame-ancestors` or an equivalent
+  provider-managed control.
+- Keep CSP sources limited to origins and capabilities used by the generated
+  site. Retain the pinned jsDelivr Pretendard stylesheet and font delivery unless
+  production evidence justifies a separate self-hosting decision.
+- Verify that theme initialization, navigation progress, contact behavior, local
+  assets, and the external font still work under the deployed policy.
+- Define cache behavior separately for HTML, content-hashed build assets, and
+  stable public downloads; do not cache HTML as immutable.
+- Inspect the headers and run production smoke checks against the real
+  Cloudflare URL before the first public release.

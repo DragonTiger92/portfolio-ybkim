@@ -125,26 +125,31 @@ governance work rather than product behavior.
 | `NFR-005`      | `PBI-011` | Implement     |
 | `NFR-005`      | `PBI-012` | Implement     |
 | `NFR-005`      | `PBI-026` | Operate       |
+| `NFR-005`      | `PBI-065` | Implement     |
 | `NFR-008`      | `PBI-028` | Verify        |
 | `NFR-009`      | `PBI-011` | Implement     |
 | `NFR-009`      | `PBI-027` | Operate       |
 | `NFR-009`      | `PBI-028` | Operate       |
 | `NFR-009`      | `PBI-062` | Define        |
 | `NFR-010`      | `PBI-029` | Implement     |
-| `NFR-011`      | `PBI-032` | Verify        |
+| `NFR-011`      | `PBI-032` | Implement     |
 | `NFR-012`      | `PBI-030` | Verify        |
 | `NFR-012`      | `PBI-030` | Operate       |
 | `NFR-013`      | `PBI-031` | Verify        |
 | `NFR-013`      | `PBI-032` | Operate       |
 | `NFR-013`      | `PBI-033` | Operate       |
+| `NFR-014`      | `PBI-060` | Implement     |
+| `NFR-014`      | `PBI-060` | Verify        |
 
 ## PH-004 Post-Launch Optimization
 
 | Requirement ID | PBI ID    | Coverage Role |
 | -------------- | --------- | ------------- |
+| `FR-003`       | `PBI-061` | Implement     |
 | `FR-008`       | `PBI-042` | Implement     |
+| `NFR-002`      | `PBI-061` | Verify        |
 | `NFR-004`      | `PBI-042` | Verify        |
+| `NFR-004`      | `PBI-061` | Verify        |
 | `NFR-010`      | `PBI-013` | Operate       |
-| `NFR-011`      | `PBI-014` | Define        |
 | `NFR-011`      | `PBI-015` | Implement     |
 | `NFR-011`      | `PBI-015` | Operate       |
