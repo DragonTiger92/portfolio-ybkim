@@ -34,7 +34,9 @@ test("renders project evidence and supporting navigation", async ({ page }) => {
 
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("portfolio-ybkim");
   await expect(page.locator(".project-supporting")).toBeVisible();
-  await expect(page.getByRole("link", { name: "전체 프로젝트" })).toHaveAttribute(
+  const projectNavigation = page.getByRole("region", { name: "프로젝트 탐색" });
+
+  await expect(projectNavigation.getByRole("link", { name: "프로젝트 목록" })).toHaveAttribute(
     "href",
     "/#projects",
   );
