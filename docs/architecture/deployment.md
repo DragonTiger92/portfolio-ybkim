@@ -21,6 +21,19 @@ the build for any other value. Because Astro resolves it while generating the
 static artifact, visitors cannot restore an omitted email action by changing
 client-side state. Changing the status requires a new build and deployment.
 
+### Build Runtime Contract
+
+`PBI-010` must select and document one supported Node.js version contract for
+the production build. Apply that contract consistently to repository metadata,
+GitHub Actions, and the Cloudflare Pages build or upload environment. The
+current CI version is implementation evidence, not yet the durable production
+contract.
+
+Before accepting the contract, run the frozen install and canonical build in a
+clean environment, record the effective Node.js and pnpm versions, and compare
+the generated route and static-budget results with CI. Do not add an application
+server runtime; Node.js remains a build-time tool only.
+
 ## Hosting Assumptions
 
 - Production uses a Cloudflare Pages project when the PH-003 decision is
@@ -39,7 +52,7 @@ client-side state. Changing the status requires a new build and deployment.
 | Component                | Responsibility                                              | Phase / State                           |
 | ------------------------ | ----------------------------------------------------------- | --------------------------------------- |
 | GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                         |
-| GitHub Actions           | CI, manual preview orchestration, and production release    | CI in PH-001; deployment in PH-003      |
+| GitHub Actions           | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003      |
 | Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                     |
 | Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                          |
 | Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                          |
@@ -81,6 +94,8 @@ PH-003 makes Direct Upload operational in this order:
 4. The workflow builds and verifies `dist/`, uploads that exact directory with
    Wrangler Direct Upload, runs production smoke checks, and preserves
    deployment and rollback evidence.
+5. `PBI-065` reuses the checked build and upload path for eligible pull request
+   revisions only after `PBI-026` verifies the preview Access policy.
 
 Do not use a floating `npx wrangler` download in CI. Dependency installation,
 Cloudflare resource creation, and credential configuration occur only during
@@ -107,12 +122,30 @@ but it is a Cloudflare Pages deployment with its own URL and static artifact.
 
 - Verify every build locally with the normal check/build path and use
   `astro preview` when browser inspection is needed.
-- Create a remote preview manually through `workflow_dispatch` only when shared
-  QA, production-like edge serving, or release-candidate evidence is useful.
 - Protect preview hostnames through Cloudflare Access. The exact identity
   provider and allowlist are selected while implementing `PBI-026`.
+- Until that Access boundary is verified, create remote previews only through an
+  owner-reviewed `workflow_dispatch`.
+- After `PBI-065` is activated, automatically deploy same-repository, non-draft
+  pull requests whose head branch starts with `feature/`, `fix/`, or `content/`.
+  Run the deployment only after required checks pass and deploy the exact checked
+  revision.
+- Keep `docs/`, `ci/`, `infra/`, `security/`, `refactor/`, and `chore/` branches
+  manual by default. Exclude Dependabot, forks, drafts, `wip/*`, and invalid
+  branch names from automatic credential-bearing preview jobs.
 - Do not tag ordinary previews. Use an `-rc.N` tag only when the deployed preview
   is an actual candidate for the target production release.
+
+The preview workflow must use the `pull_request` event rather than
+`pull_request_target`, keep permissions least-privileged, and use one concurrency
+group per pull request so a newer revision cancels a stale preview run. Record
+the eligibility decision, source revision, protected preview URL, and smoke-check
+result in the job summary. Retain complete logs for diagnosis, but review the
+summary and first failed step before loading verbose output.
+
+The existing `PR Metadata` gate rejects invalid human branch names. `PBI-065`
+must also encode the allow-list in the deployment workflow's eligibility job so
+the public workflow and agent guidance are not the only controls.
 
 ## Deployment Workflow Boundary
 
@@ -122,7 +155,8 @@ workflow should be callable by both the automatic and manual entry points.
 PH-003 implements:
 
 1. full repository checks and a reproducible Astro build;
-2. optional, manually dispatched protected preview deployment;
+2. automatic protected previews for the documented branch allow-list plus a
+   manually dispatched exception path;
 3. automatic production deployment on each push to `main`;
 4. production smoke checks and rollback evidence; and
 5. production tag, generated release notes, and CycloneDX SBOM publication.
@@ -173,6 +207,31 @@ change while preserving the static, privacy-oriented output boundary.
 - Run `pnpm.cmd check` before treating a release candidate as ready.
 - Verify built asset paths under the selected production base path.
 - Review public copy for private information before publishing.
+
+## Production Response Policy
+
+`PBI-060` owns the first-release response-header and cache contract at the
+Cloudflare edge. Implement the policy through a version-controlled Pages
+configuration or another reviewable provider-native surface selected during
+PH-003.
+
+The baseline covers CSP, MIME sniffing protection, referrer policy, permissions
+policy, framing protection, and cache behavior. Keep the policy proportional to
+this static site:
+
+- allow external style and font delivery only for the pinned Pretendard resource
+  already reviewed through jsDelivr;
+- do not require self-hosting that font without production reliability or policy
+  evidence;
+- verify browser-written theme and navigation state before tightening inline
+  style-related CSP directives;
+- cache content-hashed build assets as immutable while keeping HTML and stable
+  public downloads on separately reviewed rules; and
+- inspect response headers and rerun production smoke behavior against the real
+  Cloudflare URL rather than treating a configuration file as sufficient proof.
+
+Do not preselect HSTS or custom-domain-only behavior before the production domain
+and TLS ownership are settled.
 
 ## Release Versioning
 

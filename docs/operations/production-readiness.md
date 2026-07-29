@@ -35,9 +35,10 @@ considered complete.
 - Fail release completion and invoke the documented rollback path when the smoke
   check fails.
 
-## Uptime Monitoring And Alerting
+## Production Observability And Alerting
 
-`PBI-032` should use an external synthetic monitor so checks continue when the
+`PBI-032` establishes the proportionate observability baseline before PH-003
+closes. It should use an external synthetic monitor so checks continue when the
 repository workflow is idle or unavailable. Provider selection is deferred until
 implementation and should favor a suitable free tier, HTTPS checks, configurable
 intervals, email alerting, and low maintenance.
@@ -45,6 +46,13 @@ intervals, email alerting, and low maintenance.
 A scheduled GitHub Actions probe may supplement the monitor but should not be
 the only uptime signal because scheduled runs can be delayed and public
 repository schedules are disabled after prolonged inactivity.
+
+Use the selected infrastructure components' built-in deployment, request, error,
+DNS, TLS, and provider-status signals before adding another logging system.
+Document which operational question each signal answers, how it correlates to a
+release, where alerts arrive, who acknowledges them, and the minimum useful
+retention. Keep credentials and private operational evidence out of the
+repository.
 
 Start without a contractual SLA. The initial operational objective is to detect
 that the canonical homepage or a critical asset is unavailable and notify the
@@ -70,10 +78,11 @@ deployments are rollback targets; preview deployments are not.
 ## Logging Boundary
 
 Do not add application logging merely to imitate a server architecture. Basic
-PH-003 readiness uses deployment evidence, availability probes, and provider
-status. `PBI-014` in PH-004 may add CDN analytics, request visibility, or error
-logging only when an observed operational question justifies the privacy and
-maintenance cost.
+PH-003 readiness under `PBI-032` uses deployment evidence, availability probes,
+and provider-native request, error, and status signals. Do not add a custom
+collector, logging server, or post-launch optimization item without a concrete
+gap observed in production and a new architecture decision that accepts its
+privacy, security, and maintenance cost.
 
 Visitor-interest analytics belong to `PBI-015`, not the PH-003 health model.
 Keep route, referrer, and outbound-action metrics aggregate and privacy-aware.

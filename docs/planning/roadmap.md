@@ -10,7 +10,7 @@ duplicating roadmap state in GitHub Issues or Milestones.
 | `PH-001` | Product Foundation Baseline         | Completed   | No production tag     | Establish docs, workflow, governance, and content base              |
 | `PH-002` | Static Portfolio Implementation     | In Progress | No production tag     | Complete the portfolio content and experience                       |
 | `PH-003` | Deployment And Operations Readiness | Planned     | `v1.0.0`              | Prepare release, deployment, contact routing, and operations        |
-| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, English reach, observability, and insights |
+| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, English reach, public resume, and insights |
 
 ## Phase Notes
 
@@ -26,8 +26,11 @@ duplicating roadmap state in GitHub Issues or Milestones.
   monitoring, rollback readiness, and minimum discoverability metadata needed
   before launch.
 - `PH-004` covers post-launch SEO, AEO, GEO, English portfolio content through
-  an agreed localization model, privacy-aware route analytics, and evidence-driven
-  observability refinement after the first operations-ready deployment exists.
+  an agreed localization model, a production-linked public resume refresh, and
+  privacy-aware route analytics after the first operations-ready deployment
+  exists. PH-003 establishes the proportionate observability baseline; later
+  observability work requires a concrete production gap rather than a standing
+  optimization item.
 
 Quality and accessibility are cross-cutting gates. The project should establish
 their harness during `PH-001`, apply them during `PH-002`, and keep them visible
