@@ -53,6 +53,33 @@ intentionally selected during PH-003. Deferring those choices is expected while
 the Cloudflare account, domain, Access policy, and deployment resources do not
 yet exist.
 
+## Direct Upload Readiness
+
+Wrangler Direct Upload is the accepted delivery direction, but it is not yet an
+executable repository capability. The repository currently has no pinned
+Wrangler dependency, Wrangler project configuration, Pages deployment workflow,
+or configured Cloudflare deployment credentials. The existing Astro `dist/`
+build and GitHub Actions quality gates are the reusable foundation.
+
+PH-003 makes Direct Upload operational in this order:
+
+1. `PBI-012` and `PBI-010` confirm the managed Cloudflare scope, Pages project,
+   production target, and configuration ownership.
+2. `PBI-011` live-verifies a stable Wrangler release, pins the exact approved
+   version under the repository's pnpm policy, and invokes it through the shared
+   deployment implementation.
+3. The protected GitHub environment supplies the non-public deployment
+   configuration. `CLOUDFLARE_API_TOKEN` remains a least-privilege secret, and
+   the workflow receives the matching `CLOUDFLARE_ACCOUNT_ID` and Pages project
+   name without committing owner-specific values.
+4. The workflow builds and verifies `dist/`, uploads that exact directory with
+   Wrangler Direct Upload, runs production smoke checks, and preserves
+   deployment and rollback evidence.
+
+Do not use a floating `npx wrangler` download in CI. Dependency installation,
+Cloudflare resource creation, and credential configuration occur only during
+the owning PH-003 PBIs with explicit owner approval.
+
 ## Static Artifact And Serving Model
 
 - Astro renders routes, content, and imported assets into `dist/`.
@@ -113,6 +140,27 @@ transaction. A failure before smoke-check success creates no release tag. A
 failure while creating the tag or GitHub Release leaves a verified production
 deployment that the owner can finalize through an idempotent retry without
 inventing a different version.
+
+### Operational State Redeployment
+
+A build-time operational input can change the generated static artifact without
+changing source code. Do not create a source commit, merge commit, release tag,
+or GitHub Release solely to change such an input.
+
+`PBI-011` provides a manually dispatched path that:
+
+1. accepts an explicit, already reviewed `main` revision and a validated
+   operational input;
+2. runs the same checks, build, output-policy validation, Direct Upload, and
+   production smoke checks as the reusable production deployment;
+3. records the source revision, non-secret input selection, GitHub Actions run,
+   and Cloudflare Pages deployment; and
+4. supports rollback to the prior successful Pages deployment or a repeat run
+   with the prior validated input.
+
+This path still creates a new build and Pages deployment because the static
+files change. It avoids manufacturing source history for an operational state
+change while preserving the static, privacy-oriented output boundary.
 
 ## Release Checks
 
