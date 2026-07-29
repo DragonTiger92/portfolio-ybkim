@@ -1,9 +1,24 @@
 import { expect, test } from "@playwright/test";
 
 const projectRoutes = [
-  { reviewLinkCount: 5, route: "/projects/portfolio-ybkim/" },
-  { reviewLinkCount: 2, route: "/projects/karly/" },
-  { reviewLinkCount: 2, route: "/projects/book-kong/" },
+  {
+    direction: "다음 프로젝트",
+    featuredTitle: "Karly",
+    reviewLinkCount: 5,
+    route: "/projects/portfolio-ybkim/",
+  },
+  {
+    direction: "다음 프로젝트",
+    featuredTitle: "Book-Kong",
+    reviewLinkCount: 2,
+    route: "/projects/karly/",
+  },
+  {
+    direction: "이전 프로젝트",
+    featuredTitle: "Karly",
+    reviewLinkCount: 2,
+    route: "/projects/book-kong/",
+  },
 ];
 
 for (const project of projectRoutes) {
@@ -26,7 +41,25 @@ for (const project of projectRoutes) {
     await expect(page.locator(".project-navigation a[href='/#projects']")).toContainText(
       "프로젝트 목록",
     );
-    await expect(page.locator(".project-navigation__card")).toHaveCount(
+    const featuredNavigation = page.locator(".project-navigation__featured");
+
+    await expect(page.locator("#project-navigation-title")).toHaveText("프로젝트 탐색");
+    await expect(page.locator(".project-navigation")).not.toContainText(
+      "프로젝트의 역할과 구현 근거를 이어서 살펴보세요.",
+    );
+    await expect(featuredNavigation).toHaveAttribute(
+      "aria-label",
+      `${project.direction}: ${project.featuredTitle}`,
+    );
+    await expect(featuredNavigation.locator(".project-navigation__direction")).toHaveText(
+      project.direction,
+    );
+    await expect(featuredNavigation.locator("strong")).toHaveText(project.featuredTitle);
+    await expect(featuredNavigation).not.toContainText(`${project.featuredTitle} 살펴보기`);
+    await expect(featuredNavigation.locator(".project-navigation__arrow")).toHaveText(
+      project.direction === "다음 프로젝트" ? "→" : "←",
+    );
+    await expect(page.locator(".project-navigation__utilities a")).toHaveCount(
       project.route === "/projects/karly/" ? 2 : 1,
     );
   });

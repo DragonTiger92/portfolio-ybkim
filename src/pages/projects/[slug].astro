@@ -44,6 +44,8 @@ interface Props {
 
 const { nextProject, previousProject, project } = Astro.props;
 const { Content } = await render(project);
+const featuredProject = nextProject ?? previousProject;
+const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 프로젝트";
 ---
 
 <BaseLayout
@@ -121,51 +123,34 @@ const { Content } = await render(project);
 
       <section class="project-navigation" aria-labelledby="project-navigation-title">
         <div class="project-navigation__header">
-          <div>
-            <h2 id="project-navigation-title">다른 프로젝트</h2>
-            <p>공개 프로젝트의 역할과 구현 근거를 이어서 살펴보세요.</p>
-          </div>
-          <a class="button-link button-link--secondary project-navigation__index" href="/#projects">
-            <span aria-hidden="true">←</span>
-            프로젝트 목록
-          </a>
+          <h2 id="project-navigation-title">프로젝트 탐색</h2>
         </div>
-        <ul class="project-navigation__links">
+        {
+          featuredProject && (
+            <a
+              class="project-navigation__featured"
+              href={`/projects/${featuredProject.slug}/`}
+              aria-label={`${featuredProjectDirection}: ${featuredProject.title}`}
+            >
+              <span class="project-navigation__direction">{featuredProjectDirection}</span>
+              <strong>{featuredProject.title}</strong>
+              <span class="project-navigation__arrow" aria-hidden="true">
+                {nextProject ? "→" : "←"}
+              </span>
+            </a>
+          )
+        }
+        <div class="project-navigation__utilities">
           {
-            previousProject && (
-              <li>
-                <a
-                  class="project-navigation__card"
-                  href={`/projects/${previousProject.slug}/`}
-                  aria-label={`이전 프로젝트: ${previousProject.title}`}
-                >
-                  <span class="project-navigation__direction">이전 프로젝트</span>
-                  <strong>
-                    <span aria-hidden="true">←</span>
-                    {previousProject.title}
-                  </strong>
-                </a>
-              </li>
+            previousProject && nextProject && (
+              <a class="text-link" href={`/projects/${previousProject.slug}/`}>
+                <span aria-hidden="true">←</span>
+                이전 프로젝트
+              </a>
             )
           }
-          {
-            nextProject && (
-              <li>
-                <a
-                  class="project-navigation__card project-navigation__card--next"
-                  href={`/projects/${nextProject.slug}/`}
-                  aria-label={`다음 프로젝트: ${nextProject.title}`}
-                >
-                  <span class="project-navigation__direction">다음 프로젝트</span>
-                  <strong>
-                    {nextProject.title}
-                    <span aria-hidden="true">→</span>
-                  </strong>
-                </a>
-              </li>
-            )
-          }
-        </ul>
+          <a class="text-link project-navigation__index" href="/#projects">프로젝트 목록</a>
+        </div>
       </section>
     </article>
   </main>
