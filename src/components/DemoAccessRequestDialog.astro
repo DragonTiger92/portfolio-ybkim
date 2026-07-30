@@ -1,0 +1,43 @@
+---
+import "../styles/demo-access.css";
+---
+
+<dialog id="demo-access-dialog" class="demo-dialog" aria-labelledby="demo-request-title">
+  <header class="demo-dialog__header">
+    <p id="demo-request-title" class="demo-dialog__title">Gmail에서 테스트 계정 요청</p>
+    <form method="dialog">
+      <button class="button-link button-link--tertiary" type="submit">닫기</button>
+    </form>
+  </header>
+
+  <p>
+    Gmail에 로그인하지 않았다면 Google 로그인 화면이 먼저 열리고, 로그인 후 요청 내용이 이어집니다.
+  </p>
+
+  <div class="demo-dialog__fallback">
+    <label for="demo-request-template">
+      <strong>Gmail을 사용할 수 없다면 양식을 복사해 다른 메일 서비스에서 보내주세요.</strong>
+    </label>
+    <textarea id="demo-request-template" rows="7" readonly></textarea>
+    <button class="button-link button-link--secondary" type="button" data-demo-access-copy>
+      메일 양식 복사
+    </button>
+    <p role="status" data-demo-access-status></p>
+  </div>
+
+  <footer class="demo-dialog__actions">
+    <a
+      class="button-link"
+      href="https://mail.google.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Gmail에서 계속(새 창)"
+      data-demo-access-continue
+    >
+      Gmail에서 계속
+      <span aria-hidden="true">↗</span>
+    </a>
+  </footer>
+</dialog>
+
+<script is:inline src="/scripts/demo-access-request.js"></script>

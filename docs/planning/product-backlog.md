@@ -188,6 +188,9 @@ planning input alongside the content model.
 - Publish the custom-domain address only after the delivery test passes. Keep the
   existing Gmail contact available as the rollback path if routing is disabled
   or fails.
+- Update the shared public-contact source so the landing contact action,
+  demo-access Gmail draft, copyable fallback request, tests, and operating docs
+  all switch to the verified custom-domain address together.
 - Keep paid mailboxes, custom send-as or reply-from behavior, Email Workers,
   catch-all routing, and separate message storage outside this PBI.
 
