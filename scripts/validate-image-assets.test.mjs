@@ -76,6 +76,19 @@ describe("SVG validation", () => {
     );
   });
 
+  it("parses many leading comments without regular-expression backtracking", () => {
+    const comments = "<!--safe-->".repeat(4096);
+    const markup = `\uFEFF<?xml version="1.0"?>\n${comments}<svg viewBox="0 0 24 24"></svg>`;
+
+    assert.deepEqual(validateSvgMarkup(markup, "commented-logo.svg"), {
+      viewBox: [0, 0, 24, 24],
+    });
+    assert.throws(
+      () => validateSvgMarkup("<!--unterminated<svg></svg>", "invalid.svg"),
+      /must have an SVG root element/u,
+    );
+  });
+
   it("requires every symbol in icons.svg to declare a viewBox", () => {
     const validSprite = [
       "<svg>",

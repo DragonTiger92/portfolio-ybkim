@@ -3,6 +3,7 @@ import { extname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 import { listArtifactFiles } from "./artifact-files.mjs";
+import { findSvgRootAttributes } from "./svg-root-parser.mjs";
 
 const kibibyte = 1024;
 const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
@@ -27,7 +28,6 @@ const imageLikeExtensions = new Set([
   ".tiff",
   ".webp",
 ]);
-const svgRootPattern = /^\uFEFF?\s*(?:<\?xml[\s\S]*?\?>\s*)?(?:<!--[\s\S]*?-->\s*)*<svg\b([^>]*)>/u;
 const symbolPattern = /<symbol\b([^>]*)>/gu;
 const viewBoxPattern = /(?:^|\s)viewBox\s*=\s*(["'])(.*?)\1/su;
 
@@ -139,9 +139,9 @@ function parseSymbolViewBoxes(markup, path) {
 }
 
 export function validateSvgMarkup(markup, path = "SVG image") {
-  const rootMatch = markup.match(svgRootPattern);
+  const rootAttributes = findSvgRootAttributes(markup);
 
-  if (!rootMatch) {
+  if (rootAttributes === null) {
     throw new Error(`${path} must have an SVG root element.`);
   }
 
@@ -149,7 +149,7 @@ export function validateSvgMarkup(markup, path = "SVG image") {
     return { symbolViewBoxes: parseSymbolViewBoxes(markup, path) };
   }
 
-  return { viewBox: parseViewBox(rootMatch[1], `${path} SVG root`) };
+  return { viewBox: parseViewBox(rootAttributes, `${path} SVG root`) };
 }
 
 function assertFileBudget(path, bytes) {
