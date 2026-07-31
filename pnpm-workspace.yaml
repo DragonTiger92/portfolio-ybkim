@@ -23,3 +23,4 @@ allowBuilds:
   esbuild: true
   sharp: true
   vnu-jar: true
+  workerd: true

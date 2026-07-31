@@ -23,11 +23,11 @@ client-side state. Changing the status requires a new build and deployment.
 
 ### Build Runtime Contract
 
-`PBI-010` must select and document one supported Node.js version contract for
-the production build. Apply that contract consistently to repository metadata,
-GitHub Actions, and the Cloudflare Pages build or upload environment. The
-current CI version is implementation evidence, not yet the durable production
-contract.
+The account-free `PBI-010` foundation selects Node.js `24.18.0` and pnpm
+`11.10.0` as exact build-tool contracts in `.node-version`, `package.json`, and
+GitHub Actions. Cloudflare Pages receives a checked `dist/` artifact through
+Direct Upload, so it does not run a separate application build or server
+runtime.
 
 Before accepting the contract, run the frozen install and canonical build in a
 clean environment, record the effective Node.js and pnpm versions, and compare
@@ -74,11 +74,13 @@ yet exist.
 
 ## Direct Upload Readiness
 
-Wrangler Direct Upload is the accepted delivery direction, but it is not yet an
-executable repository capability. The repository currently has no pinned
-Wrangler dependency, Wrangler project configuration, Pages deployment workflow,
-or configured Cloudflare deployment credentials. The existing Astro `dist/`
-build and GitHub Actions quality gates are the reusable foundation.
+Wrangler Direct Upload remains the accepted delivery direction. The account-free
+foundation pins the latest cooldown-eligible stable `wrangler@4.114.0`, validates
+the `dist/` inventory and Cloudflare `_headers`, creates an exact-revision file
+digest manifest, provides a configurable HTTP smoke checker, and exposes a
+`workflow_call` build-and-artifact workflow. It intentionally has no Pages
+upload command, deployment trigger, GitHub environment, or Cloudflare
+credential.
 
 PH-003 makes Direct Upload operational in this order:
 
@@ -96,6 +98,11 @@ PH-003 makes Direct Upload operational in this order:
    deployment and rollback evidence.
 5. `PBI-065` reuses the checked build and upload path for eligible pull request
    revisions only after `PBI-026` verifies the preview Access policy.
+
+The checked preview-eligibility module rejects drafts, forks, Dependabot,
+unsupported branch prefixes, malformed revisions, and a head revision that no
+longer matches the checked SHA. It does not itself trigger or authorize a
+preview deployment.
 
 Do not use a floating `npx wrangler` download in CI. Dependency installation,
 Cloudflare resource creation, and credential configuration occur only during
@@ -232,6 +239,13 @@ this static site:
 
 Do not preselect HSTS or custom-domain-only behavior before the production domain
 and TLS ownership are settled.
+
+The account-free baseline is versioned in `public/_headers`. It keeps HTML and
+stable public output on revalidation, makes only content-hashed `/_astro/`
+assets immutable, permits the pinned jsDelivr stylesheet and font origin, and
+retains the narrowly required inline-style affordance for browser-written
+navigation state. Static validation does not complete `PBI-060`; the real
+Cloudflare response headers and browser behavior still require live review.
 
 ## Release Versioning
 
