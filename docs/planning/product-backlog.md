@@ -183,6 +183,17 @@ planning input alongside the content model.
   authorize credentials, Cloudflare resource creation, deployment, or a
   production release tag.
 
+### Phase 3 Account-Free Foundation Evidence
+
+- `PBI-012` now has credential-free Cloudflare and Better Stack Terraform roots
+  with exact CLI/provider pins, remote-workspace contracts, import and
+  destruction guardrails, and CI static validation. This is foundation evidence
+  only: the PBI remains `In Progress` until imports, reviewed plans, applies, and
+  no-op verification are completed with owner-managed credentials.
+- The monitoring root records the future `PBI-032` homepage, critical-asset,
+  TLS, three-minute interval, and email-notification contract. The PBI remains
+  `Backlog` until production probes and a controlled alert-delivery test pass.
+
 ### PBI-049 Custom-Domain Email Routing Notes
 
 - Select the production domain and one public contact address such as

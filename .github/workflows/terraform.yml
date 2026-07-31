@@ -16,9 +16,16 @@ concurrency:
 
 jobs:
   validate:
-    name: Terraform Validate
+    name: Terraform Validate (${{ matrix.root }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        root:
+          - infra/terraform/github
+          - infra/terraform/cloudflare
+          - infra/terraform/monitoring
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -33,7 +40,7 @@ jobs:
         run: terraform fmt -check -recursive
 
       - name: Initialize without backend
-        run: terraform -chdir=infra/terraform/github init -backend=false
+        run: terraform -chdir=${{ matrix.root }} init -backend=false
 
       - name: Validate configuration
-        run: terraform -chdir=infra/terraform/github validate
+        run: terraform -chdir=${{ matrix.root }} validate
