@@ -18,24 +18,28 @@ The CycloneDX SBOM is generated on demand as `sbom.cdx.json`. The generated file
 is intentionally gitignored because cdxgen output can include
 environment-specific paths and timestamps.
 
-| Field        | Value                                                    |
-| ------------ | -------------------------------------------------------- |
-| Format       | CycloneDX JSON 1.6                                       |
-| Scope        | JavaScript package graph and repository package metadata |
-| Output       | Local or release artifact, not committed to Git          |
-| Source       | `package.json`, `pnpm-lock.yaml`, local install metadata |
-| Generator    | `@cyclonedx/cdxgen` through `pnpm.cmd sbom:cyclonedx`    |
-| Dependencies | Unresolved license metadata remains generator output     |
-| Update       | Regenerate after dependency or project license changes   |
+| Field          | Value                                                                |
+| -------------- | -------------------------------------------------------------------- |
+| Format         | CycloneDX JSON 1.6                                                   |
+| Scope          | JavaScript package graph and repository package metadata             |
+| Root component | `portfolio-ybkim@1.0.0`, type `application`                          |
+| Root license   | `MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved`         |
+| Output         | Local or release-evidence artifact, not committed to Git             |
+| Source         | `package.json`, `pnpm-lock.yaml`, local install metadata             |
+| Generator      | `@cyclonedx/cdxgen` through `pnpm.cmd sbom:cyclonedx`                |
+| Validation     | cdxgen schema validation plus the repository root-component contract |
+| Dependencies   | Unresolved license metadata remains generator output                 |
+| Update         | Regenerate after dependency or project license changes               |
 
-Future production release automation is expected to attach a validated
-CycloneDX JSON SBOM to each GitHub Release. Until that release workflow is
-implemented, the pinned generator and command are the reviewable baseline.
+The credential-free release-evidence workflow preserves a validated SBOM as a
+GitHub Actions artifact beside the pinned ScanCode reports. `PBI-028` remains
+open because production release automation must still attach that exact SBOM to
+the corresponding GitHub Release.
 
 CycloneDX does not use SPDX `NOASSERTION` as a required placeholder. The release
-workflow should preserve missing license metadata as unresolved or omitted
-generator output, validate the generated schema, and route unknown license data
-to policy review instead of inventing a license conclusion.
+workflow preserves missing license metadata as unresolved or omitted generator
+output, validates the generated schema, and routes unknown license data to
+policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 

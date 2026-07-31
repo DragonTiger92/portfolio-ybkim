@@ -155,7 +155,7 @@ planning input alongside the content model.
 | `PBI-031` | Operations | Run post-deployment production smoke checks     | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                           | A failed homepage or critical-asset check blocks or rolls back release completion                                                                                        | Do not treat a static health file as the only signal                                                                                                                                                                                                                                                                             |
 | `PBI-032` | Operations | Establish production observability and alerting | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                           | External probes and provider-native signals detect availability, deployment, request, or edge errors, correlate evidence with the deployed release, and notify the owner | Prefer suitable free tiers; use the selected infrastructure components' built-in deployment, request, error, DNS, TLS, and status signals; document alert ownership, retention, and privacy boundaries; do not add application logging, a custom collector, or a logging server without evidence and a new architecture decision |
 | `PBI-033` | Operations | Document incident response and rollback         | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                           | Production failures have a tested owner, triage path, and rollback procedure                                                                                             | Keep the runbook proportional to a single-maintainer static site                                                                                                                                                                                                                                                                 |
-| `PBI-039` | Quality    | Regulate and verify image asset formats         | Backlog     | P2       | [Deployment Architecture](../architecture/deployment.md)                                                                                | CI or release workflow verifies agreed image format, optimization, and budget criteria                                                                                   | Inherit `PBI-009`'s 64 KiB per-file and 256 KiB aggregate non-download guardrails; add format, dimension, and derivative rules only when real content imagery makes them useful                                                                                                                                                  |
+| `PBI-039` | Quality    | Regulate and verify image asset formats         | Done        | P2       | [Deployment Architecture](../architecture/deployment.md)                                                                                | CI or release workflow verifies agreed image format, optimization, and budget criteria                                                                                   | Inherit `PBI-009`'s 64 KiB per-file and 256 KiB aggregate non-download guardrails; add format, dimension, and derivative rules only when real content imagery makes them useful                                                                                                                                                  |
 | `PBI-049` | Infra      | Configure custom-domain contact email routing   | Backlog     | P2       | [Deployment Architecture](../architecture/deployment.md), [Project Content Inventory](../content/project-content-inventory.md)          | A verified custom-domain contact address delivers incoming mail to the existing portfolio Gmail destination                                                              | Use receive-only Cloudflare Email Routing after domain adoption; keep the ready Gmail contact as the fallback until routing passes verification                                                                                                                                                                                  |
 | `PBI-062` | Security   | Clarify local and task-resource boundaries      | Done        | P2       | [Security Policy](../../SECURITY.md), [Operations Guidelines](../../.agents/guidelines/operations.md)                                   | Public docs minimize private-storage detail and task resources are safely cleaned up                                                                                     | Keep exact paths in agent rules and ignore config; group ignored paths by purpose; clean up agent-started servers, tabs, and temporary reports; retain generated release artifacts only while needed                                                                                                                             |
 | `PBI-066` | Feature    | Provide recruiter demo access requests          | Done        | P1       | [Demo Access Operations](../operations/demo-access.md), [Functional Requirements](../requirements/functional-requirements.md)           | Karly and Book-Kong offer project-specific requests from both landing cards and project details without publishing credentials                                           | Reuse Gmail for owner notification; place the request beside each deployment-demo path; use free-plan password-protected expiring Bitwarden text Sends with a separately confirmed password channel; track non-secret request state privately and rotate credentials at access end                                               |
@@ -197,6 +197,17 @@ planning input alongside the content model.
   account-free runtime, checked-artifact, smoke-check, response-policy, and
   preview-eligibility primitives. They remain `Backlog` because no Cloudflare
   upload, protected preview, production response, or live smoke result exists.
+- `PBI-028` now has an exact root-metadata and CycloneDX 1.6 validation contract,
+  but remains `Backlog` because no production GitHub Release contains the
+  generated SBOM.
+- `PBI-030` now has pinned source and `dist` ScanCode evidence collection plus
+  structural report validation. It remains `Backlog` until the exact-revision
+  reports are reviewed against the evidence register and the owner records that
+  no item is `Unknown`, `Review Required`, or `Rejected`.
+- `PBI-039` is `Done`: the canonical gate now verifies shipped SVG, PNG, and ICO
+  signatures and dimensions, SVG view boxes, per-file and aggregate budgets,
+  unsupported image extensions, and the future social-preview contract without
+  adding an unused social image.
 
 ### PBI-049 Custom-Domain Email Routing Notes
 
@@ -236,7 +247,16 @@ planning input alongside the content model.
 
 - Current tracked images are the first-party brand SVG, PNG, and ICO install
   assets plus `public/icons.svg`; there are no project screenshots or
-  photographic content images in the shipped asset tree.
+  photographic content images in the shipped asset tree. The completion
+  baseline contains 34 files totaling 109,667 bytes; the largest file is 37,035
+  bytes.
+- The dependency-free validator checks all image assets under `public/`, rejects
+  symbolic links and unreviewed image formats, requires PNG and ICO dimensions
+  to agree with their binary headers, and requires either a root SVG `viewBox`
+  or a `viewBox` on every symbol in the shared sprite.
+- Each shipped image must remain at or below 64 KiB and the inventory at or below
+  256 KiB. If `public/assets/brand/social-preview.png` is added later, it must be
+  a 1200 by 630 PNG at or below 64 KiB.
 - Prefer SVG for icons, logos, diagrams, simple marks, UI symbols, and other
   vector artwork that needs sharp scaling, small source size, themeable styling,
   or source-level editability.

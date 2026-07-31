@@ -1,0 +1,185 @@
+name: Release Evidence
+
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site_artifact:
+    name: Build Checked Site Artifact
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository)
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ github.sha }}
+    permissions:
+      contents: read
+
+  evidence:
+    name: Collect Release Evidence
+    needs: site_artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      EVIDENCE_REVISION: ${{ github.sha }}
+      SCANCODE_ARCHIVE_SHA256: 638adcd0af576d1f4d5b64dde228724b3ca4fdee2c4de20d88e4356be353f027
+      SCANCODE_ARCHIVE_URL: https://github.com/aboutcode-org/scancode-toolkit/releases/download/v32.5.0/scancode-toolkit-v32.5.0_py3.12-linux.tar.gz
+      SCANCODE_VERSION: 32.5.0
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Download checked site artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          artifact-ids: ${{ needs.site_artifact.outputs['artifact-id'] }}
+          path: tmp/release-evidence/site-artifact
+          merge-multiple: true
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: 11.10.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate and validate CycloneDX SBOM
+        run: pnpm sbom:cyclonedx
+
+      - name: Create exact-revision source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          evidence_root="tmp/release-evidence"
+          source_archive="$evidence_root/source.tar"
+          source_directory="$evidence_root/source"
+
+          mkdir -p "$source_directory"
+          git archive --format=tar --output="$source_archive" "$EVIDENCE_REVISION"
+
+          if tar -tf "$source_archive" | grep -Eq '(^|/)(\.git|\.terraform|\.contexts|\.lazyweb|node_modules|dist|tmp|\.agents/handoffs)(/|$)'; then
+            echo "Source archive contains a forbidden generated, private, or temporary path." >&2
+            exit 1
+          fi
+
+          tar -xf "$source_archive" -C "$source_directory"
+
+      - name: Install and verify ScanCode Toolkit
+        id: scancode
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          archive_path="$RUNNER_TEMP/scancode-toolkit.tar.gz"
+          install_directory="$RUNNER_TEMP/scancode-toolkit"
+
+          curl \
+            --fail \
+            --location \
+            --proto '=https' \
+            --retry 3 \
+            --tlsv1.2 \
+            --output "$archive_path" \
+            "$SCANCODE_ARCHIVE_URL"
+          printf '%s  %s\n' "$SCANCODE_ARCHIVE_SHA256" "$archive_path" | sha256sum --check --strict
+
+          mkdir -p "$install_directory"
+          tar -xzf "$archive_path" -C "$install_directory"
+
+          scancode_binary="$(find "$install_directory" -mindepth 1 -maxdepth 2 -type f -name scancode -print -quit)"
+          if [[ -z "$scancode_binary" || ! -x "$scancode_binary" ]]; then
+            echo "ScanCode executable was not found in the verified release archive." >&2
+            exit 1
+          fi
+
+          scancode_version_output="$("$scancode_binary" --version)"
+          if [[ "$scancode_version_output" != *"$SCANCODE_VERSION"* ]]; then
+            echo "Unexpected ScanCode version: $scancode_version_output" >&2
+            exit 1
+          fi
+
+          printf '%s\n' "$scancode_version_output"
+          printf 'binary=%s\n' "$scancode_binary" >> "$GITHUB_OUTPUT"
+
+      - name: Scan source and checked site artifact
+        shell: bash
+        env:
+          SCANCODE_BINARY: ${{ steps.scancode.outputs.binary }}
+        run: |
+          set -euo pipefail
+
+          reports_directory="tmp/release-evidence/reports"
+          source_directory="tmp/release-evidence/source"
+          dist_directory="tmp/release-evidence/site-artifact/dist"
+          scan_options=(
+            --copyright
+            --license
+            --package
+            --info
+            --license-text
+            --license-references
+            --classify
+            --license-clarity-score
+            --summary
+            --strip-root
+            --processes 2
+            --timeout 120
+          )
+
+          mkdir -p "$reports_directory"
+          "$SCANCODE_BINARY" \
+            "${scan_options[@]}" \
+            --json-pp "$reports_directory/source.scancode.json" \
+            "$source_directory"
+          "$SCANCODE_BINARY" \
+            "${scan_options[@]}" \
+            --json-pp "$reports_directory/dist.scancode.json" \
+            "$dist_directory"
+
+      - name: Validate ScanCode reports
+        run: |
+          node scripts/validate-scancode-report.mjs \
+            --expected-version "$SCANCODE_VERSION" \
+            tmp/release-evidence/reports/source.scancode.json
+          node scripts/validate-scancode-report.mjs \
+            --expected-version "$SCANCODE_VERSION" \
+            tmp/release-evidence/reports/dist.scancode.json
+
+      - name: Upload release evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-evidence-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            sbom.cdx.json
+            tmp/release-evidence/reports/*.json
+            tmp/release-evidence/site-artifact/tmp/delivery/site-artifact-manifest.json
+          if-no-files-found: error
+          retention-days: 30

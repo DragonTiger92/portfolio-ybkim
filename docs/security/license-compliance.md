@@ -169,10 +169,9 @@ license credentials.
 1. Inventory third-party material when it enters the repository, not only at
    release time.
 2. Keep Dependency Review as the package-license policy gate.
-3. Run a pinned source scanner before the first production release and when
-   third-party material changes. ScanCode Toolkit is the initial candidate
-   because it detects code origin, copyright, license, packages, and dependency
-   metadata.
+3. Run the pinned ScanCode Toolkit evidence workflow before the first production
+   release and when third-party material changes. It detects code origin,
+   copyright, license, packages, and dependency metadata.
 4. Review scanner findings manually. Resolve false positives, unknown licenses,
    copied snippets, media, fonts, and generated assets that package metadata
    cannot decide.
@@ -199,10 +198,28 @@ license credentials.
 - Do not treat an automated license name as proof that every obligation has been
   satisfied.
 
-## Planned Release Gate
+## Account-Free Evidence Gate
 
-`PBI-030` should add a manually triggered or release-candidate workflow stage
-that collects scan evidence and requires the project owner to approve the
-completed register before production release. Tool versions and actions must be
-pinned when implementation begins; this document does not add a scanner or new
-dependency yet.
+The credential-free release-evidence workflow pins ScanCode Toolkit `32.5.0`
+from the official Python 3.12 Linux archive and verifies SHA-256
+`638adcd0af576d1f4d5b64dde228724b3ca4fdee2c4de20d88e4356be353f027`
+before execution. It scans two deliberately separate inputs:
+
+- `git archive` of the exact checked revision for tracked source evidence; and
+- the already checked `dist/` artifact for shipped-material evidence.
+
+This excludes `.git`, `node_modules`, ignored private context, and temporary
+trees from the scanned inputs. The workflow preserves both ScanCode JSON reports
+and the validated CycloneDX SBOM as GitHub Actions artifacts. It is available to
+eligible same-repository, non-draft pull requests, reusable workflow callers,
+and manual dispatch; it has read-only repository permission and performs no
+deployment or GitHub Release mutation.
+
+Structural validation rejects a wrong ScanCode version, malformed report,
+header error, or per-file scan error. Scanner warnings and detected licenses
+remain evidence for human classification; the validator does not convert them
+to an approval.
+
+`PBI-030` remains open until the exact-revision source and `dist` reports are
+compared with the register above and the owner records that no shipped item is
+`Unknown`, `Review Required`, or `Rejected`.
