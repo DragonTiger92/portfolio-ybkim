@@ -193,6 +193,10 @@ planning input alongside the content model.
 - The monitoring root records the future `PBI-032` homepage, critical-asset,
   TLS, three-minute interval, and email-notification contract. The PBI remains
   `Backlog` until production probes and a controlled alert-delivery test pass.
+- `PBI-010`, `PBI-011`, `PBI-031`, `PBI-060`, and `PBI-065` now have
+  account-free runtime, checked-artifact, smoke-check, response-policy, and
+  preview-eligibility primitives. They remain `Backlog` because no Cloudflare
+  upload, protected preview, production response, or live smoke result exists.
 
 ### PBI-049 Custom-Domain Email Routing Notes
 

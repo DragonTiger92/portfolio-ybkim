@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": "24.18.0",
+    "pnpm": "11.10.0"
+  },
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -22,9 +26,14 @@
     "test:file-size": "node --test scripts/validate-file-size.test.mjs",
     "test:static-budget": "node --test scripts/validate-static-budget.test.mjs",
     "test:contact-availability": "node --test scripts/validate-contact-availability.test.mjs",
+    "test:delivery": "node --test scripts/check-http-smoke.test.mjs scripts/create-artifact-manifest.test.mjs scripts/evaluate-preview-eligibility.test.mjs scripts/validate-dist-output.test.mjs scripts/validate-headers.test.mjs",
     "test:a11y": "pnpm build:bundle && playwright test",
     "test:a11y:run": "playwright test",
+    "artifact:manifest": "node scripts/create-artifact-manifest.mjs",
     "sbom:cyclonedx": "node node_modules/@cyclonedx/cdxgen/bin/cdxgen.js -t js --no-recurse --no-install-deps --fail-on-error --spec-version 1.6 --json-pretty -o sbom.cdx.json .",
+    "smoke:http": "node scripts/check-http-smoke.mjs",
+    "validate:dist-output": "node scripts/validate-dist-output.mjs",
+    "validate:headers": "node scripts/validate-headers.mjs",
     "validate:html": "html-validate dist --ext html",
     "validate:html:strict": "html-validate dist --ext html --max-warnings 0",
     "validate:standards": "vnu --also-check-css --skip-non-html dist",
@@ -32,7 +41,7 @@
     "validate:static-budget": "node scripts/validate-static-budget.mjs",
     "build:bundle": "astro build",
     "check:docs": "pnpm lint:docs && pnpm lint:size:docs:strict && pnpm format:docs:check",
-    "check:static": "pnpm typecheck:strict && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm test:static-budget && pnpm test:contact-availability && pnpm format:check && pnpm build:bundle && pnpm validate:static-budget && pnpm validate:html:strict && pnpm validate:standards:strict",
+    "check:static": "pnpm typecheck:strict && pnpm lint:strict && pnpm lint:size:strict && pnpm test:governance && pnpm test:file-size && pnpm test:static-budget && pnpm test:contact-availability && pnpm test:delivery && pnpm validate:headers && pnpm format:check && pnpm build:bundle && pnpm validate:dist-output && pnpm validate:static-budget && pnpm validate:html:strict && pnpm validate:standards:strict",
     "check": "pnpm check:static && pnpm test:a11y:run",
     "build": "astro check --minimumFailingSeverity warning && astro build",
     "preview": "astro preview --host 127.0.0.1",
@@ -60,7 +69,8 @@
     "prettier-plugin-astro": "0.14.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.62.0",
-    "vnu-jar": "26.6.14"
+    "vnu-jar": "26.6.14",
+    "wrangler": "4.114.0"
   },
   "lint-staged": {
     "**/*.{js,mjs,cjs,ts,mts,cts,css,json,jsonc,md}": [
