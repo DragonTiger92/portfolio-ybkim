@@ -119,7 +119,11 @@ jobs:
             exit 1
           fi
 
-          scancode_version_output="$("$scancode_binary" --version)"
+          scancode_root="$(dirname "$scancode_binary")"
+          scancode_version_output="$(
+            cd "$scancode_root"
+            ./scancode --version
+          )"
           if [[ "$scancode_version_output" != *"$SCANCODE_VERSION"* ]]; then
             echo "Unexpected ScanCode version: $scancode_version_output" >&2
             exit 1
