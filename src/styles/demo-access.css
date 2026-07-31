@@ -31,6 +31,10 @@
     font-size: var(--text-h3);
   }
 
+  .demo-dialog button.button-link {
+    cursor: pointer;
+  }
+
   .demo-dialog__fallback {
     display: grid;
     gap: var(--space-3);

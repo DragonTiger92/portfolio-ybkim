@@ -1,4 +1,9 @@
 (() => {
+  const copyFeedbackDuration = 3000;
+
+  let copyStatusTimeout;
+  let latestCopyRequestId = 0;
+
   function getDialogElements() {
     const dialog = document.querySelector("#demo-access-dialog");
 
@@ -30,26 +35,62 @@
       "",
       url.searchParams.get("body") ?? "",
     ].join("\n");
-    elements.status.textContent = "";
+    latestCopyRequestId += 1;
+    clearCopyStatus(elements);
     elements.continueLink.href = trigger.href;
     elements.dialog.showModal();
+  }
+
+  function cancelCopyStatusTimeout() {
+    if (copyStatusTimeout === undefined) return;
+
+    window.clearTimeout(copyStatusTimeout);
+    copyStatusTimeout = undefined;
+  }
+
+  function clearCopyStatus(elements) {
+    cancelCopyStatusTimeout();
+    elements.status.textContent = "";
+  }
+
+  function showCopyStatus(elements, message) {
+    clearCopyStatus(elements);
+    elements.status.textContent = message;
+    copyStatusTimeout = window.setTimeout(() => {
+      elements.status.textContent = "";
+      copyStatusTimeout = undefined;
+    }, copyFeedbackDuration);
   }
 
   function showCopyFailure(elements) {
     elements.template.focus();
     elements.template.select();
-    elements.status.textContent = "복사하지 못했습니다. 선택된 양식을 직접 복사해 주세요.";
+    showCopyStatus(elements, "복사하지 못했습니다. 선택된 양식을 직접 복사해 주세요.");
+  }
+
+  function writeTemplateToClipboard(template) {
+    return Promise.resolve()
+      .then(() => navigator.clipboard.writeText(template))
+      .then(
+        () => true,
+        () => false,
+      );
   }
 
   function copyRequestTemplate(elements) {
-    Promise.resolve()
-      .then(() => navigator.clipboard.writeText(elements.template.value))
-      .then(
-        () => {
-          elements.status.textContent = "메일 양식을 복사했습니다.";
-        },
-        () => showCopyFailure(elements),
-      );
+    const copyRequestId = ++latestCopyRequestId;
+
+    cancelCopyStatusTimeout();
+    writeTemplateToClipboard(elements.template.value).then((didCopy) => {
+      if (copyRequestId !== latestCopyRequestId) return;
+
+      if (!didCopy) {
+        showCopyFailure(elements);
+        return;
+      }
+
+      showCopyStatus(elements, "메일 양식을 복사했습니다.");
+    });
   }
 
   const elements = getDialogElements();

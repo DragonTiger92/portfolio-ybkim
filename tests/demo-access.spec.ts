@@ -37,6 +37,8 @@ for (const project of demoProjects) {
     await gmailLink.click();
 
     const continueLink = dialog.getByRole("link", { name: "Gmail에서 계속(새 창)" });
+    const closeButton = dialog.getByRole("button", { name: "닫기" });
+    const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
     const template = dialog.locator("#demo-request-template");
 
     await expect(dialog).toBeVisible();
@@ -50,6 +52,10 @@ for (const project of demoProjects) {
     await expect(continueLink).toHaveAttribute("target", "_blank");
     await expect(continueLink).toHaveAttribute("rel", "noopener noreferrer");
     expectGmailRequestUrl(await continueLink.getAttribute("href"), project.title);
+    await expect(closeButton).toHaveCSS("cursor", "pointer");
+    await expect(copyButton).toHaveCSS("cursor", "pointer");
+    await closeButton.click();
+    await expect(dialog).not.toBeVisible();
   });
 }
 
@@ -88,9 +94,11 @@ test("copies the manual request template from the pre-navigation dialog", async 
   await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
 
   const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
+  const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
+  const copyStatus = dialog.getByRole("status");
 
-  await dialog.getByRole("button", { name: "메일 양식 복사" }).click();
-  await expect(dialog.getByRole("status")).toHaveText("메일 양식을 복사했습니다.");
+  await copyButton.click();
+  await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
 
   const copiedRequest = await page.evaluate(() =>
     window.sessionStorage.getItem("copied-demo-request"),
@@ -99,6 +107,12 @@ test("copies the manual request template from the pre-navigation dialog", async 
   expect(copiedRequest).toContain("받는 사람: dczwtu12b+portfolio@gmail.com");
   expect(copiedRequest).toContain("제목: [Portfolio Demo Access] Karly");
   expect(copiedRequest).toContain("Karly 데모 계정을 요청드립니다.");
+
+  await page.waitForTimeout(1000);
+  await copyButton.click();
+  await page.waitForTimeout(2100);
+  await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
+  await expect(copyStatus).toBeEmpty({ timeout: 2000 });
 });
 
 test("keeps demo access requests off projects that do not need credentials", async ({ page }) => {
