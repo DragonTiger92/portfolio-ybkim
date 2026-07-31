@@ -220,6 +220,23 @@ header error, or per-file scan error. Scanner warnings and detected licenses
 remain evidence for human classification; the validator does not convert them
 to an approval.
 
-`PBI-030` remains open until the exact-revision source and `dist` reports are
-compared with the register above and the owner records that no shipped item is
-`Unknown`, `Review Required`, or `Rejected`.
+## 2026-07-31 Account-Free Evidence Review
+
+The PR #63 exact-revision workflow produced structurally valid ScanCode `32.5.0`
+reports for 265 tracked-source entries and 58 checked-`dist` entries. Both
+reports had no scanner warning, header error, or per-file scan error. The
+`dist` report contained no license detection.
+
+The source report's proprietary, `free-unknown`, `lgpl-2.0-plus`, and
+`unknown-license-reference` findings were traced to license-policy,
+architecture, operations-guideline, and backlog terminology rather than
+shipped third-party material. The dependency-review workflow's detected
+license expression was its configured allow-list. The shipped image inventory
+matched the approved owner-provided brand assets, Simple Icons marks,
+Playwright mark, Slack mark, and project-owned SVG sprite recorded above.
+
+Every shipped evidence-register item remains `Approved`; none has an `Unknown`,
+`Review Required`, or `Rejected` disposition. Under the delegated conditional
+owner approval, this review completes `PBI-030`. A production release must
+still rerun and preserve the evidence, and new or changed third-party material
+reopens the review.
