@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       revision:
-        description: Full checked Git revision to build.
+        description: Full caller commit SHA; must equal the checked workflow revision.
         required: true
         type: string
     outputs:
@@ -31,11 +31,26 @@ jobs:
       artifact-id: ${{ steps.upload.outputs.artifact-id }}
       artifact-url: ${{ steps.upload.outputs.artifact-url }}
     steps:
-      - name: Checkout exact revision
+      - name: Checkout caller revision
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          ref: ${{ inputs.revision }}
           persist-credentials: false
+
+      - name: Verify caller revision
+        env:
+          EXPECTED_REVISION: ${{ inputs.revision }}
+        shell: bash
+        run: |
+          if [[ ! "$EXPECTED_REVISION" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "revision must be a full lowercase Git SHA" >&2
+            exit 1
+          fi
+
+          actual_revision="$(git rev-parse HEAD)"
+          if [[ "$EXPECTED_REVISION" != "$actual_revision" ]]; then
+            echo "revision does not match the checked caller commit" >&2
+            exit 1
+          fi
 
       - name: Setup pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
@@ -58,16 +73,18 @@ jobs:
         run: pnpm check
 
       - name: Create exact-revision artifact manifest
+        env:
+          ARTIFACT_REVISION: ${{ inputs.revision }}
         run: >-
           node scripts/create-artifact-manifest.mjs
-          --revision "${{ inputs.revision }}"
+          --revision "$ARTIFACT_REVISION"
           --output tmp/delivery/site-artifact-manifest.json
 
       - name: Upload checked site artifact
         id: upload
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: site-artifact-${{ inputs.revision }}
+          name: site-artifact-${{ github.sha }}
           path: |
             dist/
             tmp/delivery/site-artifact-manifest.json
