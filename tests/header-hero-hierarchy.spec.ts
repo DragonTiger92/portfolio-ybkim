@@ -26,6 +26,33 @@ test("presents a concise site wordmark and a secondary theme utility", async ({ 
   await expect(page.locator(".navigation-list a")).toHaveText(["소개", "프로젝트", "역량"]);
 });
 
+test("preserves the intended component colors and font weights", async ({ page }) => {
+  await page.goto("/");
+
+  const bodyColor = await page
+    .locator("body")
+    .evaluate((element) => getComputedStyle(element).color);
+  const wordmark = page.locator(".site-identity__wordmark");
+  const themeToggle = page.locator("[data-theme-toggle]");
+  const gmailAction = page.locator(".contact-actions .button-link").first();
+  const gmailLabel = gmailAction.locator(".button-link__label");
+  const gmailIcon = gmailAction.locator(".new-window-link__icon");
+  const projectHeading = page.locator(".project-card h4 a").first();
+
+  await expect(wordmark).toHaveCSS("color", bodyColor);
+  await expect(wordmark).toHaveCSS("font-weight", "780");
+  await expect(themeToggle).toHaveCSS("font-weight", "700");
+  await expect(themeToggle).toHaveCSS("border-radius", "999px");
+
+  const gmailForeground = await gmailLabel.evaluate((element) => getComputedStyle(element).color);
+
+  await expect(gmailAction).toHaveCSS("color", gmailForeground);
+  await expect(gmailIcon).toHaveCSS("color", gmailForeground);
+  await expect(gmailAction).toHaveCSS("font-weight", "750");
+  await expect(projectHeading).toHaveCSS("color", bodyColor);
+  await expect(projectHeading).toHaveCSS("font-weight", "760");
+});
+
 test("keeps job status static and accents only the positioning phrases", async ({ page }) => {
   await page.goto("/");
 

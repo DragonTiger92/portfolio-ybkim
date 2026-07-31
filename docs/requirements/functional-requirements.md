@@ -76,6 +76,9 @@ project-scoped public repositories, and usable contact paths.
   review paths.
 - Project details that require demo login provide a project-specific request
   through the selected public email channel without publishing credentials.
+- Demo-account request actions explain the signed-out Gmail redirect before
+  navigation and provide a project-scoped recipient, subject, and body that can
+  be copied for manual use without depending on a default mail app.
 - Labels make the destination and purpose clear.
 
 ## FR-004: Skills Section

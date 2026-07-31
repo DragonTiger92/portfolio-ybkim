@@ -6,19 +6,21 @@ function createRequestBody(projectTitle: string): string {
   return [
     "안녕하세요, 김용범 님.",
     "",
-    `${projectTitle} 데모 검토를 위한 테스트 계정을 요청드립니다.`,
+    `${projectTitle} 데모 계정을 요청드립니다.`,
     "",
-    "소속 / 채용 포지션 (선택):",
-    "검토 종료 예정일 (선택, 미입력 시 7일):",
-    "보안 링크 암호를 받을 별도 연락 채널 (선택, 전달 전 협의 가능):",
+    "소속 / 채용 포지션:",
+    "검토 종료일 (기본 7일):",
+    "암호 수신 연락처:",
     "",
-    "테스트 계정은 채용 검토 목적으로만 사용하겠습니다.",
+    "채용 검토에만 사용하겠습니다.",
   ].join("\n");
 }
 
-export function createDemoAccessRequestUrl(projectTitle: string): string {
-  return createGmailComposeUrl({
-    body: createRequestBody(projectTitle),
-    subject: `${requestSubjectPrefix} ${projectTitle}`,
-  });
+export function createDemoAccessRequest(projectTitle: string) {
+  const subject = `${requestSubjectPrefix} ${projectTitle}`;
+  const body = createRequestBody(projectTitle);
+
+  return {
+    gmailUrl: createGmailComposeUrl({ body, subject }),
+  } as const;
 }

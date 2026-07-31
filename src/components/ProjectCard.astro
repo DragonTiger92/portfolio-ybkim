@@ -1,5 +1,5 @@
 ---
-import { createDemoAccessRequestUrl } from "../data/demo-access";
+import DemoAccessRequestActions from "./DemoAccessRequestActions.astro";
 import TagList from "./TagList.astro";
 import NewWindowLink from "./NewWindowLink.astro";
 
@@ -24,7 +24,6 @@ interface Props {
 const { classification, demoAccess, featured, links, role, slug, summary, tags, title } =
   Astro.props;
 const cardLinks = links.filter((link) => link.showOnCard);
-const demoAccessRequestUrl = demoAccess ? createDemoAccessRequestUrl(title) : undefined;
 const classificationLabel =
   classification === "개인 공개 프로젝트" ? "개인 프로젝트" : "부트캠프 팀 프로젝트";
 ---
@@ -59,17 +58,6 @@ const classificationLabel =
         </NewWindowLink>
       ))
     }
-    {
-      demoAccessRequestUrl && (
-        <NewWindowLink
-          class="text-link"
-          href={demoAccessRequestUrl}
-          accessibleLabel={`${title} 테스트 계정 요청 메일 작성`}
-          windowLabel="Gmail 새 창"
-        >
-          테스트 계정 요청
-        </NewWindowLink>
-      )
-    }
+    {demoAccess && <DemoAccessRequestActions presentation="card" projectTitle={title} />}
   </div>
 </article>

@@ -10,8 +10,11 @@ delivery link.
    or the corresponding project detail.
 2. `테스트 계정 요청` on either surface opens Gmail in a new tab with the
    portfolio address, project-specific subject, purpose statement, and optional
-   review end date. The recruiter may also suggest a separate contact channel
-   for the Send password.
+   review end date. Before navigation, an accessible dialog explains that a
+   signed-out visitor sees Google sign-in before Gmail returns to the prepared
+   compose URL. If Gmail is unavailable, the dialog exposes the recipient,
+   subject, and body as a copyable plain-text request for another email service.
+   The recruiter may suggest a separate contact channel for the Send password.
 3. Sending the message creates the notification and the initial private metadata
    record in the owner's Gmail inbox.
 4. The owner replies in the same thread with a password-protected Bitwarden Send

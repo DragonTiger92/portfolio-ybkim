@@ -1,0 +1,78 @@
+@layer components {
+  .demo-dialog {
+    inline-size: min(calc(100% - (var(--space-4) * 2)), 36rem);
+    max-block-size: calc(100dvb - (var(--space-4) * 2));
+    padding: var(--space-5);
+    overflow: auto;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .demo-dialog[open] {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .demo-dialog::backdrop {
+    background: color-mix(in srgb, var(--color-text) 58%, transparent);
+  }
+
+  .demo-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .demo-dialog__title {
+    font-size: var(--text-h3);
+  }
+
+  .demo-dialog button.button-link {
+    cursor: pointer;
+  }
+
+  .demo-dialog__fallback {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .demo-dialog__fallback textarea {
+    padding: var(--space-3);
+    font-family: var(--font-mono);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .demo-dialog__fallback .button-link {
+    justify-self: start;
+  }
+
+  .demo-dialog [data-demo-access-status] {
+    min-block-size: 1.5em;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .demo-dialog__actions {
+    text-align: end;
+  }
+
+  @media (max-width: 32rem) {
+    .demo-dialog {
+      padding: var(--space-4);
+    }
+
+    .demo-dialog__actions .button-link {
+      inline-size: 100%;
+    }
+  }
+}

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import CapabilityMatrix from "../components/CapabilityMatrix.astro";
 import ContactActions from "../components/ContactActions.astro";
+import DemoAccessRequestDialog from "../components/DemoAccessRequestDialog.astro";
 import NewWindowLink from "../components/NewWindowLink.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import TagList from "../components/TagList.astro";
@@ -130,6 +131,8 @@ const jobStatus = getJobStatusContent("ko", jobStatusCode);
         </div>
       </div>
     </section>
+
+    {jobStatus.acceptsEmailContact && <DemoAccessRequestDialog />}
 
     <section
       id="skills"

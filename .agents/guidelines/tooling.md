@@ -79,6 +79,12 @@ workspace. WSL is not required for ordinary project work.
   and Git Bash resolution with `type -a` before changing configuration again.
 - Do not hardcode the user or machine `PATH` in project `.codex/config.toml` merely
   to repair a stale process environment.
+- Do not use `Start-Process` from a foreground agent tool to detach a long-running
+  development or preview server, especially with redirected standard output or
+  error streams. The tool harness may continue waiting on the descendant process
+  and stop accepting steering even after the shell command appears complete. Use
+  a managed long-running command facility, track its exact process ID, and stop it
+  explicitly after verification.
 - If PowerShell blocks vendor `.ps1` shims, inspect all execution-policy scopes
   first. Prefer the Codex-documented `RemoteSigned` policy at `CurrentUser` scope;
   do not weaken `LocalMachine`, Group Policy, or use `Bypass`/`Unrestricted`
