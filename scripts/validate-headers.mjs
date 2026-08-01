@@ -6,7 +6,7 @@ const expectedSecurityHeaders = new Map([
   ["cache-control", "public, max-age=0, must-revalidate"],
   [
     "content-security-policy",
-    "base-uri 'self'; connect-src 'self'; default-src 'self'; font-src 'self' https://cdn.jsdelivr.net; form-action 'self'; frame-ancestors 'none'; frame-src 'none'; img-src 'self'; manifest-src 'self'; media-src 'none'; object-src 'none'; script-src 'self'; script-src-attr 'none'; style-src-elem 'self' https://cdn.jsdelivr.net; style-src-attr 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests",
+    "base-uri 'self'; connect-src 'self' https://cdn.jsdelivr.net; default-src 'self'; font-src 'self' https://cdn.jsdelivr.net; form-action 'self'; frame-ancestors 'none'; frame-src 'none'; img-src 'self'; manifest-src 'self'; media-src 'none'; object-src 'none'; script-src 'self'; script-src-attr 'none'; style-src-elem 'self' https://cdn.jsdelivr.net; style-src-attr 'unsafe-inline'; worker-src 'none'; upgrade-insecure-requests",
   ],
   ["permissions-policy", "camera=(), geolocation=(), microphone=(), payment=(), usb=()"],
   ["referrer-policy", "strict-origin-when-cross-origin"],
