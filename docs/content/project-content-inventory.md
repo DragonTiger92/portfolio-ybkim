@@ -52,7 +52,7 @@ the backlog.
 
 | Project Label                                                     | Classification        | Source Visibility | Product Link Disposition | Initial Detail Route | Candidate Tags                                                                                     | Phase 2 Public Treatment                                                                                                                         |
 | ----------------------------------------------------------------- | --------------------- | ----------------- | ------------------------ | -------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `portfolio-ybkim`                                                 | Portfolio Product     | Public repository | Pending production URL   | Yes                  | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action                                               |
+| `portfolio-ybkim`                                                 | Portfolio Product     | Public repository | Pending Pages deployment | Yes                  | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action                                               |
 | `Karly`                                                           | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Early frontend evidence with public source/demo links; selected owner-approved media may be used after exact-asset review                        |
 | `Book-Kong`                                                       | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | React and team-leadership evidence with public source/demo links; selected owner-created media may be used after exact-asset review              |
 | Academy information and consultation web service                  | Professional Product  | Reviewed private  | Public                   | No                   | Professional Product, Full-Stack Delivery, API-Backed Form Flow, Release Preparation               | Professional highlight with public URL and generalized delivery copy; no private architecture or operations detail                               |
@@ -86,18 +86,17 @@ architecture remain outside public copy.
 
 ## Link Inventory
 
-| Link Entity                 | Destination                                        | Disposition        | Placement Guidance                                                                      |
-| --------------------------- | -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Public             | Hero secondary action, footer, or contact area                                          |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public             | `portfolio-ybkim` project card and detail evidence only                                 |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public             | Project detail link after source and rights review                                      |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public             | Public product link; do not publish demo credentials or private data                    |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public             | Project detail link after source and rights review                                      |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public             | Public product link; do not publish demo credentials or private data                    |
-| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public             | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters   |
-| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Pending Owner Data | `PBI-049`; publish only after production domain, destination, and delivery verification |
-| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready              | Public Korean resume download action                                                    |
-| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public             | Professional highlight and resume evidence; keep private operations detail out          |
+| Link Entity                 | Destination                                        | Disposition | Placement Guidance                                                                    |
+| --------------------------- | -------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------- |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Public      | Hero secondary action, footer, or contact area                                        |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public      | `portfolio-ybkim` project card and detail evidence only                               |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public      | Project detail link after source and rights review                                    |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public      | Public product link; do not publish demo credentials or private data                  |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public      | Project detail link after source and rights review                                    |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public      | Public product link; do not publish demo credentials or private data                  |
+| Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public      | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters |
+| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready       | Public Korean resume download action                                                  |
+| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public      | Professional highlight and resume evidence; keep private operations detail out        |
 
 ## Private Evidence Intake
 
@@ -138,14 +137,10 @@ keep the portfolio email visible and copyable as a fallback with clear user
 feedback. Do not rely on `mailto:` or an operating-system mail-client
 association as the only contact path.
 
-During Phase 3, after the production domain is selected, configure Cloudflare
-Email Routing on the Free plan for a domain address such as
-`contact@{production-domain}` or `hello@{production-domain}`. Route incoming
-mail to `dczwtu12b+portfolio@gmail.com`, verify the destination, and test
-delivery from another account before publishing the domain address. Keep the
-existing Gmail contact as the fallback. Do not configure custom reply-from
-behavior, Google Workspace, or another paid mailbox unless a later decision
-accepts that additional scope.
+The owner selected the free Cloudflare-managed Pages hostname and does not plan
+to purchase a domain. Keep `dczwtu12b+portfolio@gmail.com` as the public contact
+and keep Cloudflare Email Routing, custom reply-from behavior, Google Workspace,
+and another paid mailbox outside the portfolio baseline.
 
 ## Disclosure Review Timing
 

@@ -31,8 +31,12 @@ GitHub Actions and Wrangler Direct Upload rather than Cloudflare Git integration
   implementation, then creates the production tag and GitHub Release only after
   the deployed product passes smoke checks.
 - Terraform manages long-lived Cloudflare configuration. Exact resource scope,
-  Access identity policy, custom-domain use, and the remote-state backend are
-  selected during PH-003 implementation.
+  Access identity policy, and the remote-state backend are selected during
+  PH-003 implementation.
+- Use the Cloudflare-managed Pages subdomain returned for the project as the
+  canonical production host. A purchased custom domain, Cloudflare DNS zone,
+  and Email Routing are not part of the portfolio baseline.
+- Keep the existing portfolio Gmail address as the public contact channel.
 - GitHub Pages compatibility is not maintained as a product requirement.
 
 The deployment and release workflows should share reusable jobs or workflows so
@@ -51,3 +55,6 @@ verification behavior.
   transaction spanning GitHub and Cloudflare.
 - Cloudflare account configuration and deployment credentials become PH-003
   operational dependencies.
+- The public hostname may include a provider-assigned suffix if the preferred
+  Pages project subdomain is unavailable, so live outputs rather than a guessed
+  hostname determine canonical metadata and monitoring configuration.

@@ -53,9 +53,8 @@ description, shareable URL, or a substantially different review task.
 - Keep those contact destinations aligned with
   [Portfolio Content Source](../content/portfolio-content-source.md): a
   browser-based Gmail compose action plus a visible, copyable portfolio email
-  fallback first, then Cloudflare-routed domain email after Phase 3 domain
-  setup. This does not require a separate contact route or an operating-system
-  mail-client association.
+  fallback. This does not require a custom domain, separate contact route, or an
+  operating-system mail-client association.
 
 ## Post-launch Analytics Scope
 
