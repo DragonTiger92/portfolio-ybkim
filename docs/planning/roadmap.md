@@ -9,7 +9,7 @@ duplicating roadmap state in GitHub Issues or Milestones.
 | -------- | ----------------------------------- | ----------- | --------------------- | ------------------------------------------------------------------- |
 | `PH-001` | Product Foundation Baseline         | Completed   | No production tag     | Establish docs, workflow, governance, and content base              |
 | `PH-002` | Static Portfolio Implementation     | Completed   | No production tag     | Complete the portfolio content and experience                       |
-| `PH-003` | Deployment And Operations Readiness | In Progress | `v1.0.0`              | Prepare release, deployment, contact routing, and operations        |
+| `PH-003` | Deployment And Operations Readiness | In Progress | `v1.0.0`              | Prepare release, deployment, public contact, and operations         |
 | `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Improve discoverability, English reach, public resume, and insights |
 
 ## Phase Notes
@@ -23,10 +23,11 @@ duplicating roadmap state in GitHub Issues or Milestones.
 - `PH-003` begins with the reviewed infrastructure-ownership boundary in
   `PBI-012`, then prepares production deployment, release governance,
   infrastructure
-  management, custom-domain contact email routing, release notes, release SBOM
+  management, the existing Gmail contact channel, release notes, release SBOM
   generation, pre-release license compliance, production smoke checks, uptime
   monitoring, rollback readiness, and minimum discoverability metadata needed
-  before launch.
+  before launch. The canonical origin uses the Cloudflare-managed Pages
+  subdomain; no purchased domain is required.
 - `PH-004` covers post-launch SEO, AEO, GEO, English portfolio content through
   an agreed localization model, a production-linked public resume refresh, and
   privacy-aware route analytics after the first operations-ready deployment

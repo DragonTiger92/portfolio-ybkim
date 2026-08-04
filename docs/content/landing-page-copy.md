@@ -106,8 +106,8 @@ use a typographic fallback when no approved mark is available. Render reviewed
 marks with their pinned Simple Icons brand color on a theme-aware surface; color
 remains decorative and never replaces the visible name.
 
-Do not add a phone number, home address, production URL, or custom-domain email
-to the first viewport before the relevant Phase 3 decisions. Do not rewrite the
+Do not add a phone number, home address, or unverified production URL to the
+first viewport before the relevant Phase 3 checks. Do not rewrite the
 intro as a React, Next.js, or framework preference statement; tools may appear
 later as supporting evidence where they are relevant.
 

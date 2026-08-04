@@ -36,7 +36,7 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-    <link rel="manifest" href="/assets/brand/site.webmanifest" />
+    <link rel="manifest" href="/assets/brand/site.webmanifest" crossorigin="use-credentials" />
     <title>{title}</title>
     <script is:inline src="/scripts/theme-init.js"></script>
   </head>

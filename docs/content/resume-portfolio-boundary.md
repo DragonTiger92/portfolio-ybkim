@@ -23,17 +23,17 @@ documentation cues, public demos, and disclosure-reviewed case studies.
 
 Use the smallest contact surface that lets a legitimate recruiter respond.
 
-| Field            | Public Downloadable Resume Decision                                         |
-| ---------------- | --------------------------------------------------------------------------- |
-| Email            | Use `dczwtu12b+portfolio@gmail.com` until the Phase 3 domain email is ready |
-| Portfolio URL    | Add after the production URL is decided                                     |
-| GitHub           | Include `https://github.com/DragonTiger92`                                  |
-| Location         | Optional city/region-level location only if it improves hiring clarity      |
-| Phone            | Omit from the public web-download resume by default                         |
-| Home address     | Do not include                                                              |
-| Birthdate or age | Do not include                                                              |
-| Photo            | Do not include                                                              |
-| References       | Do not list                                                                 |
+| Field            | Public Downloadable Resume Decision                                    |
+| ---------------- | ---------------------------------------------------------------------- |
+| Email            | Use `dczwtu12b+portfolio@gmail.com` as the public portfolio contact    |
+| Portfolio URL    | Add the provider-returned Pages URL after production verification      |
+| GitHub           | Include `https://github.com/DragonTiger92`                             |
+| Location         | Optional city/region-level location only if it improves hiring clarity |
+| Phone            | Omit from the public web-download resume by default                    |
+| Home address     | Do not include                                                         |
+| Birthdate or age | Do not include                                                         |
+| Photo            | Do not include                                                         |
+| References       | Do not list                                                            |
 
 Phone numbers and more specific location details can be provided in an
 application form or later recruiter process when the channel and purpose are
@@ -154,7 +154,7 @@ The working standard follows common career-center resume guidance:
 
 ## Pre-Publish Checklist
 
-- Public contact uses the portfolio email alias or Phase 3 domain email.
+- Public contact uses the portfolio Gmail alias.
 - Home address, birthdate, age, photo, and personal phone are absent from the
   public downloadable version.
 - Old portfolio URLs, stale role framing, and outdated project descriptions are

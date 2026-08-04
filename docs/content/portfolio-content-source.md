@@ -57,31 +57,26 @@ Company-confidential projects are ordered after the public-result cards:
 
 ## Link Source Data
 
-| Link Entity                 | Destination                                        | Status           | Product Use                                                                                       |
-| --------------------------- | -------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Ready            | Hero secondary action and footer/contact action; use for every broad `GitHub` label               |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Ready            | `portfolio-ybkim` project card and detail evidence only                                           |
-| Portfolio production URL    | Phase 3 decision                                   | Deferred         | Do not invent before deployment architecture selects the production URL                           |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Ready            | Public project detail link after source and rights review                                         |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public           | Public product link; keep any demo credentials out of portfolio copy                              |
-| `Karly` design reference    | Owner-provided public Figma URL                    | Ready            | Owner-approved read-only design reference; use exact assets only after attribution/privacy review |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Ready            | Public project detail link after source and rights review                                         |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public           | Public product link; keep any demo credentials out of portfolio copy                              |
-| Public email                | `dczwtu12b+portfolio@gmail.com`                    | Ready            | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters and labels  |
-| Custom domain contact email | Phase 3 Cloudflare-routed address                  | Phase 3 Decision | `PBI-049`; route to the verified portfolio Gmail destination before publication                   |
-| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready            | Public Korean resume download after `PBI-041` final export                                        |
-| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public           | Professional highlight and resume evidence; keep private operations detail out of portfolio copy  |
+| Link Entity                 | Destination                                        | Status   | Product Use                                                                                       |
+| --------------------------- | -------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Ready    | Hero secondary action and footer/contact action; use for every broad `GitHub` label               |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Ready    | `portfolio-ybkim` project card and detail evidence only                                           |
+| Portfolio production URL    | Cloudflare-managed Pages subdomain                 | Selected | Publish the provider-returned `*.pages.dev` hostname after the first verified production deploy   |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Ready    | Public project detail link after source and rights review                                         |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public   | Public product link; keep any demo credentials out of portfolio copy                              |
+| `Karly` design reference    | Owner-provided public Figma URL                    | Ready    | Owner-approved read-only design reference; use exact assets only after attribution/privacy review |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Ready    | Public project detail link after source and rights review                                         |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public   | Public product link; keep any demo credentials out of portfolio copy                              |
+| Public email                | `dczwtu12b+portfolio@gmail.com`                    | Ready    | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters and labels  |
+| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready    | Public Korean resume download after `PBI-041` final export                                        |
+| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public   | Professional highlight and resume evidence; keep private operations detail out of portfolio copy  |
 
 GitHub `noreply` addresses are privacy and commit-attribution addresses, not a
-recruiter contact channel. The initial public contact email is
-`dczwtu12b+portfolio@gmail.com`, managed with Gmail filters and labels. After
-the Phase 3 domain decision, create a Cloudflare Email Routing address such as
-`contact@{production-domain}` or `hello@{production-domain}` on the Free plan
-and forward it to `dczwtu12b+portfolio@gmail.com`. Verify the destination and
-test delivery from another account before replacing the public contact action.
-Keep the existing Gmail contact as the fallback. Do not add paid Google
-Workspace or custom reply-from configuration unless a later product decision
-accepts that extra cost and operational scope.
+recruiter contact channel. The public contact email remains
+`dczwtu12b+portfolio@gmail.com`, managed with Gmail filters and labels. The
+owner selected the free Cloudflare-managed Pages hostname and does not plan to
+purchase a domain, so Cloudflare Email Routing and custom reply-from behavior
+are outside the portfolio baseline.
 
 While the build-time job status accepts email contact, open a pre-addressed
 Gmail web compose view in a new browser context and keep the portfolio email
@@ -93,13 +88,12 @@ generated page.
 
 ## Contact Source Data
 
-| Contact Action     | Implementation Readiness | Copy Direction                                     | Notes                                                                         |
-| ------------------ | ------------------------ | -------------------------------------------------- | ----------------------------------------------------------------------------- |
-| GitHub profile     | Ready                    | Continue the review or conversation through GitHub | Every broad `GitHub` label points to the owner profile                        |
-| Gmail compose      | Status-dependent         | Write an email in Gmail                            | Include a pre-addressed Gmail action only while email contact is accepted     |
-| Email address copy | Status-dependent         | Copy the portfolio email                           | Include the address and feedback only while email contact is accepted         |
-| Domain email       | Phase 3 Decision         | Contact for opportunities                          | Use Cloudflare Email Routing for receiving only after production domain setup |
-| Resume PDF         | Ready                    | Download Korean resume                             | Link `/assets/resume/yb-kim-resume.pdf` after the public asset exists         |
+| Contact Action     | Implementation Readiness | Copy Direction                                     | Notes                                                                     |
+| ------------------ | ------------------------ | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| GitHub profile     | Ready                    | Continue the review or conversation through GitHub | Every broad `GitHub` label points to the owner profile                    |
+| Gmail compose      | Status-dependent         | Write an email in Gmail                            | Include a pre-addressed Gmail action only while email contact is accepted |
+| Email address copy | Status-dependent         | Copy the portfolio email                           | Include the address and feedback only while email contact is accepted     |
+| Resume PDF         | Ready                    | Download Korean resume                             | Link `/assets/resume/yb-kim-resume.pdf` after the public asset exists     |
 
 ## Resume Source Data
 
@@ -111,13 +105,13 @@ downloadable resume.
 | --------------- | -------------------------------------------------------------------------------------- |
 | Role label      | Use `Web Developer`; present frontend strength first and adjacent full-stack coverage  |
 | Language        | Maintain Korean primary resume and English companion draft                             |
-| Contact email   | Use `dczwtu12b+portfolio@gmail.com` until Phase 3 domain email routing is ready        |
+| Contact email   | Use `dczwtu12b+portfolio@gmail.com` as the public portfolio contact                    |
 | Phone           | Omit from the public downloadable resume; provide later only through application flows |
 | Home address    | Omit from the public downloadable resume                                               |
 | Location        | Use owner-approved city/district-level location only                                   |
 | Reason leaving  | Omit from the public resume body; prepare for application forms or interviews          |
 | Employer        | `주식회사 룰메이커스` is approved for the public resume; use `Rulemakers` in English   |
-| Portfolio URL   | Add after Phase 3 production URL decision                                              |
+| Portfolio URL   | Add the provider-returned `*.pages.dev` URL after the first verified production deploy |
 | GitHub          | Include `https://github.com/DragonTiger92`                                             |
 | Editable source | Keep the draft DOCX in owner-controlled private storage until approval                 |
 | Public PDF path | Publish reviewed PDF at `/assets/resume/yb-kim-resume.pdf`                             |
@@ -250,7 +244,8 @@ The initial Phase 2 content input is frozen as follows:
   explicit owner decision.
 - Do not expose private professional source, internal names, private URLs,
   credentials, endpoints, workflows, screenshots, or confidential architecture.
-- Defer the production URL and custom-domain email to Phase 3.
+- Resolve the production URL from the live Pages project output during Phase 3;
+  keep the existing Gmail contact unchanged.
 
 These deferrals are part of the freeze, not missing placeholder values. A later
 scope change should reopen the affected disclosure row before implementation
@@ -268,11 +263,11 @@ copy or assets change.
 - Treat each public repository as project-scoped review evidence, with the
   `portfolio-ybkim` source linked only from its project card and detail.
 - Treat a Gmail web compose action plus the visible, copyable
-  `dczwtu12b+portfolio@gmail.com` address as the interim public contact.
+  `dczwtu12b+portfolio@gmail.com` address as the public contact.
 - Use `/assets/resume/yb-kim-resume.pdf` as the resume asset path after
   `PBI-041` final export.
-- Keep the production URL deferred to Phase 3. Treat an academy detail route as
-  optional later scope; the initial surface can link the public product URL from
-  the company-project summary.
+- Add the provider-returned Pages production URL after live Phase 3 verification.
+  Treat an academy detail route as optional later scope; the initial surface can
+  link the public product URL from the company-project summary.
 - Do not create a separate `/resume` route or contact route for the first
   implementation; use existing anchors and external links.

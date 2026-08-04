@@ -113,7 +113,6 @@ governance work rather than product behavior.
 
 | Requirement ID | PBI ID    | Coverage Role |
 | -------------- | --------- | ------------- |
-| `FR-003`       | `PBI-049` | Operate       |
 | `FR-002`       | `PBI-066` | Implement     |
 | `FR-003`       | `PBI-066` | Implement     |
 | `NFR-004`      | `PBI-066` | Verify        |

@@ -38,6 +38,8 @@ server runtime; Node.js remains a build-time tool only.
 
 - Production uses a Cloudflare Pages project when the PH-003 decision is
   implemented.
+- Production uses the Cloudflare-managed `*.pages.dev` hostname returned by the
+  Pages project. A purchased custom domain is not a launch dependency.
 - Astro routes are generated for the selected root deployment path. Do not add a
   GitHub Pages project-path base solely as an obsolete production default.
 - No application server runtime, database, or backend API is required.
@@ -49,28 +51,26 @@ server runtime; Node.js remains a build-time tool only.
 
 ## Platform Components
 
-| Component                | Responsibility                                              | Phase / State                           |
-| ------------------------ | ----------------------------------------------------------- | --------------------------------------- |
-| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                         |
-| GitHub Actions           | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003      |
-| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                     |
-| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                          |
-| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                          |
-| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                          |
-| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003   |
-| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                          |
-| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003             |
-| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                          |
-| Cloudflare DNS and TLS   | Serve an optional custom domain securely                    | Only if a custom domain is adopted      |
-| Cloudflare Email Routing | Receive domain contact mail at the portfolio Gmail address  | `PBI-049`, after custom-domain adoption |
+| Component                | Responsibility                                              | Phase / State                         |
+| ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
+| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
+| GitHub Actions           | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003    |
+| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                   |
+| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
+| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                        |
+| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                        |
+| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
+| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
+| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003           |
+| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                        |
 
 There is no separately managed staging machine, origin application server,
 database server, or logging server in the baseline architecture.
 
 The exact Cloudflare Terraform resources and durable remote-state backend are
-intentionally selected during PH-003. Deferring those choices is expected while
-the Cloudflare account, domain, Access policy, and deployment resources do not
-yet exist.
+selected during PH-003. The baseline manages one Direct Upload Pages project
+and preview Access boundary without a DNS zone, custom-domain binding, or Email
+Routing resource.
 
 ## Direct Upload Readiness
 
@@ -237,8 +237,8 @@ this static site:
 - inspect response headers and rerun production smoke behavior against the real
   Cloudflare URL rather than treating a configuration file as sufficient proof.
 
-Do not preselect HSTS or custom-domain-only behavior before the production domain
-and TLS ownership are settled.
+Evaluate HSTS only after the live `*.pages.dev` production hostname and response
+behavior are verified. Do not add custom-domain-only behavior to this baseline.
 
 The account-free baseline is versioned in `public/_headers`. It keeps HTML and
 stable public output on revalidation, makes only content-hashed `/_astro/`
