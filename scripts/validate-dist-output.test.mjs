@@ -55,11 +55,14 @@ describe("static output contract", () => {
     actualPaths: [
       "_astro/app.hash.js",
       "assets/logo.svg",
+      "assets/brand/social-preview.png",
       "index.html",
       "projects/demo/index.html",
+      "robots.txt",
+      "sitemap.xml",
     ],
-    expectedPublicPaths: ["assets/logo.svg"],
-    expectedRoutePaths: ["index.html", "projects/demo/index.html"],
+    expectedPublicPaths: ["assets/brand/social-preview.png", "assets/logo.svg"],
+    expectedRoutePaths: ["index.html", "projects/demo/index.html", "robots.txt", "sitemap.xml"],
     rootReferences: ["", "_astro/app.hash.js", "assets/logo.svg", "projects/demo/"],
   };
 
@@ -78,7 +81,13 @@ describe("static output contract", () => {
         actualPaths: ["extra.txt", "index.html"],
       }),
       {
-        missing: ["assets/logo.svg", "projects/demo/index.html"],
+        missing: [
+          "assets/brand/social-preview.png",
+          "assets/logo.svg",
+          "projects/demo/index.html",
+          "robots.txt",
+          "sitemap.xml",
+        ],
         unexpected: ["extra.txt"],
         unresolvedReferences: ["/_astro/app.hash.js", "/assets/logo.svg", "/projects/demo/"],
       },

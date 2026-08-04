@@ -1,156 +1,85 @@
 # portfolio-ybkim
 
-웹 개발자로서의 재취직을 목표로 제작 중인 개인 포트폴리오 프로젝트입니다. 포지셔닝은 **FE 중심 풀스택 웹 개발자(Frontend-specialized full-stack web developer)** 입니다.
+웹 개발자 김용범의 프로젝트 결과와 구현 판단을 함께 살펴볼 수 있는 정적 포트폴리오입니다. 방문자는 공개 프로젝트와 역량을 빠르게 확인할 수 있고, 기술 리뷰어는 같은 저장소에서 요구사항, 아키텍처 결정, 코드와 품질 검증 근거를 추적할 수 있습니다.
 
-이 저장소는 완성된 결과물뿐 아니라, Astro의 정적 생성, TypeScript,
-시맨틱 HTML(semantic HTML), Pure CSS를 기반으로 웹사이트를 설계하고
-개선해 가는 과정을 함께 보여주기 위한 작업 공간입니다. Cloudflare
-Pages에 배포하는 가볍고 빠른 정적 사이트를 목표로 합니다.
+제품의 진행 우선순위와 계획은 [Roadmap](docs/planning/roadmap.md)에서 관리합니다.
 
-## For Recruiters
+## 제품 정의
 
-이 프로젝트에서 중점적으로 보여주고 싶은 역량은 다음과 같습니다.
+`portfolio-ybkim`은 프론트엔드 구현을 중심으로 다음 역량을 보여주는 제품입니다.
 
-- 프론트엔드 구현을 중심으로 제품 흐름을 끝까지 이해하고 다루는 역량
-- TypeScript를 사용해 작은 코드베이스라도 명확하고 안전하게 관리하는 습관
-- CSS 구조, 반응형 레이아웃, 접근성, 성능을 함께 고려하는 구현 방식
-- 요구사항, 아키텍처, ADR, SBOM 등 프로젝트 문서를 정리하는 태도
-- LLM을 실무 도구처럼 활용해 기획, 구현, 검토, 문서화를 반복하는 작업 방식
+- 의미가 드러나는 HTML과 접근 가능한 상호작용을 설계하는 능력
+- TypeScript와 Astro를 사용해 정적 웹 제품을 구조화하는 능력
+- Pure CSS로 반응형 레이아웃과 light/dark theme를 일관되게 구현하는 능력
+- 요구사항, ADR, 제품 백로그와 검증 절차를 코드와 함께 관리하는 능력
+- 공개 가능한 근거와 비공개 자료의 경계를 유지하는 제품 판단
 
-## Documentation
+페이지의 콘텐츠뿐 아니라 저장소의 구조와 검증 과정도 포트폴리오 결과물에 포함됩니다.
 
-프로젝트 문서는 [`docs/`](docs/)에 정리합니다. `docs/`는 공개 가능한 일반
-프로젝트 문서만 담고, agent-only guideline은 `.agents/`에서 관리합니다.
-비공개 source material은 공개 저장소 밖의 owner-controlled storage에
-보관하고, disclosure review를 통과한 요약만 공개합니다.
+## 검토 포인트
 
-Root [`DESIGN.md`](DESIGN.md)는 이 포트폴리오의 디자인 판단 기준을
-정리한 harness입니다. 사람이 읽을 수 있게 작성하되, 새 UI를 만들거나
-수정하는 LLM agent가 기존 token, layout, accessibility, coherence 결정을
-반복 적용할 수 있게 하는 데 중점을 둡니다.
+- landing page에서 개발자 포지셔닝, 공개 프로젝트와 기술 역량을 한 흐름으로 탐색할 수 있습니다.
+- 각 공개 프로젝트는 별도 상세 route에서 역할, 기여 범위, 구현 접근과 결과를 설명합니다.
+- 공개 저장소의 요구사항, ADR와 Product Backlog를 통해 구현 의도를 추적할 수 있습니다.
+- 정적 분석, standards validation, accessibility와 browser regression test로 결과를 반복 검증합니다.
+- resume와 외부 링크는 공개 검토에 필요한 최소 범위로 연결합니다.
 
-주요 문서:
+## 아키텍처와 기술
 
-- [Design Harness](DESIGN.md)
-- [Project Brief](docs/planning/project-brief.md)
-- [Functional Requirements](docs/requirements/functional-requirements.md)
-- [Non-Functional Requirements](docs/requirements/non-functional-requirements.md)
-- [Architecture Overview](docs/architecture/overview.md)
-- [ADR](docs/adr/)
-- [Supply Chain Notes](docs/security/supply-chain.md)
+| 영역            | 선택                                    |
+| --------------- | --------------------------------------- |
+| Rendering       | Astro static output                     |
+| Markup          | Semantic HTML                           |
+| Styling         | Pure CSS, CSS custom properties         |
+| Language        | TypeScript                              |
+| Content         | Astro content collections, Markdown     |
+| Quality         | ESLint, Prettier, HTML Validate, W3C Nu |
+| Browser testing | Playwright, axe-core                    |
+| Delivery        | Cloudflare Pages                        |
 
-## License And Notice
+사이트는 application server 없이 정적 artifact로 생성됩니다. 콘텐츠, route, component, style과 검증 책임을 분리하고 Cloudflare Pages root에서 동작하는 shallow information architecture를 유지합니다.
 
-Source code and build/configuration files required to run this portfolio project
-are licensed under the [MIT License](LICENSE).
+## 저장소 검토 경로
 
-Portfolio content, documentation, personal descriptions, visual design content,
-images, and other non-code materials are Copyright (c) 2026 YB Kim. All rights
-reserved unless otherwise stated. See [NOTICE.md](NOTICE.md).
+- [Project Brief](docs/planning/project-brief.md): 제품 목적, 대상과 경계
+- [Documentation Map](docs/README.md): public project document 전체 구조
+- [Architecture Overview](docs/architecture/overview.md): 정적 사이트 구성과 책임
+- [Architecture Decision Records](docs/adr/): 주요 기술·운영 결정
+- [Product Backlog](docs/planning/product-backlog.md): 구현 단위와 acceptance criteria
+- [Development Workflow](docs/process/development-workflow.md): branch, review와 품질 gate
+- [Design Harness](DESIGN.md): UI의 시각·반응형·접근성 방향
 
-This repository is public for portfolio review. External contributions, pull
-requests, issue-based suggestions, and unsolicited project proposals are not
-accepted.
+## 로컬 검증
 
-## Tech Stack
+저장소는 Node.js `24.18.0`과 pnpm `11.10.0`을 기준으로 합니다. Windows PowerShell에서는 다음과 같이 실행합니다.
 
-| Area         | Stack                                   |
-| ------------ | --------------------------------------- |
-| Markup       | Astro, semantic HTML                    |
-| Styling      | CSS                                     |
-| Language     | TypeScript                              |
-| Build Tool   | Astro                                   |
-| Code Quality | ESLint, Prettier, HTML Validate, W3C Nu |
-| Testing      | Playwright, axe-core                    |
-| Hosting      | Cloudflare Pages                        |
+```powershell
+pnpm.cmd install --frozen-lockfile
+pnpm.cmd dev
+```
+
+전체 제품 검증은 하나의 canonical command로 수행합니다.
+
+```powershell
+pnpm.cmd check
+```
+
+이 명령은 type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 browser accessibility test를 순서대로 실행합니다.
+
+## 배포와 릴리스 모델
+
+배포 대상은 Cloudflare Pages이며 Preview와 Production을 분리합니다. 배포 후보는 검증된 `dist/` artifact와 source revision의 관계를 보존하고, Production 배포 후 smoke 검증이 성공한 revision만 SemVer annotated tag와 GitHub Release의 대상이 됩니다.
+
+배포 구조, 보안 header, artifact evidence와 release 정책은 [Deployment Architecture](docs/architecture/deployment.md)에서 확인할 수 있습니다.
 
 ## AI-Assisted Workflow
 
-이 프로젝트는 LLM을 단순 코드 생성 도구가 아니라 개발 파트너로 활용하는 방식으로 진행합니다.
+LLM은 요구사항 정리, 구현 대안 검토, 코드 작성과 검증 보조에 사용합니다. 제안된 결과는 저장소의 공개 규칙, 제품 요구사항과 실제 검증 결과를 기준으로 사람이 검토하며, agent 전용 운영 지침과 public project documentation의 경계를 분리합니다.
 
-- 사용 LLM: OpenAI GPT-5 Codex
-- 활용 방식: 요구사항 정리, 구현 방향 검토, 코드 품질 점검, README 및 작업 기록 보강
-- 작업 원칙: LLM이 제안한 내용을 그대로 수용하지 않고, 프로젝트 목적과 코드 맥락에 맞는지 검토한 뒤 반영
+## License And Notice
 
-## Goals
+Source code and build/configuration files required to run this portfolio project are licensed under the [MIT License](LICENSE).
 
-- 웹 개발자로서의 문제 해결 방식과 구현 역량을 보여주는 포트폴리오를 만든다.
-- 프레임워크 의존을 최소화하고 브라우저 기본 기술, TypeScript, CSS 설계 역량을 드러낸다.
-- Cloudflare Pages에 배포하는 가볍고 빠른 정적 사이트로 유지한다.
-- 작업 과정에서 README와 docs를 함께 보강해 프로젝트 의도, 구조, 의사결정을 기록한다.
-- 공개 포트폴리오 문구는 근거 있게 작성하되, 회사 내부 자료나 private project 세부사항은 노출하지 않는다.
+Portfolio content, documentation, personal descriptions, visual design content, images, and other non-code materials are Copyright (c) 2026 YB Kim. All rights reserved unless otherwise stated. See [NOTICE.md](NOTICE.md).
 
-## Getting Started
-
-```bash
-pnpm install
-pnpm dev
-```
-
-## Scripts
-
-```bash
-pnpm dev
-pnpm typecheck
-pnpm lint
-pnpm lint:fix
-pnpm format
-pnpm format:check
-pnpm test:a11y
-pnpm test:static-budget
-pnpm sbom:cyclonedx
-pnpm check:static
-pnpm check
-pnpm build:bundle
-pnpm build
-pnpm preview
-pnpm validate:static-budget
-```
-
-- `dev`: Astro 개발 서버를 실행합니다.
-- `typecheck`: Astro와 TypeScript 타입 검사를 실행합니다.
-- `lint`: ESLint로 코드와 설정 파일을 검사합니다.
-- `lint:fix`: 자동 수정 가능한 ESLint 문제를 수정합니다.
-- `format`: Prettier로 전체 파일을 포맷합니다.
-- `format:check`: Prettier 포맷 상태를 검사합니다.
-- `test:a11y`: 최신 Astro build를 생성한 뒤 browser accessibility test를 실행합니다.
-- `test:static-budget`: 정적 산출물 예산 validator의 단위 테스트를 실행합니다.
-- `sbom:cyclonedx`: root CycloneDX SBOM을 재생성합니다.
-- `check:static`: 타입, lint, 파일 크기, 포맷, Astro 빌드, 정적 산출물 예산, HTML 표준을 검사합니다.
-- `check`: 정적 검사에 실제 브라우저 접근성 검사를 더해 전체 품질 gate를 실행합니다.
-- `build:bundle`: 타입 검사를 반복하지 않고 Astro 정적 산출물을 생성합니다.
-- `build`: 배포용 정적 파일을 생성합니다.
-- `preview`: 빌드 결과를 로컬에서 미리 봅니다.
-- `validate:static-budget`: 최신 `dist/`의 deterministic raw-byte 예산을 검사합니다.
-
-## Project Structure
-
-```text
-.
-├── public/
-├── docs/
-├── DESIGN.md
-├── src/
-│   ├── components/
-│   ├── content/projects/
-│   ├── layouts/
-│   ├── pages/
-│   ├── scripts/
-│   └── styles/
-├── tests/
-├── astro.config.mjs
-├── playwright.config.ts
-├── eslint.config.js
-├── LICENSE
-├── NOTICE.md
-├── .prettierrc
-├── .prettierignore
-├── SECURITY.md
-├── tsconfig.json
-└── package.json
-```
-
-## Deployment
-
-Cloudflare Pages 배포를 목표로 합니다. Astro는 static output과 루트 경로를
-사용하며, 배포 workflow와 Cloudflare 인프라는 PH-003에서 구현합니다.
+This repository is public for portfolio review. External contributions, pull requests, issue-based suggestions, and unsolicited project proposals are not accepted.

@@ -36,6 +36,29 @@ async function expectExternalProjectLinks(card: Locator, expectedLabels: string[
   }
 }
 
+async function expectNarrowProjectTitleLayout(projectTitles: Locator) {
+  for (const projectTitle of await projectTitles.all()) {
+    await expect(projectTitle).toHaveCSS("font-size", "24px");
+
+    const titleMetrics = await projectTitle.locator("a").evaluate((link) => {
+      const linkBox = link.getBoundingClientRect();
+      const heading = link.closest("h4");
+
+      if (heading === null) {
+        throw new Error("Expected the project title link to belong to an h4.");
+      }
+
+      return {
+        fitsHeading: heading.scrollWidth <= heading.clientWidth,
+        linkHeight: linkBox.height,
+      };
+    });
+
+    expect(titleMetrics.fitsHeading).toBe(true);
+    expect(titleMetrics.linkHeight).toBeGreaterThanOrEqual(44);
+  }
+}
+
 test("uses reviewable project content instead of decorative identity panels", async ({ page }) => {
   await page.goto("/");
 
@@ -76,4 +99,46 @@ test("uses reviewable project content instead of decorative identity panels", as
 
   expect(linkedTitleStyles.skipInk).toBe("none");
   expect(linkedTitleStyles.underlineOffset).not.toBe("auto");
+});
+
+test("strengthens project title hierarchy only on narrow viewports", async ({ page }) => {
+  await page.setViewportSize({ height: 844, width: 390 });
+
+  for (const colorScheme of ["light", "dark"] as const) {
+    await page.emulateMedia({ colorScheme });
+    await page.goto("/");
+
+    const projectTitles = page.locator("#projects .project-card h4");
+
+    await expect(page.locator("html")).toHaveAttribute("data-theme", colorScheme);
+    await expect(projectTitles).toHaveCount(projectCards.length);
+
+    await expectNarrowProjectTitleLayout(projectTitles);
+
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    ).toBe(true);
+  }
+
+  await page.setViewportSize({ height: 1000, width: 1440 });
+
+  const desktopTitleSizes = await page
+    .locator("#projects .project-card h4")
+    .evaluateAll((titles) => titles.map((title) => getComputedStyle(title).fontSize));
+  const desktopHeadingTokenSize = await page.evaluate(() => {
+    const tokenProbe = document.createElement("span");
+
+    tokenProbe.style.fontSize = "var(--text-h3)";
+    document.body.append(tokenProbe);
+
+    const tokenSize = getComputedStyle(tokenProbe).fontSize;
+
+    tokenProbe.remove();
+
+    return tokenSize;
+  });
+
+  expect(desktopTitleSizes).toEqual(
+    Array.from({ length: projectCards.length }, () => desktopHeadingTokenSize),
+  );
 });
