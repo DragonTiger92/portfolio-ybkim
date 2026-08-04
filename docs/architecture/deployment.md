@@ -51,18 +51,18 @@ server runtime; Node.js remains a build-time tool only.
 
 ## Platform Components
 
-| Component                | Responsibility                                              | Phase / State                         |
-| ------------------------ | ----------------------------------------------------------- | ------------------------------------- |
-| GitHub repository        | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
-| GitHub Actions           | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003    |
-| Astro                    | Produce the deployable `dist/` static artifact              | Existing build tool                   |
-| Wrangler                 | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
-| Cloudflare Pages         | Store deployments and serve static files through the edge   | PH-003 planned                        |
-| Cloudflare Access        | Protect selected preview deployments from public access     | PH-003 planned                        |
-| Terraform                | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
-| GitHub Releases          | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
-| External synthetic probe | Detect production URL or critical-asset failure             | Provider selected in PH-003           |
-| Privacy-aware analytics  | Measure aggregate route and content interest after launch   | PH-004 planned                        |
+| Component               | Responsibility                                              | Phase / State                         |
+| ----------------------- | ----------------------------------------------------------- | ------------------------------------- |
+| GitHub repository       | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
+| GitHub Actions          | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003    |
+| Astro                   | Produce the deployable `dist/` static artifact              | Existing build tool                   |
+| Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
+| Cloudflare Pages        | Store deployments and serve static files through the edge   | PH-003 planned                        |
+| Cloudflare Access       | Protect selected preview deployments from public access     | PH-003 planned                        |
+| Terraform               | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
+| GitHub Releases         | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
+| Checkly                 | Detect production URL, critical-asset, and TLS failure      | Selected for post-v1 PH-003 work      |
+| Privacy-aware analytics | Measure aggregate route and content interest after launch   | PH-004 planned                        |
 
 There is no separately managed staging machine, origin application server,
 database server, or logging server in the baseline architecture.
@@ -140,8 +140,9 @@ but it is a Cloudflare Pages deployment with its own URL and static artifact.
 - Keep `docs/`, `ci/`, `infra/`, `security/`, `refactor/`, and `chore/` branches
   manual by default. Exclude Dependabot, forks, drafts, `wip/*`, and invalid
   branch names from automatic credential-bearing preview jobs.
-- Do not tag ordinary previews. Use an `-rc.N` tag only when the deployed preview
-  is an actual candidate for the target production release.
+- Do not tag previews. Identify a production candidate by its full Git revision,
+  checked artifact manifest, and evidence run until post-deployment Production
+  smoke checks authorize the final release tag.
 
 The preview workflow must use the `pull_request` event rather than
 `pull_request_target`, keep permissions least-privileged, and use one concurrency
@@ -249,7 +250,9 @@ Cloudflare response headers and browser behavior still require live review.
 
 ## Release Versioning
 
-Production releases use SemVer-style Git tags in the form `vX.Y.Z`.
+Production releases use unsigned annotated Git tags in the form `vX.Y.Z`. The
+tag version must equal the selected revision's `package.json.version`, and the
+tag must peel to the exact revision already deployed and verified in Production.
 
 Version increments are based on the user-visible product change:
 
@@ -260,16 +263,23 @@ Version increments are based on the user-visible product change:
 - Patch (`Z`): corrections, styling adjustments, accessibility fixes,
   performance fixes, link fixes, and other small behavior-preserving changes.
 
-Release candidate tags use the form `vX.Y.Z-rc.N` only when a preview or
-staging deployment is being evaluated as a production candidate.
+Preview deployments, ordinary `main` deployments, and operational-state
+redeployments do not receive Git tags. Release candidates are identified by
+their full Git revision and checked artifact rather than a `-rc.N` tag. A
+production release tag represents a meaningful public release, and the final
+version bump is decided intentionally rather than inferred from a deployment.
 
-The `N` value starts at `1` for each target release version and increments for
-each new candidate of the same version. For example, `v1.2.0-rc.1` can be
-followed by `v1.2.0-rc.2`, then the final production tag `v1.2.0`.
+The formal release workflow is the only CI/CD path allowed to create a tag. It
+must accept an explicit `X.Y.Z` version and full `main` revision, verify their
+identity before deployment, and create the annotated tag only after Production
+smoke checks succeed. A published tag is immutable: do not move, replace, or
+delete it. Corrections use the next patch version, and rollback never moves an
+existing tag.
 
-Ordinary feature branch previews do not require Git tags. A production release
-tag should represent a meaningful public release, and the final version bump is
-decided intentionally rather than inferred automatically from every deployment.
+If GitHub Release publication fails after tag creation, an idempotent retry is
+allowed only when the existing tag peels to the same reviewed revision. A
+different revision or version requires a new release decision rather than tag
+mutation.
 
 ## Roadmap Release Targets
 
@@ -278,8 +288,8 @@ The first production public release is planned for `PH-003` and should use
 
 Earlier roadmap phases do not receive production Git tags because they prepare
 documentation, workflow, content, and implementation readiness without
-publishing an operations-ready product. During `PH-003`, release candidates may
-use `v1.0.0-rc.N` before the final `v1.0.0` tag.
+publishing an operations-ready product. During `PH-003`, release candidates use
+their full revision and checked artifact before the final `v1.0.0` tag.
 
 Post-launch work in `PH-004` should use `v1.1.0` or later minor versions for
 meaningful new capabilities such as analytics or discovery improvements, and
