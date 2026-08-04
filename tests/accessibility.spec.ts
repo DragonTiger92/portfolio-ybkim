@@ -225,6 +225,10 @@ test("publishes the reviewed brand identity and install metadata", async ({ page
     "href",
     "/assets/brand/site.webmanifest",
   );
+  await expect(page.locator('link[rel="manifest"]')).toHaveAttribute(
+    "crossorigin",
+    "use-credentials",
+  );
 
   const manifestResponse = await page.request.get("/assets/brand/site.webmanifest");
   expect(manifestResponse.ok()).toBe(true);
