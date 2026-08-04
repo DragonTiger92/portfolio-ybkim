@@ -85,6 +85,11 @@ Follow the public workflow in `docs/process/development-workflow.md`.
 - Preserve an unmerged `wip/*` branch until its commits and ownership are
   understood. A temporary name is not sufficient evidence that its work is
   disposable.
+- Treat `wip/temp` as an owner-only manual branch and exclude it from ordinary
+  agent work. Do not inspect it, compare divergence, synchronize it, include it
+  in cleanup, or use its state as a blocker. A normal remote fetch may update
+  the ref incidentally, but agents must not query or mutate the branch unless
+  the owner explicitly places `wip/temp` in the current task scope.
 - Let `Sync Open PR Branches` update open, same-repository pull request branches
   that target `main`. Do not duplicate that automation with a bulk local merge.
 - Before synchronizing a retained human topic branch that has no open pull

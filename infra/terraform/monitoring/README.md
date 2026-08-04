@@ -1,9 +1,14 @@
-# Production Monitoring Terraform
+# Legacy Production Monitoring Terraform
 
-This root defines the credential-free PH-003 monitoring contract. It does not
-create a Better Stack account, token, monitor, incident, or notification during
-the foundation stage. `PBI-032` remains open until the monitors and an actual
-DOWN/UP email notification are verified against production.
+This root is a frozen Better Stack foundation retained only as migration input.
+The owner deleted the Better Stack account and selected Checkly for `PBI-032`.
+Do not use this configuration for live monitoring or supply credentials until
+the provider, resources, variables, lockfile, and documentation are migrated to
+the owner-approved Checkly contract.
+
+`PBI-032` remains open until the Checkly monitors and a controlled DOWN/recovery
+notification test are verified. The durable implementation contract is recorded
+in [Production Readiness](../../../docs/operations/production-readiness.md).
 
 ## Future HCP Terraform Workspace
 
@@ -14,39 +19,29 @@ DOWN/UP email notification are verified against production.
 - Terraform version: `1.15.6`
 - automatic apply: disabled
 
-After the owner creates a Better Stack personal team, store a team-scoped Uptime
-API token only as the sensitive HCP environment variable
-`TF_VAR_betteruptime_api_token`. Store `TF_VAR_production_base_url` as a
-non-sensitive workspace environment variable after the canonical HTTPS origin
-is live. Do not put either value in repository files or prompts.
+Do not configure this workspace with Better Stack credentials. The future
+Checkly variables must follow the reviewed HCP Terraform contract after the
+migration is version-controlled and its exact provider pin is separately
+approved.
 
-## Monitor Contract
+## Historical Monitor Contract
 
-The root declares two HTTPS status monitors:
+The frozen root currently declares two Better Stack HTTPS status monitors:
 
 - the canonical homepage; and
 - `/assets/brand/logo-mark.svg` as a stable critical asset.
 
-Both use the free-tier 180-second interval, follow redirects, validate TLS and
-30-day certificate expiry, send email notifications through the account's
-default escalation path, and are protected from accidental destruction. A
-separate escalation policy is intentionally excluded from the single-maintainer
-baseline.
+This historical declaration is not the selected steady state and must not be
+planned or applied. The Checkly migration replaces its interval, locations,
+alert subscription, credential inputs, and provider resources.
 
-The owner must verify the recipient, trigger a controlled DOWN/UP test, confirm
-the received email, and record retention, privacy, and ownership evidence before
-`PBI-032` can be completed.
+## Migration Hold
 
-## Credential-Free Validation
+Repository CI may continue credential-free formatting and static validation of
+the frozen root until the migration lands. That validation is not approval for
+live provider use. Outside the existing CI contract, do not initialize or update
+the provider lockfile without the separately approved migration.
 
-The only commands authorized before account setup are:
-
-```powershell
-terraform fmt -check -recursive
-terraform -chdir=infra/terraform/monitoring init -backend=false
-terraform -chdir=infra/terraform/monitoring providers lock -platform=windows_amd64 -platform=linux_amd64
-terraform -chdir=infra/terraform/monitoring validate
-```
-
-Do not run refresh, plan, apply, import, destroy, or any Better Stack API command
-during the account-free foundation stage.
+Do not run refresh, plan, apply, import, destroy, or any Better Stack API command.
+Do not create, replace, or destroy Checkly resources until the migration diff,
+inventory, exact provider version, and remote plan pass owner review.
