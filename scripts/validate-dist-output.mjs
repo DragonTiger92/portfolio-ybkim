@@ -1,5 +1,5 @@
 import { execFile } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { extname, posix, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { promisify } from "node:util";
@@ -8,6 +8,7 @@ import { listArtifactFiles } from "./artifact-files.mjs";
 
 const execFileAsync = promisify(execFile);
 const referenceFileExtensions = new Set([".css", ".html", ".js", ".mjs", ".webmanifest"]);
+const requiredPublicPaths = ["assets/resume/resume-ybkim.pdf"];
 
 function uniqueSorted(values) {
   return [...new Set(values)].toSorted();
@@ -115,8 +116,22 @@ async function listTrackedPaths(pathspec) {
 
 async function collectExpectedPublicPaths() {
   const trackedPublicPaths = await listTrackedPaths("public");
+  const normalizedTrackedPaths = trackedPublicPaths.map((path) => path.replace(/^public\//u, ""));
+  const existingTrackedPaths = (
+    await Promise.all(
+      normalizedTrackedPaths.map(async (path) => ({
+        exists: await access(resolve("public", path)).then(
+          () => true,
+          () => false,
+        ),
+        path,
+      })),
+    )
+  )
+    .filter(({ exists }) => exists)
+    .map(({ path }) => path);
 
-  return trackedPublicPaths.map((path) => path.replace(/^public\//u, ""));
+  return uniqueSorted([...existingTrackedPaths, ...requiredPublicPaths]);
 }
 
 async function collectExpectedRoutePaths() {
