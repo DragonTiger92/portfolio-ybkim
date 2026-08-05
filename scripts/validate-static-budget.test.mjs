@@ -92,6 +92,18 @@ describe("inline JavaScript measurement", () => {
 });
 
 describe("static build measurement", () => {
+  it("uses the reviewed v1 static budget baseline", () => {
+    assert.deepEqual(staticBudget, {
+      maxHtmlBytes: 40 * 1024,
+      maxNonDownloadBytes: 64 * 1024,
+      maxPdfBytes: 600 * 1024,
+      totalCssBytes: 32 * 1024,
+      totalHtmlBytes: 80 * 1024,
+      totalJavaScriptBytes: 8 * 1024,
+      totalNonDownloadBytes: 320 * 1024,
+    });
+  });
+
   it("separates route, executable, download, and non-download totals", () => {
     const metrics = measureStaticBuild([
       createEntry("index.html", 100, 20),

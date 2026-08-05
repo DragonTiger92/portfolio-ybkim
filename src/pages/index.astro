@@ -9,6 +9,7 @@ import TagList from "../components/TagList.astro";
 import TechStack from "../components/TechStack.astro";
 import { getJobStatusContent, resolveJobStatusCode } from "../data/job-status";
 import { companyProjectHighlights, landingScopeCopy } from "../data/landing";
+import { siteMetadata } from "../data/site";
 import { capabilityGroups, techStackGroups } from "../data/skills";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/capability-matrix.css";
@@ -21,11 +22,32 @@ const projects = (await getCollection("projects")).sort(
 );
 const jobStatusCode = resolveJobStatusCode(import.meta.env.PORTFOLIO_JOB_STATUS);
 const jobStatus = getJobStatusContent("ko", jobStatusCode);
+
+if (Astro.site === undefined) {
+  throw new Error("Astro site configuration is required for profile metadata.");
+}
+
+const profilePageUrl = new URL("/", Astro.site).href;
+const profilePageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    description: siteMetadata.description,
+    jobTitle: "웹 개발자",
+    name: "김용범",
+    sameAs: ["https://github.com/DragonTiger92"],
+    url: profilePageUrl,
+  },
+  name: siteMetadata.title,
+  url: profilePageUrl,
+};
 ---
 
 <BaseLayout
-  title="개발자 김용범의 포트폴리오"
-  description="프론트엔드 구현을 중심으로 데이터 흐름, 문서화와 검증 가능한 결과물을 함께 정리하는 웹 개발자 김용범의 포트폴리오"
+  title={siteMetadata.title}
+  description={siteMetadata.description}
+  structuredData={profilePageStructuredData}
 >
   <main id="main-content">
     <section id="intro" class="hero-section" aria-labelledby="portfolio-title">

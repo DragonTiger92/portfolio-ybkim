@@ -8,7 +8,8 @@ import { listArtifactFiles } from "./artifact-files.mjs";
 
 const execFileAsync = promisify(execFile);
 const referenceFileExtensions = new Set([".css", ".html", ".js", ".mjs", ".webmanifest"]);
-const requiredPublicPaths = ["assets/resume/resume-ybkim.pdf"];
+const requiredPublicPaths = ["assets/brand/social-preview.png", "assets/resume/resume-ybkim.pdf"];
+const rootRoutePaths = ["index.html", "robots.txt", "sitemap.xml"];
 
 function uniqueSorted(values) {
   return [...new Set(values)].toSorted();
@@ -140,7 +141,7 @@ async function collectExpectedRoutePaths() {
     .filter((path) => extname(path) === ".md")
     .map((path) => `projects/${posix.basename(path, ".md")}/index.html`);
 
-  return ["index.html", ...projectRoutes];
+  return [...rootRoutePaths, ...projectRoutes];
 }
 
 async function collectRootReferences(files) {

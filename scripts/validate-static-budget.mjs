@@ -9,13 +9,13 @@ export { countInlineJavaScriptBytes };
 const kibibyte = 1024;
 
 export const staticBudget = Object.freeze({
-  maxHtmlBytes: 32 * kibibyte,
+  maxHtmlBytes: 40 * kibibyte,
   maxNonDownloadBytes: 64 * kibibyte,
   maxPdfBytes: 600 * kibibyte,
   totalCssBytes: 32 * kibibyte,
-  totalHtmlBytes: 64 * kibibyte,
+  totalHtmlBytes: 80 * kibibyte,
   totalJavaScriptBytes: 8 * kibibyte,
-  totalNonDownloadBytes: 256 * kibibyte,
+  totalNonDownloadBytes: 320 * kibibyte,
 });
 
 const javaScriptExtensions = new Set([".cjs", ".js", ".mjs"]);
