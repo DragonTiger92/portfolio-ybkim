@@ -120,13 +120,18 @@ Use a two-artifact workflow:
 | Artifact             | Path Or Location                   | Publication Rule                                       |
 | -------------------- | ---------------------------------- | ------------------------------------------------------ |
 | Editable DOCX source | Owner-controlled private workspace | Private draft until owner approval                     |
-| Public PDF output    | `/assets/resume/yb-kim-resume.pdf` | Publish only after content, privacy, and visual review |
+| Public PDF output    | `/assets/resume/resume-ybkim.pdf`  | Publish only after content, privacy, and visual review |
 
 The DOCX source should stay private by default so contact details, application
 variants, and draft wording do not become public repository content. If
 language-specific sources are used, keep them under the same private resume
 workspace. The final PDF can be copied into the public asset path only after
 review.
+
+Use the ASCII filename `resume-ybkim.pdf` for a stable public URL, while keeping
+the PDF document title `김용범 이력서` for browser and document-viewer users.
+The filename identifies the downloadable asset; the metadata title remains the
+clear human-readable document name and should not be replaced with the URL slug.
 
 ## Format Direction
 

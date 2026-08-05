@@ -44,8 +44,8 @@ license credentials.
 
 ### Owner-provided ChatGPT brand assets
 
-- **Item:** the selected logo, favicon, and home-screen icon files distributed
-  from `public/assets/brand/`.
+- **Item:** the selected logo, favicon, home-screen icon, and localized social
+  preview files distributed from `public/assets/brand/`.
 - **Material Type:** generated image and vector brand assets.
 - **Source:** an earlier owner-operated ChatGPT image-generation session; the
   exact model version is unavailable. The owner supplied the resulting bundle
@@ -57,18 +57,20 @@ license credentials.
   boundary in `NOTICE.md`. The current
   [OpenAI Terms of Use](https://openai.com/policies/terms-of-use/) assign Output
   ownership to the user as between the user and OpenAI.
-- **Modifications:** the graphic paths and raster artwork are unchanged. SVG
-  accessibility metadata and the web app manifest were localized for the
-  Korean product.
+- **Modifications:** the selected logo, favicon, and home-screen artwork are
+  unchanged. SVG accessibility metadata and the web app manifest were localized
+  for the Korean product. The 1200 by 630 social preview is a palette-optimized
+  derivative that reuses the approved `YB` mark and blue/slate identity while
+  replacing the unused English preview copy with reviewed Korean product copy.
 - **Obligations:** no third-party attribution or redistribution obligation was
   identified. The owner remains responsible for similarity and other
   third-party-rights review because generated output may not be unique.
 - **Notice Location:** root `NOTICE.md` and the visible site footer.
 - **Evidence:** the owner statement in the implementation request, the retained
   source bundle README, the linked provider terms, and manual asset review.
-- **Disposition:** Approved for the selected shipped subset. Unused wordmarks,
-  pattern, token CSS, and English social preview remain outside the production
-  asset tree.
+- **Disposition:** Approved for the selected shipped subset, including the
+  localized social preview. Unused wordmarks, pattern, token CSS, and English
+  social preview remain outside the production asset tree.
 
 ### Pretendard Variable web font
 

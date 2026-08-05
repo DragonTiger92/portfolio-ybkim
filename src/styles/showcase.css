@@ -265,6 +265,10 @@
     font-weight: 720;
   }
 
+  .project-card h4 {
+    font-size: 1.5rem;
+  }
+
   .project-card h4 a {
     display: inline-flex;
     min-block-size: var(--target-size-min);
@@ -313,6 +317,10 @@
       grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1fr);
       align-items: start;
       column-gap: var(--space-8);
+    }
+
+    .project-card h4 {
+      font-size: var(--text-h3);
     }
 
     .project-grid {

@@ -95,7 +95,7 @@ architecture remain outside public copy.
 | `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public      | Project detail link after source and rights review                                    |
 | `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public      | Public product link; do not publish demo credentials or private data                  |
 | Public owner email          | `dczwtu12b+portfolio@gmail.com`                    | Public      | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters |
-| Resume PDF                  | `/assets/resume/yb-kim-resume.pdf`                 | Ready       | Public Korean resume download action                                                  |
+| Resume PDF                  | `/assets/resume/resume-ybkim.pdf`                  | Ready       | Public Korean resume download action                                                  |
 | Academy product URL         | `https://academy.shine-edu.kr/`                    | Public      | Professional highlight and resume evidence; keep private operations detail out        |
 
 ## Private Evidence Intake

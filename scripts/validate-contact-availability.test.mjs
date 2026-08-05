@@ -61,7 +61,7 @@ test("omits email data and actions from a not-looking static build", async () =>
     assert.ok(landingHtml.includes("구직 중이 아님"));
     assert.ok(landingHtml.includes("현재 이메일 연락을 받고 있지 않습니다."));
     assert.ok(hrefValues.some(isExpectedGitHubProfile));
-    assert.ok(landingHtml.includes("/assets/resume/yb-kim-resume.pdf"));
+    assert.ok(landingHtml.includes("/assets/resume/resume-ybkim.pdf"));
     assert.ok(!landingHtml.includes(publicEmail));
     assert.ok(!landingHtml.includes("mail.google.com/mail"));
     assert.ok(!landingHtml.includes("data-copy-email"));

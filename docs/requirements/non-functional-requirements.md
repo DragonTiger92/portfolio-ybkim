@@ -79,11 +79,11 @@ against the generated `dist/` directory:
 
 | Metric                                       |   Limit |
 | -------------------------------------------- | ------: |
-| Largest HTML document                        |  32 KiB |
-| Aggregate HTML                               |  64 KiB |
+| Largest HTML document                        |  40 KiB |
+| Aggregate HTML                               |  80 KiB |
 | Aggregate CSS                                |  32 KiB |
 | Emitted plus executable inline JavaScript    |   8 KiB |
-| Aggregate non-download output, excluding PDF | 256 KiB |
+| Aggregate non-download output, excluding PDF | 320 KiB |
 | Largest individual non-download file         |  64 KiB |
 | Public resume PDF                            | 600 KiB |
 
@@ -105,6 +105,15 @@ recruiter-facing landing content needs sustainable review headroom. CSS,
 JavaScript, PDF, and individual non-download file limits remain unchanged, so
 the rebaseline cannot hide a concentrated stylesheet, script, document, or
 asset regression.
+
+The 2026-08-05 `v1.0.0` discovery baseline measured four HTML routes at 63.49
+KiB aggregate with a 31.43 KiB largest document. Canonical, Open Graph, Twitter,
+and `ProfilePage` metadata account for 6,380 bytes, while the localized social
+preview contributes to a 241.36 KiB non-download aggregate. The reviewed
+rebaseline raises only largest HTML to 40 KiB, aggregate HTML to 80 KiB, and
+aggregate non-download output to 320 KiB. Current usage returns below the 80%
+review band for those metrics while CSS, JavaScript, per-file, image, and PDF
+limits remain unchanged and independently blocking.
 
 ## NFR-003: Inspectable And Verifiable Project Structure
 

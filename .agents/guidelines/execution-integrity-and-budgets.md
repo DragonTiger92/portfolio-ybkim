@@ -118,19 +118,21 @@ fragments.
 
 ## Current Repository Assessment
 
-As reviewed on 2026-07-24, the current static limits remain reasonable:
+As reviewed on 2026-08-05, the `v1.0.0` discovery baseline uses:
 
-- largest HTML: 25.98 / 32 KiB, review band;
-- aggregate HTML: 47.31 / 64 KiB;
-- CSS: 26.25 / 32 KiB, review band;
-- JavaScript: 5.31 / 8 KiB;
-- non-download output: 181.75 / 256 KiB;
+- largest HTML: 31.43 / 40 KiB;
+- aggregate HTML: 63.49 / 80 KiB;
+- CSS: 30.44 / 32 KiB, explicit review band;
+- JavaScript: 5.92 / 8 KiB;
+- non-download output: 241.36 / 320 KiB;
 - largest non-download file: 36.17 / 64 KiB; and
-- PDF: 500.97 / 600 KiB, review band.
+- PDF: 217.58 / 600 KiB.
 
-Do not raise these limits preemptively. For new HTML, CSS, or PDF growth, inspect
-the affected artifact early rather than discovering the headroom issue only at
-the completion gate.
+The HTML and aggregate non-download rebaseline preserves complete launch
+metadata and returns those metrics below the 80% review band. Do not increase
+CSS without a separate measured disposition, and do not raise any limit
+preemptively. Inspect affected artifacts early rather than discovering a
+headroom issue only at the completion gate.
 
 The current content-line limits also remain suitable for this small static
 portfolio. When a file is already near its category limit, budget a boundary

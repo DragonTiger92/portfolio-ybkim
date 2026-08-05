@@ -1,6 +1,8 @@
 ---
+/* eslint-disable astro/no-set-html-directive -- JSON-LD uses trusted project data and escapes less-than characters. */
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import { siteMetadata } from "../data/site";
 import "../styles/tokens.css";
 import "../styles/global.css";
 import "../styles/components.css";
@@ -11,9 +13,20 @@ import "../styles/demo-access.css";
 interface Props {
   title: string;
   description: string;
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description } = Astro.props;
+const { title, description, structuredData } = Astro.props;
+
+if (Astro.site === undefined) {
+  throw new Error("Astro site configuration is required for canonical metadata.");
+}
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialPreviewUrl = new URL(siteMetadata.socialPreview.path, Astro.site);
+const serializedStructuredData = structuredData
+  ? JSON.stringify(structuredData).replaceAll("<", "\\u003c")
+  : null;
 ---
 
 <!doctype html>
@@ -24,7 +37,22 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f8fafc" data-theme-color />
-    <meta name="application-name" content="김용범 포트폴리오" />
+    <meta name="application-name" content={siteMetadata.title} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteMetadata.title} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialPreviewUrl} />
+    <meta property="og:image:width" content={String(siteMetadata.socialPreview.width)} />
+    <meta property="og:image:height" content={String(siteMetadata.socialPreview.height)} />
+    <meta property="og:image:alt" content={siteMetadata.socialPreview.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialPreviewUrl} />
+    <meta name="twitter:image:alt" content={siteMetadata.socialPreview.alt} />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
     <link
       rel="stylesheet"
@@ -38,6 +66,11 @@ const { title, description } = Astro.props;
     <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/brand/site.webmanifest" crossorigin="use-credentials" />
     <title>{title}</title>
+    {
+      serializedStructuredData && (
+        <script type="application/ld+json" is:inline set:html={serializedStructuredData} />
+      )
+    }
     <script is:inline src="/scripts/theme-init.js"></script>
   </head>
   <body>
