@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 const productionOrigin = "https://portfolio-ybkim.pages.dev";
 const socialPreviewUrl = `${productionOrigin}/assets/brand/social-preview.png`;
-const socialPreviewAlt = "portfolio-ybkim - 개발자 김용범의 포트폴리오";
+const socialPreviewAlt = "YB 로고와 portfolio-ybkim 이름이 있는 소셜 미리보기";
 
 const indexablePages = [
   {
