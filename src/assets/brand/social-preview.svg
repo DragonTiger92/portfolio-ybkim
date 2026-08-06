@@ -1,0 +1,66 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="social-preview-title social-preview-description"
+>
+  <title id="social-preview-title">portfolio-ybkim social preview</title>
+  <desc id="social-preview-description">
+    Blue YB monogram with an intersection point and the portfolio-ybkim product name on a
+    dark engineering grid.
+  </desc>
+  <defs>
+    <linearGradient
+      id="mark-gradient"
+      x1="40"
+      y1="24"
+      x2="218"
+      y2="228"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#60a5fa" />
+      <stop offset="0.56" stop-color="#2563eb" />
+      <stop offset="1" stop-color="#1d4ed8" />
+    </linearGradient>
+    <pattern id="engineering-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="24" cy="24" r="1.6" fill="#dbeafe" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#07142d" />
+  <path d="M780 0h420v630H1040L780 0Z" fill="#10285a" opacity="0.52" />
+  <rect width="1200" height="630" fill="url(#engineering-grid)" opacity="0.12" />
+
+  <g id="preview-content" transform="translate(110 175)">
+    <g id="brand-mark">
+      <rect width="280" height="280" rx="58" fill="#080f26" fill-opacity="0.9" />
+      <g transform="translate(14 10) scale(1.05)">
+        <path
+          d="M45 48h34l39 73 39-73h34L91 226H57l43-76L45 48Z"
+          fill="url(#mark-gradient)"
+        />
+        <path
+          d="M144 48h28v66c12-17 30-26 52-26 39 0 70 30 70 70s-31 70-70 70c-24 0-43-10-55-29v24h-25V48Zm74 150c23 0 41-17 41-40s-18-40-41-40c-24 0-42 17-42 40s18 40 42 40Z"
+          transform="translate(-47 0)"
+          fill="url(#mark-gradient)"
+          opacity="0.96"
+        />
+        <circle id="brand-point" cx="104" cy="177" r="17" fill="#60a5fa" />
+      </g>
+    </g>
+
+    <text
+      id="product-name"
+      x="350"
+      y="181"
+      fill="#ffffff"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="92"
+      font-weight="700"
+      letter-spacing="-3"
+      text-rendering="geometricPrecision"
+    >portfolio-ybkim</text>
+  </g>
+</svg>
