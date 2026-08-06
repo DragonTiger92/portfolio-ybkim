@@ -1,9 +1,13 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { createServer } from "node:http";
 import { once } from "node:events";
 import { describe, it } from "node:test";
+import { fileURLToPath } from "node:url";
 
 import { runHttpSmoke, validateBaseUrl } from "./check-http-smoke.mjs";
+
+const scriptPath = fileURLToPath(new URL("./check-http-smoke.mjs", import.meta.url));
 
 async function startServer(handler) {
   const server = createServer(handler);
@@ -94,5 +98,18 @@ describe("HTTP smoke checks", () => {
     } finally {
       await server.close();
     }
+  });
+
+  it("maps missing CLI configuration to exit code 1", () => {
+    const environment = { ...process.env };
+    delete environment.SMOKE_BASE_URL;
+
+    const execution = spawnSync(process.execPath, [scriptPath], {
+      encoding: "utf8",
+      env: environment,
+    });
+
+    assert.equal(execution.status, 1);
+    assert.match(execution.stderr, /HTTP smoke check failed: Provide --base-url/u);
   });
 });

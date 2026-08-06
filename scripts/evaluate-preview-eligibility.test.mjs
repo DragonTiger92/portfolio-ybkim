@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { describe, it } from "node:test";
+import { fileURLToPath } from "node:url";
 
 import { evaluatePreviewEligibility } from "./evaluate-preview-eligibility.mjs";
 
 const revision = "a".repeat(40);
+const scriptPath = fileURLToPath(new URL("./evaluate-preview-eligibility.mjs", import.meta.url));
 const eligibleInput = {
   actor: "DragonTiger92",
   baseRepository: "DragonTiger92/portfolio-ybkim",
@@ -68,6 +71,16 @@ describe("preview eligibility", () => {
         checkedSha: "b".repeat(40),
       }).reason,
       "stale-sha",
+    );
+  });
+
+  it("maps synchronous CLI validation failures to exit code 1", () => {
+    const execution = spawnSync(process.execPath, [scriptPath], { encoding: "utf8" });
+
+    assert.equal(execution.status, 1);
+    assert.match(
+      execution.stderr,
+      /Preview eligibility evaluation failed: Missing required option --actor\./u,
     );
   });
 });
