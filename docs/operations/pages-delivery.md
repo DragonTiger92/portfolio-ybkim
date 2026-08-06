@@ -18,7 +18,9 @@ The reusable boundaries are:
   smoke-check it;
 - `pages-preview.yml`: build eligible PR artifacts without credentials;
 - `pages-preview-deploy.yml`: use trusted default-branch tooling for automatic
-  and reviewed manual preview uploads;
+  preview uploads;
+- `pages-preview-manual.yml`: build and upload a reviewed manual exception from
+  the trusted `main` workflow;
 - `pages-production.yml`: automatic `main` delivery and operational redeploys;
 - `release-evidence.yml`: SBOM and ScanCode evidence; and
 - `formal-release.yml`: explicit version/revision validation, production
@@ -54,7 +56,8 @@ Automatic preview delivery uses a two-workflow trust boundary. The
 completes, a default-branch `workflow_run` re-evaluates the PR metadata,
 downloads the named full-SHA artifact, and executes only trusted `main` delivery
 tooling inside the credential-bearing GitHub Environment. Do not replace this
-with `pull_request_target` or execute PR scripts after secrets are available.
+with `pull_request_target`, execute PR scripts after secrets are available, or
+restore PR-writable dependency caches in the privileged upload job.
 
 Before activation:
 
