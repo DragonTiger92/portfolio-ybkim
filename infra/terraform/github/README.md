@@ -7,6 +7,7 @@ This Terraform root manages long-lived GitHub repository governance for
 
 - repository feature and merge settings;
 - the Dependabot minor-and-patch auto-merge activation variable;
+- the default-disabled Pages deployment activation variable;
 - the `deps:validated` compatibility-attestation label;
 - project-specific pull request and release labels;
 - Dependabot vulnerability alerts and security updates;
@@ -14,7 +15,7 @@ This Terraform root manages long-lived GitHub repository governance for
 - the `main` branch ruleset.
 
 Repository files, Actions workflows, CodeQL default setup, private vulnerability
-reporting, secrets, and Cloudflare resources are managed elsewhere. GitHub
+reporting, GitHub Environments, secrets, and Cloudflare resources are managed elsewhere. GitHub
 Issues and Milestones are intentionally not used for project planning.
 
 ## Remote State And Execution
@@ -60,6 +61,12 @@ The first apply enables repository auto-merge, automatic deletion of merged
 head branches, the strict `main` ruleset, and
 `DEPENDABOT_AUTOMERGE_ENABLED=true` together. Do not create that Actions
 variable manually before the ruleset is active.
+
+`PAGES_DEPLOYMENT_ENABLED` is intentionally managed as `false` while the Pages
+pipeline is source-only. A later owner-reviewed activation must first provision
+the named GitHub Environments and their scoped Cloudflare configuration, apply
+the Access service-token policy, complete an authenticated preview smoke test,
+and then change this managed value to `true` in a separate reviewed change.
 
 ## Local Validation
 

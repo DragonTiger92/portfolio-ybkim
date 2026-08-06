@@ -56,6 +56,9 @@ public branch naming convention instead.
 | Dependabot pull request     | Policy classification; routine auto-merge; exceptional review attestation    | Route updates by metadata, breaking markers, and `deps:validated` evidence |
 | Terraform-related PR change | Terraform format, provider initialization without backend, and validation    | Reject invalid IaC before merge                                            |
 | Push to `main`              | `Check` (`pnpm check`)                                                       | Verify the integrated default branch                                       |
+| Enabled push to `main`      | Exact artifact, Wrangler Direct Upload, full-SHA resolution, public smoke    | Publish the integrated revision without creating a release tag             |
+| Eligible pull request       | Exact artifact, protected preview, Access-authenticated smoke                | Verify the checked same-repository head in the remote preview boundary     |
+| Formal release dispatch     | Version/revision validation, evidence, production smoke, tag, GitHub Release | Publish one immutable `vX.Y.Z` product release after deployment acceptance |
 | Weekly schedule             | `pnpm audit --audit-level moderate`                                          | Surface dependency advisories without blocking a PR                        |
 | Manual dispatch             | Security audit or Terraform validation as needed                             | Support owner-driven recovery and explicit rechecks                        |
 
@@ -69,6 +72,13 @@ axe-core Chromium checks, including semantic structure and 44-by-44 CSS-pixel
 target checks, plus a focused WebKit smoke suite for core rendering and
 interaction compatibility. Terraform planning and apply are deliberately absent from pull
 requests until durable remote state and owner credentials are configured.
+
+Credential-bearing Pages jobs additionally require the repository variable
+`PAGES_DEPLOYMENT_ENABLED=true`. The managed baseline is `false`, so merging the
+workflow source cannot activate deployment before the owner provisions
+`cloudflare-pages-preview`, `cloudflare-pages-production`, and `formal-release`
+GitHub Environments. Secrets remain environment-scoped and outside Terraform
+state; the activation change is a separate reviewed operation.
 
 `Sync Open PR Branches` runs after a pull request is merged into `main` and can
 also be dispatched manually. It compares open, same-repository pull requests

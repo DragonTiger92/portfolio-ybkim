@@ -1,0 +1,122 @@
+name: Pages Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: Full origin/main revision to redeploy.
+        required: true
+        type: string
+      job-status:
+        description: Portfolio availability state rendered into the artifact.
+        required: true
+        default: actively-looking
+        type: choice
+        options:
+          - actively-looking
+          - not-looking
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-production
+  cancel-in-progress: false
+
+jobs:
+  context:
+    name: Resolve Production Request
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      enabled: ${{ steps.context.outputs.enabled }}
+      job-status: ${{ steps.context.outputs['job-status'] }}
+      revision: ${{ steps.context.outputs.revision }}
+    steps:
+      - name: Resolve request context
+        id: context
+        env:
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+          DISPATCH_JOB_STATUS: ${{ inputs['job-status'] }}
+          DISPATCH_REVISION: ${{ inputs.revision }}
+          EVENT_NAME: ${{ github.event_name }}
+          PUSH_REVISION: ${{ github.sha }}
+          WORKFLOW_REF: ${{ github.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            [[ "$WORKFLOW_REF" == "refs/heads/main" ]] || { echo "manual production deployment must run from main" >&2; exit 1; }
+            revision="$DISPATCH_REVISION"
+            job_status="$DISPATCH_JOB_STATUS"
+          else
+            revision="$PUSH_REVISION"
+            job_status="actively-looking"
+          fi
+
+          [[ "$revision" =~ ^[0-9a-f]{40}$ ]] || { echo "revision must be a full Git SHA" >&2; exit 1; }
+          [[ "$job_status" == "actively-looking" || "$job_status" == "not-looking" ]] || {
+            echo "unsupported portfolio job status" >&2
+            exit 1
+          }
+
+          echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "job-status=$job_status" >> "$GITHUB_OUTPUT"
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+
+      - name: Report inactive delivery contract
+        if: steps.context.outputs.enabled != 'true'
+        run: echo "Pages delivery is source-ready and remains inactive until PAGES_DEPLOYMENT_ENABLED=true." >> "$GITHUB_STEP_SUMMARY"
+
+  verify_revision:
+    name: Verify Production Revision
+    needs: context
+    if: needs.context.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout requested revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.context.outputs.revision }}
+          persist-credentials: false
+
+      - name: Require an origin/main revision
+        env:
+          DEPLOYMENT_REVISION: ${{ needs.context.outputs.revision }}
+        run: |
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$DEPLOYMENT_REVISION" origin/main
+
+  artifact:
+    name: Build Production Artifact
+    needs:
+      - context
+      - verify_revision
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ needs.context.outputs.revision }}
+      job-status: ${{ needs.context.outputs['job-status'] }}
+    permissions:
+      contents: read
+
+  deploy:
+    name: Deploy Production Artifact
+    needs:
+      - context
+      - artifact
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}
+      deployment-branch: main
+      deployment-environment: production
+      environment-name: cloudflare-pages-production
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      actions: read
+      contents: read

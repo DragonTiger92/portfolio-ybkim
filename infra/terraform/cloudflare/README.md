@@ -10,9 +10,10 @@ verified.
 - the existing owner identity provider as a data source;
 - one Direct Upload Pages project served from its Cloudflare-managed
   `*.pages.dev` subdomain;
-- an account-scoped Access policy and application for
-  preview deployments under the provider-returned Pages subdomain; and
-- non-sensitive names and hostnames as outputs.
+- account-scoped human and CI service-token Access policies plus the preview
+  Access application under the provider-returned Pages subdomain; and
+- non-sensitive names and hostnames plus sensitive, one-time CI token transfer
+  outputs.
 
 The wildcard Access application intentionally excludes the production Pages
 hostname. Custom domains, DNS zones and records, Email Routing, deployments,
@@ -23,6 +24,13 @@ domain.
 Every long-lived resource uses `prevent_destroy`. Changing an attribute that
 requires replacement must first fail rather than silently destroy the existing
 resource. Removing that guard is a separate owner-reviewed operation.
+
+The CI policy uses Cloudflare Access `Service Auth` (`non_identity`) with a
+dedicated service token. The authenticated preview smoke check sends its client
+ID and secret through the standard `CF-Access-Client-Id` and
+`CF-Access-Client-Secret` headers. Those values belong only in the
+`cloudflare-pages-preview` GitHub Environment. Never copy them into repository
+variables, workflow inputs, logs, or documentation.
 
 ## Future HCP Terraform Workspace
 
@@ -57,15 +65,21 @@ repository or an agent prompt.
 
 Do not run `plan` or `apply` until all account-dependent prerequisites are
 complete. Import any pre-existing Direct Upload Pages project, Access policy,
-and Access application before the first plan. Never create a duplicate Access
-application when the dashboard's preview-protection toggle already created one.
+service token, and Access application before the first plan. Never create a
+duplicate Access application or service token when an equivalent live resource
+already exists.
 
 Re-inventory Pages/Workers and Access immediately before planning. Import any
-matching Direct Upload project, policy, or application if one exists. Otherwise,
-the first reviewed plan should create only the Pages project, preview Access
-policy, and preview Access application declared by this root. It must contain no
-replacement or destroy action. After apply, run a second plan and require no
-changes.
+matching Direct Upload project, policy, token, or application if one exists.
+Otherwise, the first reviewed plan should create only resources proven absent
+from the live account. It must contain no replacement or destroy action. After
+apply, transfer the service-token values through an owner-visible secret-safe
+procedure, then run a second plan and require no changes.
+
+Do not read the sensitive Terraform outputs through an agent tool. The owner
+must place `preview_ci_access_client_id` and
+`preview_ci_access_client_secret` directly into the scoped GitHub Environment,
+then confirm only the secret names and metadata—not their values—for review.
 
 ## Credential-Free Validation
 

@@ -1,0 +1,174 @@
+name: Pages Preview Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Pages Preview Build
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Reviewed repository branch to deploy as a preview.
+        required: true
+        type: string
+      revision:
+        description: Full revision contained by the reviewed branch.
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pages-preview-deploy-${{ github.event.workflow_run.pull_requests[0].number || inputs.branch }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    name: Validate Trusted Preview Deployment
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      artifact-name: ${{ steps.context.outputs['artifact-name'] }}
+      artifact-run-id: ${{ steps.context.outputs['artifact-run-id'] }}
+      branch: ${{ steps.context.outputs.branch }}
+      eligible: ${{ steps.context.outputs.eligible }}
+      enabled: ${{ steps.context.outputs.enabled }}
+      revision: ${{ steps.context.outputs.revision }}
+    steps:
+      - name: Checkout trusted default-branch tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Re-evaluate automatic preview
+        if: github.event_name == 'workflow_run'
+        id: automatic
+        env:
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+          BASE_REPOSITORY: ${{ github.repository }}
+          CHECKED_SHA: ${{ github.event.workflow_run.head_sha }}
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.event.workflow_run.head_branch }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$PR_NUMBER" ]] || { echo "workflow run is not associated with a pull request" >&2; exit 1; }
+          draft="$(gh api "repos/$BASE_REPOSITORY/pulls/$PR_NUMBER" --jq '.draft')"
+
+          node scripts/evaluate-preview-eligibility.mjs \
+            --actor "$ACTOR" \
+            --base-repository "$BASE_REPOSITORY" \
+            --checked-sha "$CHECKED_SHA" \
+            --draft "$draft" \
+            --head-ref "$HEAD_REF" \
+            --head-repository "$HEAD_REPOSITORY" \
+            --head-sha "$HEAD_SHA" \
+            >> "$GITHUB_OUTPUT"
+
+      - name: Validate reviewed manual preview
+        if: github.event_name == 'workflow_dispatch'
+        id: manual
+        env:
+          PREVIEW_BRANCH: ${{ inputs.branch }}
+          PREVIEW_REVISION: ${{ inputs.revision }}
+          WORKFLOW_REF: ${{ github.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$WORKFLOW_REF" == "refs/heads/main" ]] || { echo "manual preview must run from main" >&2; exit 1; }
+          [[ "$PREVIEW_REVISION" =~ ^[0-9a-f]{40}$ ]] || { echo "revision must be a full Git SHA" >&2; exit 1; }
+          [[ "$PREVIEW_BRANCH" =~ ^(feature|fix|content|docs|ci|infra|security|refactor|chore)/(ph|pbi)-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$ ]] || {
+            echo "branch must follow the repository-local naming contract" >&2
+            exit 1
+          }
+
+          git fetch --no-tags origin "+refs/heads/$PREVIEW_BRANCH:refs/remotes/origin/$PREVIEW_BRANCH"
+          git merge-base --is-ancestor "$PREVIEW_REVISION" "refs/remotes/origin/$PREVIEW_BRANCH"
+          echo "eligible=true" >> "$GITHUB_OUTPUT"
+
+      - name: Record trusted deployment context
+        id: context
+        env:
+          AUTOMATIC_ELIGIBLE: ${{ steps.automatic.outputs.eligible }}
+          AUTOMATIC_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          AUTOMATIC_REVISION: ${{ github.event.workflow_run.head_sha }}
+          AUTOMATIC_RUN_ID: ${{ github.event.workflow_run.id }}
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+          DISPATCH_BRANCH: ${{ inputs.branch }}
+          DISPATCH_REVISION: ${{ inputs.revision }}
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_ELIGIBLE: ${{ steps.manual.outputs.eligible }}
+        shell: bash
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_run" ]]; then
+            branch="$AUTOMATIC_BRANCH"
+            eligible="$AUTOMATIC_ELIGIBLE"
+            revision="$AUTOMATIC_REVISION"
+            artifact_name="site-artifact-$AUTOMATIC_REVISION"
+            artifact_run_id="$AUTOMATIC_RUN_ID"
+          else
+            branch="$DISPATCH_BRANCH"
+            eligible="$MANUAL_ELIGIBLE"
+            revision="$DISPATCH_REVISION"
+            artifact_name=""
+            artifact_run_id=""
+          fi
+
+          echo "artifact-name=$artifact_name" >> "$GITHUB_OUTPUT"
+          echo "artifact-run-id=$artifact_run_id" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "eligible=$eligible" >> "$GITHUB_OUTPUT"
+          echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+
+  manual_artifact:
+    name: Build Reviewed Manual Preview Artifact
+    needs: context
+    if: github.event_name == 'workflow_dispatch' && needs.context.outputs.enabled == 'true' && needs.context.outputs.eligible == 'true'
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      contents: read
+
+  deploy_automatic:
+    name: Deploy Automatic Protected Preview
+    needs: context
+    if: github.event_name == 'workflow_run' && needs.context.outputs.enabled == 'true' && needs.context.outputs.eligible == 'true'
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-name: ${{ needs.context.outputs['artifact-name'] }}
+      artifact-run-id: ${{ needs.context.outputs['artifact-run-id'] }}
+      deployment-branch: ${{ needs.context.outputs.branch }}
+      deployment-environment: preview
+      environment-name: cloudflare-pages-preview
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      actions: read
+      contents: read
+
+  deploy_manual:
+    name: Deploy Reviewed Manual Preview
+    needs:
+      - context
+      - manual_artifact
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-id: ${{ needs.manual_artifact.outputs['artifact-id'] }}
+      deployment-branch: ${{ needs.context.outputs.branch }}
+      deployment-environment: preview
+      environment-name: cloudflare-pages-preview
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      actions: read
+      contents: read

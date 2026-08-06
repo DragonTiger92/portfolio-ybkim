@@ -1,0 +1,190 @@
+name: Pages Upload
+
+on:
+  workflow_call:
+    inputs:
+      artifact-id:
+        description: GitHub artifact identifier produced by Site Artifact.
+        required: false
+        default: ""
+        type: string
+      artifact-name:
+        description: Exact artifact name for a trusted cross-run download.
+        required: false
+        default: ""
+        type: string
+      artifact-run-id:
+        description: Source run identifier used with artifact-name.
+        required: false
+        default: ""
+        type: string
+      deployment-branch:
+        description: Branch metadata recorded by Cloudflare Pages.
+        required: true
+        type: string
+      deployment-environment:
+        description: Cloudflare Pages environment, preview or production.
+        required: true
+        type: string
+      environment-name:
+        description: GitHub Environment containing scoped variables and secrets.
+        required: true
+        type: string
+      revision:
+        description: Full Git revision represented by the artifact.
+        required: true
+        type: string
+    outputs:
+      deployment-id:
+        description: Exact Cloudflare Pages deployment identifier.
+        value: ${{ jobs.upload.outputs['deployment-id'] }}
+      deployment-url:
+        description: Exact Cloudflare Pages deployment URL.
+        value: ${{ jobs.upload.outputs['deployment-url'] }}
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  upload:
+    name: Upload And Verify Pages Artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: ${{ inputs['environment-name'] }}
+      url: ${{ steps.resolve.outputs['deployment-url'] }}
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      DEPLOYMENT_BRANCH: ${{ inputs['deployment-branch'] }}
+      DEPLOYMENT_ENVIRONMENT: ${{ inputs['deployment-environment'] }}
+      DEPLOYMENT_REVISION: ${{ inputs.revision }}
+      SOURCE_ARTIFACT_ID: ${{ inputs['artifact-id'] }}
+      SOURCE_ARTIFACT_NAME: ${{ inputs['artifact-name'] }}
+      SOURCE_ARTIFACT_RUN_ID: ${{ inputs['artifact-run-id'] }}
+    outputs:
+      deployment-id: ${{ steps.resolve.outputs['deployment-id'] }}
+      deployment-url: ${{ steps.resolve.outputs['deployment-url'] }}
+    steps:
+      - name: Checkout trusted delivery tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: 11.10.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+
+      - name: Install pinned dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download same-run checked site artifact
+        if: inputs['artifact-id'] != ''
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          artifact-ids: ${{ inputs['artifact-id'] }}
+          path: tmp/pages-upload/site-artifact
+          merge-multiple: true
+
+      - name: Download trusted cross-run site artifact
+        if: inputs['artifact-name'] != ''
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: ${{ inputs['artifact-name'] }}
+          path: tmp/pages-upload/site-artifact
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs['artifact-run-id'] }}
+          github-token: ${{ github.token }}
+
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          [[ "$DEPLOYMENT_REVISION" =~ ^[0-9a-f]{40}$ ]] || {
+            echo "revision must be a full lowercase Git SHA" >&2
+            exit 1
+          }
+          [[ "$DEPLOYMENT_ENVIRONMENT" == "preview" || "$DEPLOYMENT_ENVIRONMENT" == "production" ]] || {
+            echo "deployment environment must be preview or production" >&2
+            exit 1
+          }
+          [[ -n "$CLOUDFLARE_ACCOUNT_ID" ]] || { echo "missing Cloudflare account variable" >&2; exit 1; }
+          [[ -n "$CLOUDFLARE_PAGES_PROJECT_NAME" ]] || { echo "missing Pages project variable" >&2; exit 1; }
+          [[ -n "$CLOUDFLARE_API_TOKEN" ]] || { echo "missing Cloudflare API token" >&2; exit 1; }
+
+          if [[ -n "$SOURCE_ARTIFACT_ID" && -n "$SOURCE_ARTIFACT_NAME" ]]; then
+            echo "artifact ID and cross-run artifact name are mutually exclusive" >&2
+            exit 1
+          fi
+          if [[ -z "$SOURCE_ARTIFACT_ID" && -z "$SOURCE_ARTIFACT_NAME" ]]; then
+            echo "one artifact source is required" >&2
+            exit 1
+          fi
+          if [[ -n "$SOURCE_ARTIFACT_NAME" && -z "$SOURCE_ARTIFACT_RUN_ID" ]]; then
+            echo "cross-run artifact download requires a source run ID" >&2
+            exit 1
+          fi
+
+      - name: Validate exact-revision artifact
+        run: >-
+          node scripts/validate-artifact-manifest.mjs
+          --revision "$DEPLOYMENT_REVISION"
+          --build-dir tmp/pages-upload/site-artifact/dist
+          --manifest tmp/pages-upload/site-artifact/tmp/delivery/site-artifact-manifest.json
+
+      - name: Upload artifact with pinned Wrangler
+        run: >-
+          pnpm exec wrangler pages deploy tmp/pages-upload/site-artifact/dist
+          --project-name "$CLOUDFLARE_PAGES_PROJECT_NAME"
+          --branch "$DEPLOYMENT_BRANCH"
+          --commit-hash "$DEPLOYMENT_REVISION"
+          --commit-message "GitHub Actions run $GITHUB_RUN_ID"
+          --commit-dirty=false
+
+      - name: Resolve exact deployment
+        id: resolve
+        run: >-
+          node scripts/resolve-pages-deployment.mjs
+          --project-name "$CLOUDFLARE_PAGES_PROJECT_NAME"
+          --branch "$DEPLOYMENT_BRANCH"
+          --environment "$DEPLOYMENT_ENVIRONMENT"
+          --revision "$DEPLOYMENT_REVISION"
+          >> "$GITHUB_OUTPUT"
+
+      - name: Run authenticated preview smoke check
+        if: inputs['deployment-environment'] == 'preview'
+        env:
+          SMOKE_BASE_URL: ${{ steps.resolve.outputs['deployment-url'] }}
+        run: pnpm smoke:http --access-service-token
+
+      - name: Run public production smoke check
+        if: inputs['deployment-environment'] == 'production'
+        env:
+          SMOKE_BASE_URL: ${{ vars.CLOUDFLARE_PAGES_PRODUCTION_URL }}
+        run: pnpm smoke:http
+
+      - name: Record deployment evidence
+        env:
+          DEPLOYMENT_ID: ${{ steps.resolve.outputs['deployment-id'] }}
+          DEPLOYMENT_URL: ${{ steps.resolve.outputs['deployment-url'] }}
+        run: |
+          {
+            echo "### Cloudflare Pages deployment"
+            echo "- Environment: \`$DEPLOYMENT_ENVIRONMENT\`"
+            echo "- Revision: \`$DEPLOYMENT_REVISION\`"
+            echo "- Deployment: [$DEPLOYMENT_ID]($DEPLOYMENT_URL)"
+            echo "- Smoke: passed"
+          } >> "$GITHUB_STEP_SUMMARY"

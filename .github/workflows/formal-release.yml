@@ -1,0 +1,185 @@
+name: Formal Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version as X.Y.Z; must match package.json.
+        required: true
+        type: string
+      revision:
+        description: Full origin/main revision to build, deploy, tag, and release.
+        required: true
+        type: string
+      retry-existing-tag:
+        description: Idempotent retry only when the existing tag peels to this revision.
+        required: true
+        default: false
+        type: boolean
+      job-status:
+        description: Portfolio availability state rendered into the artifact.
+        required: true
+        default: actively-looking
+        type: choice
+        options:
+          - actively-looking
+          - not-looking
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formal-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate Formal Release Request
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      enabled: ${{ steps.activation.outputs.enabled }}
+      tag: ${{ steps.release.outputs.tag }}
+      tag-exists: ${{ steps.release.outputs['tag-exists'] }}
+    steps:
+      - name: Record activation state
+        id: activation
+        env:
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+          WORKFLOW_REF: ${{ github.ref }}
+        run: |
+          [[ "$WORKFLOW_REF" == "refs/heads/main" ]] || { echo "formal release must run from main" >&2; exit 1; }
+          echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout requested release revision
+        if: steps.activation.outputs.enabled == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.revision }}
+          persist-credentials: false
+
+      - name: Validate version, revision, and immutable tag
+        if: steps.activation.outputs.enabled == 'true'
+        id: release
+        env:
+          RELEASE_RETRY: ${{ inputs['retry-existing-tag'] }}
+          RELEASE_REVISION: ${{ inputs.revision }}
+          RELEASE_VERSION: ${{ inputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force --tags origin main
+
+          retry_argument=()
+          if [[ "$RELEASE_RETRY" == "true" ]]; then
+            retry_argument+=(--retry-existing-tag)
+          fi
+
+          node scripts/validate-release-request.mjs \
+            --version "$RELEASE_VERSION" \
+            --revision "$RELEASE_REVISION" \
+            "${retry_argument[@]}" \
+            >> "$GITHUB_OUTPUT"
+
+      - name: Report inactive release contract
+        if: steps.activation.outputs.enabled != 'true'
+        run: echo "Formal release remains inactive until PAGES_DEPLOYMENT_ENABLED=true." >> "$GITHUB_STEP_SUMMARY"
+
+  evidence:
+    name: Build Artifact And Release Evidence
+    needs: validate
+    if: needs.validate.outputs.enabled == 'true'
+    uses: ./.github/workflows/release-evidence.yml
+    with:
+      revision: ${{ inputs.revision }}
+      job-status: ${{ inputs['job-status'] }}
+    permissions:
+      contents: read
+
+  deploy:
+    name: Deploy And Verify Release Artifact
+    needs:
+      - validate
+      - evidence
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-id: ${{ needs.evidence.outputs['site-artifact-id'] }}
+      deployment-branch: main
+      deployment-environment: production
+      environment-name: cloudflare-pages-production
+      revision: ${{ inputs.revision }}
+    permissions:
+      actions: read
+      contents: read
+
+  publish:
+    name: Tag And Publish GitHub Release
+    needs:
+      - validate
+      - evidence
+      - deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: formal-release
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_REVISION: ${{ inputs.revision }}
+      RELEASE_TAG: ${{ needs.validate.outputs.tag }}
+    steps:
+      - name: Checkout exact released revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.revision }}
+
+      - name: Create or verify immutable annotated tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force --tags origin
+
+          existing_revision="$(git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}" 2>/dev/null || true)"
+          if [[ -n "$existing_revision" && "$existing_revision" != "$RELEASE_REVISION" ]]; then
+            echo "Existing release tag points to a different revision." >&2
+            exit 1
+          fi
+
+          if [[ -z "$existing_revision" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag --annotate "$RELEASE_TAG" "$RELEASE_REVISION" --message "Release $RELEASE_TAG"
+            git push origin "refs/tags/$RELEASE_TAG"
+          fi
+
+      - name: Download release evidence
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          artifact-ids: ${{ needs.evidence.outputs['evidence-artifact-id'] }}
+          path: tmp/formal-release/evidence
+          merge-multiple: true
+
+      - name: Publish GitHub Release when absent
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "GitHub Release $RELEASE_TAG already exists; immutable retry completed." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          mapfile -t release_assets < <(find tmp/formal-release/evidence -type f -name '*.json' -print | sort)
+          if (( ${#release_assets[@]} == 0 )); then
+            echo "Release evidence assets were not found." >&2
+            exit 1
+          fi
+
+          gh release create "$RELEASE_TAG" \
+            --verify-tag \
+            --title "$RELEASE_TAG" \
+            --generate-notes \
+            "${release_assets[@]}"

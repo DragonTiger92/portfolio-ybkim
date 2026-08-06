@@ -3,3 +3,9 @@ resource "github_actions_variable" "dependabot_automerge_enabled" {
   variable_name = "DEPENDABOT_AUTOMERGE_ENABLED"
   value         = "true"
 }
+
+resource "github_actions_variable" "pages_deployment_enabled" {
+  repository    = github_repository.this.name
+  variable_name = "PAGES_DEPLOYMENT_ENABLED"
+  value         = "false"
+}
