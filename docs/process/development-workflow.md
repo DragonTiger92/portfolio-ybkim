@@ -79,6 +79,10 @@ Use this format for human-created branches intended for pull requests:
 <type>/<ph-NNN|pbi-NNN>-<short-kebab-description>
 ```
 
+This repository-local format takes precedence over generic branch prefixes
+configured by an IDE, AI agent, or other client. Do not prepend or substitute a
+tool-specific prefix such as `codex/`.
+
 Rules:
 
 - Use one of the approved lowercase type prefixes.
