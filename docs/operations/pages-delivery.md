@@ -66,9 +66,13 @@ Before activation:
 3. apply only after owner approval;
 4. let the owner transfer the sensitive service-token values directly to the
    preview GitHub Environment;
-5. manually dispatch one preview and review its URL and authenticated smoke
-   evidence; and
-6. set `PAGES_DEPLOYMENT_ENABLED=true` only through a separate reviewed change.
+5. dispatch `Pages Preview Manual` from `main` with `activation-test=true`, then
+   review its exact URL and authenticated smoke evidence; and
+6. only after acceptance, set `PAGES_DEPLOYMENT_ENABLED=true` through a separate
+   reviewed change.
+
+The `activation-test` input authorizes only that explicit manual preview run. It
+does not enable automatic PR or production delivery and defaults to `false`.
 
 ## Release Tags
 

@@ -11,6 +11,11 @@ on:
         description: Full revision contained by the reviewed branch.
         required: true
         type: string
+      activation-test:
+        description: Allow this owner-reviewed smoke run while automatic delivery remains disabled.
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -57,8 +62,15 @@ jobs:
       - name: Record activation state
         id: context
         env:
+          ACTIVATION_TEST: ${{ inputs['activation-test'] }}
           DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
-        run: echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+        run: |
+          if [[ "$DEPLOYMENT_ENABLED" == "true" || "$ACTIVATION_TEST" == "true" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Pre-activation test: \`$ACTIVATION_TEST\`." >> "$GITHUB_STEP_SUMMARY"
 
   artifact:
     name: Build Reviewed Manual Preview Artifact
