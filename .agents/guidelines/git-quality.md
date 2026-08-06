@@ -42,6 +42,9 @@ Do not create commits unless explicitly requested.
 
 Follow the public workflow in `docs/process/development-workflow.md`.
 
+- Treat the repository-local format as authoritative over generic branch
+  prefixes configured by an IDE, AI agent, or other client. Do not prepend or
+  substitute a tool-specific prefix such as `codex/`.
 - Name human-created pull request branches
   `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`.
 - Use only the documented type prefixes and create from the latest `main` unless
