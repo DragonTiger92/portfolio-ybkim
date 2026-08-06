@@ -195,7 +195,7 @@ function reportFailure(error) {
   return 1;
 }
 
-export function run(argumentsList = process.argv.slice(2)) {
+export async function run(argumentsList = process.argv.slice(2)) {
   return execute(argumentsList).catch(reportFailure);
 }
 
