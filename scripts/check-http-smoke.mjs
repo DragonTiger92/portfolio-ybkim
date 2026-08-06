@@ -65,7 +65,7 @@ function resolveSameOriginRedirect(currentUrl, response, origin) {
 
 async function fetchSameOrigin(
   url,
-  { fetchImplementation, origin, timeoutMilliseconds },
+  { fetchImplementation, headers, origin, timeoutMilliseconds },
   redirectCount = 0,
 ) {
   if (redirectCount > 5) {
@@ -73,6 +73,7 @@ async function fetchSameOrigin(
   }
 
   const response = await fetchImplementation(url, {
+    headers,
     redirect: "manual",
     signal: AbortSignal.timeout(timeoutMilliseconds),
   });
@@ -85,7 +86,7 @@ async function fetchSameOrigin(
 
   return fetchSameOrigin(
     redirectUrl,
-    { fetchImplementation, origin, timeoutMilliseconds },
+    { fetchImplementation, headers, origin, timeoutMilliseconds },
     redirectCount + 1,
   );
 }
@@ -94,6 +95,7 @@ async function checkTarget(target, options) {
   const targetUrl = new URL(target.path, options.baseUrl);
   const response = await fetchSameOrigin(targetUrl, {
     fetchImplementation: options.fetchImplementation,
+    headers: options.headers,
     origin: options.baseUrl.origin,
     timeoutMilliseconds: options.timeoutMilliseconds,
   });
@@ -121,6 +123,7 @@ export async function runHttpSmoke({
   baseUrl,
   criticalAssetPath = "/assets/brand/logo-mark.svg",
   fetchImplementation = fetch,
+  headers = {},
   timeoutMilliseconds = 10_000,
 }) {
   const parsedBaseUrl = validateBaseUrl(baseUrl);
@@ -143,11 +146,30 @@ export async function runHttpSmoke({
     await checkTarget(target, {
       baseUrl: parsedBaseUrl,
       fetchImplementation,
+      headers,
       timeoutMilliseconds,
     });
   }
 
   return targets.map((target) => target.path);
+}
+
+export function createAccessServiceTokenHeaders(environment = process.env) {
+  const clientId = environment.CF_ACCESS_CLIENT_ID;
+  const clientSecret = environment.CF_ACCESS_CLIENT_SECRET;
+
+  if (clientId === undefined || clientId === "") {
+    throw new Error("CF_ACCESS_CLIENT_ID is required for authenticated preview smoke checks.");
+  }
+
+  if (clientSecret === undefined || clientSecret === "") {
+    throw new Error("CF_ACCESS_CLIENT_SECRET is required for authenticated preview smoke checks.");
+  }
+
+  return {
+    "CF-Access-Client-Id": clientId,
+    "CF-Access-Client-Secret": clientSecret,
+  };
 }
 
 function readOption(argumentsList, option) {
@@ -178,10 +200,12 @@ function readTimeoutMilliseconds(argumentsList) {
 }
 
 async function execute(argumentsList) {
+  const authenticatedPreview = argumentsList.includes("--access-service-token");
   const checkedPaths = await runHttpSmoke({
     baseUrl: requireBaseUrl(argumentsList),
     criticalAssetPath:
       readOption(argumentsList, "--critical-asset-path") ?? "/assets/brand/logo-mark.svg",
+    headers: authenticatedPreview ? createAccessServiceTokenHeaders() : {},
     timeoutMilliseconds: readTimeoutMilliseconds(argumentsList),
   });
 

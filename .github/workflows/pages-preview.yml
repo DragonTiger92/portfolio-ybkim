@@ -1,0 +1,78 @@
+name: Pages Preview Build
+
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-preview-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    name: Evaluate Preview Request
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      eligible: ${{ steps.eligibility.outputs.eligible }}
+      enabled: ${{ steps.activation.outputs.enabled }}
+      revision: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Checkout exact pull-request head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: Evaluate unprivileged preview artifact
+        id: eligibility
+        env:
+          ACTOR: ${{ github.actor }}
+          BASE_REPOSITORY: ${{ github.repository }}
+          CHECKED_SHA: ${{ github.event.pull_request.head.sha }}
+          DRAFT: ${{ github.event.pull_request.draft }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: >-
+          node scripts/evaluate-preview-eligibility.mjs
+          --actor "$ACTOR"
+          --base-repository "$BASE_REPOSITORY"
+          --checked-sha "$CHECKED_SHA"
+          --draft "$DRAFT"
+          --head-ref "$HEAD_REF"
+          --head-repository "$HEAD_REPOSITORY"
+          --head-sha "$HEAD_SHA"
+          >> "$GITHUB_OUTPUT"
+
+      - name: Record activation state
+        id: activation
+        env:
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+        run: echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Report preview build disposition
+        env:
+          ELIGIBLE: ${{ steps.eligibility.outputs.eligible }}
+          ENABLED: ${{ steps.activation.outputs.enabled }}
+          REASON: ${{ steps.eligibility.outputs.reason }}
+        run: |
+          echo "Preview eligible: \`$ELIGIBLE\` ($REASON)." >> "$GITHUB_STEP_SUMMARY"
+          echo "Pages delivery enabled: \`$ENABLED\`." >> "$GITHUB_STEP_SUMMARY"
+
+  artifact:
+    name: Build Unprivileged Preview Artifact
+    needs: context
+    if: needs.context.outputs.enabled == 'true' && needs.context.outputs.eligible == 'true'
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      contents: read

@@ -1,0 +1,99 @@
+name: Pages Preview Manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Reviewed repository branch to deploy as a preview.
+        required: true
+        type: string
+      revision:
+        description: Full revision contained by the reviewed branch.
+        required: true
+        type: string
+      activation-test:
+        description: Allow this owner-reviewed smoke run while automatic delivery remains disabled.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-preview-manual-${{ inputs.branch }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    name: Validate Reviewed Manual Preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      branch: ${{ inputs.branch }}
+      enabled: ${{ steps.context.outputs.enabled }}
+      revision: ${{ inputs.revision }}
+    steps:
+      - name: Checkout trusted default-branch tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate branch and exact revision
+        env:
+          PREVIEW_BRANCH: ${{ inputs.branch }}
+          PREVIEW_REVISION: ${{ inputs.revision }}
+          WORKFLOW_REF: ${{ github.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$WORKFLOW_REF" == "refs/heads/main" ]] || { echo "manual preview must run from main" >&2; exit 1; }
+          [[ "$PREVIEW_REVISION" =~ ^[0-9a-f]{40}$ ]] || { echo "revision must be a full Git SHA" >&2; exit 1; }
+          [[ "$PREVIEW_BRANCH" =~ ^(feature|fix|content|docs|ci|infra|security|refactor|chore)/(ph|pbi)-[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$ ]] || {
+            echo "branch must follow the repository-local naming contract" >&2
+            exit 1
+          }
+
+          git fetch --no-tags origin "+refs/heads/$PREVIEW_BRANCH:refs/remotes/origin/$PREVIEW_BRANCH"
+          git merge-base --is-ancestor "$PREVIEW_REVISION" "refs/remotes/origin/$PREVIEW_BRANCH"
+
+      - name: Record activation state
+        id: context
+        env:
+          ACTIVATION_TEST: ${{ inputs['activation-test'] }}
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+        run: |
+          if [[ "$DEPLOYMENT_ENABLED" == "true" || "$ACTIVATION_TEST" == "true" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Pre-activation test: \`$ACTIVATION_TEST\`." >> "$GITHUB_STEP_SUMMARY"
+
+  artifact:
+    name: Build Reviewed Manual Preview Artifact
+    needs: context
+    if: needs.context.outputs.enabled == 'true'
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      contents: read
+
+  deploy:
+    name: Deploy Reviewed Manual Preview
+    needs:
+      - context
+      - artifact
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}
+      deployment-branch: ${{ needs.context.outputs.branch }}
+      deployment-environment: preview
+      environment-name: cloudflare-pages-preview
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      actions: read
+      contents: read

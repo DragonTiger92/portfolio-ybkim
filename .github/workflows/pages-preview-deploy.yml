@@ -1,0 +1,91 @@
+name: Pages Preview Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Pages Preview Build
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pages-preview-deploy-${{ github.event.workflow_run.pull_requests[0].number }}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    name: Validate Trusted Preview Deployment
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      artifact-name: ${{ steps.context.outputs['artifact-name'] }}
+      artifact-run-id: ${{ steps.context.outputs['artifact-run-id'] }}
+      branch: ${{ github.event.workflow_run.head_branch }}
+      eligible: ${{ steps.eligibility.outputs.eligible }}
+      enabled: ${{ steps.context.outputs.enabled }}
+      revision: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - name: Checkout trusted default-branch tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Re-evaluate automatic preview
+        id: eligibility
+        env:
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+          BASE_REPOSITORY: ${{ github.repository }}
+          CHECKED_SHA: ${{ github.event.workflow_run.head_sha }}
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.event.workflow_run.head_branch }}
+          HEAD_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$PR_NUMBER" ]] || { echo "workflow run is not associated with a pull request" >&2; exit 1; }
+          draft="$(gh api "repos/$BASE_REPOSITORY/pulls/$PR_NUMBER" --jq '.draft')"
+
+          node scripts/evaluate-preview-eligibility.mjs \
+            --actor "$ACTOR" \
+            --base-repository "$BASE_REPOSITORY" \
+            --checked-sha "$CHECKED_SHA" \
+            --draft "$draft" \
+            --head-ref "$HEAD_REF" \
+            --head-repository "$HEAD_REPOSITORY" \
+            --head-sha "$HEAD_SHA" \
+            >> "$GITHUB_OUTPUT"
+
+      - name: Record trusted deployment context
+        id: context
+        env:
+          DEPLOYMENT_ENABLED: ${{ vars.PAGES_DEPLOYMENT_ENABLED }}
+          PREVIEW_REVISION: ${{ github.event.workflow_run.head_sha }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          echo "artifact-name=site-artifact-$PREVIEW_REVISION" >> "$GITHUB_OUTPUT"
+          echo "artifact-run-id=$SOURCE_RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "enabled=$([[ "$DEPLOYMENT_ENABLED" == "true" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: Deploy Automatic Protected Preview
+    needs: context
+    if: needs.context.outputs.enabled == 'true' && needs.context.outputs.eligible == 'true'
+    uses: ./.github/workflows/pages-upload.yml
+    with:
+      artifact-name: ${{ needs.context.outputs['artifact-name'] }}
+      artifact-run-id: ${{ needs.context.outputs['artifact-run-id'] }}
+      deployment-branch: ${{ needs.context.outputs.branch }}
+      deployment-environment: preview
+      environment-name: cloudflare-pages-preview
+      revision: ${{ needs.context.outputs.revision }}
+    permissions:
+      actions: read
+      contents: read

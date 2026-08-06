@@ -5,7 +5,11 @@ import { once } from "node:events";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { runHttpSmoke, validateBaseUrl } from "./check-http-smoke.mjs";
+import {
+  createAccessServiceTokenHeaders,
+  runHttpSmoke,
+  validateBaseUrl,
+} from "./check-http-smoke.mjs";
 
 const scriptPath = fileURLToPath(new URL("./check-http-smoke.mjs", import.meta.url));
 
@@ -111,5 +115,47 @@ describe("HTTP smoke checks", () => {
 
     assert.equal(execution.status, 1);
     assert.match(execution.stderr, /HTTP smoke check failed: Provide --base-url/u);
+  });
+});
+
+describe("Access-authenticated HTTP smoke checks", () => {
+  it("forwards service-token headers without exposing them in output", async () => {
+    const expectedHeaders = createAccessServiceTokenHeaders({
+      CF_ACCESS_CLIENT_ID: "preview-client-id",
+      CF_ACCESS_CLIENT_SECRET: "preview-client-secret",
+    });
+    const receivedHeaders = [];
+    const server = await startServer((request, response) => {
+      receivedHeaders.push({
+        clientId: request.headers["cf-access-client-id"],
+        clientSecret: request.headers["cf-access-client-secret"],
+      });
+
+      if (request.url === "/") {
+        response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        response.end('<h1 id="portfolio-title">Portfolio</h1>');
+        return;
+      }
+
+      response.writeHead(200, { "Content-Type": "image/svg+xml" });
+      response.end('<svg viewBox="0 0 10 10"></svg>');
+    });
+
+    try {
+      await runHttpSmoke({ baseUrl: server.baseUrl, headers: expectedHeaders });
+      assert.deepEqual(receivedHeaders, [
+        { clientId: "preview-client-id", clientSecret: "preview-client-secret" },
+        { clientId: "preview-client-id", clientSecret: "preview-client-secret" },
+      ]);
+    } finally {
+      await server.close();
+    }
+  });
+
+  it("requires both Access service-token values", () => {
+    assert.throws(
+      () => createAccessServiceTokenHeaders({ CF_ACCESS_CLIENT_ID: "client-id" }),
+      /CF_ACCESS_CLIENT_SECRET/u,
+    );
   });
 });

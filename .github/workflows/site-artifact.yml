@@ -7,16 +7,24 @@ on:
         description: Full caller commit SHA; must equal the checked workflow revision.
         required: true
         type: string
+      job-status:
+        description: Build-time portfolio availability state.
+        required: false
+        default: actively-looking
+        type: string
     outputs:
+      artifact-name:
+        description: Exact-revision site artifact name.
+        value: ${{ jobs.artifact.outputs['artifact-name'] }}
       artifact-digest:
         description: GitHub-computed digest of the uploaded artifact archive.
-        value: ${{ jobs.artifact.outputs.artifact-digest }}
+        value: ${{ jobs.artifact.outputs['artifact-digest'] }}
       artifact-id:
         description: GitHub artifact identifier.
-        value: ${{ jobs.artifact.outputs.artifact-id }}
+        value: ${{ jobs.artifact.outputs['artifact-id'] }}
       artifact-url:
         description: Authenticated GitHub URL for the uploaded artifact.
-        value: ${{ jobs.artifact.outputs.artifact-url }}
+        value: ${{ jobs.artifact.outputs['artifact-url'] }}
 
 permissions:
   contents: read
@@ -26,14 +34,18 @@ jobs:
     name: Build Site Artifact
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      PORTFOLIO_JOB_STATUS: ${{ inputs['job-status'] }}
     outputs:
-      artifact-digest: ${{ steps.upload.outputs.artifact-digest }}
-      artifact-id: ${{ steps.upload.outputs.artifact-id }}
-      artifact-url: ${{ steps.upload.outputs.artifact-url }}
+      artifact-name: ${{ steps.metadata.outputs['artifact-name'] }}
+      artifact-digest: ${{ steps.upload.outputs['artifact-digest'] }}
+      artifact-id: ${{ steps.upload.outputs['artifact-id'] }}
+      artifact-url: ${{ steps.upload.outputs['artifact-url'] }}
     steps:
       - name: Checkout caller revision
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          ref: ${{ inputs.revision }}
           persist-credentials: false
 
       - name: Verify caller revision
@@ -80,11 +92,17 @@ jobs:
           --revision "$ARTIFACT_REVISION"
           --output tmp/delivery/site-artifact-manifest.json
 
+      - name: Record artifact metadata
+        id: metadata
+        env:
+          ARTIFACT_REVISION: ${{ inputs.revision }}
+        run: echo "artifact-name=site-artifact-$ARTIFACT_REVISION" >> "$GITHUB_OUTPUT"
+
       - name: Upload checked site artifact
         id: upload
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: site-artifact-${{ github.sha }}
+          name: site-artifact-${{ inputs.revision }}
           path: |
             dist/
             tmp/delivery/site-artifact-manifest.json

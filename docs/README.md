@@ -39,6 +39,7 @@ owner-controlled storage outside the public repository.
 | `security/supply-chain.md`                              | Dependency and SBOM policy                   |
 | `security/license-compliance.md`                        | Pre-release third-party license review       |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery  |
+| `operations/pages-delivery.md`                          | Pages CI/CD activation and release runbook   |
 | `operations/demo-access.md`                             | Recruiter demo-account request and delivery  |
 | `reference/glossary.md`                                 | Shared terms                                 |
 | `content/portfolio-content.md`                          | Public portfolio content model               |

@@ -35,6 +35,32 @@ resource "cloudflare_zero_trust_access_policy" "preview_account_members" {
   }
 }
 
+resource "cloudflare_zero_trust_access_service_token" "preview_ci_smoke" {
+  account_id = var.cloudflare_account_id
+  name       = "Portfolio preview CI smoke"
+  duration   = "8760h"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "cloudflare_zero_trust_access_policy" "preview_ci_smoke" {
+  account_id = var.cloudflare_account_id
+  name       = "Portfolio preview CI smoke"
+  decision   = "non_identity"
+
+  include = [{
+    service_token = {
+      token_id = cloudflare_zero_trust_access_service_token.preview_ci_smoke.id
+    }
+  }]
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "cloudflare_zero_trust_access_application" "preview" {
   account_id                = var.cloudflare_account_id
   name                      = "Portfolio protected previews"
@@ -50,10 +76,16 @@ resource "cloudflare_zero_trust_access_application" "preview" {
     uri  = local.preview_access_hostname
   }]
 
-  policies = [{
-    id         = cloudflare_zero_trust_access_policy.preview_account_members.id
-    precedence = 1
-  }]
+  policies = [
+    {
+      id         = cloudflare_zero_trust_access_policy.preview_account_members.id
+      precedence = 1
+    },
+    {
+      id         = cloudflare_zero_trust_access_policy.preview_ci_smoke.id
+      precedence = 2
+    },
+  ]
 
   lifecycle {
     prevent_destroy = true

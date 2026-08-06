@@ -1,8 +1,9 @@
 # Deployment Architecture
 
 Cloudflare Pages is the selected production-hosting target. GitHub Pages is not
-a supported target. Provider-specific deployment implementation is deferred to
-`PH-003 Deployment And Operations Readiness`.
+a supported target. The existing Direct Upload Pages project remains the
+hosting boundary, while GitHub Actions invokes the pinned Wrangler CLI for
+reviewable preview, production, and formal-release delivery.
 
 ## Build Flow
 
@@ -54,11 +55,11 @@ server runtime; Node.js remains a build-time tool only.
 | Component               | Responsibility                                              | Phase / State                         |
 | ----------------------- | ----------------------------------------------------------- | ------------------------------------- |
 | GitHub repository       | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
-| GitHub Actions          | CI, protected preview orchestration, and production release | CI in PH-001; deployment in PH-003    |
+| GitHub Actions          | CI, protected preview orchestration, and production release | Source-ready; live activation pending |
 | Astro                   | Produce the deployable `dist/` static artifact              | Existing build tool                   |
-| Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | PH-003 planned                        |
-| Cloudflare Pages        | Store deployments and serve static files through the edge   | PH-003 planned                        |
-| Cloudflare Access       | Protect selected preview deployments from public access     | PH-003 planned                        |
+| Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | Pinned deployment implementation      |
+| Cloudflare Pages        | Store deployments and serve static files through the edge   | Existing Direct Upload project        |
+| Cloudflare Access       | Protect previews and authenticate CI smoke checks           | Human policy live; CI policy pending  |
 | Terraform               | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
 | GitHub Releases         | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
 | Checkly                 | Detect production URL, critical-asset, and TLS failure      | Selected for post-v1 PH-003 work      |
@@ -74,30 +75,25 @@ Routing resource.
 
 ## Direct Upload Readiness
 
-Wrangler Direct Upload remains the accepted delivery direction. The account-free
-foundation pins the latest cooldown-eligible stable `wrangler@4.114.0`, validates
-the `dist/` inventory and Cloudflare `_headers`, creates an exact-revision file
-digest manifest, provides a configurable HTTP smoke checker, and exposes a
-`workflow_call` build-and-artifact workflow. It intentionally has no Pages
-upload command, deployment trigger, GitHub environment, or Cloudflare
-credential.
+Wrangler Direct Upload is the accepted delivery implementation. The repository
+pins `wrangler@4.114.0`, validates the `dist/` inventory and Cloudflare
+`_headers`, creates and revalidates an exact-revision file digest manifest, and
+uses reusable build and Pages-upload workflows. The upload workflow resolves
+the successful deployment through the Pages API by full commit SHA, branch, and
+environment instead of trusting Wrangler's seven-character list display.
 
-PH-003 makes Direct Upload operational in this order:
+The workflows are inactive by default. `PAGES_DEPLOYMENT_ENABLED` must equal
+`true` before any build with credentials or upload job runs. Its Terraform
+baseline remains `false` until the named GitHub Environments, least-privilege
+Cloudflare token, Access service token, and owner-visible smoke acceptance are
+ready. Follow the [Pages delivery runbook](../operations/pages-delivery.md) for
+the scoped GitHub configuration and activation sequence.
 
-1. `PBI-012` and `PBI-010` confirm the managed Cloudflare scope, Pages project,
-   production target, and configuration ownership.
-2. `PBI-011` live-verifies a stable Wrangler release, pins the exact approved
-   version under the repository's pnpm policy, and invokes it through the shared
-   deployment implementation.
-3. The protected GitHub environment supplies the non-public deployment
-   configuration. `CLOUDFLARE_API_TOKEN` remains a least-privilege secret, and
-   the workflow receives the matching `CLOUDFLARE_ACCOUNT_ID` and Pages project
-   name without committing owner-specific values.
-4. The workflow builds and verifies `dist/`, uploads that exact directory with
-   Wrangler Direct Upload, runs production smoke checks, and preserves
-   deployment and rollback evidence.
-5. `PBI-065` reuses the checked build and upload path for eligible pull request
-   revisions only after `PBI-026` verifies the preview Access policy.
+Activation follows live Cloudflare scope and Access verification. The
+`cloudflare-pages-production` and `cloudflare-pages-preview` GitHub Environments
+supply the least-privilege API token plus account, project, and production URL
+variables. The workflow then uploads and smoke-checks the exact artifact;
+eligible pull-request previews reuse that path only after Access acceptance.
 
 The checked preview-eligibility module rejects drafts, forks, Dependabot,
 unsupported branch prefixes, malformed revisions, and a head revision that no
@@ -131,6 +127,9 @@ but it is a Cloudflare Pages deployment with its own URL and static artifact.
   `astro preview` when browser inspection is needed.
 - Protect preview hostnames through Cloudflare Access. The exact identity
   provider and allowlist are selected while implementing `PBI-026`.
+- Give CI a dedicated Access service token and `Service Auth` (`non_identity`)
+  policy. Store its client ID and secret only in the preview GitHub Environment;
+  the smoke checker sends both headers without printing them.
 - Until that Access boundary is verified, create remote previews only through an
   owner-reviewed `workflow_dispatch`.
 - After `PBI-065` is activated, automatically deploy same-repository, non-draft
@@ -145,11 +144,10 @@ but it is a Cloudflare Pages deployment with its own URL and static artifact.
   smoke checks authorize the final release tag.
 
 The preview workflow must use the `pull_request` event rather than
-`pull_request_target`, keep permissions least-privileged, and use one concurrency
-group per pull request so a newer revision cancels a stale preview run. Record
-the eligibility decision, source revision, protected preview URL, and smoke-check
-result in the job summary. Retain complete logs for diagnosis, but review the
-summary and first failed step before loading verbose output.
+`pull_request_target`, keep its artifact build unprivileged, and use one
+concurrency group per pull request. A default-branch `workflow_run` revalidates
+the completed build before trusted tooling enters the credential-bearing
+environment. Record the revision, preview URL, and authenticated smoke result.
 
 The existing `PR Metadata` gate rejects invalid human branch names. `PBI-065`
 must also encode the allow-list in the deployment workflow's eligibility job so
@@ -159,8 +157,8 @@ the public workflow and agent guidance are not the only controls.
 
 The accepted orchestration direction is GitHub Actions plus Wrangler Direct
 Upload, not Cloudflare Git integration. A reusable production-deployment
-workflow should be callable by both the automatic and manual entry points.
-PH-003 implements:
+workflow is callable by automatic and manual entry points. The source contract
+implements:
 
 1. full repository checks and a reproducible Astro build;
 2. automatic protected previews for the documented branch allow-list plus a
@@ -188,6 +186,9 @@ transaction. A failure before smoke-check success creates no release tag. A
 failure while creating the tag or GitHub Release leaves a verified production
 deployment that the owner can finalize through an idempotent retry without
 inventing a different version.
+
+GitHub Environment creation, secret transfer, Cloudflare Terraform apply,
+activation, and the first live run remain separate owner-reviewed operations.
 
 ### Operational State Redeployment
 
@@ -280,6 +281,13 @@ If GitHub Release publication fails after tag creation, an idempotent retry is
 allowed only when the existing tag peels to the same reviewed revision. A
 different revision or version requires a new release decision rather than tag
 mutation.
+
+`scripts/validate-release-request.mjs` is the code-layer harness for that
+policy. It rejects malformed versions, `package.json` version drift,
+non-`origin/main` revisions, an existing tag that peels elsewhere, and an
+unacknowledged retry. The workflow creates an unsigned annotated tag only after
+the reusable production upload has resolved the exact deployment and the
+canonical public smoke check has passed.
 
 ## Roadmap Release Targets
 
