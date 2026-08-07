@@ -35,34 +35,6 @@ resource "cloudflare_zero_trust_access_policy" "preview_account_members" {
   }
 }
 
-# Staged decommission: keep the detached CI resources in state until the
-# preview application has been applied with only the human policy and verified.
-resource "cloudflare_zero_trust_access_service_token" "preview_ci_smoke" {
-  account_id = var.cloudflare_account_id
-  name       = "Portfolio preview CI smoke"
-  duration   = "8760h"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "cloudflare_zero_trust_access_policy" "preview_ci_smoke" {
-  account_id = var.cloudflare_account_id
-  name       = "Portfolio preview CI smoke"
-  decision   = "non_identity"
-
-  include = [{
-    service_token = {
-      token_id = cloudflare_zero_trust_access_service_token.preview_ci_smoke.id
-    }
-  }]
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 resource "cloudflare_zero_trust_access_application" "preview" {
   account_id                = var.cloudflare_account_id
   name                      = "Portfolio protected previews"

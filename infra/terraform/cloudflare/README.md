@@ -19,14 +19,13 @@ hostname. Custom domains, DNS zones and records, Email Routing, deployments,
 public contact copy, analytics, GitHub Environments, and deployment credentials
 are outside this root.
 
-The proposed first transition retains the existing `preview_ci_smoke` service
-token and reusable policy blocks while removing their application attachment
-and two sensitive root outputs. Live state remains attached until that change is
-planned and applied. The token's sensitive attributes remain in remote state;
-removing root outputs neither deletes nor revokes the token. Remove the two
-resource blocks only after the application-detach apply and human Access
-verification. Actual credential revocation occurs when the service token is
-deleted in the second transition.
+The first transition is complete: the Preview Access application is attached
+only to the human policy, the two sensitive root outputs are gone, and the owner
+successfully reauthenticated from a fresh/private browser session. This
+follow-up tracked configuration removes only the detached `preview_ci_smoke`
+service-token and reusable-policy blocks. Those two resources remain live until
+the separately reviewed destroy apply. Actual credential revocation occurs when
+the service token is deleted in that second transition.
 
 Every long-lived resource uses `prevent_destroy`. Changing an attribute that
 requires replacement must first fail rather than silently destroy an existing
@@ -86,14 +85,12 @@ Apply remains manual and automatic apply remains disabled.
 
 Do not combine the two provider transitions:
 
-1. With the current tracked configuration, run a remote plan that detaches the
-   CI policy from the Preview Access application. Expect `0 add`, one in-place
-   application change, and `0 destroy`, plus removal of exactly two sensitive
-   root outputs. Never query or display their values. Stop on any other action.
-2. Apply only after owner approval, then verify the existing human Access login
-   against a protected preview. Validate the next owner-needed topic-branch
-   upload through the manual runbook.
-3. In a follow-up tracked change, remove only the
+1. Completed: the first remote plan contained `0 add`, one in-place application
+   change, `0 destroy`, and exactly two sensitive root-output removals whose
+   values remained unqueried.
+2. Completed: after owner-approved apply, the owner successfully reauthenticated
+   through human Access from a fresh/private browser session.
+3. Current tracked change: remove only the
    `cloudflare_zero_trust_access_policy.preview_ci_smoke` and
    `cloudflare_zero_trust_access_service_token.preview_ci_smoke` blocks.
 4. Review a second remote plan containing `0 add`, `0 change`, and exactly two
