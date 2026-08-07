@@ -121,25 +121,22 @@ Choose the most specific prefix that describes the primary reason for the
 branch. The prefix does not replace pull request labels or release-impact
 metadata.
 
-## Preview Eligibility
+## Manual Preview Selection
 
-Branch prefixes also provide the stable input for the PH-003 protected-preview
-workflow without replacing their change-type meaning.
+Branch prefixes describe the actual change type; they do not trigger deployment.
+There is no automatic pull-request or GitHub-dispatched preview workflow.
 
-| Pull request head                                    | Planned preview behavior                                            |
-| ---------------------------------------------------- | ------------------------------------------------------------------- |
-| Same-repository, non-draft `feature/*`               | Deploy automatically after required checks pass                     |
-| Same-repository, non-draft `fix/*`                   | Deploy automatically after required checks pass                     |
-| Same-repository, non-draft `content/*`               | Deploy automatically after required checks pass                     |
-| `docs/*`, `ci/*`, `infra/*`, `security/*`            | Do not deploy automatically; use the reviewed manual path if needed |
-| `refactor/*`, `chore/*`                              | Do not deploy automatically; use the reviewed manual path if needed |
-| Dependabot, forks, drafts, `wip/*`, or invalid names | Never receive an automatic credential-bearing preview               |
+When production-like remote QA is useful, the owner may manually Direct Upload
+the current human GitHub Flow topic branch with the repository-pinned Wrangler
+version. Use the clean revision that exactly matches the pushed remote branch
+tip, run the full local check first, and retain the branch's real name as Pages
+deployment metadata.
 
-Choose the prefix from the actual change type, not to obtain or avoid a preview.
-When a normally ineligible branch needs production-like QA, record the reason in
-the pull request and use the manually dispatched preview workflow after the
-required checks pass. `PBI-065` activates this trigger contract only after
-`PBI-026` verifies the Cloudflare Access boundary.
+Do not create a synthetic preview branch, change a prefix to obtain a preview,
+or upload `main`, Dependabot, a fork, `wip/*`, or an invalid branch name as a
+preview. Cloudflare Access authenticates the owner; the owner completes browser
+QA manually. Preview QA is optional pull-request evidence and not a required
+status check.
 
 ## Exceptions
 

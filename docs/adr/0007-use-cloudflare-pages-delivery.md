@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted; the automated-preview portion is superseded by
+[ADR-0011](0011-use-owner-driven-pages-previews.md)
 
 ## Context
 

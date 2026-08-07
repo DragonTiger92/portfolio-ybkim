@@ -27,7 +27,7 @@
     "test:file-size": "node --test scripts/validate-file-size.test.mjs",
     "test:static-budget": "node --test scripts/validate-static-budget.test.mjs",
     "test:contact-availability": "node --test scripts/validate-contact-availability.test.mjs",
-    "test:delivery": "node --test scripts/check-http-smoke.test.mjs scripts/create-artifact-manifest.test.mjs scripts/evaluate-preview-eligibility.test.mjs scripts/resolve-pages-deployment.test.mjs scripts/validate-artifact-manifest.test.mjs scripts/validate-dist-output.test.mjs scripts/validate-headers.test.mjs scripts/validate-release-request.test.mjs",
+    "test:delivery": "node --test scripts/check-http-smoke.test.mjs scripts/create-artifact-manifest.test.mjs scripts/resolve-pages-deployment.test.mjs scripts/validate-artifact-manifest.test.mjs scripts/validate-dist-output.test.mjs scripts/validate-headers.test.mjs scripts/validate-release-request.test.mjs",
     "test:release-evidence": "node --test scripts/render-social-preview.test.mjs scripts/validate-cyclonedx-sbom.test.mjs scripts/validate-image-assets.test.mjs scripts/validate-scancode-report.test.mjs",
     "asset:social-preview": "node scripts/render-social-preview.mjs",
     "test:a11y": "pnpm build:bundle && playwright test",

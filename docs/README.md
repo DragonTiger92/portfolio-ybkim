@@ -32,14 +32,15 @@ owner-controlled storage outside the public repository.
 | `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                   |
 | `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary              |
 | `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision     |
-| `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare delivery and preview decision     |
+| `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare production delivery decision      |
 | `adr/0008-use-docs-based-work-tracking.md`              | Docs-based work tracking decision            |
 | `adr/0009-adopt-astro-static-component-architecture.md` | Astro static component architecture decision |
 | `adr/0010-use-cyclonedx-json-sbom.md`                   | CycloneDX SBOM format decision               |
+| `adr/0011-use-owner-driven-pages-previews.md`           | Owner-driven protected preview decision      |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                   |
 | `security/license-compliance.md`                        | Pre-release third-party license review       |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery  |
-| `operations/pages-delivery.md`                          | Pages CI/CD activation and release runbook   |
+| `operations/pages-delivery.md`                          | Pages production and manual preview runbook  |
 | `operations/demo-access.md`                             | Recruiter demo-account request and delivery  |
 | `reference/glossary.md`                                 | Shared terms                                 |
 | `content/portfolio-content.md`                          | Public portfolio content model               |

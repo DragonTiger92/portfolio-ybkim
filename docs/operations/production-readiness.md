@@ -40,8 +40,8 @@ considered complete.
 `PBI-032` establishes the proportionate observability baseline before PH-003
 closes. It uses Checkly as the external synthetic monitor so checks continue
 when the repository workflow is idle or unavailable. Implement Checkly after
-the `v1.0.0` release, `PBI-069`, and the CI/CD deployment contract are stable,
-but before PH-003 closes.
+the `v1.0.0` release, `PBI-069`, and the production delivery contract are
+stable, but before PH-003 closes.
 
 A scheduled GitHub Actions probe may supplement the monitor but should not be
 the only uptime signal because scheduled runs can be delayed and public

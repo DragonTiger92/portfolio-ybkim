@@ -13,9 +13,6 @@ on:
         default: actively-looking
         type: string
     outputs:
-      artifact-name:
-        description: Exact-revision site artifact name.
-        value: ${{ jobs.artifact.outputs['artifact-name'] }}
       artifact-digest:
         description: GitHub-computed digest of the uploaded artifact archive.
         value: ${{ jobs.artifact.outputs['artifact-digest'] }}
@@ -37,7 +34,6 @@ jobs:
     env:
       PORTFOLIO_JOB_STATUS: ${{ inputs['job-status'] }}
     outputs:
-      artifact-name: ${{ steps.metadata.outputs['artifact-name'] }}
       artifact-digest: ${{ steps.upload.outputs['artifact-digest'] }}
       artifact-id: ${{ steps.upload.outputs['artifact-id'] }}
       artifact-url: ${{ steps.upload.outputs['artifact-url'] }}
@@ -91,12 +87,6 @@ jobs:
           node scripts/create-artifact-manifest.mjs
           --revision "$ARTIFACT_REVISION"
           --output tmp/delivery/site-artifact-manifest.json
-
-      - name: Record artifact metadata
-        id: metadata
-        env:
-          ARTIFACT_REVISION: ${{ inputs.revision }}
-        run: echo "artifact-name=site-artifact-$ARTIFACT_REVISION" >> "$GITHUB_OUTPUT"
 
       - name: Upload checked site artifact
         id: upload

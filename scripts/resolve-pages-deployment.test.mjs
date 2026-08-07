@@ -8,8 +8,8 @@ const revision = "a".repeat(40);
 function deployment(overrides = {}) {
   return {
     created_on: "2026-08-06T01:00:00Z",
-    deployment_trigger: { metadata: { branch: "feature/pbi-065-preview", commit_hash: revision } },
-    environment: "preview",
+    deployment_trigger: { metadata: { branch: "main", commit_hash: revision } },
+    environment: "production",
     id: "11111111-1111-4111-8111-111111111111",
     latest_stage: { status: "success" },
     url: "https://deployment-id.portfolio.pages.dev/",
@@ -20,7 +20,7 @@ function deployment(overrides = {}) {
 describe("Pages deployment selection", () => {
   it("selects the newest successful exact-revision deployment", () => {
     const selected = selectPagesDeployment({
-      branch: "feature/pbi-065-preview",
+      branch: "main",
       deployments: [
         deployment(),
         deployment({
@@ -28,7 +28,7 @@ describe("Pages deployment selection", () => {
           id: "22222222-2222-4222-8222-222222222222",
         }),
       ],
-      environment: "preview",
+      environment: "production",
       revision,
     });
 
@@ -39,17 +39,17 @@ describe("Pages deployment selection", () => {
     assert.throws(
       () =>
         selectPagesDeployment({
-          branch: "feature/pbi-065-preview",
+          branch: "main",
           deployments: [
             deployment({
               deployment_trigger: {
-                metadata: { branch: "feature/pbi-065-preview", commit_hash: revision.slice(0, 7) },
+                metadata: { branch: "main", commit_hash: revision.slice(0, 7) },
               },
             }),
-            deployment({ environment: "production" }),
+            deployment({ environment: "preview" }),
             deployment({ latest_stage: { status: "failure" } }),
           ],
-          environment: "preview",
+          environment: "production",
           revision,
         }),
       /No successful Pages deployment matches/u,
