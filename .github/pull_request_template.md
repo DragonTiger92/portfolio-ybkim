@@ -41,8 +41,7 @@
 - [ ] `pnpm.cmd check`
 - [ ] Documentation or ADR impact reviewed
 - [ ] Public/private information boundary reviewed
-- [ ] Preview handling follows the documented branch-prefix policy
-- [ ] Manual preview reason is recorded in Notes when an exception is requested
+- [ ] Manual preview is not needed, or its branch, revision, and QA result are recorded in Notes
 
 ## Notes
 

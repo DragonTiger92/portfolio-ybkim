@@ -63,10 +63,11 @@ head branches, the strict `main` ruleset, and
 variable manually before the ruleset is active.
 
 `PAGES_DEPLOYMENT_ENABLED` is intentionally managed as `false` while the Pages
-pipeline is source-only. A later owner-reviewed activation must first provision
-the named GitHub Environments and their scoped Cloudflare configuration, apply
-the Access service-token policy, complete an authenticated preview smoke test,
-and then change this managed value to `true` in a separate reviewed change.
+production pipeline is source-only. A later owner-reviewed activation must
+first provision the production and formal-release GitHub Environments, verify
+their scoped Cloudflare configuration, complete production acceptance, and then
+change this managed value to `true` in a separate reviewed change. Manual
+topic-branch previews do not use this variable or a GitHub Environment.
 
 ## Local Validation
 

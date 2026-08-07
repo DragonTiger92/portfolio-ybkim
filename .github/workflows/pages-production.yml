@@ -113,9 +113,6 @@ jobs:
     uses: ./.github/workflows/pages-upload.yml
     with:
       artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}
-      deployment-branch: main
-      deployment-environment: production
-      environment-name: cloudflare-pages-production
       revision: ${{ needs.context.outputs.revision }}
     permissions:
       actions: read
