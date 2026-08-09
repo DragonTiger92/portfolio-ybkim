@@ -5,7 +5,7 @@ This Terraform root manages long-lived GitHub repository governance for
 
 ## Managed Scope
 
-- repository feature and merge settings;
+- repository description, public homepage, feature, and merge settings;
 - the Dependabot minor-and-patch auto-merge activation variable;
 - the Pages production deployment activation variable;
 - the `deps:validated` compatibility-attestation label;
@@ -59,6 +59,18 @@ Do not query or print Environment values while verifying this contract. Manual
 topic-branch previews remain owner actions and do not use the repository
 activation variable or a GitHub Environment.
 
+The repository description and public homepage are Terraform-owned metadata.
+When reviewed live metadata is adopted after drift detection, record the live
+description in `repository.tf` and keep `homepage_url` aligned with the Astro
+canonical site. Repository topics remain unmanaged unless a separate source
+boundary explicitly adopts them.
+
+Metadata adoption does not authorize a resource-changing activation apply.
+After the source change reaches `main`, use a separately owner-approved
+refresh-only run to reconcile accepted live metadata into state without changing
+the repository. Only then create a new standard activation run and require it to
+return to the single-create contract below.
+
 This source boundary changes the Terraform-managed
 `PAGES_DEPLOYMENT_ENABLED` value to `true`. Merge the source while the live
 variable is still absent, and require the resulting `Pages Production` run to
@@ -95,3 +107,8 @@ Review only a single create for
 the same run only after separate owner approval. The source pull request does
 not trigger the remote run, and the completed apply does not require a follow-up
 no-op run.
+
+If a plan reports repository metadata drift, do not absorb it into the
+activation apply. Discard that run after owner approval, align the source with
+the reviewed owner intent, reconcile state through the separate refresh-only
+gate, and recreate the exact activation plan.
