@@ -127,6 +127,14 @@ treatment must communicate the same role.
 - Make state feedback immediate and proportionate. CSS transitions may soften a
   change, but must not delay recognition or become the only evidence that an
   action occurred.
+- Separate a text label from an icon or typographic mark that communicates an
+  interaction affordance. Keep each role in its own child element and preserve
+  at least `--space-1` of visible separation through the shared component that
+  owns it or a deliberate larger logical CSS gap; do not rely on collapsed
+  source whitespace or `&nbsp;`.
+- Use `NewWindowLink` for links that open a new browsing context so their label,
+  `↗` mark, accessible name, security attributes, and spacing remain one
+  canonical contract.
 - Keep affordance coherent across light and dark themes, responsive layouts,
   and repeated instances of the same interaction pattern.
 

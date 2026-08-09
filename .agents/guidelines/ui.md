@@ -91,6 +91,17 @@ control communicates both its role and its current state.
 - Use visited styling only where revisitation history helps users understand
   content navigation; do not apply it to action-like controls or primary site
   navigation merely for decoration.
+- When text and an icon or typographic mark jointly communicate an affordance,
+  render them as separate child elements and preserve at least `--space-1` of
+  visible separation with a shared component that owns it or a deliberate
+  larger logical CSS gap. Do not use collapsed source whitespace or `&nbsp;` as
+  the spacing contract.
+- Use `NewWindowLink` for links that open a new browsing context. Extend its
+  typed attribute forwarding when another semantic attribute is required
+  instead of recreating the label, `↗` mark, security attributes, or spacing.
+- Treat the external-link Playwright inventory as a harness: every rendered
+  `target="_blank"` anchor must satisfy the `NewWindowLink` structure and minimum
+  gap unless a reviewed exception is documented and tested.
 
 Before completing UI work, manually compare applicable states with keyboard and
 pointer input, at a touch-sized narrow viewport, and in light and dark themes.

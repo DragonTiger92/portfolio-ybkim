@@ -1,27 +1,58 @@
 ---
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+type AnchorAttributes = Omit<
+  HTMLAttributes<"a">,
+  "aria-label" | "class" | "href" | "rel" | "target"
+>;
+
+interface Props extends AnchorAttributes {
   accessibleLabel: string;
   class?: string;
   href: string;
   windowLabel?: string;
 }
 
-const { accessibleLabel, class: className, href, windowLabel = "새 창" } = Astro.props;
+const {
+  accessibleLabel,
+  class: className,
+  href,
+  windowLabel = "새 창",
+  ...attributes
+} = Astro.props;
 ---
 
 <a
+  {...attributes}
   class:list={["new-window-link", className]}
   href={href}
   target="_blank"
   rel="noopener noreferrer"
   aria-label={`${accessibleLabel}(${windowLabel})`}
 >
-  <span class="new-window-link__label"><slot /></span>
-  <span class="new-window-link__icon" aria-hidden="true">↗</span>
+  <span class="new-window-link__label affordance-pair__label"><slot /></span>
+  <span class="new-window-link__icon affordance-pair__mark" aria-hidden="true">↗</span>
 </a>
 
 <style>
   .new-window-link {
+    display: inline-flex;
+    align-items: center;
     gap: var(--space-1);
+  }
+
+  .button-link > .affordance-pair__label,
+  .button-link > .affordance-pair__mark {
+    color: var(--color-on-accent);
+  }
+
+  .button-link--secondary > .affordance-pair__label,
+  .button-link--secondary > .affordance-pair__mark {
+    color: var(--color-text);
+  }
+
+  .button-link--tertiary > .affordance-pair__label,
+  .button-link--tertiary > .affordance-pair__mark {
+    color: var(--color-accent-strong);
   }
 </style>

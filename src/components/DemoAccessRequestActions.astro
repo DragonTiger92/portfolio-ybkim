@@ -1,5 +1,6 @@
 ---
 import { createDemoAccessRequest } from "../data/demo-access";
+import NewWindowLink from "./NewWindowLink.astro";
 
 interface Props {
   presentation: "card" | "detail";
@@ -11,15 +12,13 @@ const request = createDemoAccessRequest(projectTitle);
 const isDetail = presentation === "detail";
 ---
 
-<a
+<NewWindowLink
   class:list={[{ "button-link button-link--secondary": isDetail, "text-link": !isDetail }]}
   href={request.gmailUrl}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={`${projectTitle} 테스트 계정 요청 메일 작성(Gmail 새 창)`}
+  accessibleLabel={`${projectTitle} 테스트 계정 요청 메일 작성`}
+  windowLabel="Gmail 새 창"
   aria-haspopup="dialog"
   data-demo-access-trigger
 >
   테스트 계정 요청
-  <span aria-hidden="true">↗</span>
-</a>
+</NewWindowLink>
