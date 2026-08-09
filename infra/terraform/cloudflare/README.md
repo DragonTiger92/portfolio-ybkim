@@ -2,8 +2,8 @@
 
 This root defines the PH-003 Cloudflare infrastructure contract. It does not
 authorize authentication, import, plan, apply, deployment, or credential
-changes by itself. `PBI-012` remains in progress until the staged preview CI
-retirement and final no-op verification are complete.
+changes by itself. The staged preview CI retirement, final inventory, no-op
+verification, and temporary provider-permission cleanup are complete.
 
 ## Managed Scope
 
@@ -19,18 +19,11 @@ hostname. Custom domains, DNS zones and records, Email Routing, deployments,
 public contact copy, analytics, GitHub Environments, and deployment credentials
 are outside this root.
 
-The first transition is complete: the Preview Access application is attached
-only to the human policy, the two sensitive root outputs are gone, and the owner
-successfully reauthenticated from a fresh/private browser session. This
-follow-up tracked configuration removes only the detached `preview_ci_smoke`
-service-token and reusable-policy blocks. Those two resources remain live until
-the separately reviewed destroy apply. Actual credential revocation occurs when
-the service token is deleted in that second transition.
-
-Every long-lived resource uses `prevent_destroy`. Changing an attribute that
-requires replacement must first fail rather than silently destroy an existing
-resource. Removing a resource block also removes its lifecycle guard, so the
-two CI-only blocks require a separately reviewed destroy plan.
+The Preview Access application is attached only to the human policy, the two
+sensitive root outputs are gone, and the former CI policy and service token are
+retired. Every remaining long-lived resource uses `prevent_destroy`; an
+attribute change that requires replacement must fail rather than silently
+destroy an existing resource.
 
 ## HCP Terraform Workspace
 
@@ -62,11 +55,10 @@ used by the remaining resources:
   `Account / Access: Organizations, Identity Providers, and Groups / Read`;
   API/provider `Access: Organizations, Identity Providers, and Groups Read`.
 
-The staged service-token deletion additionally requires the Dashboard permission
-`Account / Access: Service Tokens / Edit` (API/provider
-`Access: Service Tokens Write`). Keep that permission only through the reviewed
-destroy apply and no-op verification, then remove it from the HCP provider token.
-This temporary permission is not part of the manual preview credential contract.
+The temporary `Access: Service Tokens Write` permission used during retirement
+has been removed from the HCP provider token. Do not restore it without a new,
+separately reviewed resource transition. The owner-held manual preview
+credential remains a separate Pages-only boundary.
 
 Do not put IDs, tokens, Terraform credentials, or `*.tfvars` values in the
 repository or an agent prompt. Do not query or print sensitive provider outputs.
@@ -79,30 +71,27 @@ create a duplicate resource to work around state drift.
 
 Every plan must distinguish existing resources from absent resources. Stop for
 owner review on any unexpected create, replace, destroy, or provider output.
-Apply remains manual and automatic apply remains disabled.
+Apply remains manual and automatic apply remains disabled. The GitHub production
+activation does not require another plan or apply from this Cloudflare root.
 
-## Staged Preview CI Retirement
+## Completed Preview CI Retirement
 
-Do not combine the two provider transitions:
+The retirement preserved separate provider transitions and owner gates:
 
-1. Completed: the first remote plan contained `0 add`, one in-place application
-   change, `0 destroy`, and exactly two sensitive root-output removals whose
-   values remained unqueried.
-2. Completed: after owner-approved apply, the owner successfully reauthenticated
-   through human Access from a fresh/private browser session.
-3. Current tracked change: remove only the
-   `cloudflare_zero_trust_access_policy.preview_ci_smoke` and
-   `cloudflare_zero_trust_access_service_token.preview_ci_smoke` blocks.
-4. Review a second remote plan containing `0 add`, `0 change`, and exactly two
-   destroys. Stop on create, replacement, or any additional change.
-5. After owner-approved apply, inventory the four remaining logical objects and
-   require a no-op remote plan.
-6. Only then remove `Access: Service Tokens Write` from the provider token and
-   retire the unused GitHub preview Environment. Revoke its Pages token unless
-   the owner explicitly retains it outside GitHub for manual Wrangler uploads.
+1. The first apply detached the CI policy from the Preview Access application
+   and removed two sensitive root outputs without querying their values.
+2. The owner reauthenticated through the remaining human Access policy from a
+   fresh/private browser session.
+3. The second apply destroyed only the detached CI policy and service token,
+   with no create, replacement, or unrelated change.
+4. Read-only reconciliation confirmed the four-object steady state, and a later
+   standard run remained a no-op.
+5. The temporary service-token permission was removed, the unused GitHub Preview
+   Environment was deleted, and obsolete credentials were revoked.
 
-The two destroy counts are expected from the tracked graph, not authorization
-to run a plan or apply. A live plan remains the authority.
+The accepted configuration-binding evidence gap is closed by owner decision.
+Do not create another Cloudflare run or reopen that evidence without a new
+request.
 
 ## Credential-Free Validation
 
