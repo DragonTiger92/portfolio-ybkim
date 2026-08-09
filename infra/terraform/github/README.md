@@ -7,7 +7,7 @@ This Terraform root manages long-lived GitHub repository governance for
 
 - repository feature and merge settings;
 - the Dependabot minor-and-patch auto-merge activation variable;
-- the default-disabled Pages deployment activation variable;
+- the Pages production deployment activation variable;
 - the `deps:validated` compatibility-attestation label;
 - project-specific pull request and release labels;
 - Dependabot vulnerability alerts and security updates;
@@ -38,36 +38,36 @@ The GitHub provider reads `GITHUB_TOKEN` from a sensitive HCP workspace
 environment variable. Never put the token in Terraform configuration,
 `*.tfvars`, shell commands, repository files, or Codex prompts.
 
-## Bootstrap Boundary
+## Bootstrap And Activation Boundary
 
-Do not apply this root before the workflow-baseline pull request is merged. The
-desired ruleset requires `Check`, `Dependency Review`, and `PR Metadata`, which
-must exist on `main` first. The bootstrap pull request is the one-time exception
-to the final ruleset.
+The repository-governance bootstrap is complete. Its first owner-reviewed apply
+imported the existing repository and security resources before enabling
+repository auto-merge, automatic deletion of merged head branches, the strict
+`main` ruleset, and `DEPENDABOT_AUTOMERGE_ENABLED=true`.
 
-Before the first apply:
+The external Pages activation prerequisites are also complete:
 
-1. Confirm the configured HCP project and workspace exist with Remote execution,
-   Terraform `1.15.6`, and automatic apply disabled. Local `*.tfstate` files are
-   ignored only as a safety net and are not the accepted operational backend.
-2. Confirm the least-privilege GitHub token exists only as the sensitive
-   `GITHUB_TOKEN` HCP workspace environment variable.
-3. Authenticate the local Terraform CLI to HCP Terraform without exposing its
-   user token.
-4. Review the import plan for the existing repository and security resources.
-5. Confirm that the expected status check names have run on `main`.
+- `cloudflare-pages-production` permits only `main` and holds the three required
+  variable names plus the environment-scoped production upload secret;
+- `formal-release` permits only `main`, requires one reviewer, allows self-review,
+  and contains no variable or secret;
+- the unused Preview Environment has been removed; and
+- the production upload credential remains outside Terraform state with the
+  reviewed least-privilege scope.
 
-The first apply enables repository auto-merge, automatic deletion of merged
-head branches, the strict `main` ruleset, and
-`DEPENDABOT_AUTOMERGE_ENABLED=true` together. Do not create that Actions
-variable manually before the ruleset is active.
+Do not query or print Environment values while verifying this contract. Manual
+topic-branch previews remain owner actions and do not use the repository
+activation variable or a GitHub Environment.
 
-`PAGES_DEPLOYMENT_ENABLED` is intentionally managed as `false` while the Pages
-production pipeline is source-only. A later owner-reviewed activation must
-first provision the production and formal-release GitHub Environments, verify
-their scoped Cloudflare configuration, complete production acceptance, and then
-change this managed value to `true` in a separate reviewed change. Manual
-topic-branch previews do not use this variable or a GitHub Environment.
+This source boundary changes the Terraform-managed
+`PAGES_DEPLOYMENT_ENABLED` value to `true`. Merge the source while the live
+variable is still absent, and require the resulting `Pages Production` run to
+report the inactive contract without building or deploying. After merge, upload
+only the exact merged `infra/terraform/github` root to HCP Terraform and create
+one standard non-targeted plan with automatic apply disabled. Accept only the
+activation-variable create with no change, replacement, destroy, import, action,
+or additional diagnostic. Apply remains a separate owner decision, and no
+follow-up no-op run is required.
 
 ## Local Validation
 
@@ -77,19 +77,21 @@ terraform -chdir=infra/terraform/github init -backend=false
 terraform -chdir=infra/terraform/github validate
 ```
 
-## First Remote Run
+Use the Ubuntu Terraform pull-request job as the authoritative validation when
+Windows Application Control blocks local Terraform execution. Do not weaken the
+local policy or substitute a different provider runtime.
 
-After this backend configuration exists on `main`:
+## Remote Activation Run
 
-```powershell
-terraform login
-terraform -chdir=infra/terraform/github init
-terraform -chdir=infra/terraform/github validate
-terraform -chdir=infra/terraform/github plan
-```
+After the activation source exists on `main`, archive only the exact merged
+`infra/terraform/github` subtree. Use the credential-safe HCP Terraform API
+workflow to upload one configuration version with automatic run queueing
+disabled, then create one standard plan-and-apply run with automatic apply
+disabled and no target, replacement, destroy, refresh-only, import, or action
+option.
 
-The plan must not replace or destroy the existing repository. Review imports,
-repository settings, the `Protect main` ruleset, managed labels, security
-resources, and the Dependabot activation variable before proceeding. Apply
-remains a deliberate owner action after plan review; it is not triggered by
-pull requests.
+Review only a single create for
+`github_actions_variable.pages_deployment_enabled` with no other action. Apply
+the same run only after separate owner approval. The source pull request does
+not trigger the remote run, and the completed apply does not require a follow-up
+no-op run.
