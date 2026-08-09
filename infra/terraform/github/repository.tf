@@ -1,7 +1,8 @@
 resource "github_repository" "this" {
-  name        = var.repository_name
-  description = "portfolio of Yongbeom Kim who is a web developer"
-  visibility  = "public"
+  name         = var.repository_name
+  description  = "a portfolio of Yongbeom Kim who is a web developer"
+  homepage_url = "https://portfolio-ybkim.pages.dev/"
+  visibility   = "public"
 
   has_issues      = false
   has_projects    = false
