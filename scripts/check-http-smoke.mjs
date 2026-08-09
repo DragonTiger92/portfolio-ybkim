@@ -137,6 +137,11 @@ export async function runHttpSmoke({
       contentType: "image/svg+xml",
       marker: "viewBox=",
     },
+    {
+      path: "/assets/brand/site.webmanifest",
+      contentType: "application/manifest+json",
+      marker: '"short_name"',
+    },
   ];
 
   for (const target of targets) {

@@ -13,10 +13,13 @@ tags:
 stack:
   - React
   - React Router
-  - TanStack Query
+  - React-helmet-async
   - TailwindCSS
+  - Vite
   - PocketBase
+  - TanStack Query
   - Storybook
+  - Netlify
 order: 3
 demoAccess: true
 links:

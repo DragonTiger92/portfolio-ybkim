@@ -30,6 +30,27 @@ async function startServer(handler) {
   };
 }
 
+function sendTargetResponse(
+  request,
+  response,
+  { manifestContentType = "application/manifest+json" } = {},
+) {
+  if (request.url === "/") {
+    response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    response.end('<h1 id="portfolio-title">Portfolio</h1>');
+    return;
+  }
+
+  if (request.url === "/assets/brand/logo-mark.svg") {
+    response.writeHead(200, { "Content-Type": "image/svg+xml" });
+    response.end('<svg viewBox="0 0 10 10"></svg>');
+    return;
+  }
+
+  response.writeHead(200, { "Content-Type": manifestContentType });
+  response.end('{"short_name":"Portfolio"}');
+}
+
 describe("smoke-check base URL", () => {
   it("allows HTTPS origins and loopback HTTP only", () => {
     assert.equal(validateBaseUrl("https://portfolio.example/").origin, "https://portfolio.example");
@@ -47,21 +68,13 @@ describe("smoke-check base URL", () => {
 
 describe("HTTP smoke checks", () => {
   it("verifies the homepage and critical asset markers", async () => {
-    const server = await startServer((request, response) => {
-      if (request.url === "/") {
-        response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-        response.end('<h1 id="portfolio-title">Portfolio</h1>');
-        return;
-      }
-
-      response.writeHead(200, { "Content-Type": "image/svg+xml" });
-      response.end('<svg viewBox="0 0 10 10"></svg>');
-    });
+    const server = await startServer(sendTargetResponse);
 
     try {
       assert.deepEqual(await runHttpSmoke({ baseUrl: server.baseUrl }), [
         "/",
         "/assets/brand/logo-mark.svg",
+        "/assets/brand/site.webmanifest",
       ]);
     } finally {
       await server.close();
@@ -95,6 +108,18 @@ describe("HTTP smoke checks", () => {
         runHttpSmoke({ baseUrl: server.baseUrl }),
         /did not contain the stable marker/u,
       );
+    } finally {
+      await server.close();
+    }
+  });
+
+  it("rejects the web manifest without its registered media type", async () => {
+    const server = await startServer((request, response) => {
+      sendTargetResponse(request, response, { manifestContentType: "application/json" });
+    });
+
+    try {
+      await assert.rejects(runHttpSmoke({ baseUrl: server.baseUrl }), /Content-Type/u);
     } finally {
       await server.close();
     }

@@ -31,6 +31,10 @@ const expectedCacheRules = new Map([
   ],
 ]);
 
+const expectedAssetHeaders = new Map([
+  ["/assets/brand/site.webmanifest", new Map([["content-type", "application/manifest+json"]])],
+]);
+
 function createRule(pattern) {
   return {
     detachedHeaders: new Set(),
@@ -200,6 +204,19 @@ function validateCacheRules(rules, errors) {
   });
 }
 
+function validateAssetHeaders(rules, errors) {
+  expectedAssetHeaders.forEach((expectedHeaders, pattern) => {
+    const rule = rules.get(pattern);
+
+    if (rule === undefined) {
+      errors.push(`Missing required asset-header rule ${pattern}.`);
+      return;
+    }
+
+    validateExpectedHeaders(rule, expectedHeaders, errors);
+  });
+}
+
 function validateGlobalRule(rules, errors) {
   const globalRule = rules.get("/*");
 
@@ -229,6 +246,7 @@ export function validateHeaders(contents) {
   rules.forEach((rule) => {
     validateRuleSafety(rule, errors);
   });
+  validateAssetHeaders(rules, errors);
   validateCacheRules(rules, errors);
 
   return errors;
