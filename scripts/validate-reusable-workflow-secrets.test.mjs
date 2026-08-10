@@ -5,6 +5,12 @@ import { describe, it } from "node:test";
 const pagesUploadUrl = new URL("../.github/workflows/pages-upload.yml", import.meta.url);
 const pagesProductionUrl = new URL("../.github/workflows/pages-production.yml", import.meta.url);
 const formalReleaseUrl = new URL("../.github/workflows/formal-release.yml", import.meta.url);
+const apiTokenMapping = "CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}";
+const credentialStepNames = [
+  "Validate deployment configuration",
+  "Upload artifact with pinned Wrangler",
+  "Resolve exact deployment",
+];
 
 function getIndent(line) {
   return line.length - line.trimStart().length;
@@ -23,6 +29,32 @@ function getYamlBlock(contents, key, indent) {
   const end = followingLines.findIndex((line) => line.trim() !== "" && getIndent(line) <= indent);
 
   return followingLines.slice(0, end === -1 ? undefined : end).join("\n");
+}
+
+function getYamlStepBlock(contents, name, indent) {
+  const lines = contents.split(/\r?\n/u);
+  const header = `${" ".repeat(indent)}- name: ${name}`;
+  const start = lines.findIndex((line) => line === header);
+
+  if (start === -1) {
+    return "";
+  }
+
+  const followingLines = lines.slice(start + 1);
+  const end = followingLines.findIndex((line) => line.trim() !== "" && getIndent(line) <= indent);
+
+  return [lines[start], ...followingLines.slice(0, end === -1 ? undefined : end)].join("\n");
+}
+
+function countOccurrences(contents, value) {
+  return contents.split(value).length - 1;
+}
+
+function hasStepSecretMapping(uploadJob, stepName) {
+  const step = getYamlStepBlock(uploadJob, stepName, 6);
+  const stepEnvironment = getYamlBlock(step, "env", 8);
+
+  return stepEnvironment.includes(`          ${apiTokenMapping}`);
 }
 
 function validateWorkflowCallSecretDeclaration(contents) {
@@ -49,8 +81,21 @@ function validateUploadJobSecretContract(contents) {
     errors.push("the upload job must use the production Environment");
   }
 
-  if (!jobEnvironment.includes("      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}")) {
-    errors.push("the upload job must read the Cloudflare token from the secrets context");
+  if (jobEnvironment.includes(apiTokenMapping)) {
+    errors.push("the upload job must not map the Cloudflare token at job scope");
+  }
+
+  const missingCredentialSteps = credentialStepNames.filter(
+    (stepName) => !hasStepSecretMapping(uploadJob, stepName),
+  );
+  errors.push(
+    ...missingCredentialSteps.map(
+      (stepName) => `${stepName} must read the Cloudflare token from the secrets context`,
+    ),
+  );
+
+  if (countOccurrences(uploadJob, apiTokenMapping) !== credentialStepNames.length) {
+    errors.push("only credential-consuming steps may map the Cloudflare token");
   }
 
   return errors;
@@ -91,6 +136,27 @@ describe("Pages reusable-workflow secret declaration", () => {
     assert.match(
       validateWorkflowCallSecretDeclaration(missingDeclaration).join("\n"),
       /must declare CLOUDFLARE_API_TOKEN/u,
+    );
+  });
+
+  it("rejects job-level-only Environment secret mapping", () => {
+    const jobLevelOnly = [
+      "jobs:",
+      "  upload:",
+      "    environment:",
+      "      name: cloudflare-pages-production",
+      "    env:",
+      `      ${apiTokenMapping}`,
+      "    steps:",
+      ...credentialStepNames.flatMap((stepName) => [
+        `      - name: ${stepName}`,
+        "        run: echo test",
+      ]),
+    ].join("\n");
+
+    assert.match(
+      validateUploadJobSecretContract(jobLevelOnly).join("\n"),
+      /must not map the Cloudflare token at job scope/u,
     );
   });
 
