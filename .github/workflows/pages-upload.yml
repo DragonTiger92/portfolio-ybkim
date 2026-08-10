@@ -2,6 +2,9 @@ name: Pages Upload
 
 on:
   workflow_call:
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: false
     inputs:
       artifact-id:
         description: GitHub artifact identifier produced by Site Artifact.
