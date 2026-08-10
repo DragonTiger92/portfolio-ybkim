@@ -81,7 +81,10 @@ test("keeps the reviewed project detail copy and support technologies", async ({
     "Astro",
     "TypeScript",
     "Terraform",
+    "GitHub Actions",
     "Wrangler",
+    "CodeQL",
+    "Dependabot",
     "Husky",
     "Playwright",
     "PNPM",
@@ -96,16 +99,20 @@ test("keeps the reviewed project detail copy and support technologies", async ({
     "Vite",
     "Git",
     "GitHub",
+    "GitHub Pages",
   ]);
 
   await page.goto("/projects/book-kong/");
   await expect(page.locator(".project-stack .tag-list li")).toHaveText([
     "React",
     "React Router",
-    "TanStack Query",
+    "React-helmet-async",
     "TailwindCSS",
+    "Vite",
     "PocketBase",
+    "TanStack Query",
     "Storybook",
+    "Netlify",
   ]);
   await expect(page.locator(".prose")).toContainText(
     "일정을 조율하고 작업을 역할에 따라 분배하였습니다.",

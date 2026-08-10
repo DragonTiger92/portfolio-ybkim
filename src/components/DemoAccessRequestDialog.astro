@@ -1,3 +1,7 @@
+---
+import NewWindowLink from "./NewWindowLink.astro";
+---
+
 <dialog id="demo-access-dialog" class="demo-dialog" aria-labelledby="demo-request-title">
   <header class="demo-dialog__header">
     <p id="demo-request-title" class="demo-dialog__title">Gmail에서 테스트 계정 요청</p>
@@ -22,17 +26,14 @@
   </div>
 
   <footer class="demo-dialog__actions">
-    <a
+    <NewWindowLink
       class="button-link"
       href="https://mail.google.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Gmail에서 계속(새 창)"
+      accessibleLabel="Gmail에서 계속"
       data-demo-access-continue
     >
       Gmail에서 계속
-      <span aria-hidden="true">↗</span>
-    </a>
+    </NewWindowLink>
   </footer>
 </dialog>
 

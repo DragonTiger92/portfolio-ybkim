@@ -13,7 +13,10 @@ stack:
   - Astro
   - TypeScript
   - Terraform
+  - GitHub Actions
   - Wrangler
+  - CodeQL
+  - Dependabot
   - Husky
   - Playwright
   - PNPM

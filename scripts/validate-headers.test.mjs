@@ -43,6 +43,21 @@ describe("Cloudflare Pages header contract", () => {
     assert.match(validateHeaders(withHsts).join("\n"), /HSTS is forbidden/u);
   });
 
+  it("requires the registered web manifest media type", async () => {
+    const contents = await readFile(headersUrl, "utf8");
+    const withoutManifestRule = contents.replace(
+      "/assets/brand/site.webmanifest\n  Content-Type: application/manifest+json\n\n",
+      "",
+    );
+    const withGenericJson = contents.replace(
+      "  Content-Type: application/manifest+json",
+      "  Content-Type: application/json",
+    );
+
+    assert.match(validateHeaders(withoutManifestRule).join("\n"), /asset-header rule/u);
+    assert.match(validateHeaders(withGenericJson).join("\n"), /application\/manifest\+json/u);
+  });
+
   it("requires immutable hashed assets without inheriting the global cache value", async () => {
     const contents = await readFile(headersUrl, "utf8");
     const withoutDetach = contents.replace("/_astro/*\n  ! Cache-Control\n", "/_astro/*\n");

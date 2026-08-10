@@ -17,6 +17,7 @@ stack:
   - Vite
   - Git
   - GitHub
+  - GitHub Pages
 order: 2
 demoAccess: true
 links:

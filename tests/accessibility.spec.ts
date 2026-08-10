@@ -232,6 +232,9 @@ test("publishes the reviewed brand identity and install metadata", async ({ page
 
   const manifestResponse = await page.request.get("/assets/brand/site.webmanifest");
   expect(manifestResponse.ok()).toBe(true);
+  expect(manifestResponse.headers()["content-type"]).toMatch(
+    /^application\/manifest\+json(?:;|$)/u,
+  );
   expect(await manifestResponse.json()).toMatchObject({
     lang: "ko",
     name: "김용범 웹 개발자 포트폴리오",

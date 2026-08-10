@@ -162,8 +162,10 @@ const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 �
           {
             previousProject && nextProject && (
               <a class="text-link" href={`/projects/${previousProject.slug}/`}>
-                <span aria-hidden="true">←</span>
-                이전 프로젝트
+                <span class="affordance-pair__mark" aria-hidden="true">
+                  ←
+                </span>
+                <span class="affordance-pair__label">이전 프로젝트</span>
               </a>
             )
           }
