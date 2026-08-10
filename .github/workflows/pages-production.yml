@@ -110,10 +110,31 @@ jobs:
     needs:
       - context
       - artifact
-    uses: ./.github/workflows/pages-upload.yml
-    with:
-      artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}
-      revision: ${{ needs.context.outputs.revision }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: cloudflare-pages-production
+      url: ${{ steps.upload.outputs['deployment-url'] }}
     permissions:
       actions: read
       contents: read
+    outputs:
+      deployment-id: ${{ steps.upload.outputs['deployment-id'] }}
+      deployment-url: ${{ steps.upload.outputs['deployment-url'] }}
+    steps:
+      - name: Checkout trusted delivery tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+
+      - name: Upload and verify production artifact
+        id: upload
+        uses: ./.github/actions/pages-upload
+        with:
+          account-id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}
+          production-url: ${{ vars.CLOUDFLARE_PAGES_PRODUCTION_URL }}
+          project-name: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          revision: ${{ needs.context.outputs.revision }}
