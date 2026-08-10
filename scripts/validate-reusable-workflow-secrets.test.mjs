@@ -1,11 +1,27 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { describe, it } from "node:test";
 
-const pagesUploadUrl = new URL("../.github/workflows/pages-upload.yml", import.meta.url);
+const pagesUploadActionUrl = new URL("../.github/actions/pages-upload/action.yml", import.meta.url);
+const pagesUploadWorkflowUrl = new URL("../.github/workflows/pages-upload.yml", import.meta.url);
 const pagesProductionUrl = new URL("../.github/workflows/pages-production.yml", import.meta.url);
 const formalReleaseUrl = new URL("../.github/workflows/formal-release.yml", import.meta.url);
-const apiTokenMapping = "CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}";
+const callerApiTokenMapping = "api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}";
+const actionApiTokenMapping = "CLOUDFLARE_API_TOKEN: ${{ inputs['api-token'] }}";
+const directEnvironmentMappings = [
+  "account-id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}",
+  callerApiTokenMapping,
+  "production-url: ${{ vars.CLOUDFLARE_PAGES_PRODUCTION_URL }}",
+  "project-name: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}",
+];
+const actionInputNames = [
+  "account-id",
+  "api-token",
+  "artifact-id",
+  "production-url",
+  "project-name",
+  "revision",
+];
 const credentialStepNames = [
   "Validate deployment configuration",
   "Upload artifact with pinned Wrangler",
@@ -50,63 +66,28 @@ function countOccurrences(contents, value) {
   return contents.split(value).length - 1;
 }
 
-function hasStepSecretMapping(uploadJob, stepName) {
-  const step = getYamlStepBlock(uploadJob, stepName, 6);
-  const stepEnvironment = getYamlBlock(step, "env", 8);
+function hasActionTokenMapping(action, stepName) {
+  const runs = getYamlBlock(action, "runs", 0);
+  const step = getYamlStepBlock(runs, stepName, 4);
+  const stepEnvironment = getYamlBlock(step, "env", 6);
 
-  return stepEnvironment.includes(`          ${apiTokenMapping}`);
+  return stepEnvironment.includes(`        ${actionApiTokenMapping}`);
 }
 
-function validateWorkflowCallSecretDeclaration(contents) {
-  const workflowCall = getYamlBlock(contents, "workflow_call", 2);
-  const secrets = getYamlBlock(workflowCall, "secrets", 4);
-  const apiToken = getYamlBlock(secrets, "CLOUDFLARE_API_TOKEN", 6);
-
-  if (apiToken.includes("        required: false")) {
-    return [];
-  }
-
-  return [
-    "workflow_call must declare CLOUDFLARE_API_TOKEN as an optional reusable-workflow secret",
-  ];
-}
-
-function validateUploadJobSecretContract(contents) {
-  const uploadJob = getYamlBlock(contents, "upload", 2);
-  const environment = getYamlBlock(uploadJob, "environment", 4);
-  const jobEnvironment = getYamlBlock(uploadJob, "env", 4);
+function validateDirectEnvironmentJob(deployJob) {
+  const environment = getYamlBlock(deployJob, "environment", 4);
   const errors = [];
+
+  if (!deployJob.includes("    runs-on: ubuntu-latest")) {
+    errors.push("the deploy boundary must be an ordinary runner job");
+  }
 
   if (!environment.includes("      name: cloudflare-pages-production")) {
-    errors.push("the upload job must use the production Environment");
+    errors.push("the ordinary deploy job must bind the production Environment directly");
   }
 
-  if (jobEnvironment.includes(apiTokenMapping)) {
-    errors.push("the upload job must not map the Cloudflare token at job scope");
-  }
-
-  const missingCredentialSteps = credentialStepNames.filter(
-    (stepName) => !hasStepSecretMapping(uploadJob, stepName),
-  );
-  errors.push(
-    ...missingCredentialSteps.map(
-      (stepName) => `${stepName} must read the Cloudflare token from the secrets context`,
-    ),
-  );
-
-  if (countOccurrences(uploadJob, apiTokenMapping) !== credentialStepNames.length) {
-    errors.push("only credential-consuming steps may map the Cloudflare token");
-  }
-
-  return errors;
-}
-
-function validateSourceOnlyCaller(contents) {
-  const deployJob = getYamlBlock(contents, "deploy", 2);
-  const errors = [];
-
-  if (!deployJob.includes("    uses: ./.github/workflows/pages-upload.yml")) {
-    errors.push("the deploy job must call pages-upload.yml");
+  if (deployJob.includes("uses: ./.github/workflows/pages-upload.yml")) {
+    errors.push("the deploy boundary must not call a reusable upload workflow");
   }
 
   if (/^ {4}secrets:/mu.test(deployJob)) {
@@ -116,60 +97,179 @@ function validateSourceOnlyCaller(contents) {
   return errors;
 }
 
-describe("Pages reusable-workflow secret declaration", () => {
-  it("accepts only the optional secret at the workflow_call secrets depth", () => {
-    const validDeclaration = [
-      "on:",
-      "  workflow_call:",
-      "    secrets:",
-      "      CLOUDFLARE_API_TOKEN:",
-      "        required: false",
-    ].join("\n");
-    const misplacedDeclaration = validDeclaration.replace("    secrets:", "  secrets:");
-    const missingDeclaration = "on:\n  workflow_call:\n    inputs:";
+function validateTrustedCheckout(checkoutStep) {
+  const isTrustedCheckout =
+    checkoutStep.includes("uses: actions/checkout@") &&
+    checkoutStep.includes("          ref: ${{ github.workflow_sha }}") &&
+    checkoutStep.includes("          persist-credentials: false");
 
-    assert.deepEqual(validateWorkflowCallSecretDeclaration(validDeclaration), []);
-    assert.match(
-      validateWorkflowCallSecretDeclaration(misplacedDeclaration).join("\n"),
-      /must declare CLOUDFLARE_API_TOKEN/u,
-    );
-    assert.match(
-      validateWorkflowCallSecretDeclaration(missingDeclaration).join("\n"),
-      /must declare CLOUDFLARE_API_TOKEN/u,
-    );
-  });
+  if (isTrustedCheckout) {
+    return [];
+  }
 
-  it("rejects job-level-only Environment secret mapping", () => {
-    const jobLevelOnly = [
-      "jobs:",
-      "  upload:",
-      "    environment:",
+  return ["the deploy job must check out its trusted workflow revision"];
+}
+
+function validateLocalUploadAction(uploadStep) {
+  const actionInputs = getYamlBlock(uploadStep, "with", 8);
+  const errors = [];
+
+  if (
+    !uploadStep.includes("        id: upload") ||
+    !uploadStep.includes("        uses: ./.github/actions/pages-upload")
+  ) {
+    errors.push("the ordinary deploy job must call the local Pages upload action");
+  }
+
+  const missingInputs = actionInputNames.filter(
+    (inputName) => !actionInputs.includes(`          ${inputName}:`),
+  );
+  errors.push(...missingInputs.map((inputName) => `the upload action is missing ${inputName}`));
+
+  const missingEnvironmentMappings = directEnvironmentMappings.filter(
+    (mapping) => !actionInputs.includes(`          ${mapping}`),
+  );
+  errors.push(
+    ...missingEnvironmentMappings.map(
+      (mapping) => `the Environment job must pass ${mapping.split(":", 1)[0]} directly`,
+    ),
+  );
+
+  return errors;
+}
+
+function validateDirectEnvironmentCaller(contents) {
+  const deployJob = getYamlBlock(contents, "deploy", 2);
+  const checkoutStep = getYamlStepBlock(deployJob, "Checkout trusted delivery tooling", 6);
+  const uploadStep = getYamlStepBlock(deployJob, "Upload and verify production artifact", 6);
+
+  return [
+    ...validateDirectEnvironmentJob(deployJob),
+    ...validateTrustedCheckout(checkoutStep),
+    ...validateLocalUploadAction(uploadStep),
+  ];
+}
+
+function validatePagesUploadAction(contents) {
+  const inputs = getYamlBlock(contents, "inputs", 0);
+  const outputs = getYamlBlock(contents, "outputs", 0);
+  const runs = getYamlBlock(contents, "runs", 0);
+  const errors = [];
+
+  if (!runs.includes("  using: composite")) {
+    errors.push("Pages upload must be a local composite action");
+  }
+
+  if (contents.includes("${{ secrets.")) {
+    errors.push("the composite action must receive credentials through explicit inputs");
+  }
+
+  if (
+    !outputs.includes("    value: ${{ steps.resolve.outputs['deployment-id'] }}") ||
+    !outputs.includes("    value: ${{ steps.resolve.outputs['deployment-url'] }}")
+  ) {
+    errors.push("the composite action must expose the exact resolved deployment outputs");
+  }
+
+  const optionalInputs = actionInputNames.filter(
+    (inputName) => !getYamlBlock(inputs, inputName, 2).includes("    required: true"),
+  );
+  errors.push(...optionalInputs.map((inputName) => `${inputName} must be a required action input`));
+
+  const missingCredentialSteps = credentialStepNames.filter(
+    (stepName) => !hasActionTokenMapping(contents, stepName),
+  );
+  errors.push(
+    ...missingCredentialSteps.map(
+      (stepName) => `${stepName} must map the explicit API token input`,
+    ),
+  );
+
+  if (countOccurrences(contents, actionApiTokenMapping) !== credentialStepNames.length) {
+    errors.push("only credential-consuming action steps may map the API token input");
+  }
+
+  return errors;
+}
+
+function createDirectCallerFixture() {
+  return [
+    "jobs:",
+    "  deploy:",
+    "    runs-on: ubuntu-latest",
+    "    environment:",
+    "      name: cloudflare-pages-production",
+    "    steps:",
+    "      - name: Checkout trusted delivery tooling",
+    "        uses: actions/checkout@pinned",
+    "        with:",
+    "          ref: ${{ github.workflow_sha }}",
+    "          persist-credentials: false",
+    "      - name: Upload and verify production artifact",
+    "        id: upload",
+    "        uses: ./.github/actions/pages-upload",
+    "        with:",
+    "          account-id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}",
+    `          ${callerApiTokenMapping}`,
+    "          artifact-id: artifact",
+    "          production-url: ${{ vars.CLOUDFLARE_PAGES_PRODUCTION_URL }}",
+    "          project-name: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}",
+    "          revision: revision",
+  ].join("\n");
+}
+
+describe("Pages Environment-backed upload boundary", () => {
+  it("rejects reusable or incomplete credential boundaries", () => {
+    const validCaller = createDirectCallerFixture();
+    const reusableCaller = validCaller.replace(
+      "    runs-on: ubuntu-latest",
+      "    uses: ./.github/workflows/pages-upload.yml",
+    );
+    const missingEnvironment = validCaller.replace(
       "      name: cloudflare-pages-production",
-      "    env:",
-      `      ${apiTokenMapping}`,
-      "    steps:",
-      ...credentialStepNames.flatMap((stepName) => [
-        `      - name: ${stepName}`,
-        "        run: echo test",
-      ]),
-    ].join("\n");
+      "      name: another-environment",
+    );
+    const missingToken = validCaller.replace(callerApiTokenMapping, "api-token: unavailable");
 
+    assert.deepEqual(validateDirectEnvironmentCaller(validCaller), []);
     assert.match(
-      validateUploadJobSecretContract(jobLevelOnly).join("\n"),
-      /must not map the Cloudflare token at job scope/u,
+      validateDirectEnvironmentCaller(reusableCaller).join("\n"),
+      /ordinary runner job/u,
+    );
+    assert.match(
+      validateDirectEnvironmentCaller(missingEnvironment).join("\n"),
+      /bind the production Environment directly/u,
+    );
+    assert.match(
+      validateDirectEnvironmentCaller(missingToken).join("\n"),
+      /pass api-token directly/u,
     );
   });
 
-  it("accepts the checked-in Environment-backed source-only contract", async () => {
-    const [pagesUpload, pagesProduction, formalRelease] = await Promise.all([
-      readFile(pagesUploadUrl, "utf8"),
+  it("accepts only the direct Environment job and local action contract", async () => {
+    const [pagesUploadAction, pagesProduction, formalRelease] = await Promise.all([
+      readFile(pagesUploadActionUrl, "utf8"),
       readFile(pagesProductionUrl, "utf8"),
       readFile(formalReleaseUrl, "utf8"),
     ]);
 
-    assert.deepEqual(validateWorkflowCallSecretDeclaration(pagesUpload), []);
-    assert.deepEqual(validateUploadJobSecretContract(pagesUpload), []);
-    assert.deepEqual(validateSourceOnlyCaller(pagesProduction), []);
-    assert.deepEqual(validateSourceOnlyCaller(formalRelease), []);
+    await assert.rejects(access(pagesUploadWorkflowUrl), { code: "ENOENT" });
+    assert.deepEqual(validatePagesUploadAction(pagesUploadAction), []);
+    assert.match(
+      validatePagesUploadAction(
+        pagesUploadAction.replace(actionApiTokenMapping, "CLOUDFLARE_API_TOKEN: unavailable"),
+      ).join("\n"),
+      /must map the explicit API token input/u,
+    );
+    assert.deepEqual(validateDirectEnvironmentCaller(pagesProduction), []);
+    assert.deepEqual(validateDirectEnvironmentCaller(formalRelease), []);
+    assert.ok(
+      pagesProduction.includes("artifact-id: ${{ needs.artifact.outputs['artifact-id'] }}"),
+    );
+    assert.ok(pagesProduction.includes("revision: ${{ needs.context.outputs.revision }}"));
+    assert.ok(
+      formalRelease.includes("artifact-id: ${{ needs.evidence.outputs['site-artifact-id'] }}"),
+    );
+    assert.ok(formalRelease.includes("revision: ${{ inputs.revision }}"));
   });
 });
