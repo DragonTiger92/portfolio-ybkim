@@ -32,6 +32,17 @@ The production workflow boundaries are:
 - `formal-release.yml`: explicit version and revision validation, production
   acceptance, annotated tag, and GitHub Release publication.
 
+After exact deployment resolution, the production action runs the read-only
+canonical smoke up to four times. It uses exponential backoff of 5, 10, and 20
+seconds, for at most 35 seconds of scheduled retry wait. Every attempt checks
+the homepage, critical logo, and web manifest again. Build, artifact download,
+manifest validation, upload, and exact deployment resolution still run once.
+
+Intermediate retry messages contain only the attempt count and wait duration.
+The final failure preserves the checked path and failure category, stops the
+delivery, and does not authorize rerunning the failed job or workflow because a
+rerun would repeat the upload and other side effects.
+
 ## GitHub Configuration Contract
 
 Keep the repository variable `PAGES_DEPLOYMENT_ENABLED` set to `false` until the
@@ -203,7 +214,8 @@ Ordinary previews, `main` deployments, and operational-state redeployments do
 not create tags. Only `formal-release.yml` may create an unsigned annotated
 `vX.Y.Z` tag after the canonical production smoke check passes.
 
-A failed check, manifest comparison, upload, deployment resolution, or
-production smoke check creates no tag. Rollback selects a prior successful
-production deployment and reruns the public smoke check; preview deployments
-are not production rollback targets.
+A failed check, manifest comparison, upload, deployment resolution, or final
+production smoke attempt creates no tag. Do not rerun the delivery merely to
+repeat its smoke step. Enter the incident and rollback decision path instead;
+rollback selects a prior successful production deployment and reruns the public
+smoke check, and preview deployments are not production rollback targets.
