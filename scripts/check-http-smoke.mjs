@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const loopbackHosts = new Set(["127.0.0.1", "[::1]", "localhost"]);
+const defaultRetryDelayMilliseconds = 5_000;
 
 function assertAllowedProtocol(url) {
   const allowsHttp = url.protocol === "http:" && loopbackHosts.has(url.hostname);
@@ -155,6 +156,64 @@ export async function runHttpSmoke({
   return targets.map((target) => target.path);
 }
 
+function delay(milliseconds) {
+  return new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
+}
+
+function ignoreRetry() {}
+
+function validateRetryOptions(attempts, retryDelayMilliseconds) {
+  if (!Number.isSafeInteger(attempts) || attempts <= 0) {
+    throw new Error("--attempts must be a positive integer.");
+  }
+
+  if (!Number.isSafeInteger(retryDelayMilliseconds) || retryDelayMilliseconds < 0) {
+    throw new Error("--retry-delay-ms must be a non-negative integer.");
+  }
+}
+
+export async function runHttpSmokeWithRetry({
+  attempts = 1,
+  onRetry = ignoreRetry,
+  retryDelayMilliseconds = defaultRetryDelayMilliseconds,
+  waitImplementation = delay,
+  ...smokeOptions
+}) {
+  validateRetryOptions(attempts, retryDelayMilliseconds);
+
+  return runHttpSmokeAttempt({
+    attempt: 1,
+    attempts,
+    onRetry,
+    retryDelayMilliseconds,
+    smokeOptions,
+    waitImplementation,
+  });
+}
+
+function runHttpSmokeAttempt(options) {
+  return runHttpSmoke(options.smokeOptions).catch((error) => retryHttpSmoke(options, error));
+}
+
+async function retryHttpSmoke(options, error) {
+  if (options.attempt >= options.attempts) {
+    throw error;
+  }
+
+  options.onRetry({
+    attempt: options.attempt,
+    attempts: options.attempts,
+    retryDelayMilliseconds: options.retryDelayMilliseconds,
+  });
+  await options.waitImplementation(options.retryDelayMilliseconds);
+
+  return runHttpSmokeAttempt({
+    ...options,
+    attempt: options.attempt + 1,
+    retryDelayMilliseconds: options.retryDelayMilliseconds * 2,
+  });
+}
+
 function readOption(argumentsList, option) {
   const optionIndex = argumentsList.indexOf(option);
 
@@ -182,11 +241,36 @@ function readTimeoutMilliseconds(argumentsList) {
   return timeoutMilliseconds;
 }
 
+function readAttempts(argumentsList) {
+  const attempts = argumentsList.includes("--attempts")
+    ? Number(readOption(argumentsList, "--attempts"))
+    : 1;
+
+  return attempts;
+}
+
+function readRetryDelayMilliseconds(argumentsList) {
+  const retryDelayMilliseconds = argumentsList.includes("--retry-delay-ms")
+    ? Number(readOption(argumentsList, "--retry-delay-ms"))
+    : defaultRetryDelayMilliseconds;
+
+  return retryDelayMilliseconds;
+}
+
+function reportRetry({ attempt, attempts, retryDelayMilliseconds }) {
+  process.stderr.write(
+    `HTTP smoke check attempt ${attempt} of ${attempts} failed; retrying in ${retryDelayMilliseconds} ms.\n`,
+  );
+}
+
 async function execute(argumentsList) {
-  const checkedPaths = await runHttpSmoke({
+  const checkedPaths = await runHttpSmokeWithRetry({
+    attempts: readAttempts(argumentsList),
     baseUrl: requireBaseUrl(argumentsList),
     criticalAssetPath:
       readOption(argumentsList, "--critical-asset-path") ?? "/assets/brand/logo-mark.svg",
+    onRetry: reportRetry,
+    retryDelayMilliseconds: readRetryDelayMilliseconds(argumentsList),
     timeoutMilliseconds: readTimeoutMilliseconds(argumentsList),
   });
 

@@ -32,8 +32,12 @@ considered complete.
 - Require a successful response, expected content marker, and critical asset.
 - Confirm that production is not protected by preview authentication.
 - Record the checked URL and release version in workflow evidence.
-- Fail release completion and invoke the documented rollback path when the smoke
-  check fails.
+- Allow only the post-resolution, read-only smoke to retry: four total attempts
+  with 5, 10, and 20 seconds of exponential backoff.
+- Keep build, artifact validation, upload, and deployment resolution single-run.
+- Fail release completion after the final smoke attempt and enter the documented
+  incident and rollback decision path. Do not rerun the delivery merely to
+  repeat its smoke step.
 
 ## Production Observability And Alerting
 
