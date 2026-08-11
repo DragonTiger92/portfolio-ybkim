@@ -1,7 +1,7 @@
 {
   "name": "portfolio-ybkim",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved",
   "packageManager": "pnpm@11.10.0",
   "engines": {
