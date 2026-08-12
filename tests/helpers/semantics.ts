@@ -11,8 +11,8 @@ interface TargetSizeFailure {
   width: number;
 }
 
-export async function getHeadingOutline(page: Page) {
-  return page.locator("h1, h2, h3, h4, h5, h6").evaluateAll<HeadingOutlineEntry[]>((headings) =>
+export async function getHeadingOutline(page: Page): Promise<HeadingOutlineEntry[]> {
+  return page.locator("h1, h2, h3, h4, h5, h6").evaluateAll((headings) =>
     headings.map((heading) => ({
       level: Number.parseInt(heading.tagName.slice(1), 10),
       text: heading.textContent?.replace(/\s+/g, " ").trim() ?? "",
