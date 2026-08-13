@@ -63,26 +63,27 @@ policy review instead of inventing a license conclusion.
 - GitHub Actions version updates use a seven-day cooldown before Dependabot can
   propose them. Security updates remain eligible immediately and are not delayed
   by the cooldown.
-- Dependabot requests owner review only when an update is major, indirect,
-  unclassified, non-SemVer, grouped ambiguously, or carries an explicit breaking
-  marker. The review request is the owner notification and manual-action trigger;
+- Dependabot requests owner review for every update after recording its policy
+  classification. The review request is the owner notification and merge gate;
   GitHub notification delivery remains an account-level preference.
 - Apply this update policy per pull request:
 
-  | Update                                            | Handling                                                                                                  |
-  | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-  | Direct npm dependency, SemVer patch or minor      | Enable auto-merge only after the PH-001 activation gate and all required checks pass                      |
-  | GitHub Action, SemVer patch or minor              | Use the same gated auto-merge path; workflow and permission regressions remain covered by required checks |
-  | Major, indirect, unknown, or non-SemVer           | Request owner or Codex-assisted review of compatibility and change scope                                  |
-  | Explicit breaking marker                          | Disable automation and request owner review regardless of the reported SemVer level                       |
-  | `deps:validated` after repository-specific review | Enable auto-merge after required checks, including for major, indirect, or explicitly breaking updates    |
+  | Update                                            | Handling                                                                                                    |
+  | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+  | Direct npm dependency, SemVer patch or minor      | Require passing checks and an owner merge decision                                                          |
+  | GitHub Action, SemVer patch or minor              | Require the same owner merge gate after workflow and permission checks                                      |
+  | Major, indirect, unknown, or non-SemVer           | Require owner or Codex-assisted review of compatibility and change scope                                    |
+  | Explicit breaking marker                          | Require owner review regardless of the reported SemVer level                                                |
+  | `deps:validated` after repository-specific review | Record compatibility evidence; the owner still decides whether and when to merge after required checks pass |
 
 - SemVer communicates compatibility intent, not proof of compatibility. For this
-  small, repairable portfolio, a direct patch or minor update is accepted when
+  small, repairable portfolio, a direct patch or minor update may be accepted when
   Dependabot reports an unambiguous ecosystem and dependency type, no explicit
-  breaking marker exists, and the repository's complete required checks pass.
+  breaking marker exists, the repository's complete required checks pass, and the
+  owner approves the merge.
   Security updates use the same eligibility test. Major, indirect, grouped
-  ambiguously, and unclassified updates remain manual.
+  ambiguously, and unclassified updates require additional compatibility review
+  before the same owner-controlled merge decision.
 - Dependabot writes `dependency-type` and `update-type` fields into its generated
   commit metadata. The policy workflow reads those fields through the GitHub
   pull-request commits API and derives `npm_and_yarn` or `github_actions` from
@@ -99,10 +100,10 @@ policy review instead of inventing a license conclusion.
   dependency's repository usage, reads primary-source release or migration
   notes, inspects manifest and lockfile scope, and obtains passing relevant
   checks. The label lets a reviewed major or exceptional update use the same
-  check-gated merge and branch-cleanup path as a routine update.
-- `DEPENDABOT_AUTOMERGE_ENABLED` is a Terraform-managed repository variable.
-  It must not be enabled independently of repository auto-merge, strict required
-  checks, and automatic merged-branch deletion.
+  owner-controlled merge and branch-cleanup path as a routine update.
+- Repository auto-merge remains disabled. Workflow credentials may classify an
+  update and request review, but only the owner decides whether and when it enters
+  `main`; that decision also controls when a push-triggered delivery can begin.
 - After a Dependabot pull request merges, GitHub deletes its head branch through
   the Terraform-managed `delete_branch_on_merge` repository setting. A closed,
   unmerged update requires an owner-recorded reason and may need a Dependabot

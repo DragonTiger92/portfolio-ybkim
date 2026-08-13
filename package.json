@@ -23,7 +23,7 @@
     "format": "prettier . --write",
     "format:docs:check": "prettier \"docs/**/*.md\" \".agents/**/*.md\" \"AGENTS.md\" --check",
     "format:check": "prettier . --check",
-    "test:governance": "node --test scripts/validate-pr-metadata.test.mjs",
+    "test:governance": "node --test scripts/validate-pr-metadata.test.mjs scripts/validate-dependabot-owner-merge.test.mjs",
     "test:file-size": "node --test scripts/validate-file-size.test.mjs",
     "test:static-budget": "node --test scripts/validate-static-budget.test.mjs",
     "test:contact-availability": "node --test scripts/validate-contact-availability.test.mjs",

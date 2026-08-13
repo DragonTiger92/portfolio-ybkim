@@ -23,13 +23,6 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: read
-    outputs:
-      automation_eligible: ${{ steps.metadata.outputs.automation_eligible }}
-      dependency_type: ${{ steps.metadata.outputs.dependency_type }}
-      ecosystem: ${{ steps.metadata.outputs.ecosystem }}
-      has_breaking_marker: ${{ steps.metadata.outputs.has_breaking_marker }}
-      update_type: ${{ steps.metadata.outputs.update_type }}
-      validation_attested: ${{ contains(github.event.pull_request.labels.*.name, 'deps:validated') }}
     steps:
       - name: Read Dependabot commit metadata
         id: metadata
@@ -63,52 +56,40 @@ jobs:
             has_breaking_marker="true"
           fi
 
-          automation_eligible="false"
-          if [[ "$ecosystem" != "unknown" && "$has_breaking_marker" == "false" ]]; then
-            if [[ "$dependency_type" == "direct:development" || "$dependency_type" == "direct:production" ]]; then
-              if [[ "$update_type" == "version-update:semver-patch" || "$update_type" == "version-update:semver-minor" ]]; then
-                automation_eligible="true"
-              fi
-            fi
-          fi
-
-          echo "automation_eligible=$automation_eligible" >> "$GITHUB_OUTPUT"
           echo "dependency_type=$dependency_type" >> "$GITHUB_OUTPUT"
           echo "ecosystem=$ecosystem" >> "$GITHUB_OUTPUT"
           echo "has_breaking_marker=$has_breaking_marker" >> "$GITHUB_OUTPUT"
           echo "update_type=$update_type" >> "$GITHUB_OUTPUT"
 
-  enable-automerge:
-    name: Enable Policy-approved Auto-merge
-    needs: classify
-    if: >-
-      vars.DEPENDABOT_AUTOMERGE_ENABLED == 'true' &&
-      (needs.classify.outputs.automation_eligible == 'true' ||
-      needs.classify.outputs.validation_attested == 'true')
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - name: Enable merge after required checks pass
+      - name: Summarize owner merge evidence
         env:
-          GH_TOKEN: ${{ github.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-        run: gh pr merge --auto --merge "$PR_URL"
+          DEPENDENCY_TYPE: ${{ steps.metadata.outputs.dependency_type }}
+          ECOSYSTEM: ${{ steps.metadata.outputs.ecosystem }}
+          HAS_BREAKING_MARKER: ${{ steps.metadata.outputs.has_breaking_marker }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update_type }}
+          VALIDATION_ATTESTED: ${{ contains(github.event.pull_request.labels.*.name, 'deps:validated') }}
+        run: |
+          {
+            echo "## Dependabot owner merge evidence"
+            echo
+            echo "| Evidence | Value |"
+            echo "| --- | --- |"
+            echo "| Ecosystem | $ECOSYSTEM |"
+            echo "| Dependency type | $DEPENDENCY_TYPE |"
+            echo "| Update type | $UPDATE_TYPE |"
+            echo "| Breaking marker | $HAS_BREAKING_MARKER |"
+            echo "| Repository validation attested | $VALIDATION_ATTESTED |"
+          } >> "$GITHUB_STEP_SUMMARY"
 
   request-owner-review:
-    name: Request Owner Review
+    name: Request Owner Merge Review
     needs: classify
-    if: >-
-      needs.classify.outputs.automation_eligible != 'true' &&
-      needs.classify.outputs.validation_attested != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       pull-requests: write
     steps:
-      - name: Request review for a high-risk or unclassified update
+      - name: Request owner merge review
         env:
           GH_TOKEN: ${{ github.token }}
           PR_URL: ${{ github.event.pull_request.html_url }}
