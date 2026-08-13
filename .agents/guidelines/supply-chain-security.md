@@ -106,8 +106,10 @@ evidence-based repository inspection rather than automatic rejection.
    verification and then `pnpm.cmd check` before recommending merge.
 6. When the evidence supports the update, add the Terraform-managed
    `deps:validated` label. This attests repository-specific compatibility and
-   lets the Dependabot policy enable auto-merge after required checks pass.
-7. Confirm merge and branch cleanup. Escalate to the owner without applying the
+   records that the update is ready for an owner merge decision after required
+   checks pass.
+7. Ask the owner to decide whether and when to merge, then confirm merge and
+   branch cleanup. Escalate without applying the
    label when impact is materially high, evidence conflicts, required checks
    fail without a safe fix, or uncertainty remains after inspection.
 

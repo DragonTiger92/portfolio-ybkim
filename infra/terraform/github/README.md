@@ -6,7 +6,6 @@ This Terraform root manages long-lived GitHub repository governance for
 ## Managed Scope
 
 - repository description, public homepage, feature, and merge settings;
-- the Dependabot minor-and-patch auto-merge activation variable;
 - the Pages production deployment activation variable;
 - the `deps:validated` compatibility-attestation label;
 - project-specific pull request and release labels;
@@ -40,10 +39,17 @@ environment variable. Never put the token in Terraform configuration,
 
 ## Bootstrap And Activation Boundary
 
-The repository-governance bootstrap is complete. Its first owner-reviewed apply
-imported the existing repository and security resources before enabling
-repository auto-merge, automatic deletion of merged head branches, the strict
-`main` ruleset, and `DEPENDABOT_AUTOMERGE_ENABLED=true`.
+The repository-governance bootstrap is complete. The owner-merge contract keeps
+repository auto-merge disabled while retaining automatic deletion of merged head
+branches and the strict `main` ruleset. Dependabot policy classifies every update
+and requests owner review instead of enabling a workflow-owned merge.
+
+The owner-merge transition is intentionally staged. Before this source reaches
+`main`, the live `DEPENDABOT_AUTOMERGE_ENABLED` variable remains set to `false`
+as a kill switch. After merge, an owner-reviewed standard remote plan may update
+only the repository auto-merge setting from enabled to disabled and delete the
+obsolete Dependabot auto-merge variable. Any additional change, replacement, or
+destroy action is drift and must stop the provider gate before apply.
 
 The external Pages activation prerequisites are also complete:
 

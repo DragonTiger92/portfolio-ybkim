@@ -53,7 +53,7 @@ public branch naming convention instead.
 | Local completion / PR prep  | Full `pnpm.cmd check`                                                        | Verify the complete change once before handoff                             |
 | Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`               | Gate merge readiness and policy metadata                                   |
 | Merged pull request         | Compare and update eligible open PR branches through `Sync Open PR Branches` | Preserve the integrated `main` history in active same-repository work      |
-| Dependabot pull request     | Policy classification; routine auto-merge; exceptional review attestation    | Route updates by metadata, breaking markers, and `deps:validated` evidence |
+| Dependabot pull request     | Policy classification, required checks, and owner merge review               | Route updates by metadata, breaking markers, and `deps:validated` evidence |
 | Terraform-related PR change | Terraform format, provider initialization without backend, and validation    | Reject invalid IaC before merge                                            |
 | Push to `main`              | `Check` (`pnpm check`)                                                       | Verify the integrated default branch                                       |
 | Enabled push to `main`      | Exact artifact, Wrangler Direct Upload, full-SHA resolution, public smoke    | Publish the integrated revision without creating a release tag             |
@@ -169,8 +169,8 @@ subsequent feature work is protected by the final repository checks and `main`
 ruleset. Cloudflare Pages, DNS, preview access, production smoke checks, and
 release operations remain separate `PH-003` deployment concerns.
 
-The applied Terraform state owns `allow_auto_merge = true`,
-`delete_branch_on_merge = true`, and the
-`DEPENDABOT_AUTOMERGE_ENABLED = true` Actions variable. The Dependabot workflow
-can enable auto-merge only through the active required-check and branch-lifecycle
-safeguards.
+The owner-merge Terraform source sets `allow_auto_merge = false` and retains
+`delete_branch_on_merge = true`. The Dependabot workflow classifies each update,
+records the policy evidence, and requests owner review; no Actions variable or
+workflow credential authorizes a merge. Applying the repository-setting change
+remains a separate owner-reviewed provider gate.
