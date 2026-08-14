@@ -135,6 +135,11 @@ preemptively. Inspect affected artifacts early rather than discovering a
 headroom issue only at the completion gate.
 
 The current content-line limits also remain suitable for this small static
-portfolio. When a file is already near its category limit, budget a boundary
-review as part of the task rather than forcing the requested work into the
-remaining lines or mechanically splitting the file.
+portfolio. Session handoffs use a dedicated 350-line ceiling because a
+self-contained fresh-session contract intentionally combines current state,
+safety boundaries, next gates, and a paste-ready prompt. This ceiling is not a
+target: 280 lines starts a headroom review, and 315 lines requires an explicit
+compression or replacement plan before substantial additions. When any file is
+already near its category limit, budget a boundary review as part of the task
+rather than forcing the requested work into the remaining lines or mechanically
+splitting the file.

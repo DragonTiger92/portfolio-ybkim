@@ -12,6 +12,7 @@ import {
 describe("file-size policy", () => {
   it("uses specific limits before the general Markdown limit", () => {
     assert.equal(getFileSizePolicy(".agents/guidelines/engineering.md").max, 200);
+    assert.equal(getFileSizePolicy(".agents/handoffs/2026-08-14-example-handoff.md").max, 350);
     assert.equal(getFileSizePolicy("docs/requirements/non-functional-requirements.md").max, 350);
     assert.equal(getFileSizePolicy("docs/architecture/overview.md").max, 250);
   });
@@ -45,6 +46,20 @@ describe("file-size evaluation", () => {
     assert.equal(result.lines, 251);
     assert.equal(result.max, 250);
     assert.equal(result.exceedsLimit, true);
+  });
+
+  it("enforces the session handoff boundary", () => {
+    const allowedContent = Array.from({ length: 350 }, () => "content").join("\n");
+    const exceededContent = `${allowedContent}\ncontent`;
+    const allowedResult = evaluateContent(".agents/handoffs/example-handoff.md", allowedContent);
+    const exceededResult = evaluateContent(".agents/handoffs/example-handoff.md", exceededContent);
+
+    assert.equal(allowedResult.label, "session handoff");
+    assert.equal(allowedResult.lines, 350);
+    assert.equal(allowedResult.max, 350);
+    assert.equal(allowedResult.exceedsLimit, false);
+    assert.equal(exceededResult.lines, 351);
+    assert.equal(exceededResult.exceedsLimit, true);
   });
 });
 

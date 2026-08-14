@@ -126,6 +126,7 @@ substitute for design judgment. The enforced limits are:
 | CSS                                        |                300 |
 | HTML, JSON, JSONC, YAML, and Terraform     |                250 |
 | Narrative Markdown                         |                250 |
+| Session handoff Markdown                   |                350 |
 | Requirements and selected planning ledgers |                350 |
 | Agent guideline Markdown                   |                200 |
 
