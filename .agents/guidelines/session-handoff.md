@@ -109,6 +109,13 @@ Keep handoffs short enough to read at session start. Include:
 - next actions and owner questions;
 - copy-ready heatup prompt.
 
+Files under `.agents/handoffs/` have a 350-content-line hard ceiling. Treat it
+as operating headroom, not a writing target. At 280 lines, review whether the
+handoff still contains only restart-critical context. At 315 lines, define an
+explicit compression or replacement plan before adding substantial content.
+Retire or supersede completed history instead of extending one handoff
+indefinitely.
+
 ## Public And Private Boundaries
 
 - Keep `.agents/handoffs/` agent-only and gitignored.

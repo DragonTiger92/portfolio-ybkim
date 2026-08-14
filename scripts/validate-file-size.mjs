@@ -25,6 +25,11 @@ const fileSizePolicies = [
     matches: (filePath) => filePath.startsWith(".agents/guidelines/") && filePath.endsWith(".md"),
   },
   {
+    label: "session handoff",
+    max: 350,
+    matches: (filePath) => filePath.startsWith(".agents/handoffs/") && filePath.endsWith(".md"),
+  },
+  {
     label: "structured documentation ledger",
     max: 350,
     matches: (filePath) =>
