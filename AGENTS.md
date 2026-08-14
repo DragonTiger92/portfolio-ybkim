@@ -41,11 +41,20 @@ For active continuation notes, check `.agents/handoffs/` when the user asks to r
 ## Always Follow
 
 - Use `pnpm` only. On Windows PowerShell, prefer `pnpm.cmd`.
-- Do not install, add, update, import, or execute dependency packages unless the user explicitly approves the exact action.
+- Do not install, add, update, or import dependency packages, or mutate the
+  lockfile, unless the user explicitly approves the exact action. A
+  user-approved execution authorization envelope may cover non-mutating use of
+  existing package scripts and executables; follow
+  `.agents/guidelines/operations.md`.
 - Keep direct dependency versions exact in `package.json`.
 - Keep changes scoped to the user's request and avoid unrelated refactors.
 - Preserve static Cloudflare Pages compatibility.
-- Do not create commits unless the user explicitly requests a commit.
+- Treat a user-approved, decision-complete execution plan as one authorization
+  envelope for its listed ordinary gates. Keep each gate as a verification
+  checkpoint, but do not ask for repeated approval when live state remains
+  inside the envelope.
+- Do not create commits unless the user explicitly requests a commit or includes
+  it in an approved execution authorization envelope.
 - Do not expose secrets or modify environment files.
 - Run available checks before claiming completion when feasible.
 

@@ -36,7 +36,29 @@ Co-authored-by: Codex <noreply@openai.com>
 
 - Do not use informal suffixes such as `(agent-led)` in the commit subject to indicate agent authorship.
 
-Do not create commits unless explicitly requested.
+Do not create commits unless explicitly requested or included in a
+user-approved execution authorization envelope. Follow the envelope and stop
+conditions in `.agents/guidelines/operations.md`.
+
+## Authorized Git Lifecycle
+
+When an approved execution authorization envelope includes the relevant steps,
+do not request a second approval merely to stage the focused patch, create the
+listed commit, fetch and merge the named integration branch into a clean topic
+branch, push that topic branch, create or update its draft pull request and
+metadata, observe current checks, or mark the pull request ready.
+
+Review the exact staged diff before commit and the exact topic head before push
+or pull-request mutation. Package commands run by approved pre-commit or
+pre-push hooks inherit the envelope's non-mutating dependency-execution
+authorization; hook failure stops the Git action and does not authorize a new
+source change.
+
+Merging or enabling auto-merge into an integration branch, deleting a local or
+remote branch, rewriting history, force-pushing, or discarding work always
+requires separate explicit user approval. Stop on unexpected drift, conflicts,
+additional files, or a changed pull-request head instead of silently expanding
+the envelope.
 
 ## Branch Names
 
