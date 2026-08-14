@@ -13,6 +13,52 @@ When editing files:
 - Do not modify environment files or secrets.
 - Do not introduce placeholder code into production paths.
 
+## Execution Authorization Envelopes
+
+A user may approve a decision-complete execution plan once instead of approving
+each ordinary gate separately. Treat that plan as an execution authorization
+envelope only when it identifies the concern and scope, target branch or
+worktree, intended checks, allowed Git and publication steps, and explicit stop
+conditions.
+
+Within an approved envelope, proceed without repeated user approval for listed
+ordinary actions whose live preconditions still match:
+
+- inspect repository, worktree, remote, pull request, and current check state;
+- edit and format only the approved source or documentation scope;
+- run existing non-mutating package scripts, project executables, focused
+  checks, and Git hooks;
+- stage the focused patch and create an explicitly included commit;
+- fetch the named integration branch, synchronize a clean topic branch without
+  history rewriting, and verify the resulting ancestry;
+- push only the named topic branch, create or update its draft pull request and
+  metadata, observe current checks, and mark it ready when the plan's conditions
+  are satisfied.
+
+The gates remain verification checkpoints. Before crossing one, confirm its
+preconditions and record the actual result. Stop before further mutation when
+the branch, worktree, commit, changed-file set, remote or pull-request state,
+check result, conflict state, or requested scope materially differs from the
+approved envelope.
+
+The following actions always remain separate explicit approval boundaries:
+
+- merging or enabling auto-merge into an integration branch;
+- installing, adding, updating, importing, or removing dependencies, or
+  changing a lockfile;
+- credentials, environment files, provider or Terraform state, account changes,
+  and provider-side resource mutation;
+- deployments, releases, tags, or other production publication;
+- destructive cleanup, branch deletion, history rewriting, force-push, or
+  discarding work; and
+- any new source change needed after a failed gate when that change is outside
+  the approved scope or would alter an agreed decision.
+
+The user may narrow the envelope or require additional approval boundaries at
+any time. A repository authorization envelope does not replace a Codex, OS, or
+sandbox permission prompt; satisfy those technical controls without broadening
+the approved project action.
+
 ## Environment And Secrets
 
 Do not commit secrets.

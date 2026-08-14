@@ -65,7 +65,8 @@ for work wrap-up:
    file when unresolved work is expected to resume in a later session.
 8. Include copy-ready heatup prompt variants in the final response when more
    than one continuation mode is plausible.
-9. Do not create a commit unless the user explicitly asks for one.
+9. Do not create a commit unless the user explicitly asks for one or an active
+   execution authorization envelope already includes it.
 
 ## Continuation Context
 
@@ -79,6 +80,25 @@ Classify the expected continuation mode:
 
 If the user gives a relative continuation time, convert it to an absolute date
 and local time in the handoff and final response.
+
+## Authorization Continuity
+
+An approved execution authorization envelope may continue into a fresh session
+without repeating approval for every ordinary gate only when the handoff records
+the exact approved scope and the resume prompt explicitly asks the next agent to
+continue it. Record:
+
+- the approved actions and their target branch, worktree, and publication scope;
+- completed and pending checkpoints;
+- the expected branch, commit, changed-file set, remote, and pull-request state;
+- reserved actions that still require separate explicit approval; and
+- stop conditions for drift, conflicts, failed checks, or scope expansion.
+
+A handoff cannot create authorization that the user did not give. If the
+recorded envelope is incomplete, the resume request is plan-or-review-only, or
+live invariants do not match, inspect read-only state and request direction
+before mutation. When the record and live state do match, continue the pending
+ordinary gates without asking the user to restate the same approval.
 
 ## Resume Timing
 
@@ -106,8 +126,17 @@ Keep handoffs short enough to read at session start. Include:
 - important ignored private files or generated artifacts;
 - checks run and known tool caveats;
 - current decisions;
+- the active execution authorization envelope, completed checkpoints, and any
+  reserved approval boundaries;
 - next actions and owner questions;
 - copy-ready heatup prompt.
+
+Files under `.agents/handoffs/` have a 350-content-line hard ceiling. Treat it
+as operating headroom, not a writing target. At 280 lines, review whether the
+handoff still contains only restart-critical context. At 315 lines, define an
+explicit compression or replacement plan before adding substantial content.
+Retire or supersede completed history instead of extending one handoff
+indefinitely.
 
 ## Public And Private Boundaries
 

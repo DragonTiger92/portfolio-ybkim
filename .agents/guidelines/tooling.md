@@ -102,6 +102,26 @@ workspace. WSL is not required for ordinary project work.
 
 ## Windows Sandbox Diagnostics
 
+Prefer the native Windows sandbox with the narrowest writable-workspace and
+network permissions that can complete the approved task. Do not weaken the
+sandbox or switch to unrestricted execution merely to suppress a permission
+prompt.
+
+The project may use the vendor-installed `pnpm.cmd` shim discovered through
+`PATH` when its resolved version matches the `packageManager` contract and the
+active sandbox can execute it, use the selected package store, and access the
+project installation. Do not vendor a second pnpm binary, hardcode its
+machine-specific path, or force a repository-local store solely to avoid
+sandbox approval prompts.
+
+Treat launcher execution, package-store access, project `node_modules` access,
+network access, and protected Git metadata as separate diagnostic boundaries.
+A writable project tree does not imply that `.git` metadata is writable, and a
+Git permission prompt is not evidence that pnpm must be reinstalled. If a
+reproducible package-manager failure remains after one bounded diagnostic,
+propose the narrowest reviewed ACL, store, or permission-profile change before
+changing repository package-manager configuration.
+
 On this Windows workspace, `spawn EPERM` from Node.js or Vite, or a local executable
 reported as unavailable through `pnpm exec`, can be caused by the Codex sandbox rather
 than the project.
