@@ -43,9 +43,9 @@ considered complete.
 
 `PBI-032` establishes the proportionate observability baseline before PH-003
 closes. It uses Checkly as the external synthetic monitor so checks continue
-when the repository workflow is idle or unavailable. Implement Checkly after
-the `v1.0.0` release, `PBI-069`, and the production delivery contract are
-stable, but before PH-003 closes.
+when the repository workflow is idle or unavailable. The Checkly baseline was
+implemented after the `v1.0.0` release, `PBI-069`, and the production delivery
+contract became stable.
 
 A scheduled GitHub Actions probe may supplement the monitor but should not be
 the only uptime signal because scheduled runs can be delayed and public
@@ -65,12 +65,10 @@ makes it useful.
 
 ### Checkly Implementation Contract
 
-Migrate the existing Better Stack Terraform root before using it. Until that
-migration is reviewed, do not provide Better Stack credentials or run refresh,
-plan, apply, import, destroy, or provider API commands from the monitoring root.
-At implementation time, verify the current official Checkly provider in the
-Terraform Registry and obtain owner approval for its exact stable version before
-changing the provider and lockfile.
+The existing Better Stack Terraform root was migrated in place without changing
+its remote backend. The source and lockfile pin `checkly/checkly` `1.27.0`.
+Revalidate the current official provider and follow the execution-autonomy
+contract before any later provider or lockfile change.
 
 The steady state contains two Terraform-managed URL monitors:
 
@@ -79,11 +77,20 @@ The steady state contains two Terraform-managed URL monitors:
 
 Run them every two minutes across the Checkly Hobby plan's Singapore and North California
 locations in round-robin order.
-Require HTTP 200, allow same-origin redirects, verify TLS, and warn 30 days
-before certificate expiry. Keep the email alert channel owner-managed in the
-Checkly UI so its destination does not enter Terraform state. Terraform receives
-only the selected alert-channel identifier and attaches its subscription to each
-managed monitor.
+Require HTTP 200, allow same-origin redirects, and verify TLS. Keep the email
+alert channel owner-managed in the Checkly UI for failure and recovery delivery
+so its destination does not enter Terraform state. Terraform receives only the
+selected alert-channel identifier and attaches its subscription to each managed
+monitor.
+
+Cloudflare owns edge-certificate validation, issuance, renewal, and expiration
+through its provider-native
+[Universal SSL alerts](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/alerts/).
+Checkly owns user-visible availability and TLS validation: a handshake or
+certificate failure becomes the normal DOWN signal, while Checkly result detail
+and Cloudflare certificate events provide the diagnostic split. Do not require
+or enable a Checkly 30-day SSL-expiry threshold for this Cloudflare-managed
+Pages hostname.
 
 The HCP Terraform input contract is:
 
@@ -93,11 +100,33 @@ The HCP Terraform input contract is:
 - `TF_VAR_production_base_url`: non-sensitive.
 
 Inventory existing Checkly resources before mutation and use import-first
-handling where applicable. Stop for owner review before any create, replace,
-destroy, apply, or provider-version change. Verify alert delivery without
-failing Production: create a transient monitor for a same-origin 404 path,
-confirm the DOWN alert, switch it to the homepage to confirm recovery, then
-remove only that test monitor through a separately reviewed plan.
+handling where applicable. Apply only an exact saved plan whose projected
+address/action set matches the approved execution envelope. Verify alert
+delivery without failing Production: create a transient monitor for a confirmed
+same-origin 404 path, confirm the DOWN alert, switch it to the homepage to
+confirm recovery, then remove only that test monitor through an exact removal
+plan.
+
+### PBI-032 Live Evidence
+
+- Pre-apply inventory found no matching URL monitor, and the monitoring state
+  contained no managed resource.
+- The final state contains only `checkly_url_monitor.homepage` and
+  `checkly_url_monitor.critical_asset`; the tracked critical asset is
+  `/assets/brand/logo-mark.svg`.
+- Both monitors run every two minutes from Singapore and North California in
+  round-robin mode and were `Passing` after direct HTTP 200, TLS, and
+  same-origin redirect verification.
+- The controlled 404 produced DOWN delivery at the 2026-08-17 16:24:17 KST
+  observation point. The same transient resource then produced recovery
+  delivery at 2026-08-17 16:26:58 KST after switching to the homepage.
+- Checkly recorded both deliveries as successful. For email, this proves the
+  provider accepted Checkly's request; it does not prove inbox receipt.
+- The transient monitor was removed through a one-resource removal plan. The
+  final two-resource Terraform plan was no-op.
+- Retain at least seven days of raw results and 30 days of aggregate results.
+  Keep account details, destinations, IDs, and raw provider output outside the
+  repository.
 
 ## Incident And Rollback Readiness
 

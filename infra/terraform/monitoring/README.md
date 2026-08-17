@@ -39,7 +39,10 @@ pull requests, or evidence notes.
 | `TF_VAR_production_base_url`      | `string`       | No        | HTTPS origin without path, query, or fragment |
 
 This root intentionally does not manage a `checkly_alert_channel` resource. The owner-managed
-channel must be verified separately for failure, recovery, and 30-day SSL-expiry notifications.
+channel must be verified separately for failure and recovery notifications. Cloudflare Universal
+SSL alerts own certificate validation, issuance, renewal, and expiration lifecycle signals; the
+Checkly channel does not need an SSL-expiry threshold. Checkly keeps TLS verification enabled so a
+user-visible TLS failure produces the normal DOWN signal and result detail for diagnosis.
 Notification destinations must not enter Terraform state.
 
 The Checkly Hobby plan location contract is Singapore (`ap-southeast-1`) and North California
@@ -99,6 +102,10 @@ The alert proof is a separate, controlled production gate. Use an uncommitted
 `alert-verification.tf` only after confirming that the designated path returns a real `404` and
 that its redirect chain stays on the production origin.
 
+Cloudflare Pages serves the single-page fallback with `200` for ordinary unknown routes. Revalidate
+and use the missing same-origin `/cdn-cgi/styles/__pbi-032-checkly-alert-test-404.css` path only when
+it returns `404`; do not deploy or alter production content to manufacture the failure.
+
 The transient resource must:
 
 1. expect `200` from the controlled `404` path and produce a DOWN notification;
@@ -107,6 +114,20 @@ The transient resource must:
 
 Never commit or push the transient source. After removal, require the two steady resources and
 another no-op plan.
+
+## 2026-08-17 verification record
+
+- `checkly/checkly` `1.27.0` manages exactly the homepage and critical-asset URL monitors.
+- Both steady monitors were `Passing` after direct `200`, TLS, and same-origin redirect checks.
+- DOWN delivery was provider-accepted at the 2026-08-17 16:24:17 KST observation point.
+- Recovery delivery was provider-accepted at 2026-08-17 16:26:58 KST.
+- The transient monitor was removed and the final steady-state Terraform plan was no-op.
+- Email `Successful` evidence proves acceptance by Checkly's email provider, not inbox receipt.
+
+Cloudflare owns the edge-certificate lifecycle through
+[Universal SSL alerts](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/alerts/).
+Checkly owns user-visible availability/TLS detection and failure detail; its SSL-expiry alert is
+intentionally outside this contract.
 
 ## Evidence boundary
 

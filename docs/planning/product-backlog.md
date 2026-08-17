@@ -154,7 +154,7 @@ planning input alongside the content model.
 | `PBI-061` | Content    | Publish the v1 public resume                    | Backlog     | P1       | [Resume And Portfolio Boundary](../content/resume-portfolio-boundary.md), [Portfolio Content Source](../content/portfolio-content-source.md), [Deployment Architecture](../architecture/deployment.md) | The stable public resume URL serves the owner-approved v1 resume as a visually identical, metadata-sanitized derivative              | Treat `tmp/resume-ybkim.pdf` as owner-managed source and do not modify it; preserve PDF 1.7, two A4 pages, document tags, and link annotations; retain only a public-safe title metadata field; require equal link counts, zero 120 dpi pixel diff, privacy review, and the 600 KiB budget before replacing `/assets/resume/resume-ybkim.pdf` |
 | `PBI-030` | Compliance | Establish pre-release license compliance review | Done        | P1       | [License Compliance](../security/license-compliance.md)                                                                                                                                                | No unresolved third-party material ships in a public production release                                                              | PR #63 preserved exact-revision source and `dist` ScanCode reports; the 2026-07-31 register reconciliation found no shipped item with an `Unknown`, `Review Required`, or `Rejected` disposition                                                                                                                                              |
 | `PBI-031` | Operations | Run post-deployment production smoke checks     | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                                                                                          | A failed homepage or critical-asset check blocks or rolls back release completion                                                    | Do not treat a static health file as the only signal                                                                                                                                                                                                                                                                                          |
-| `PBI-032` | Operations | Establish production observability and alerting | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                                                                                          | Checkly and provider-native signals detect production availability, deployment, request, edge, and TLS failures and notify the owner | Implement after `v1.0.0`, `PBI-069`, and the production delivery contract stabilizes but before PH-003 closes; migrate the frozen Better Stack root before use; require two 2-minute Hobby URL monitors in Singapore/N. California, an owner-managed email channel, import-first review, and a controlled transient 404 DOWN/recovery test    |
+| `PBI-032` | Operations | Establish production observability and alerting | Done        | P1       | [Production Readiness](../operations/production-readiness.md)                                                                                                                                          | Checkly and provider-native signals detect production availability, deployment, request, edge, and TLS failures and notify the owner | Completed on 2026-08-17: migrated the monitoring root to Checkly 1.27.0, applied the two 2-minute Hobby URL monitors, verified controlled 404 DOWN/recovery delivery, removed the transient monitor, and reached a final no-op plan; Cloudflare owns certificate-lifecycle alerts while Checkly owns user-visible TLS failure detection       |
 | `PBI-033` | Operations | Document incident response and rollback         | Backlog     | P1       | [Production Readiness](../operations/production-readiness.md)                                                                                                                                          | Production failures have a tested owner, triage path, and rollback procedure                                                         | Keep the runbook proportional to a single-maintainer static site                                                                                                                                                                                                                                                                              |
 | `PBI-039` | Quality    | Regulate and verify image asset formats         | Done        | P2       | [Deployment Architecture](../architecture/deployment.md)                                                                                                                                               | CI or release workflow verifies agreed image format, optimization, and budget criteria                                               | Inherit `PBI-009`'s 64 KiB per-file and 256 KiB aggregate non-download guardrails; add format, dimension, and derivative rules only when real content imagery makes them useful                                                                                                                                                               |
 | `PBI-049` | Infra      | Configure custom-domain contact email routing   | Cancelled   | P2       | [Deployment Architecture](../architecture/deployment.md), [Project Content Inventory](../content/project-content-inventory.md)                                                                         | -                                                                                                                                    | Cancelled after the owner selected the free Cloudflare-managed Pages hostname and declined a purchased domain; the existing Gmail contact remains the final public channel                                                                                                                                                                    |
@@ -174,6 +174,21 @@ planning input alongside the content model.
   and the merged-main Security Audit passed.
 - The release-age policy remains enforced; no alert was dismissed solely because
   the product is statically generated.
+
+### PBI-032 Completion Notes
+
+- The final Terraform state contains only the homepage and tracked critical-asset
+  Checkly URL monitors, and the final plan is no-op.
+- Both steady monitors were `Passing` across the Singapore and North California
+  round-robin contract after HTTP 200, TLS, and same-origin redirect checks.
+- The controlled transient monitor proved provider-accepted DOWN and recovery
+  delivery on 2026-08-17 KST, then was removed without a steady-resource action.
+- Cloudflare Universal SSL alerts own certificate lifecycle events. Checkly keeps
+  TLS verification enabled for user-visible DOWN detection and diagnosis; the
+  owner-managed channel does not require a 30-day SSL-expiry threshold.
+- Raw results retain a minimum seven-day baseline and aggregate results retain a
+  minimum 30-day baseline. Account details, destinations, IDs, and raw provider
+  output remain outside the repository.
 
 ### Phase 3 Initiation Notes
 
@@ -195,10 +210,9 @@ planning input alongside the content model.
   `In Progress` until imports, reviewed plans, applies, and no-op verification
   are completed with owner-managed credentials.
 - The owner deleted the Better Stack account and selected Checkly for `PBI-032`.
-  The existing Better Stack monitoring root is frozen migration input and must
-  not receive credentials or be planned or applied. `PBI-032` remains `Backlog`
-  until the reviewed Checkly migration, production probes, and controlled
-  DOWN/recovery alert test pass.
+  `PBI-032` is now `Done`: the monitoring root was migrated in place, the two
+  steady probes are live, controlled DOWN/recovery delivery passed, the transient
+  monitor was removed, and the final plan is no-op.
 - `PBI-010`, `PBI-011`, `PBI-031`, and `PBI-060` now have account-free runtime,
   checked-artifact, production smoke-check, and response-policy primitives.
   They remain `Backlog` because no accepted production upload, response, or live
@@ -232,8 +246,8 @@ planning input alongside the content model.
   `package.json.version`, and validated CycloneDX SBOM root version must agree.
 - `PBI-069` is complete; its source and diagnostic evidence are recorded in the
   backlog entry above.
-- With the release, delivery contract, and `PBI-069` verified, implement Checkly
-  before closing `PBI-032` or PH-003.
+- With the release, delivery contract, `PBI-069`, and the live Checkly baseline
+  verified, `PBI-032` is complete; retain its monitoring while closing PH-003.
 
 ### PBI-049 Cancellation Notes
 
