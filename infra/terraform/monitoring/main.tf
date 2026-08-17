@@ -7,7 +7,7 @@ resource "checkly_url_monitor" "homepage" {
   name                      = "Portfolio production homepage"
   activated                 = true
   frequency                 = 2
-  locations                 = ["ap-northeast-1", "ap-southeast-1"]
+  locations                 = ["ap-southeast-1", "us-west-1"]
   run_parallel              = false
   should_fail               = false
   muted                     = false
@@ -57,7 +57,7 @@ resource "checkly_url_monitor" "critical_asset" {
   name                      = "Portfolio production critical asset"
   activated                 = true
   frequency                 = 2
-  locations                 = ["ap-northeast-1", "ap-southeast-1"]
+  locations                 = ["ap-southeast-1", "us-west-1"]
   run_parallel              = false
   should_fail               = false
   muted                     = false

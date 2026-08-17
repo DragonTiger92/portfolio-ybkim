@@ -14,7 +14,7 @@ not part of the provider migration.
 Both monitors use the following explicit contract:
 
 - active, two-minute checks;
-- Tokyo and Singapore in round-robin mode;
+- the Checkly Hobby plan's Singapore and North California locations in round-robin mode;
 - TLS verification and redirect following enabled;
 - an HTTP status assertion requiring `200`;
 - one retry after 60 seconds in the same region;
@@ -42,9 +42,10 @@ This root intentionally does not manage a `checkly_alert_channel` resource. The 
 channel must be verified separately for failure, recovery, and 30-day SSL-expiry notifications.
 Notification destinations must not enter Terraform state.
 
-Tokyo and Singapore availability is an account-entitlement gate. Stop before inventory,
-planning, or apply if both locations are not available; do not silently substitute locations
-or change the account tier.
+The Checkly Hobby plan location contract is Singapore (`ap-southeast-1`) and North California
+(`us-west-1`). Revalidate both locations against the active account entitlement before
+inventory, planning, or apply; do not silently substitute locations or change the account
+tier.
 
 ## Provider and lockfile gate
 

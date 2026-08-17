@@ -77,7 +77,8 @@ The steady state contains two Terraform-managed URL monitors:
 - the canonical homepage; and
 - one stable release-critical asset.
 
-Run them every two minutes across Tokyo and Singapore in round-robin order.
+Run them every two minutes across the Checkly Hobby plan's Singapore and North California
+locations in round-robin order.
 Require HTTP 200, allow same-origin redirects, verify TLS, and warn 30 days
 before certificate expiry. Keep the email alert channel owner-managed in the
 Checkly UI so its destination does not enter Terraform state. Terraform receives
