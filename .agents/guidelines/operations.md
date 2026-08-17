@@ -33,7 +33,10 @@ ordinary actions whose live preconditions still match:
   history rewriting, and verify the resulting ancestry;
 - push only the named topic branch, create or update its draft pull request and
   metadata, observe current checks, and mark it ready when the plan's conditions
-  are satisfied.
+  are satisfied;
+- perform provider, Terraform, alert-verification, and post-merge operations
+  classified as autonomous by `.agents/guidelines/execution-autonomy.md` and
+  `.agents/policies/execution-autonomy.json`.
 
 The gates remain verification checkpoints. Before crossing one, confirm its
 preconditions and record the actual result. Stop before further mutation when
@@ -46,8 +49,10 @@ The following actions always remain separate explicit approval boundaries:
 - merging or enabling auto-merge into an integration branch;
 - installing, adding, updating, importing, or removing dependencies, or
   changing a lockfile;
-- credentials, environment files, provider or Terraform state, account changes,
-  and provider-side resource mutation;
+- creating, rotating, disclosing, or changing credentials or environment files;
+- provider, Terraform, account, or repository operations classified as owner
+  decisions by `.agents/policies/execution-autonomy.json` or missing one of its
+  required conditions;
 - deployments, releases, tags, or other production publication;
 - destructive cleanup, branch deletion, history rewriting, force-push, or
   discarding work; and

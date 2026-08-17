@@ -26,6 +26,8 @@ that match the task. Do not load every guideline by default.
   decisions
 - `.agents/guidelines/git-quality.md`: Git, branches, commits, hooks, CI, or completion
   checks
+- `.agents/guidelines/execution-autonomy.md`: provider/Terraform operations,
+  approval classification, PR Ready, or post-merge synchronization
 - `.agents/guidelines/session-handoff.md`: session-close, end-of-day wrap-up,
   handoff, heatup prompt, restart, or short workflow-like continuation requests
 - `.agents/guidelines/scribble-intake.md`: Markdown-style user notes, Notepad
