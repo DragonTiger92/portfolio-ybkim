@@ -59,11 +59,11 @@ server runtime; Node.js remains a build-time tool only.
 | GitHub Actions          | CI, production delivery, and formal release                 | Source-ready; live activation pending |
 | Astro                   | Produce the deployable `dist/` static artifact              | Existing build tool                   |
 | Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | Pinned deployment implementation      |
-| Cloudflare Pages        | Store deployments and serve static files through the edge   | Existing Direct Upload project        |
+| Cloudflare Pages        | Store deployments, serve static files, and manage edge TLS  | Existing Direct Upload project        |
 | Cloudflare Access       | Authenticate the owner on protected preview hostnames       | Human policy live                     |
 | Terraform               | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
 | GitHub Releases         | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
-| Checkly                 | Detect production URL, critical-asset, and TLS failure      | Selected for post-v1 PH-003 work      |
+| Checkly                 | Detect production URL, critical-asset, and end-user TLS     | Active; Terraform-managed PH-003      |
 | Privacy-aware analytics | Measure aggregate route and content interest after launch   | PH-004 planned                        |
 
 There is no separately managed staging machine, origin application server,
