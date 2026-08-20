@@ -369,7 +369,7 @@ and satisfied notice or attribution obligations.
 | Field               | Value                                                         |
 | ------------------- | ------------------------------------------------------------- |
 | Category            | Reliability, Operations                                       |
-| Status              | Draft                                                         |
+| Status              | Implemented                                                   |
 | Severity            | High                                                          |
 | Applicability       | Production                                                    |
 | Verification Method | AutomatedReview, SyntheticMonitoring, RunbookReview           |
@@ -387,8 +387,14 @@ site maintained by one owner.
   notify the project owner.
 - Correlate health evidence with the deployed release version.
 - Keep a concise incident triage and rollback runbook.
-- Verify the selected host's rollback mechanism before the first public release.
+- Verify the selected host's rollback and current-main restoration mechanism
+  through a controlled production drill before marking `PH-003` complete.
 - Confirm recovery with the same smoke checks used after deployment.
+
+Post-deployment canonical smoke and the two steady Checkly monitors are
+verified, and the owner runbook makes the recovery path implementable. This
+requirement remains `Implemented`, not `Verified`, until the separately approved
+rollback and restoration drill succeeds.
 
 ## NFR-014: Production Edge Security
 

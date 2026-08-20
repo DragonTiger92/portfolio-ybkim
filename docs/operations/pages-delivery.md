@@ -202,6 +202,18 @@ not create tags. Only `formal-release.yml` may create an unsigned annotated
 
 A failed check, manifest comparison, upload, deployment resolution, or final
 production smoke attempt creates no tag. Do not rerun the delivery merely to
-repeat its smoke step. Enter the incident and rollback decision path instead;
-rollback selects a prior successful production deployment and reruns the public
-smoke check, and preview deployments are not production rollback targets.
+repeat its smoke step. Enter the
+[incident and rollback runbook](incident-response-and-rollback.md) instead.
+
+Cloudflare Pages native rollback to a reviewed, previously successful
+Production deployment is the primary recovery mechanism. Preview deployments
+are never rollback targets. After the owner confirms the production mutation,
+resolve the active revision and run the canonical public smoke and independent
+monitor verification.
+
+Only when native rollback or restoration is unavailable or unsuccessful may an
+owner-approved break-glass action dispatch a new `Pages Production` run from
+`main` for the exact full `origin/main` revision and previously validated
+job-status input. This rebuilds and deploys through the current trusted
+workflow; it does not rerun a historical workflow and creates no tag or GitHub
+Release.

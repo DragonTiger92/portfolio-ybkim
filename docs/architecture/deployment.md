@@ -190,12 +190,15 @@ or GitHub Release solely to change such an input.
    production smoke checks as the reusable production deployment;
 3. records the source revision, non-secret input selection, GitHub Actions run,
    and Cloudflare Pages deployment; and
-4. supports rollback to the prior successful Pages deployment or a repeat run
-   with the prior validated input.
+4. creates no release tag or GitHub Release.
 
 This path still creates a new build and Pages deployment because the static
 files change. It avoids manufacturing source history for an operational state
-change while preserving the static, privacy-oriented output boundary.
+change while preserving the static, privacy-oriented output boundary. It is not
+Cloudflare Pages native rollback; the
+[incident and rollback runbook](../operations/incident-response-and-rollback.md)
+defines native rollback as the primary recovery mechanism and this exact-revision
+dispatch as the break-glass redeploy.
 
 ## Release Checks
 
