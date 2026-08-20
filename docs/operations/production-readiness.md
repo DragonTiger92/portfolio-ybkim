@@ -25,8 +25,10 @@ signal.
 
 ## Deployment Smoke Check
 
-`PBI-031` should run after a production deployment and before the release is
-considered complete.
+`PBI-031` runs after every production deployment and before a formal release is
+considered complete. The established PH-003 delivery baseline checks the
+canonical homepage, stable marker, critical logo, web manifest, and exact
+deployment revision.
 
 - Request the canonical production URL, not only a preview URL.
 - Require a successful response, expected content marker, and critical asset.

@@ -4,9 +4,10 @@ This document records the product information architecture and sitemap for the
 static portfolio. It complements the [Content Model](content-model.md), which
 defines the content types that fill these routes and sections.
 
-This is the product sitemap, not the search-engine `sitemap.xml` artifact. XML
-sitemap generation belongs with launch discovery metadata in `PBI-029` after the
-canonical production URL exists.
+This is the product sitemap, not the generated search-engine `sitemap.xml`
+artifact. `PBI-029` publishes `robots.txt` and `sitemap.xml` from the canonical
+`https://portfolio-ybkim.pages.dev/` origin; those files are delivery artifacts
+rather than product routes.
 
 ## IA Goals
 
@@ -93,20 +94,20 @@ Reference signals checked on 2026-07-01:
 - [Umami introduction](https://docs.umami.is/docs): Umami documents a
   privacy-focused analytics model and self-hosting option.
 
-| Option                       | Fit for this portfolio                         | Notes                                                                  |
-| ---------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
-| No visitor analytics         | Strongest privacy posture before public launch | Does not answer post-launch content-interest questions                 |
-| Cloudflare Web Analytics     | Preferred initial candidate after PH-003       | Aligns with Cloudflare Pages and does not require a server component   |
-| Plausible hosted             | Good privacy-focused candidate                 | Adds a paid SaaS account and external script decision                  |
-| Umami hosted                 | Good privacy-focused candidate                 | Adds an external analytics account and script decision                 |
-| Umami self-hosted            | Not a baseline fit                             | Requires server and database ownership beyond the static architecture  |
-| Google Analytics 4           | Non-default candidate                          | Rich reports, but cookies and consent review add disproportionate cost |
-| Custom server-side analytics | Not needed for the initial scope               | Would require a new architecture decision and operational ownership    |
+| Option                       | Fit for this portfolio                                                  | Notes                                                                  |
+| ---------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| No visitor analytics         | Strongest privacy posture when product questions do not require metrics | Does not answer content-interest questions                             |
+| Cloudflare Web Analytics     | Preferred first candidate if `PBI-015` proceeds                         | Aligns with Cloudflare Pages and does not require a server component   |
+| Plausible hosted             | Good privacy-focused candidate                                          | Adds a paid SaaS account and external script decision                  |
+| Umami hosted                 | Good privacy-focused candidate                                          | Adds an external analytics account and script decision                 |
+| Umami self-hosted            | Not a baseline fit                                                      | Requires server and database ownership beyond the static architecture  |
+| Google Analytics 4           | Non-default candidate                                                   | Rich reports, but cookies and consent review add disproportionate cost |
+| Custom server-side analytics | Not needed for the initial scope                                        | Would require a new architecture decision and operational ownership    |
 
-Initial `PBI-015` implementation should prefer Cloudflare Web Analytics or a
-similarly privacy-focused, cookie-less tool. Use Google Analytics only if a
-specific post-launch question requires the GA ecosystem and the implementation
-also documents consent, disclosure, retention, and data-sharing settings.
+If `PBI-015` proceeds, prefer Cloudflare Web Analytics or a similarly
+privacy-focused, cookie-less tool. Use Google Analytics only if a specific
+product question requires the GA ecosystem and the implementation also
+documents consent, disclosure, retention, and data-sharing settings.
 
 ## Server Component Review
 

@@ -25,21 +25,18 @@ client-side state. Changing the status requires a new build and deployment.
 
 ### Build Runtime Contract
 
-The account-free `PBI-010` foundation selects Node.js `24.18.0` and pnpm
-`11.10.0` as exact build-tool contracts in `.node-version`, `package.json`, and
-GitHub Actions. Cloudflare Pages receives a checked `dist/` artifact through
-Direct Upload, so it does not run a separate application build or server
-runtime.
+`PBI-010` fixed Node.js `24.18.0` and pnpm `11.10.0` as the exact build-tool
+contracts in `.node-version`, `package.json`, and GitHub Actions. Cloudflare
+Pages receives a checked `dist/` artifact through Direct Upload, so it does not
+run a separate application build or server runtime.
 
-Before accepting the contract, run the frozen install and canonical build in a
-clean environment, record the effective Node.js and pnpm versions, and compare
-the generated route and static-budget results with CI. Do not add an application
-server runtime; Node.js remains a build-time tool only.
+The `v1.0.0` and `v1.0.1` formal releases and subsequent `main` deliveries
+exercised the frozen install, canonical checks, static-budget validation, and
+exact-revision artifact path. Node.js remains a build-time tool only.
 
 ## Hosting Assumptions
 
-- Production uses a Cloudflare Pages project when the PH-003 decision is
-  implemented.
+- Production uses the established Cloudflare Pages Direct Upload project.
 - Production uses the Cloudflare-managed `*.pages.dev` hostname returned by the
   Pages project. A purchased custom domain is not a launch dependency.
 - Astro routes are generated for the selected root deployment path. Do not add a
@@ -53,26 +50,26 @@ server runtime; Node.js remains a build-time tool only.
 
 ## Platform Components
 
-| Component               | Responsibility                                              | Phase / State                         |
-| ----------------------- | ----------------------------------------------------------- | ------------------------------------- |
-| GitHub repository       | Source, pull requests, tags, and release metadata           | PH-001 baseline                       |
-| GitHub Actions          | CI, production delivery, and formal release                 | Source-ready; live activation pending |
-| Astro                   | Produce the deployable `dist/` static artifact              | Existing build tool                   |
-| Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | Pinned deployment implementation      |
-| Cloudflare Pages        | Store deployments, serve static files, and manage edge TLS  | Existing Direct Upload project        |
-| Cloudflare Access       | Authenticate the owner on protected preview hostnames       | Human policy live                     |
-| Terraform               | Manage long-lived GitHub and Cloudflare configuration       | GitHub root exists; Cloudflare PH-003 |
-| GitHub Releases         | Record production notes and release artifacts such as SBOMs | PH-003 planned                        |
-| Checkly                 | Detect production URL, critical-asset, and end-user TLS     | Active; Terraform-managed PH-003      |
-| Privacy-aware analytics | Measure aggregate route and content interest after launch   | PH-004 planned                        |
+| Component               | Responsibility                                              | Phase / State                           |
+| ----------------------- | ----------------------------------------------------------- | --------------------------------------- |
+| GitHub repository       | Source, pull requests, tags, and release metadata           | PH-001 baseline                         |
+| GitHub Actions          | CI, production delivery, and formal release                 | Active PH-003 delivery baseline         |
+| Astro                   | Produce the deployable `dist/` static artifact              | Existing build tool                     |
+| Wrangler                | Upload an approved `dist/` artifact to Cloudflare Pages     | Pinned deployment implementation        |
+| Cloudflare Pages        | Store deployments, serve static files, and manage edge TLS  | Existing Direct Upload project          |
+| Cloudflare Access       | Authenticate the owner on protected preview hostnames       | Human policy live                       |
+| Terraform               | Manage long-lived GitHub, Cloudflare, and monitoring config | Separate managed roots and remote state |
+| GitHub Releases         | Record generated notes and release evidence                 | `v1.0.0` and `v1.0.1` published         |
+| Checkly                 | Detect production URL, critical-asset, and end-user TLS     | Active Terraform-managed baseline       |
+| Privacy-aware analytics | Measure aggregate route and content interest after launch   | PH-004 planned                          |
 
 There is no separately managed staging machine, origin application server,
 database server, or logging server in the baseline architecture.
 
-The exact Cloudflare Terraform resources and durable remote-state backend are
-selected during PH-003. The baseline manages one Direct Upload Pages project
-and preview Access boundary without a DNS zone, custom-domain binding, or Email
-Routing resource.
+The PH-003 Cloudflare Terraform root and its durable remote-state boundary are
+established. The managed baseline retains one Direct Upload Pages project and
+the human preview Access boundary without a DNS zone, custom-domain binding, or
+Email Routing resource.
 
 ## Direct Upload Readiness
 
@@ -84,23 +81,23 @@ workflow resolves the successful deployment through the Pages API by full
 commit SHA, branch, and environment instead of trusting Wrangler's
 seven-character list display.
 
-Production workflows are inactive by default. `PAGES_DEPLOYMENT_ENABLED` must
-equal `true` before any GitHub credential-bearing upload job runs. Its Terraform
-baseline remains `false` until the production GitHub Environment,
-least-privilege Cloudflare token, and public smoke acceptance are ready. Follow
-the [Pages delivery runbook](../operations/pages-delivery.md) for configuration,
-manual preview, and activation procedures.
+Production delivery is active. The Terraform-managed
+`PAGES_DEPLOYMENT_ENABLED` value is `true` after the production Environments,
+least-privilege upload credential, and public smoke path completed their
+owner-reviewed activation gates. Successful `v1.0.0`, `v1.0.1`, and later
+`main` deliveries exercised the exact-revision build, upload, resolution, and
+canonical smoke contract.
 
-Activation follows live Cloudflare scope and Access verification. The
-`cloudflare-pages-production` GitHub Environment supplies the least-privilege
-API token plus account, project, and production URL variables. The workflow
-then uploads and publicly smoke-checks the exact production artifact. Preview
-uploads remain owner-initiated local Wrangler actions and do not depend on this
-activation variable.
+The `cloudflare-pages-production` Environment supplies the protected production
+inputs. Preview uploads remain owner-initiated local Wrangler actions and do not
+depend on the activation variable. Follow the
+[Pages delivery runbook](../operations/pages-delivery.md) for operating
+procedures.
 
-Do not use a floating `npx wrangler` download in CI. Dependency installation,
-Cloudflare resource creation, and credential configuration occur only during
-the owning PH-003 PBIs with explicit owner approval.
+Environment provisioning, credential transfer, activation, and the first live
+runs are completed historical gates. Any later dependency, credential,
+activation, or provider change remains a separate owner-reviewed operation. Do
+not use a floating `npx wrangler` download in CI.
 
 ## Static Artifact And Serving Model
 
@@ -176,7 +173,8 @@ deployment that the owner can finalize through an idempotent retry without
 inventing a different version.
 
 GitHub Environment creation, secret transfer, Cloudflare Terraform apply,
-activation, and the first live run remain separate owner-reviewed operations.
+activation, and the first live runs were completed through separate
+owner-reviewed operations. Future changes retain those approval boundaries.
 
 ### Operational State Redeployment
 
@@ -207,10 +205,8 @@ change while preserving the static, privacy-oriented output boundary.
 
 ## Production Response Policy
 
-`PBI-060` owns the first-release response-header and cache contract at the
-Cloudflare edge. Implement the policy through a version-controlled Pages
-configuration or another reviewable provider-native surface selected during
-PH-003.
+`PBI-060` established the first-release response-header and cache contract at
+the Cloudflare edge through the version-controlled `public/_headers` surface.
 
 The baseline covers CSP, MIME sniffing protection, referrer policy, permissions
 policy, framing protection, and cache behavior. Keep the policy proportional to
@@ -230,12 +226,13 @@ this static site:
 Evaluate HSTS only after the live `*.pages.dev` production hostname and response
 behavior are verified. Do not add custom-domain-only behavior to this baseline.
 
-The account-free baseline is versioned in `public/_headers`. It keeps HTML and
+The baseline is versioned in `public/_headers`. It keeps HTML and
 stable public output on revalidation, makes only content-hashed `/_astro/`
 assets immutable, permits the pinned jsDelivr stylesheet and font origin, and
 retains the narrowly required inline-style affordance for browser-written
-navigation state. Static validation does not complete `PBI-060`; the real
-Cloudflare response headers and browser behavior still require live review.
+navigation state. The 2026-08-20 PH-003 closeout review verified the deployed
+Cloudflare response policy and browser behavior; static validation alone was
+not treated as sufficient.
 
 ## Release Versioning
 
@@ -277,17 +274,13 @@ unacknowledged retry. The workflow creates an unsigned annotated tag only after
 the reusable production upload has resolved the exact deployment and the
 canonical public smoke check has passed.
 
-## Roadmap Release Targets
+## Roadmap Release History
 
-The first production public release is planned for `PH-003` and should use
-`v1.0.0`.
+PH-003 published `v1.0.0` as the first operations-ready public release and
+`v1.0.1` as its first patch release. Both use immutable annotated tags and
+GitHub Releases with generated evidence. Later ordinary `main` deployments do
+not receive tags automatically.
 
-Earlier roadmap phases do not receive production Git tags because they prepare
-documentation, workflow, content, and implementation readiness without
-publishing an operations-ready product. During `PH-003`, release candidates use
-their full revision and checked artifact before the final `v1.0.0` tag.
-
-Post-launch work in `PH-004` should use `v1.1.0` or later minor versions for
-meaningful new capabilities such as analytics or discovery improvements, and
-`v1.0.x` patch versions for corrections, small accessibility fixes, link fixes,
-or deployment-safe refinements.
+Post-launch PH-004 work should use a later minor version for meaningful new
+capabilities and the next `v1.0.x` patch for corrections or small
+behavior-preserving improvements.

@@ -175,7 +175,7 @@ information.
 | Field               | Value                                                    |
 | ------------------- | -------------------------------------------------------- |
 | Category            | Deployment                                               |
-| Status              | Draft                                                    |
+| Status              | Verified                                                 |
 | Severity            | High                                                     |
 | Applicability       | WebFE                                                    |
 | Verification Method | StaticAnalysis, Checklist                                |
@@ -265,7 +265,7 @@ licenses, version intent, and package provenance before integration.
 | Field               | Value                                                    |
 | ------------------- | -------------------------------------------------------- |
 | Category            | Release, Maintainability                                 |
-| Status              | Approved                                                 |
+| Status              | Verified                                                 |
 | Severity            | High                                                     |
 | Applicability       | Repository, Production                                   |
 | Verification Method | AutomatedReview, Checklist                               |
@@ -282,12 +282,16 @@ release notes, deployed build, and machine-readable dependency inventory.
 - Keep release workflow evidence available from GitHub Actions and GitHub
   Releases.
 
+The published `v1.0.0` and `v1.0.1` tags and Releases correlate their exact
+source revisions, deployed artifacts, generated notes, workflow evidence, and
+validated CycloneDX SBOMs.
+
 ## NFR-010: Search And Social Discoverability
 
 | Field               | Value                  |
 | ------------------- | ---------------------- |
 | Category            | Discoverability        |
-| Status              | Draft                  |
+| Status              | Verified               |
 | Severity            | Medium                 |
 | Applicability       | WebFE, Production      |
 | Verification Method | StaticAnalysis, Manual |
@@ -308,7 +312,7 @@ sharing, and answer-oriented discovery without overstating portfolio claims.
 | Field               | Value                         |
 | ------------------- | ----------------------------- |
 | Category            | Privacy, Observability        |
-| Status              | Draft                         |
+| Status              | Verified                      |
 | Severity            | High                          |
 | Applicability       | Production                    |
 | Verification Method | ArchitectureReview, Checklist |
@@ -336,7 +340,7 @@ portfolio's operational needs and respect visitor privacy.
 | Field               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |
 | Category            | Compliance                                                     |
-| Status              | Approved                                                       |
+| Status              | Verified                                                       |
 | Severity            | High                                                           |
 | Applicability       | Repository, Production                                         |
 | Verification Method | AutomatedReview, Checklist, Manual                             |
@@ -391,7 +395,7 @@ site maintained by one owner.
 | Field               | Value                                                    |
 | ------------------- | -------------------------------------------------------- |
 | Category            | Security, Reliability                                    |
-| Status              | Draft                                                    |
+| Status              | Verified                                                 |
 | Severity            | High                                                     |
 | Applicability       | Production                                               |
 | Verification Method | StaticAnalysis, HeaderInspection, BrowserTest            |
@@ -414,5 +418,9 @@ font, or its browser interactions.
   assets, and the external font still work under the deployed policy.
 - Define cache behavior separately for HTML, content-hashed build assets, and
   stable public downloads; do not cache HTML as immutable.
-- Inspect the headers and run production smoke checks against the real
-  Cloudflare URL before the first public release.
+- Inspect the headers and rerun production smoke and browser behavior against
+  the real Cloudflare URL after a response-policy or delivery change.
+
+The 2026-08-20 bounded real-origin review verified the deployed header and cache
+policy together with the external font, theme, navigation, contact, resume, and
+local asset behavior.

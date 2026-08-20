@@ -38,8 +38,8 @@ Supersede only the automated-preview portion of ADR-0007.
 - The deployed preview maps directly to the branch under review.
 - Preview QA is deliberately manual and does not claim automated coverage.
 - Preview deployment frequency and evidence depend on owner judgment.
-- The production contract retains exact-artifact GitHub Actions delivery and
-  public smoke checks for later activation, so preview simplification does not
-  weaken release acceptance.
-- Existing CI-only Access and GitHub resources require a staged, reviewed
-  decommission before their credentials and state are removed.
+- The production contract remains active with exact-artifact GitHub Actions
+  delivery and public smoke checks; `v1.0.0`, `v1.0.1`, and subsequent `main`
+  deliveries exercised that boundary.
+- The CI-only Access and GitHub preview resources were retired through the
+  staged provider sequence. The human Preview Access boundary remains.

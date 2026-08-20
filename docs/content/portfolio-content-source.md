@@ -57,19 +57,19 @@ Company-confidential projects are ordered after the public-result cards:
 
 ## Link Source Data
 
-| Link Entity                 | Destination                                        | Status   | Product Use                                                                                       |
-| --------------------------- | -------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| GitHub profile              | `https://github.com/DragonTiger92`                 | Ready    | Hero secondary action and footer/contact action; use for every broad `GitHub` label               |
-| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Ready    | `portfolio-ybkim` project card and detail evidence only                                           |
-| Portfolio production URL    | Cloudflare-managed Pages subdomain                 | Selected | Publish the provider-returned `*.pages.dev` hostname after the first verified production deploy   |
-| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Ready    | Public project detail link after source and rights review                                         |
-| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public   | Public product link; keep any demo credentials out of portfolio copy                              |
-| `Karly` design reference    | Owner-provided public Figma URL                    | Ready    | Owner-approved read-only design reference; use exact assets only after attribution/privacy review |
-| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Ready    | Public project detail link after source and rights review                                         |
-| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public   | Public product link; keep any demo credentials out of portfolio copy                              |
-| Public email                | `dczwtu12b+portfolio@gmail.com`                    | Ready    | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters and labels  |
-| Resume PDF                  | `/assets/resume/resume-ybkim.pdf`                  | Ready    | Public Korean resume download after `PBI-041` final export                                        |
-| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public   | Professional highlight and resume evidence; keep private operations detail out of portfolio copy  |
+| Link Entity                 | Destination                                        | Status | Product Use                                                                                       |
+| --------------------------- | -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
+| GitHub profile              | `https://github.com/DragonTiger92`                 | Ready  | Hero secondary action and footer/contact action; use for every broad `GitHub` label               |
+| Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Ready  | `portfolio-ybkim` project card and detail evidence only                                           |
+| Portfolio production URL    | `https://portfolio-ybkim.pages.dev/`               | Ready  | Canonical public product, metadata, and resume origin                                             |
+| `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Ready  | Public project detail link after source and rights review                                         |
+| `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public | Public product link; keep any demo credentials out of portfolio copy                              |
+| `Karly` design reference    | Owner-provided public Figma URL                    | Ready  | Owner-approved read-only design reference; use exact assets only after attribution/privacy review |
+| `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Ready  | Public project detail link after source and rights review                                         |
+| `Book-Kong` deployed demo   | `https://bookong.netlify.app/`                     | Public | Public product link; keep any demo credentials out of portfolio copy                              |
+| Public email                | `dczwtu12b+portfolio@gmail.com`                    | Ready  | Gmail web compose action plus a visible, copyable fallback; manage with Gmail filters and labels  |
+| Resume PDF                  | `/assets/resume/resume-ybkim.pdf`                  | Ready  | Published Korean resume download                                                                  |
+| Academy product URL         | `https://academy.shine-edu.kr/`                    | Public | Professional highlight and resume evidence; keep private operations detail out of portfolio copy  |
 
 GitHub `noreply` addresses are privacy and commit-attribution addresses, not a
 recruiter contact channel. The public contact email remains
@@ -93,7 +93,7 @@ generated page.
 | GitHub profile     | Ready                    | Continue the review or conversation through GitHub | Every broad `GitHub` label points to the owner profile                    |
 | Gmail compose      | Status-dependent         | Write an email in Gmail                            | Include a pre-addressed Gmail action only while email contact is accepted |
 | Email address copy | Status-dependent         | Copy the portfolio email                           | Include the address and feedback only while email contact is accepted     |
-| Resume PDF         | Ready                    | Download Korean resume                             | Link `/assets/resume/resume-ybkim.pdf` after the public asset exists      |
+| Resume PDF         | Ready                    | Download Korean resume                             | Link the published `/assets/resume/resume-ybkim.pdf` asset                |
 
 ## Resume Source Data
 
@@ -111,10 +111,10 @@ downloadable resume.
 | Location        | Use owner-approved city/district-level location only                                   |
 | Reason leaving  | Omit from the public resume body; prepare for application forms or interviews          |
 | Employer        | `주식회사 룰메이커스` is approved for the public resume; use `Rulemakers` in English   |
-| Portfolio URL   | Add the provider-returned `*.pages.dev` URL after the first verified production deploy |
+| Portfolio URL   | Use `https://portfolio-ybkim.pages.dev/`                                               |
 | GitHub          | Include `https://github.com/DragonTiger92`                                             |
 | Editable source | Keep the draft DOCX in owner-controlled private storage until approval                 |
-| Public PDF path | Publish reviewed PDF at `/assets/resume/resume-ybkim.pdf`                              |
+| Public PDF path | Keep the reviewed PDF published at `/assets/resume/resume-ybkim.pdf`                   |
 
 Resume content should summarize current fit, recent professional experience,
 selected public projects, grouped skills, and education or credentials that
@@ -177,7 +177,7 @@ claim outside the map below.
 
 | Review Area                                                       | Resolution                                                              | Initial Phase 2 Outcome                                                                              |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Resume PDF                                                        | Publish the approved Korean PDF after `PBI-041` final export            | Use the live download action at `/assets/resume/resume-ybkim.pdf`                                    |
+| Resume PDF                                                        | Approved Korean PDF published under `PBI-041`                           | Keep the live download action at `/assets/resume/resume-ybkim.pdf`                                   |
 | `Karly` public project                                            | Confirm text claims, public links, and owner-approved media eligibility | Project card/detail copy, public repository link, deployed demo link, and selected media if reviewed |
 | `Book-Kong` public project                                        | Confirm text claims, public links, and owner-approved media eligibility | Project card/detail copy, public repository link, deployed demo link, and selected media if reviewed |
 | Academy information and consultation web service                  | Publish a generalized professional highlight and public URL             | Professional highlight surface plus resume evidence; route/detail expansion remains optional         |
@@ -238,13 +238,14 @@ The initial Phase 2 content input is frozen as follows:
 - Use the GitHub profile, Gmail web compose, and the visible, copyable portfolio
   email as ready profile/contact actions. Keep repository links scoped to the
   corresponding public project card and detail evidence.
-- Use the Korean resume download path once `PBI-041` publishes the approved PDF.
+- Use the published Korean resume at
+  `/assets/resume/resume-ybkim.pdf`.
 - Keep the English resume application-only for the initial Korean portfolio.
   Reconsider a public companion asset with the English portfolio work or an
   explicit owner decision.
 - Do not expose private professional source, internal names, private URLs,
   credentials, endpoints, workflows, screenshots, or confidential architecture.
-- Resolve the production URL from the live Pages project output during Phase 3;
+- Use `https://portfolio-ybkim.pages.dev/` as the verified production URL;
   keep the existing Gmail contact unchanged.
 
 These deferrals are part of the freeze, not missing placeholder values. A later
@@ -264,9 +265,8 @@ copy or assets change.
   `portfolio-ybkim` source linked only from its project card and detail.
 - Treat a Gmail web compose action plus the visible, copyable
   `dczwtu12b+portfolio@gmail.com` address as the public contact.
-- Use `/assets/resume/resume-ybkim.pdf` as the resume asset path after
-  `PBI-041` final export.
-- Add the provider-returned Pages production URL after live Phase 3 verification.
+- Use `/assets/resume/resume-ybkim.pdf` as the published resume asset path.
+- Use `https://portfolio-ybkim.pages.dev/` as the verified Pages production URL.
   Treat an academy detail route as optional later scope; the initial surface can
   link the public product URL from the company-project summary.
 - Do not create a separate `/resume` route or contact route for the first

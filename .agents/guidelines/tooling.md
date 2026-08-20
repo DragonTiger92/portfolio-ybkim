@@ -100,6 +100,19 @@ workspace. WSL is not required for ordinary project work.
   WinGet package when its features are needed. Do not require it while the native
   Windows PowerShell agent and project checks remain compatible.
 
+## GitHub CLI Structured Output On Windows
+
+- On Windows PowerShell 5.1, do not use quoted `gh --jq` string comparisons to
+  decide a high-impact GitHub gate. Native argument parsing can change an
+  embedded JSON string comparison and produce a false negative.
+- Request the required fields with `--json`, parse the result with
+  `ConvertFrom-Json`, cast scalar values explicitly, and compare them in
+  PowerShell.
+- Cross-check branch, activation, head/base, or other mutation gates through an
+  independent CLI or REST projection before declaring drift.
+- Emit only the required booleans, counts, timestamps, or full SHAs rather than
+  raw JSON or protected values.
+
 ## Windows Sandbox Diagnostics
 
 Prefer the native Windows sandbox with the narrowest writable-workspace and
