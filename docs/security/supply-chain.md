@@ -43,14 +43,11 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
-- `yaml` is temporarily overridden only for the
-  `yaml-language-server@1.20.0` path to exact version `2.8.3`. The Astro
-  language service path pins vulnerable `yaml@2.7.1`, while `2.8.3` is the first
-  patched version. A patched upstream path exists through newer
-  `volar-service-yaml` and `yaml-language-server` releases, but the installed
-  `@astrojs/language-server` version still pins the older service package.
-  Remove the targeted override when the installed Astro language-service graph
-  declares a patched version itself.
+- The temporary `yaml-language-server@1.20.0>yaml: 2.8.3` override was removed
+  when `@astrojs/check@0.9.10` advanced the installed Astro language-service
+  graph through `@astrojs/language-server@2.16.13`,
+  `volar-service-yaml@0.0.71`, and `yaml-language-server@1.23.0`. That upstream
+  path resolves patched `yaml@2.8.3` without a targeted override.
 - The low-severity `esbuild@0.27.7` development-server advisory was resolved
   by upgrading Astro to a version that declares the patched `esbuild@0.28.1`
   range through its normal dependency graph. Do not reintroduce an `esbuild`
