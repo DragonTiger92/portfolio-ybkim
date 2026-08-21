@@ -24,9 +24,10 @@ const homePrefix = isLandingPage ? "" : "/";
       </ul>
     </nav>
 
-    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+    <button class="theme-toggle" type="button" data-theme-toggle>
       <span class="theme-toggle__icon" aria-hidden="true"></span>
-      <span data-theme-label>다크 모드</span>
+      <span data-theme-label data-theme-action="dark">다크 모드</span>
+      <span data-theme-label data-theme-action="light">라이트 모드</span>
     </button>
   </div>
 </header>

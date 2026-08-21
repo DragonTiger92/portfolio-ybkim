@@ -118,9 +118,14 @@ Visitors must be able to use the portfolio in a light or dark color theme.
 ### FR-005 Acceptance Criteria
 
 - The initial theme follows the visitor's system preference when no explicit
-  choice has been saved.
+  choice exists in the current browser session.
+- System preference changes update the active theme until the visitor makes an
+  explicit choice in the product.
 - A visible control lets the visitor switch between light and dark themes.
-- The explicit choice persists in the same browser.
+- The control text and pressed state reflect the theme that is actually active.
+- An explicit choice persists for the current browser session and takes
+  precedence over later system preference changes; a new session follows the
+  system preference again.
 
 ## FR-006: Responsive Mobile Experience
 

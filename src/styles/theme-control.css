@@ -1,0 +1,13 @@
+@layer components {
+  [data-theme-action="light"] {
+    display: none;
+  }
+
+  :root[data-theme="dark"] [data-theme-action="dark"] {
+    display: none;
+  }
+
+  :root[data-theme="dark"] [data-theme-action="light"] {
+    display: inline;
+  }
+}

@@ -1,8 +1,20 @@
 type Theme = "dark" | "light";
 
+const themeStorageKey = "portfolio-theme";
 const themeButton = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
 const themeColorMeta = document.querySelector<HTMLMetaElement>("[data-theme-color]");
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+let storedThemePreference: string | undefined;
+
+/* eslint-disable clean-code/warn-depth-two -- Web Storage can throw even when the API exists, so runtime initialization mirrors the pre-paint fallback. */
+try {
+  storedThemePreference = sessionStorage.getItem(themeStorageKey) ?? undefined;
+} catch {
+  storedThemePreference = undefined;
+}
+/* eslint-enable clean-code/warn-depth-two */
+
+let themeOverride = isTheme(storedThemePreference) ? storedThemePreference : undefined;
 
 const themeColors: Record<Theme, string> = {
   dark: "#0d1117",
@@ -16,7 +28,11 @@ function isTheme(value: string | undefined): value is Theme {
 function getCurrentTheme(): Theme {
   const currentTheme = document.documentElement.dataset.theme;
 
-  return isTheme(currentTheme) ? currentTheme : "light";
+  return isTheme(currentTheme) ? currentTheme : getSystemTheme();
+}
+
+function getSystemTheme(): Theme {
+  return systemTheme.matches ? "dark" : "light";
 }
 
 function updateThemeButton(theme: Theme): void {
@@ -24,14 +40,7 @@ function updateThemeButton(theme: Theme): void {
     return;
   }
 
-  const label = themeButton.querySelector<HTMLElement>("[data-theme-label]");
-  const nextThemeLabel = theme === "dark" ? "라이트 모드" : "다크 모드";
-
   themeButton.setAttribute("aria-pressed", String(theme === "dark"));
-
-  if (label !== null) {
-    label.textContent = nextThemeLabel;
-  }
 }
 
 function renderTheme(theme: Theme): void {
@@ -41,8 +50,9 @@ function renderTheme(theme: Theme): void {
 }
 
 function applyTheme(theme: Theme): void {
+  themeOverride = theme;
   renderTheme(theme);
-  localStorage.setItem("portfolio-theme", theme);
+  sessionStorage.setItem(themeStorageKey, theme);
 }
 
 function toggleTheme(): void {
@@ -50,13 +60,13 @@ function toggleTheme(): void {
 }
 
 function followSystemTheme(event: MediaQueryListEvent): void {
-  if (isTheme(localStorage.getItem("portfolio-theme") ?? undefined)) {
+  if (themeOverride !== undefined) {
     return;
   }
 
   renderTheme(event.matches ? "dark" : "light");
 }
 
-updateThemeButton(getCurrentTheme());
+renderTheme(themeOverride ?? getCurrentTheme());
 themeButton?.addEventListener("click", toggleTheme);
 systemTheme.addEventListener("change", followSystemTheme);
