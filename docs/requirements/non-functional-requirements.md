@@ -369,7 +369,7 @@ and satisfied notice or attribution obligations.
 | Field               | Value                                                         |
 | ------------------- | ------------------------------------------------------------- |
 | Category            | Reliability, Operations                                       |
-| Status              | Implemented                                                   |
+| Status              | Verified                                                      |
 | Severity            | High                                                          |
 | Applicability       | Production                                                    |
 | Verification Method | AutomatedReview, SyntheticMonitoring, RunbookReview           |
@@ -391,10 +391,11 @@ site maintained by one owner.
   through a controlled production drill before marking `PH-003` complete.
 - Confirm recovery with the same smoke checks used after deployment.
 
-Post-deployment canonical smoke and the two steady Checkly monitors are
-verified, and the owner runbook makes the recovery path implementable. This
-requirement remains `Implemented`, not `Verified`, until the separately approved
-rollback and restoration drill succeeds.
+Post-deployment canonical smoke, the two steady Checkly monitors, and the owner
+runbook make the recovery path implementable. The 2026-08-21 controlled drill
+verified native rollback to `d028fb4`, exact current-main restoration to
+`e032cb1`, and repeated provider, canonical, monitoring, and workflow health.
+This requirement is `Verified`.
 
 ## NFR-014: Production Edge Security
 

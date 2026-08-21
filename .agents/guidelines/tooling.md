@@ -28,6 +28,23 @@ After installation:
 - Record only non-secret provenance information. Never expose repository tokens,
   package credentials, or private registry configuration.
 
+## Checkly Hobby-Plan Guard
+
+Keep the production monitoring baseline compatible with Checkly's current Hobby
+plan even when the account temporarily exposes Team Trial entitlements.
+
+- Treat trial-only and paid-plan features as unavailable. Do not enable them,
+  expand consumption beyond the free allowance, accept an upgrade, or create a
+  configuration that requires payment when the trial ends.
+- Preserve the current baseline of two 2-minute URL monitors using the existing
+  round-robin location contract while it remains supported by the Hobby plan.
+- Before any future Checkly resource or monitoring-policy change, verify the
+  current Hobby capabilities through an authoritative Checkly source. Do not
+  rely on the visible trial entitlement or remembered limits.
+- If the current baseline no longer fits the Hobby plan, stop and request an
+  owner decision instead of silently adopting a paid feature or reducing the
+  monitoring contract.
+
 ## Agent Output Hygiene
 
 Keep command and file output bounded so useful diagnostics remain visible without
