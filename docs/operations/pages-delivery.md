@@ -45,8 +45,9 @@ rerun would repeat the upload and other side effects.
 
 ## GitHub Configuration Contract
 
-Keep the repository variable `PAGES_DEPLOYMENT_ENABLED` set to `false` until the
-production path is ready for a separate owner-reviewed activation.
+Keep the Terraform-managed `PAGES_DEPLOYMENT_ENABLED` value at `true` for the
+active production baseline. Setting it to `false` is an owner-reviewed delivery
+kill switch, not a diagnostic step.
 
 | GitHub Environment            | Variables                                                                                   | Secrets                                                     |
 | ----------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -54,9 +55,8 @@ production path is ready for a separate owner-reviewed activation.
 | `formal-release`              | None                                                                                        | None; use protection and the workflow-scoped `GITHUB_TOKEN` |
 
 The activation variable gates only credential-bearing GitHub production and
-formal-release jobs. Local manual previews remain explicit owner actions.
-After the preview CI contract is retired, delete the unused
-`cloudflare-pages-preview` Environment through the reviewed teardown sequence.
+formal-release jobs. The former preview GitHub Environment and CI-only preview
+credentials are retired. Local manual previews remain explicit owner actions.
 
 Never print values while checking configuration. Verify only names, update
 timestamps, and protection metadata. Restrict the production upload token to
@@ -185,28 +185,14 @@ when the preview supports a review. Keep the deployment location, authentication
 details, and sensitive evidence owner-controlled. Manual preview QA is not a
 required GitHub check and does not produce automated smoke evidence.
 
-## Staged Preview CI Teardown
+## Retired Preview Automation
 
-Use separate owner-reviewed provider transitions:
-
-1. merge the workflow and source retirement and confirm no preview run is active;
-2. plan and apply removal of the CI policy attachment from the Preview Access
-   application, expecting no create, replace, or destroy action and exactly two
-   sensitive root output removals whose values must remain unqueried;
-3. verify human Access against an existing protected preview; validate the next
-   owner-needed topic-branch upload with the manual procedure above;
-4. remove the detached CI policy and service-token resource blocks, then review
-   a plan containing only those two destroys and no create or replace action;
-5. apply only after approval, confirm the remaining Pages project, human policy,
-   identity provider, and Preview Access application, then require a no-op plan;
-6. delete the unused preview GitHub Environment; revoke its Pages upload token
-   unless the owner explicitly retains it outside GitHub as the manual Wrangler
-   credential; and
-7. remove the temporary `Access: Service Tokens Write` permission from the HCP
-   Terraform provider token after service-token deletion succeeds.
-
-Stop at every unexpected provider action. Never expose sensitive Terraform
-outputs or use credential mutation as a diagnostic shortcut.
+The staged teardown is complete. The Direct Upload Pages project, Preview
+Access application, and human account-member policy remain. The CI-only Access
+policy, service token, automatic preview workflow, and preview GitHub
+Environment were removed through reviewed provider gates. Reintroducing
+automatic preview credentials requires a new security and architecture
+decision.
 
 ## Release Tags And Failure Boundary
 
@@ -216,6 +202,18 @@ not create tags. Only `formal-release.yml` may create an unsigned annotated
 
 A failed check, manifest comparison, upload, deployment resolution, or final
 production smoke attempt creates no tag. Do not rerun the delivery merely to
-repeat its smoke step. Enter the incident and rollback decision path instead;
-rollback selects a prior successful production deployment and reruns the public
-smoke check, and preview deployments are not production rollback targets.
+repeat its smoke step. Enter the
+[incident and rollback runbook](incident-response-and-rollback.md) instead.
+
+Cloudflare Pages native rollback to a reviewed, previously successful
+Production deployment is the primary recovery mechanism. Preview deployments
+are never rollback targets. After the owner confirms the production mutation,
+resolve the active revision and run the canonical public smoke and independent
+monitor verification.
+
+Only when native rollback or restoration is unavailable or unsuccessful may an
+owner-approved break-glass action dispatch a new `Pages Production` run from
+`main` for the exact full `origin/main` revision and previously validated
+job-status input. This rebuilds and deploys through the current trusted
+workflow; it does not rerun a historical workflow and creates no tag or GitHub
+Release.

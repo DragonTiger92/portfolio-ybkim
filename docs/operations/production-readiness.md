@@ -25,8 +25,10 @@ signal.
 
 ## Deployment Smoke Check
 
-`PBI-031` should run after a production deployment and before the release is
-considered complete.
+`PBI-031` runs after every production deployment and before a formal release is
+considered complete. The established PH-003 delivery baseline checks the
+canonical homepage, stable marker, critical logo, web manifest, and exact
+deployment revision.
 
 - Request the canonical production URL, not only a preview URL.
 - Require a successful response, expected content marker, and critical asset.
@@ -128,21 +130,21 @@ plan.
   Keep account details, destinations, IDs, and raw provider output outside the
   repository.
 
-## Incident And Rollback Readiness
+## Incident And Rollback Runbook
 
-`PBI-033` should produce a concise runbook covering:
+The [Incident Response And Rollback](incident-response-and-rollback.md) runbook
+defines owner acknowledgement, second-signal triage, deployment, DNS, TLS, and
+provider-status checks, target selection, recovery verification, escalation,
+and the public-safe incident record.
 
-- alert ownership and acknowledgement;
-- confirmation from a second network or probe;
-- recent deployment, DNS, TLS, and provider-status checks;
-- rollback to the last known-good production deployment;
-- post-rollback smoke verification;
-- a short incident note with cause, impact, and follow-up PBI; and
-- escalation to the hosting provider when rollback does not restore service.
+Cloudflare Pages native rollback to a uniquely identified successful Production
+deployment is the primary recovery mechanism. A new `Pages Production`
+exact-revision dispatch is a separately approved break-glass redeploy, not a
+historical workflow rerun. Preview deployments are never rollback targets.
 
-The selected hosting implementation must verify its actual rollback mechanism.
-For the selected Cloudflare Pages target, only successful production
-deployments are rollback targets; preview deployments are not.
+`PBI-033` remains `In Progress`, and `NFR-013` remains `Implemented` rather than
+`Verified`, until a controlled production drill verifies native rollback,
+current-main restoration, canonical smoke, and the independent Checkly signal.
 
 ## Logging Boundary
 

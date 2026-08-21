@@ -5,12 +5,12 @@ fixed calendar promise. Product Backlog Items provide the implementation-sized
 view, while GitHub Pull Requests provide review and CI integration without
 duplicating roadmap state in GitHub Issues or Milestones.
 
-| Phase    | Name                                | Status      | Release Target        | Goal                                                        |
-| -------- | ----------------------------------- | ----------- | --------------------- | ----------------------------------------------------------- |
-| `PH-001` | Product Foundation Baseline         | Completed   | No production tag     | Establish docs, workflow, governance, and content base      |
-| `PH-002` | Static Portfolio Implementation     | Completed   | No production tag     | Complete the portfolio content and experience               |
-| `PH-003` | Deployment And Operations Readiness | In Progress | `v1.0.0`              | Prepare release, deployment, public contact, and operations |
-| `PH-004` | Post-Launch Optimization            | Planned     | `v1.1.0+` or `v1.0.x` | Refine discoverability, English reach, and product insights |
+| Phase    | Name                                | Status    | Release Target        | Goal                                                        |
+| -------- | ----------------------------------- | --------- | --------------------- | ----------------------------------------------------------- |
+| `PH-001` | Product Foundation Baseline         | Completed | No production tag     | Establish docs, workflow, governance, and content base      |
+| `PH-002` | Static Portfolio Implementation     | Completed | No production tag     | Complete the portfolio content and experience               |
+| `PH-003` | Deployment And Operations Readiness | Completed | `v1.0.0`              | Prepare release, deployment, public contact, and operations |
+| `PH-004` | Post-Launch Optimization            | Planned   | `v1.1.0+` or `v1.0.x` | Refine discoverability, English reach, and product insights |
 
 ## Phase Notes
 
@@ -20,14 +20,16 @@ duplicating roadmap state in GitHub Issues or Milestones.
   baseline rather than acceptance of the PH-002 portfolio experience.
 - `PH-002` completed the static portfolio site and applied the quality and
   accessibility harness created during the foundation phase.
-- `PH-003` begins with the reviewed infrastructure-ownership boundary in
-  `PBI-012`, then prepares production deployment, release governance,
-  infrastructure management, the existing Gmail contact channel, v1 portfolio
-  narrative and resume, release notes, release SBOM generation, pre-release
-  license compliance, production smoke checks, uptime monitoring, rollback
-  readiness, and minimum discoverability metadata needed before launch. The
-  canonical origin uses the Cloudflare-managed Pages subdomain; no purchased
-  domain is required.
+- `PH-003` completed the reviewed infrastructure-ownership boundary, production
+  deployment and release governance, the existing Gmail contact channel, v1
+  portfolio narrative and resume, generated release notes and SBOM evidence,
+  license compliance, canonical smoke, uptime monitoring, rollback readiness,
+  and launch discovery metadata. It shipped the `v1.0.0` launch and `v1.0.1`
+  maintenance release on the Cloudflare-managed Pages origin. The 2026-08-21
+  post-release drill then rolled production back natively to `d028fb4`, verified
+  canonical and Checkly health, restored exact current `main` at `e032cb1`, and
+  repeated provider, canonical, monitoring, and workflow verification. No
+  purchased domain is required.
 - `PH-004` covers post-launch SEO, AEO, GEO, English portfolio content through
   an agreed localization model, and privacy-aware route analytics after the
   first operations-ready deployment exists. PH-003 establishes the launch

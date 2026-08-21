@@ -4,8 +4,8 @@ This document defines how the downloadable resume and the portfolio site should
 work together without duplicating each other or exposing unnecessary personal
 data. It is public-safe and intentionally avoids private source details.
 
-Use this document before drafting the public resume PDF, portfolio wireframes,
-project pages, or recruiter-facing contact actions.
+Use this document when drafting or revising the public resume PDF, portfolio
+surfaces, project pages, or recruiter-facing contact actions.
 
 ## Purpose Split
 
@@ -26,7 +26,7 @@ Use the smallest contact surface that lets a legitimate recruiter respond.
 | Field            | Public Downloadable Resume Decision                                    |
 | ---------------- | ---------------------------------------------------------------------- |
 | Email            | Use `dczwtu12b+portfolio@gmail.com` as the public portfolio contact    |
-| Portfolio URL    | Add the provider-returned Pages URL after production verification      |
+| Portfolio URL    | Use `https://portfolio-ybkim.pages.dev/`                               |
 | GitHub           | Include `https://github.com/DragonTiger92`                             |
 | Location         | Optional city/region-level location only if it improves hiring clarity |
 | Phone            | Omit from the public web-download resume by default                    |
@@ -80,7 +80,7 @@ Both versions should share the same claim boundary, project order, contact
 policy, and disclosure review status. The English version should be a natural
 English resume, not a literal line-by-line translation.
 
-For the initial Korean portfolio, publish only the approved Korean resume PDF.
+The initial Korean portfolio publishes only the approved Korean resume PDF.
 Keep the English companion application-only until the owner explicitly approves
 a second public asset or the English portfolio work adopts it.
 
@@ -154,7 +154,7 @@ The working standard follows common career-center resume guidance:
   position, use factual/result-oriented language, and convert cleanly to PDF:
   <https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/>
 - This project applies those general rules with a stricter public-web privacy
-  boundary because the resume will be downloadable from the portfolio, not only
+  boundary because the resume is downloadable from the portfolio, not only
   uploaded to individual application forms.
 
 ## Pre-Publish Checklist

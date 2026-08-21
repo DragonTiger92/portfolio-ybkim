@@ -1,8 +1,8 @@
 # GitHub Governance Architecture
 
 GitHub repository governance is the PH-001 infrastructure-as-code boundary.
-Deployment infrastructure remains a PH-003 concern with separate Terraform
-state.
+PH-003 deployment and monitoring infrastructure use separate Terraform roots
+and state boundaries.
 
 ## Ownership Boundaries
 
@@ -70,15 +70,20 @@ formatting, the Astro production build, deterministic `dist/` budget validation,
 HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
 axe-core Chromium checks, including semantic structure and 44-by-44 CSS-pixel
 target checks, plus a focused WebKit smoke suite for core rendering and
-interaction compatibility. Terraform planning and apply are deliberately absent from pull
-requests until durable remote state and owner credentials are configured.
+interaction compatibility.
 
-Credential-bearing Cloudflare Pages jobs additionally require the repository
-variable `PAGES_DEPLOYMENT_ENABLED=true`. The managed baseline is `false`, so
-merging workflow source cannot activate production before the owner provisions
-the `cloudflare-pages-production` and `formal-release` GitHub Environments.
-Secrets remain environment-scoped and outside Terraform state; the activation
-change is a separate reviewed operation. Optional previews are local owner
+The pull-request Terraform workflow deliberately stops at formatting,
+backend-free initialization, and configuration validation. Account-backed plans
+and applies use the established HCP Terraform remote boundaries and remain
+separate owner-reviewed operations rather than pull-request checks.
+
+Credential-bearing Cloudflare Pages jobs require
+`PAGES_DEPLOYMENT_ENABLED=true`. That value is now the managed steady state
+after the production Environments and protected inputs completed their
+owner-reviewed activation gates. A push to `main` therefore builds, deploys,
+resolves, and smoke-checks its exact revision. Secrets remain
+Environment-scoped and outside Terraform state; changing activation or
+credentials remains a separate operation. Optional previews are local owner
 actions and do not use a GitHub Environment or status check.
 
 `Sync Open PR Branches` runs after a pull request is merged into `main` and can
@@ -147,8 +152,9 @@ HCP Terraform stores and executes this root under organization
 `dragontiger92`, project `portfolio-ybkim-infrastructure`, and workspace
 `portfolio-ybkim-github`. The project is the broader portfolio-infrastructure
 grouping; the workspace is the state boundary for `infra/terraform/github`.
-Future Cloudflare infrastructure uses a separate Terraform root and workspace
-so deployment state is not coupled to repository-governance state.
+Cloudflare delivery and Checkly monitoring use their own Terraform roots and
+remote workspaces, keeping deployment and observability state separate from
+GitHub governance.
 
 The workspace uses Remote execution, Terraform `1.15.6`, disabled automatic
 apply, and a CLI-driven workflow without a direct VCS connection. The GitHub
@@ -164,13 +170,14 @@ the ruleset was activated, then the HCP Terraform backend was configured. The
 first owner-reviewed remote apply imported the existing repository and security
 controls before activating the managed settings and ruleset.
 
-This post-merge governance closure completed `PH-001`, not `PH-003`, so
-subsequent feature work is protected by the final repository checks and `main`
-ruleset. Cloudflare Pages, DNS, preview access, production smoke checks, and
-release operations remain separate `PH-003` deployment concerns.
+The PH-001 governance bootstrap protects all later work. PH-003 subsequently
+established the separate Pages, protected-preview, production-smoke,
+observability, and formal-release baselines, including `v1.0.0` and `v1.0.1`.
+Those systems retain their separate ownership and approval boundaries after the
+phase closes.
 
 The owner-merge Terraform source sets `allow_auto_merge = false` and retains
 `delete_branch_on_merge = true`. The Dependabot workflow classifies each update,
 records the policy evidence, and requests owner review; no Actions variable or
-workflow credential authorizes a merge. Applying the repository-setting change
+workflow credential authorizes a merge. Any later repository-setting change
 remains a separate owner-reviewed provider gate.

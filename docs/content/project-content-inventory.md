@@ -1,8 +1,9 @@
 # Project Content Inventory
 
-This document is the pre-implementation content inventory for the portfolio.
-It turns the content model and sitemap into implementation-ready planning data
-before wireframes, mockups, or final product copy are created.
+This document records the public-content inventory that informed the initial
+portfolio implementation. It remains the planning source for deciding which
+projects, surfaces, links, and claims are eligible for later publication
+changes.
 
 Implementation-ready project, contact, link, skill, and disclosure source data
 is tracked in [Portfolio Content Source](portfolio-content-source.md).
@@ -52,7 +53,7 @@ the backlog.
 
 | Project Label                                                     | Classification        | Source Visibility | Product Link Disposition | Initial Detail Route | Candidate Tags                                                                                     | Phase 2 Public Treatment                                                                                                                         |
 | ----------------------------------------------------------------- | --------------------- | ----------------- | ------------------------ | -------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `portfolio-ybkim`                                                 | Portfolio Product     | Public repository | Pending Pages deployment | Yes                  | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action                                               |
+| `portfolio-ybkim`                                                 | Portfolio Product     | Public repository | Public                   | Yes                  | Portfolio Product, Static Site Architecture, Documentation-Led Delivery, Quality Gates             | Primary case study and repository proof; expose source prominently as a secondary recruiter action                                               |
 | `Karly`                                                           | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, Vanilla JavaScript, Semantic Markup, Team Delivery                          | Early frontend evidence with public source/demo links; selected owner-approved media may be used after exact-asset review                        |
 | `Book-Kong`                                                       | Public Source Project | Public repository | Public                   | Yes                  | Public Source Project, React Application, Server-State UX, Team Leadership, Design-System Delivery | React and team-leadership evidence with public source/demo links; selected owner-created media may be used after exact-asset review              |
 | Academy information and consultation web service                  | Professional Product  | Reviewed private  | Public                   | No                   | Professional Product, Full-Stack Delivery, API-Backed Form Flow, Release Preparation               | Professional highlight with public URL and generalized delivery copy; no private architecture or operations detail                               |
@@ -61,7 +62,7 @@ the backlog.
 
 ## Initial Publication Set
 
-The initial public portfolio should prioritize:
+The published portfolio prioritizes:
 
 1. `portfolio-ybkim` as the main current project and source-code proof.
 2. `Karly` as compact standards-aware Vanilla JavaScript evidence.
@@ -90,6 +91,7 @@ architecture remain outside public copy.
 | --------------------------- | -------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------- |
 | GitHub profile              | `https://github.com/DragonTiger92`                 | Public      | Hero secondary action, footer, or contact area                                        |
 | Portfolio source repository | `https://github.com/DragonTiger92/portfolio-ybkim` | Public      | `portfolio-ybkim` project card and detail evidence only                               |
+| Portfolio production URL    | `https://portfolio-ybkim.pages.dev/`               | Public      | Canonical public product URL and project-result evidence                              |
 | `Karly` team repository     | `https://github.com/FRONTENDSCHOOL8/Karly`         | Public      | Project detail link after source and rights review                                    |
 | `Karly` deployed demo       | `https://dragontiger92.github.io/Karly/`           | Public      | Public product link; do not publish demo credentials or private data                  |
 | `Book-Kong` team repository | `https://github.com/FRONTENDSCHOOL8/Book-Kong`     | Public      | Project detail link after source and rights review                                    |
@@ -144,21 +146,22 @@ and another paid mailbox outside the portfolio baseline.
 
 ## Disclosure Review Timing
 
-This inventory and [Portfolio Content Source](portfolio-content-source.md) make
-Phase 2 wireframe and implementation planning possible, but professional and
-private evidence still needs publication approval before it becomes public UI
-copy, Astro content entries, screenshots, or downloadable assets.
+This inventory and [Portfolio Content Source](portfolio-content-source.md)
+supplied the Phase 2 wireframe and implementation decisions. Later professional
+or private evidence still requires publication approval before it becomes
+public UI copy, Astro content, screenshots, or a downloadable asset.
 
 The initial Phase 2 content freeze publishes generalized professional
 highlights, but no private professional source, internal names, private URLs,
 professional screenshots, recommendation-derived copy, or confidential
 architecture. Karly and Book-Kong media can be selected when the exact asset is
-cleared for privacy, attribution, and presentation context. The resume action
-may appear in wireframes after `PBI-041` publishes the approved Korean PDF.
+cleared for privacy, attribution, and presentation context. The Korean PDF
+completed under `PBI-041` is available through the live resume action at
+`/assets/resume/resume-ybkim.pdf`.
 
 ## Wireframe Input
 
-The next wireframe or mockup task can start from these decisions:
+Later design or content changes should preserve these implementation decisions:
 
 - public-first project order: `portfolio-ybkim`, `Karly`, `Book-Kong`;
 - source-repository actions scoped to the `portfolio-ybkim` project card and

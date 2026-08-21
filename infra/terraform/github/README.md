@@ -30,62 +30,40 @@ remote state:
 - automatic apply: disabled.
 
 The broader HCP project groups portfolio infrastructure while this workspace
-keeps GitHub governance state separate from future Cloudflare deployment state.
-The workspace is CLI-driven and is not connected directly to a VCS repository.
+keeps GitHub governance state separate from Cloudflare delivery and Checkly
+monitoring state. The workspace is CLI-driven and is not connected directly to
+a VCS repository.
 
 The GitHub provider reads `GITHUB_TOKEN` from a sensitive HCP workspace
 environment variable. Never put the token in Terraform configuration,
 `*.tfvars`, shell commands, repository files, or Codex prompts.
 
-## Bootstrap And Activation Boundary
+## Steady State And Activation History
 
-The repository-governance bootstrap is complete. The owner-merge contract keeps
-repository auto-merge disabled while retaining automatic deletion of merged head
-branches and the strict `main` ruleset. Dependabot policy classifies every update
-and requests owner review instead of enabling a workflow-owned merge.
+The repository-governance bootstrap and owner-merge transition are complete.
+Repository auto-merge remains disabled, merged head branches are deleted
+automatically, and the strict `main` ruleset remains active. Dependabot policy
+classifies updates and requests owner review without workflow-owned merge
+authority.
 
-The owner-merge transition is intentionally staged. Before this source reaches
-`main`, the live `DEPENDABOT_AUTOMERGE_ENABLED` variable remains set to `false`
-as a kill switch. After merge, an owner-reviewed standard remote plan may update
-only the repository auto-merge setting from enabled to disabled and delete the
-obsolete Dependabot auto-merge variable. Any additional change, replacement, or
-destroy action is drift and must stop the provider gate before apply.
+The external Pages prerequisites are complete:
 
-The external Pages activation prerequisites are also complete:
+- `cloudflare-pages-production` accepts only `main` and holds the protected
+  production inputs;
+- `formal-release` accepts only `main`, retains its reviewer protection, and
+  contains no variable or secret;
+- the former Preview Environment is removed; and
+- the production credential remains outside Terraform state.
 
-- `cloudflare-pages-production` permits only `main` and holds the three required
-  variable names plus the environment-scoped production upload secret;
-- `formal-release` permits only `main`, requires one reviewer, allows self-review,
-  and contains no variable or secret;
-- the unused Preview Environment has been removed; and
-- the production upload credential remains outside Terraform state with the
-  reviewed least-privilege scope.
+The Terraform-managed `PAGES_DEPLOYMENT_ENABLED` value is `true`. Its reviewed
+remote apply and first production runs are complete, and the `v1.0.0`,
+`v1.0.1`, and later `main` deliveries exercised the active contract. No
+provider run or activation mutation is part of PH-003 documentation closeout.
 
-Do not query or print Environment values while verifying this contract. Manual
-topic-branch previews remain owner actions and do not use the repository
-activation variable or a GitHub Environment.
-
-The repository description and public homepage are Terraform-owned metadata.
-When reviewed live metadata is adopted after drift detection, record the live
-description in `repository.tf` and keep `homepage_url` aligned with the Astro
-canonical site. Repository topics remain unmanaged unless a separate source
-boundary explicitly adopts them.
-
-Metadata adoption does not authorize a resource-changing activation apply.
-After the source change reaches `main`, use a separately owner-approved
-refresh-only run to reconcile accepted live metadata into state without changing
-the repository. Only then create a new standard activation run and require it to
-return to the single-create contract below.
-
-This source boundary changes the Terraform-managed
-`PAGES_DEPLOYMENT_ENABLED` value to `true`. Merge the source while the live
-variable is still absent, and require the resulting `Pages Production` run to
-report the inactive contract without building or deploying. After merge, upload
-only the exact merged `infra/terraform/github` root to HCP Terraform and create
-one standard non-targeted plan with automatic apply disabled. Accept only the
-activation-variable create with no change, replacement, destroy, import, action,
-or additional diagnostic. Apply remains a separate owner decision, and no
-follow-up no-op run is required.
+Do not query or print Environment values while verifying this boundary. Manual
+topic-branch previews remain owner actions and do not use a GitHub Environment.
+Any later activation, credential, repository-metadata, or provider change
+requires its own reviewed scope.
 
 ## Local Validation
 
@@ -99,22 +77,8 @@ Use the Ubuntu Terraform pull-request job as the authoritative validation when
 Windows Application Control blocks local Terraform execution. Do not weaken the
 local policy or substitute a different provider runtime.
 
-## Remote Activation Run
+## Activation Completion
 
-After the activation source exists on `main`, archive only the exact merged
-`infra/terraform/github` subtree. Use the credential-safe HCP Terraform API
-workflow to upload one configuration version with automatic run queueing
-disabled, then create one standard plan-and-apply run with automatic apply
-disabled and no target, replacement, destroy, refresh-only, import, or action
-option.
-
-Review only a single create for
-`github_actions_variable.pages_deployment_enabled` with no other action. Apply
-the same run only after separate owner approval. The source pull request does
-not trigger the remote run, and the completed apply does not require a follow-up
-no-op run.
-
-If a plan reports repository metadata drift, do not absorb it into the
-activation apply. Discard that run after owner approval, align the source with
-the reviewed owner intent, reconcile state through the separate refresh-only
-gate, and recreate the exact activation plan.
+The one-create activation run is complete and no activation import, refresh,
+plan, apply, or follow-up no-op remains pending. PH-003 closeout does not upload
+a Terraform configuration version or create a remote run.

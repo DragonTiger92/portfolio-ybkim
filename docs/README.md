@@ -40,6 +40,7 @@ owner-controlled storage outside the public repository.
 | `security/supply-chain.md`                              | Dependency and SBOM policy                   |
 | `security/license-compliance.md`                        | Pre-release third-party license review       |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery  |
+| `operations/incident-response-and-rollback.md`          | Incident triage, rollback, and recovery      |
 | `operations/pages-delivery.md`                          | Pages production and manual preview runbook  |
 | `operations/demo-access.md`                             | Recruiter demo-account request and delivery  |
 | `reference/glossary.md`                                 | Shared terms                                 |
