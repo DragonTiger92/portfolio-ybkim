@@ -142,9 +142,9 @@ deployment is the primary recovery mechanism. A new `Pages Production`
 exact-revision dispatch is a separately approved break-glass redeploy, not a
 historical workflow rerun. Preview deployments are never rollback targets.
 
-`PBI-033` remains `In Progress`, and `NFR-013` remains `Implemented` rather than
-`Verified`, until a controlled production drill verifies native rollback,
+The 2026-08-21 controlled production drill verified native rollback, exact
 current-main restoration, canonical smoke, and the independent Checkly signal.
+`PBI-033` is `Done`, and `NFR-013` is `Verified`.
 
 ## Logging Boundary
 

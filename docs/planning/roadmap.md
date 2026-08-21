@@ -5,12 +5,12 @@ fixed calendar promise. Product Backlog Items provide the implementation-sized
 view, while GitHub Pull Requests provide review and CI integration without
 duplicating roadmap state in GitHub Issues or Milestones.
 
-| Phase    | Name                                | Status    | Release Target        | Goal                                                        |
-| -------- | ----------------------------------- | --------- | --------------------- | ----------------------------------------------------------- |
-| `PH-001` | Product Foundation Baseline         | Completed | No production tag     | Establish docs, workflow, governance, and content base      |
-| `PH-002` | Static Portfolio Implementation     | Completed | No production tag     | Complete the portfolio content and experience               |
-| `PH-003` | Deployment And Operations Readiness | Completed | `v1.0.0`              | Prepare release, deployment, public contact, and operations |
-| `PH-004` | Post-Launch Optimization            | Planned   | `v1.1.0+` or `v1.0.x` | Refine discoverability, English reach, and product insights |
+| Phase    | Name                                | Status    | Release Target    | Goal                                                        |
+| -------- | ----------------------------------- | --------- | ----------------- | ----------------------------------------------------------- |
+| `PH-001` | Product Foundation Baseline         | Completed | No production tag | Establish docs, workflow, governance, and content base      |
+| `PH-002` | Static Portfolio Implementation     | Completed | No production tag | Complete the portfolio content and experience               |
+| `PH-003` | Deployment And Operations Readiness | Completed | `v1.0.0`          | Prepare release, deployment, public contact, and operations |
+| `PH-004` | Post-Launch Optimization            | Deferred  | No active target  | Refine discoverability, English reach, and product insights |
 
 ## Phase Notes
 
@@ -30,12 +30,12 @@ duplicating roadmap state in GitHub Issues or Milestones.
   canonical and Checkly health, restored exact current `main` at `e032cb1`, and
   repeated provider, canonical, monitoring, and workflow verification. No
   purchased domain is required.
-- `PH-004` covers post-launch SEO, AEO, GEO, English portfolio content through
-  an agreed localization model, and privacy-aware route analytics after the
-  first operations-ready deployment exists. PH-003 establishes the launch
-  discovery and observability baselines; later refinement requires production
-  evidence or a concrete operational gap rather than a standing optimization
-  item.
+- `PH-004` was deferred by the owner on 2026-08-21 after PH-003 closeout. Its
+  remaining `PBI-013`, `PBI-015`, and `PBI-042` work does not enter refinement,
+  scheduling, implementation, or phase-closure checks while deferred;
+  `PBI-014` remains cancelled. Reactivation requires an explicit owner decision
+  that returns the phase to `Planned` and each selected PBI to `Backlog` or
+  `Ready`.
 
 Quality and accessibility are cross-cutting gates. The project should establish
 their harness during `PH-001`, apply them during `PH-002`, and keep them visible
@@ -43,9 +43,9 @@ in deployment and post-launch work when relevant.
 
 Production release tags begin at `PH-003`. Earlier phases can be merged through
 pull requests, but they do not receive production Git tags because they do not
-publish an operations-ready product. `PH-004` uses minor versions for meaningful
-post-launch capabilities and patch versions for corrections or small
-improvements.
+publish an operations-ready product. If reactivated, `PH-004` uses minor
+versions for meaningful post-launch capabilities and patch versions for
+corrections or small improvements.
 
 ## Status Vocabulary
 
@@ -53,5 +53,6 @@ improvements.
 | ----------- | ----------------------------------------------- |
 | Planned     | Defined but not yet active                      |
 | In Progress | The phase outcome is actively being implemented |
+| Deferred    | Paused until an explicit owner reactivation     |
 | Completed   | The phase outcome and integration are complete  |
 | Cancelled   | The phase was intentionally removed             |
