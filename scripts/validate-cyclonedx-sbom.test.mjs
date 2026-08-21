@@ -31,7 +31,7 @@ describe("CycloneDX SBOM contract", () => {
     assert.match(errors, /specVersion must be 1\.6/u);
     assert.match(errors, /metadata\.component\.type must be application/u);
     assert.match(errors, /metadata\.component\.name must be portfolio-ybkim/u);
-    assert.match(errors, /metadata\.component\.version must be 1\.0\.1/u);
+    assert.match(errors, /metadata\.component\.version must be 1\.0\.2/u);
   });
 
   it("requires the exact root purl, bom-ref, and sole license expression", () => {
