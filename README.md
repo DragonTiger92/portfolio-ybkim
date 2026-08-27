@@ -68,7 +68,7 @@ pnpm.cmd check
 
 ## 배포와 릴리스 모델
 
-배포 대상은 Cloudflare Pages이며 Preview와 Production을 분리합니다. 배포 후보는 검증된 `dist/` artifact와 source revision의 관계를 보존하고, Production 배포 후 smoke 검증이 성공한 revision만 SemVer annotated tag와 GitHub Release의 대상이 됩니다.
+배포 대상은 Cloudflare Pages이며 Preview와 Production을 분리합니다. 배포 후보는 검증된 `dist/` artifact와 source revision의 관계를 보존하고, Production 배포 후 smoke 검증이 성공한 revision만 `vX.Y.Z` 형식의 annotated Git tag와 GitHub Release의 대상이 됩니다.
 
 배포 구조, 보안 header, artifact evidence와 release 정책은 [Deployment Architecture](docs/architecture/deployment.md)에서 확인할 수 있습니다.
 
