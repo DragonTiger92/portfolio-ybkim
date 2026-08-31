@@ -83,8 +83,8 @@ importers:
         specifier: 8.67.0
         version: 8.67.0(eslint@10.8.0)(typescript@6.0.3)
       vnu-jar:
-        specifier: 26.8.6
-        version: 26.8.6
+        specifier: 26.8.21
+        version: 26.8.21
       wrangler:
         specifier: 4.114.0
         version: 4.114.0
@@ -3037,8 +3037,8 @@ packages:
       vite:
         optional: true
 
-  vnu-jar@26.8.6:
-    resolution: {integrity: sha512-P7f2yd+4GObCYt8kCDe+ERdPZ7PlHE1GXp8wSqclQm/VBlxyic0ME6wPqeEq9G6ZlpkR/CdygVgRth4FvL/jMw==}
+  vnu-jar@26.8.21:
+    resolution: {integrity: sha512-vwdjyWEAR1IOwwiEG2JPnBBkCeeBod6fvjF41PWj72fQOnslbaWZutkTS1WapT7uPeQfPgHUTghIw0FY9gbffg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6413,7 +6413,7 @@ snapshots:
     optionalDependencies:
       vite: 8.1.5(esbuild@0.28.1)(yaml@2.9.0)
 
-  vnu-jar@26.8.6: {}
+  vnu-jar@26.8.21: {}
 
   volar-service-css@0.0.71(@volar/language-service@2.4.28):
     dependencies:

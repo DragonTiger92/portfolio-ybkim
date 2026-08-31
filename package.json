@@ -78,7 +78,7 @@
     "prettier-plugin-astro": "0.14.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.67.0",
-    "vnu-jar": "26.8.6",
+    "vnu-jar": "26.8.21",
     "wrangler": "4.114.0"
   },
   "lint-staged": {
