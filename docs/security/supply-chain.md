@@ -45,6 +45,12 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
+- The September 2026 security refresh pins patched `fast-uri@3.1.6`,
+  `js-yaml@4.3.2`, `sharp@0.35.4`, and `svgo@4.1.0`, and updates Astro to
+  `7.2.8`. Temporary `qs@6.16.0` and `smol-toml@1.7.1` overrides keep the
+  development-tool graph on the reviewed security fixes. Remove these two
+  overrides when the normal upstream graph resolves patched versions, after
+  checking the regenerated lockfile and security audit.
 - The temporary `yaml-language-server@1.20.0>yaml: 2.8.3` override was removed
   when `@astrojs/check@0.9.10` advanced the installed Astro language-service
   graph through `@astrojs/language-server@2.16.13`,
