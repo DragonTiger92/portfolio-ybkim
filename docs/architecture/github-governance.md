@@ -108,6 +108,11 @@ Every external GitHub Action reference must use a verified immutable commit SHA
 with the reviewed release tag retained in a comment. Dependabot may propose SHA
 updates, but a floating major tag is not the repository's final workflow form.
 
+The dependency-free Action pin validator scans workflows and nested composite
+actions. It rejects floating refs, missing release comments, and inconsistent
+SHA/version pairs for the same external Action repository, so composite actions
+cannot silently drift from the workflow baseline.
+
 The required `Check` workflow runs for every pull request without path filters.
 The repository is small, documentation and configuration are included in lint and
 format checks, and an always-reported `Check` context avoids leaving the required
