@@ -1,6 +1,18 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const isCi = Boolean((globalThis as { process?: { env?: { CI?: string } } }).process?.env?.CI);
+const runtime = (globalThis as { process?: { env?: { CI?: string }; platform?: string } }).process;
+const isCi = Boolean(runtime?.env?.CI);
+const usesSystemEdge = runtime?.platform === "win32" && !isCi;
+const localChromiumChannel = usesSystemEdge ? { channel: "msedge" as const } : {};
+const webkitProjects = usesSystemEdge
+  ? []
+  : [
+      {
+        name: "webkit-smoke",
+        testMatch: "**/cross-browser-smoke.spec.ts",
+        use: { ...devices["Desktop Safari"] },
+      },
+    ];
 
 export default defineConfig({
   testDir: "./tests",
@@ -20,16 +32,12 @@ export default defineConfig({
   projects: [
     {
       name: "desktop-chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], ...localChromiumChannel },
     },
     {
       name: "mobile-chromium",
-      use: { ...devices["Pixel 7"] },
+      use: { ...devices["Pixel 7"], ...localChromiumChannel },
     },
-    {
-      name: "webkit-smoke",
-      testMatch: "**/cross-browser-smoke.spec.ts",
-      use: { ...devices["Desktop Safari"] },
-    },
+    ...webkitProjects,
   ],
 });
