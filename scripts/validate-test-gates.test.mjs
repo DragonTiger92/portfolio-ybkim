@@ -83,6 +83,7 @@ test("visual calls reuse the exact manifested dist even from a manual release ca
   assert.ok(workflow.includes(`image: ${visualContainerImage}`));
   assert.ok(workflow.includes(`PORTFOLIO_VISUAL_IMAGE: ${visualContainerImage}`));
   assert.ok(workflow.includes("ref: ${{ github.workflow_sha }}"));
+  assert.ok(workflow.includes('git -c safe.directory="$GITHUB_WORKSPACE" rev-parse HEAD'));
   assert.ok(workflow.includes("if: ${{ inputs.artifact-id != '' }}"));
   assert.ok(workflow.includes("artifact-ids: ${{ inputs.artifact-id }}"));
   assert.ok(
