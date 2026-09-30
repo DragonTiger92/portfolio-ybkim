@@ -1,6 +1,6 @@
 import { test, expect } from "../helpers/browser";
 import type { Page, TestInfo } from "@playwright/test";
-import { prepareVisualPage } from "./readiness";
+import { prepareVisualPage, waitForVisualAssets } from "./readiness";
 
 test("landing", async ({ page }) => {
   await prepareVisualPage(page, "/");
@@ -18,7 +18,7 @@ test("demo dialog", async ({ page }) => {
   await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
   const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
   await expect(dialog).toBeVisible();
-  await page.evaluate(() => document.fonts.ready);
+  await waitForVisualAssets(page);
   await expect(dialog).toHaveScreenshot("demo-dialog.png");
 });
 
