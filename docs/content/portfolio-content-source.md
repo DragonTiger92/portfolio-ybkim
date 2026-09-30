@@ -140,18 +140,20 @@ Follow the inventory with a compact capability matrix rather than another card
 catalog. Each row must use the same fields so recruiters can compare practice,
 automation, and evidence:
 
-| Capability                      | Public Copy Direction                                                                 | Evidence Boundary                              |
-| ------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Mechanical quality feedback     | File-type line budgets, nesting policy, and agent strict lint                         | Public ESLint config and validator scripts     |
-| Safe agent development harness  | CLI access with Terraform, Dependabot, sandbox, and approval boundaries               | Public governance code and agent-safe guidance |
-| Documentation architecture      | Requirements, traceability, phase roadmap, PBI backlog, ADR, and content boundaries   | Public repository documentation                |
-| Standards and accessibility     | Semantic HTML plus vnu, html-validate, Playwright, and axe verification               | Public scripts and browser tests               |
-| Automated regression foundation | Browser behavior, responsive layout, accessibility, and custom-validator unit testing | Public Playwright and Node test suites         |
+| Capability                      | Public Copy Direction                                                                                        | Evidence Boundary                              |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+| Mechanical quality feedback     | File-type line budgets, nesting policy, and agent strict lint                                                | Public ESLint config and validator scripts     |
+| Safe agent development harness  | CLI access with Terraform, Dependabot, sandbox, and approval boundaries                                      | Public governance code and agent-safe guidance |
+| Documentation architecture      | Requirements, traceability, phase roadmap, PBI backlog, ADR, and content boundaries                          | Public repository documentation                |
+| Standards and accessibility     | Semantic HTML plus vnu, html-validate, Playwright, and axe verification                                      | Public scripts and browser tests               |
+| Automated regression foundation | Product and validator units, browser behavior, responsive layout, accessibility, and 12 screenshot baselines | Public Playwright and Node test suites         |
 
-Do not claim pixel-diff visual regression while the repository verifies visual
-layout through browser geometry rather than screenshot baselines. Keep a
-troubleshooting narrative out of the landing page until a focused detail route
-or interview-preparation artifact justifies its reading cost.
+Pixel-diff visual regression covers landing, Karly detail, and the open demo
+dialog across desktop/mobile and light/dark in the pinned Linux container.
+Existing geometry checks explain layout intent. Keep claims within this scope;
+mobile uses emulation and external Gmail login or sending is outside CI.
+Keep a troubleshooting narrative out of the landing page until a focused detail
+route or interview-preparation artifact justifies its reading cost.
 
 ## Disclosure Source Data
 

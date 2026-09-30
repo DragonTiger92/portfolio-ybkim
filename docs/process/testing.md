@@ -160,9 +160,19 @@ retains them for 14 days. Only reviewed baseline PNGs belong in Git.
 
 ## Reliability And Adoption Evidence
 
-Initial adoption status: canonical baseline PNGs and fixed-container validation
-are pending. Use the manual workflow to produce reviewable PNGs before claiming
-that screenshot comparison is operational.
+The owner accepted the 12 canonical PNGs on 2026-10-01 after reviewing the
+fixed-container artifacts. [Baseline generation and validation](https://github.com/DragonTiger92/portfolio-ybkim/actions/runs/36684105247)
+at `7cb01773a652083d29bd404e7ca8c082a66e249d` passed generation, two consecutive
+12-test comparisons, and the intentional CSS-change probe with a failure and
+diff. The images are stored in `tests/visual/baselines/`.
+
+Before adoption, [PR CI](https://github.com/DragonTiger92/portfolio-ybkim/actions/runs/36684071386)
+passed quality validation but failed visual comparison and required `Check`
+because baselines were missing. [Isolated Site Artifact validation](https://github.com/DragonTiger92/portfolio-ybkim/actions/runs/36684840996)
+also failed `Approve Site Artifact` after its build passed and visual comparison
+failed. This exercised the actual fail-closed gates without invoking deployment.
+Every proposed revision must still pass normal comparison against the committed
+PNGs; baseline generation is not a substitute for that check.
 
 CI allows at most one retry. A test that passes only on retry is still flaky:
 track its name, failing revision, diagnostic artifact, and resolution. Do not
@@ -170,12 +180,11 @@ increase retries, add arbitrary sleeps, or suppress assertions to make a gate
 green. Resolve timing through browser-observable readiness and deterministic
 inputs.
 
-The screenshot gate is not fully adopted until all 12 canonical PNGs exist,
+The screenshot gate adoption criteria require all 12 canonical PNGs to exist,
 two consecutive comparisons pass in the pinned container, the CSS-change
 probe produces a failure and diff, and CI failure demonstrably blocks both the
-required `Check` and delivery of Site Artifact. Until that evidence exists,
-report visual testing as pending validation and keep public portfolio claims
-about pixel comparison unchanged.
+required `Check` and delivery of Site Artifact. New or replaced baselines require
+the same review and validation evidence before public claims are updated.
 
 Visual and approval tooling comes from the calling workflow revision; candidate
 `dist/` is downloaded and checked against its requested-revision manifest.
