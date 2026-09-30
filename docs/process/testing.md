@@ -91,6 +91,9 @@ canceled, or unexpectedly skipped dependency must not produce a successful
 required status. Site Artifact must validate its own generated `dist/` before
 handing those same files to delivery. A local passing `check` alone does not
 establish that the visual gate passed.
+For an isolated CI approval test without deployment, dispatch
+`gh workflow run ci.yml --ref <branch> -f verify-site-artifact=true`.
+This calls the real Site Artifact workflow with baseline updates disabled.
 
 Coverage has no initial percentage threshold. Review whether meaningful
 normal, error, and boundary behavior is protected; use the product coverage

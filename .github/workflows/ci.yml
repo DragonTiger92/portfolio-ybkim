@@ -11,6 +11,10 @@ on:
         description: Generate baseline candidates on the selected branch for human review.
         type: boolean
         default: false
+      verify-site-artifact:
+        description: Validate Site Artifact approval without deployment.
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -84,6 +88,12 @@ jobs:
       revision: ${{ github.sha }}
       artifact-id: ${{ needs.quality.outputs.artifact-id }}
       update-baselines: ${{ github.event_name == 'workflow_dispatch' && inputs.update-baselines }}
+
+  artifact_gate:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.verify-site-artifact && !inputs.update-baselines }}
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ github.sha }}
 
   check:
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.update-baselines && 'Baseline Candidates' || 'Check' }}

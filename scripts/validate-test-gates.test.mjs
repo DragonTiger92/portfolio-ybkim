@@ -69,6 +69,12 @@ test("required Check and delivery outputs depend on both gates", async () => {
   assert.ok(approval.includes("run: node scripts/validate-test-gates.mjs"));
   assert.ok(artifact.includes("value: ${{ jobs.artifact.outputs['artifact-id'] }}"));
   assert.ok(artifact.includes("artifact-id: ${{ needs.build.outputs.artifact-id }}"));
+  assert.ok(ci.includes("uses: ./.github/workflows/site-artifact.yml"));
+  assert.ok(
+    ci.includes(
+      "if: ${{ github.event_name == 'workflow_dispatch' && inputs.verify-site-artifact && !inputs.update-baselines }}",
+    ),
+  );
 });
 
 test("visual calls reuse the exact manifested dist even from a manual release caller", async () => {
