@@ -40,6 +40,8 @@ duplicating roadmap state in GitHub Issues or Milestones.
 Quality and accessibility are cross-cutting gates. The project should establish
 their harness during `PH-001`, apply them during `PH-002`, and keep them visible
 in deployment and post-launch work when relevant.
+`PBI-070` tracks current test-gate maintenance under `PH-003`; it does not reopen
+the completed launch milestone or the deferred `PH-004` feature work.
 
 Production release tags begin at `PH-003`. Earlier phases can be merged through
 pull requests, but they do not receive production Git tags because they do not

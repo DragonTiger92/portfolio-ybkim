@@ -1,4 +1,4 @@
-import { createGmailComposeUrl } from "./contact";
+import { createGmailComposeUrl } from "./contact.ts";
 
 const requestSubjectPrefix = "[Portfolio Demo Access]";
 

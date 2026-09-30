@@ -11,45 +11,46 @@ owner-controlled storage outside the public repository.
 
 ## Document Map
 
-| Path                                                    | Purpose                                      |
-| ------------------------------------------------------- | -------------------------------------------- |
-| `planning/project-brief.md`                             | Project purpose, audience, and boundaries    |
-| `planning/roadmap.md`                                   | Delivery phases and current priorities       |
-| `planning/product-backlog.md`                           | Implementation-sized Product Backlog Items   |
-| `planning/requirements-traceability-matrix.md`          | Requirement-to-backlog traceability          |
-| `design/phase-2-wireframe-brief.md`                     | Phase 2 low-fi wireframe and design brief    |
-| `process/development-workflow.md`                       | GitHub Flow and branch naming convention     |
-| `requirements/functional-requirements.md`               | User-facing behavior requirements            |
-| `requirements/non-functional-requirements.md`           | Product quality attributes and constraints   |
-| `architecture/overview.md`                              | Static site architecture                     |
-| `architecture/information-architecture.md`              | Product sitemap and analytics scope          |
-| `architecture/content-model.md`                         | Portfolio content structure                  |
-| `architecture/deployment.md`                            | Cloudflare deployment and release model      |
-| `architecture/github-governance.md`                     | GitHub settings and IaC ownership            |
-| `adr/0001-use-static-vite-vanilla-typescript.md`        | Technology baseline decision                 |
-| `adr/0002-separate-public-docs-and-agent-guidelines.md` | Documentation boundary decision              |
-| `adr/0003-use-spdx-json-sbom.md`                        | Superseded SPDX SBOM decision                |
-| `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                   |
-| `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary              |
-| `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision     |
-| `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare production delivery decision      |
-| `adr/0008-use-docs-based-work-tracking.md`              | Docs-based work tracking decision            |
-| `adr/0009-adopt-astro-static-component-architecture.md` | Astro static component architecture decision |
-| `adr/0010-use-cyclonedx-json-sbom.md`                   | CycloneDX SBOM format decision               |
-| `adr/0011-use-owner-driven-pages-previews.md`           | Owner-driven protected preview decision      |
-| `security/supply-chain.md`                              | Dependency and SBOM policy                   |
-| `security/license-compliance.md`                        | Pre-release third-party license review       |
-| `operations/production-readiness.md`                    | Production health, monitoring, and recovery  |
-| `operations/incident-response-and-rollback.md`          | Incident triage, rollback, and recovery      |
-| `operations/pages-delivery.md`                          | Pages production and manual preview runbook  |
-| `operations/demo-access.md`                             | Recruiter demo-account request and delivery  |
-| `reference/glossary.md`                                 | Shared terms                                 |
-| `content/portfolio-content.md`                          | Public portfolio content model               |
-| `content/case-studies.md`                               | Public-safe case study summaries             |
-| `content/project-content-inventory.md`                  | Project, surface, and link planning data     |
-| `content/portfolio-content-source.md`                   | Implementation-ready portfolio source data   |
-| `content/landing-page-copy.md`                          | Landing page copy                            |
-| `content/resume-portfolio-boundary.md`                  | Resume and portfolio content boundary        |
+| Path                                                    | Purpose                                       |
+| ------------------------------------------------------- | --------------------------------------------- |
+| `planning/project-brief.md`                             | Project purpose, audience, and boundaries     |
+| `planning/roadmap.md`                                   | Delivery phases and current priorities        |
+| `planning/product-backlog.md`                           | Implementation-sized Product Backlog Items    |
+| `planning/requirements-traceability-matrix.md`          | Requirement-to-backlog traceability           |
+| `design/phase-2-wireframe-brief.md`                     | Phase 2 low-fi wireframe and design brief     |
+| `process/development-workflow.md`                       | GitHub Flow and branch naming convention      |
+| `process/testing.md`                                    | Test layers, quality gates, and visual review |
+| `requirements/functional-requirements.md`               | User-facing behavior requirements             |
+| `requirements/non-functional-requirements.md`           | Product quality attributes and constraints    |
+| `architecture/overview.md`                              | Static site architecture                      |
+| `architecture/information-architecture.md`              | Product sitemap and analytics scope           |
+| `architecture/content-model.md`                         | Portfolio content structure                   |
+| `architecture/deployment.md`                            | Cloudflare deployment and release model       |
+| `architecture/github-governance.md`                     | GitHub settings and IaC ownership             |
+| `adr/0001-use-static-vite-vanilla-typescript.md`        | Technology baseline decision                  |
+| `adr/0002-separate-public-docs-and-agent-guidelines.md` | Documentation boundary decision               |
+| `adr/0003-use-spdx-json-sbom.md`                        | Superseded SPDX SBOM decision                 |
+| `adr/0004-keep-portfolio-claims-public-safe.md`         | Public-safe claim decision                    |
+| `adr/0005-scope-code-license-and-portfolio-rights.md`   | Code/content licensing boundary               |
+| `adr/0006-use-github-flow-and-ci-quality-gates.md`      | GitHub Flow and CI quality gate decision      |
+| `adr/0007-use-cloudflare-pages-delivery.md`             | Cloudflare production delivery decision       |
+| `adr/0008-use-docs-based-work-tracking.md`              | Docs-based work tracking decision             |
+| `adr/0009-adopt-astro-static-component-architecture.md` | Astro static component architecture decision  |
+| `adr/0010-use-cyclonedx-json-sbom.md`                   | CycloneDX SBOM format decision                |
+| `adr/0011-use-owner-driven-pages-previews.md`           | Owner-driven protected preview decision       |
+| `security/supply-chain.md`                              | Dependency and SBOM policy                    |
+| `security/license-compliance.md`                        | Pre-release third-party license review        |
+| `operations/production-readiness.md`                    | Production health, monitoring, and recovery   |
+| `operations/incident-response-and-rollback.md`          | Incident triage, rollback, and recovery       |
+| `operations/pages-delivery.md`                          | Pages production and manual preview runbook   |
+| `operations/demo-access.md`                             | Recruiter demo-account request and delivery   |
+| `reference/glossary.md`                                 | Shared terms                                  |
+| `content/portfolio-content.md`                          | Public portfolio content model                |
+| `content/case-studies.md`                               | Public-safe case study summaries              |
+| `content/project-content-inventory.md`                  | Project, surface, and link planning data      |
+| `content/portfolio-content-source.md`                   | Implementation-ready portfolio source data    |
+| `content/landing-page-copy.md`                          | Landing page copy                             |
+| `content/resume-portfolio-boundary.md`                  | Resume and portfolio content boundary         |
 
 ## Writing Principles
 

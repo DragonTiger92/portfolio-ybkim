@@ -44,23 +44,23 @@ public branch naming convention instead.
 
 ## Quality Gate Matrix
 
-| Trigger                     | Required work                                                                | Purpose                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Local docs iteration        | `pnpm.cmd check:docs`                                                        | Validate documentation without repeating the full gate                     |
-| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command            | Give fast feedback without repeating the full gate                         |
-| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged              | Keep the commit feedback loop fast                                         |
-| Local `pre-push`            | `pnpm check:static`                                                          | Block static-analysis, build, and HTML regressions                         |
-| Local completion / PR prep  | Full `pnpm.cmd check`                                                        | Verify the complete change once before handoff                             |
-| Pull request                | `Check` (`pnpm check`), `Dependency Review`, and `PR Metadata`               | Gate merge readiness and policy metadata                                   |
-| Merged pull request         | Compare and update eligible open PR branches through `Sync Open PR Branches` | Preserve the integrated `main` history in active same-repository work      |
-| Dependabot pull request     | Policy classification, required checks, and owner merge review               | Route updates by metadata, breaking markers, and `deps:validated` evidence |
-| Terraform-related PR change | Terraform format, provider initialization without backend, and validation    | Reject invalid IaC before merge                                            |
-| Push to `main`              | `Check` (`pnpm check`)                                                       | Verify the integrated default branch                                       |
-| Enabled push to `main`      | Exact artifact, Wrangler Direct Upload, full-SHA resolution, public smoke    | Publish the integrated revision without creating a release tag             |
-| Owner-selected topic branch | Local full check, manual Wrangler preview, and owner browser QA              | Inspect an exact pushed revision in the protected remote boundary          |
-| Formal release dispatch     | Version/revision validation, evidence, production smoke, tag, GitHub Release | Publish one immutable `vX.Y.Z` product release after deployment acceptance |
-| Weekly schedule             | `pnpm audit --audit-level moderate`                                          | Surface dependency advisories without blocking a PR                        |
-| Manual dispatch             | Security audit or Terraform validation as needed                             | Support owner-driven recovery and explicit rechecks                        |
+| Trigger                     | Required work                                                                                   | Purpose                                                                    |
+| --------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Local docs iteration        | `pnpm.cmd check:docs`                                                                           | Validate documentation without repeating the full gate                     |
+| Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command                               | Give fast feedback without repeating the full gate                         |
+| Local `pre-commit`          | Staged ESLint fixes and Prettier formatting through lint-staged                                 | Keep the commit feedback loop fast                                         |
+| Local `pre-push`            | `pnpm check:static`                                                                             | Block static-analysis, build, and HTML regressions                         |
+| Local completion / PR prep  | Full `pnpm.cmd check`                                                                           | Verify the complete change once before handoff                             |
+| Pull request                | `Check` (local checks and container visual comparisons), `Dependency Review`, and `PR Metadata` | Gate merge readiness and policy metadata                                   |
+| Merged pull request         | Compare and update eligible open PR branches through `Sync Open PR Branches`                    | Preserve the integrated `main` history in active same-repository work      |
+| Dependabot pull request     | Policy classification, required checks, and owner merge review                                  | Route updates by metadata, breaking markers, and `deps:validated` evidence |
+| Terraform-related PR change | Terraform format, provider initialization without backend, and validation                       | Reject invalid IaC before merge                                            |
+| Push to `main`              | `Check` (local checks and container visual comparisons)                                         | Verify the integrated default branch                                       |
+| Enabled push to `main`      | Exact artifact, Wrangler Direct Upload, full-SHA resolution, public smoke                       | Publish the integrated revision without creating a release tag             |
+| Owner-selected topic branch | Local full check, manual Wrangler preview, and owner browser QA                                 | Inspect an exact pushed revision in the protected remote boundary          |
+| Formal release dispatch     | Version/revision validation, evidence, production smoke, tag, GitHub Release                    | Publish one immutable `vX.Y.Z` product release after deployment acceptance |
+| Weekly schedule             | `pnpm audit --audit-level moderate`                                                             | Surface dependency advisories without blocking a PR                        |
+| Manual dispatch             | Security audit or Terraform validation as needed                                                | Support owner-driven recovery and explicit rechecks                        |
 
 `pnpm check:docs` includes warning-free Markdown linting, strict documentation
 file-size validation, and Prettier formatting for `docs/`, `.agents/`, and
@@ -71,6 +71,11 @@ HTML validation, and W3C Nu validation. `pnpm check` adds Playwright and
 axe-core Chromium checks, including semantic structure and 44-by-44 CSS-pixel
 target checks, plus a focused WebKit smoke suite for core rendering and
 interaction compatibility.
+
+`Check` aggregates `Quality` and the reusable visual workflow and fails unless
+both succeed. Site Artifact applies the same gate to its manifested candidate
+before exposing delivery outputs. See [Testing Strategy](../process/testing.md)
+for baseline adoption, diagnostics, and review requirements.
 
 The pull-request Terraform workflow deliberately stops at formatting,
 backend-free initialization, and configuration validation. Account-backed plans

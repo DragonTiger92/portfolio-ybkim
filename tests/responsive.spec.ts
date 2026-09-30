@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator } from "./helpers/browser";
 
 async function getVisibleBox(locator: Locator) {
   const box = await locator.boundingBox();

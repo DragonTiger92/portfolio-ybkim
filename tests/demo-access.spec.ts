@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browser";
 
 const demoProjects = [
   { route: "/projects/karly/", title: "Karly" },
@@ -78,6 +78,7 @@ test("keeps each landing request beside its deployment demo", async ({ page }) =
 });
 
 test("copies the manual request template from the pre-navigation dialog", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-09-30T00:00:00Z") });
   await page.addInitScript(() => {
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
@@ -91,6 +92,7 @@ test("copies the manual request template from the pre-navigation dialog", async 
   });
 
   await page.goto("/projects/karly/");
+  await page.clock.pauseAt(new Date("2026-09-30T01:00:00Z"));
   await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
 
   const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
@@ -108,11 +110,12 @@ test("copies the manual request template from the pre-navigation dialog", async 
   expect(copiedRequest).toContain("제목: [Portfolio Demo Access] Karly");
   expect(copiedRequest).toContain("Karly 데모 계정을 요청드립니다.");
 
-  await page.waitForTimeout(1000);
+  await page.clock.runFor(1000);
   await copyButton.click();
-  await page.waitForTimeout(2100);
+  await page.clock.runFor(2100);
   await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
-  await expect(copyStatus).toBeEmpty({ timeout: 2000 });
+  await page.clock.runFor(900);
+  await expect(copyStatus).toBeEmpty();
 });
 
 test("keeps demo access requests off projects that do not need credentials", async ({ page }) => {

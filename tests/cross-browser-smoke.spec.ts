@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browser";
 
 test("renders and navigates the landing page without horizontal overflow", async ({ page }) => {
   await page.goto("/");

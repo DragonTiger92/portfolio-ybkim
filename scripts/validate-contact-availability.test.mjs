@@ -5,8 +5,6 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { getJobStatusContent, resolveJobStatusCode } from "../src/data/job-status.ts";
-
 const unavailableStatus = "not-looking";
 const publicEmail = "dczwtu12b+portfolio@gmail.com";
 
@@ -21,23 +19,6 @@ function isExpectedGitHubProfile(href) {
     url.protocol === "https:" && url.hostname === "github.com" && url.pathname === "/DragonTiger92"
   );
 }
-
-test("keeps Korean and English unavailable labels on one status policy", () => {
-  const koreanStatus = getJobStatusContent("ko", unavailableStatus);
-  const englishStatus = getJobStatusContent("en", unavailableStatus);
-
-  assert.equal(koreanStatus.valueLabel, "구직 중이 아님");
-  assert.equal(englishStatus.valueLabel, "Currently Not Looking");
-  assert.equal(koreanStatus.acceptsEmailContact, false);
-  assert.equal(englishStatus.acceptsEmailContact, false);
-});
-
-test("defaults safely and rejects unsupported build-time status values", () => {
-  assert.equal(resolveJobStatusCode(undefined), "actively-looking");
-  assert.equal(resolveJobStatusCode(""), "actively-looking");
-  assert.equal(resolveJobStatusCode(unavailableStatus), unavailableStatus);
-  assert.throws(() => resolveJobStatusCode("paused"), /Invalid PORTFOLIO_JOB_STATUS "paused"/);
-});
 
 test("omits email data and actions from a not-looking static build", async () => {
   const outputDirectory = path.join(tmpdir(), `portfolio-contact-${process.pid}-${Date.now()}`);

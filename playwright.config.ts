@@ -16,18 +16,21 @@ const webkitProjects = usesSystemEdge
 
 export default defineConfig({
   testDir: "./tests",
+  testIgnore: ["**/unit/**", "**/visual/**"],
   fullyParallel: true,
   forbidOnly: isCi,
+  failOnFlakyTests: isCi,
   retries: isCi ? 1 : 0,
-  reporter: "list",
+  reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: "http://127.0.0.1:4321",
     trace: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
   webServer: {
-    command: "pnpm preview",
+    command: "pnpm preview:test",
     url: "http://127.0.0.1:4321",
-    reuseExistingServer: !isCi,
+    reuseExistingServer: false,
   },
   projects: [
     {
