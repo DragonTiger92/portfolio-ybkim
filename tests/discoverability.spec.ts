@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browser";
 
 const productionOrigin = "https://portfolio-ybkim.pages.dev";
 const socialPreviewUrl = `${productionOrigin}/assets/brand/social-preview.png`;

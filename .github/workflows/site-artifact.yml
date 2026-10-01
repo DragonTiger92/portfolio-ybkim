@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 jobs:
-  artifact:
+  build:
     name: Build Site Artifact
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -88,7 +88,7 @@ jobs:
           --revision "$ARTIFACT_REVISION"
           --output tmp/delivery/site-artifact-manifest.json
 
-      - name: Upload checked site artifact
+      - name: Upload candidate site artifact
         id: upload
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -98,3 +98,43 @@ jobs:
             tmp/delivery/site-artifact-manifest.json
           if-no-files-found: error
           retention-days: 14
+
+      - name: Upload browser diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: browser-diagnostics-delivery
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+          if-no-files-found: warn
+
+  visual:
+    needs: build
+    uses: ./.github/workflows/visual-tests.yml
+    with:
+      revision: ${{ inputs.revision }}
+      artifact-id: ${{ needs.build.outputs.artifact-id }}
+
+  artifact:
+    name: Approve Site Artifact
+    if: ${{ always() }}
+    needs: [build, visual]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      artifact-digest: ${{ needs.build.outputs.artifact-digest }}
+      artifact-id: ${{ needs.build.outputs.artifact-id }}
+      artifact-url: ${{ needs.build.outputs.artifact-url }}
+    steps:
+      - name: Checkout gate validator
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Require every test gate
+        env:
+          QUALITY_RESULT: ${{ needs.build.result }}
+          VISUAL_RESULT: ${{ needs.visual.result }}
+        run: node scripts/validate-test-gates.mjs

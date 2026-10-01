@@ -147,6 +147,9 @@ governance work rather than product behavior.
 | `NFR-013`      | `PBI-033` | Operate       |
 | `NFR-014`      | `PBI-060` | Implement     |
 | `NFR-014`      | `PBI-060` | Verify        |
+| `NFR-001`      | `PBI-070` | Verify        |
+| `NFR-003`      | `PBI-070` | Verify        |
+| `NFR-006`      | `PBI-070` | Verify        |
 
 ## PH-004 Post-Launch Optimization
 

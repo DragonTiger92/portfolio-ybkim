@@ -21,21 +21,22 @@
 - landing page에서 개발자 포지셔닝, 공개 프로젝트와 기술 역량을 한 흐름으로 탐색할 수 있습니다.
 - 각 공개 프로젝트는 별도 상세 route에서 역할, 기여 범위, 구현 접근과 결과를 설명합니다.
 - 공개 저장소의 요구사항, ADR와 Product Backlog를 통해 구현 의도를 추적할 수 있습니다.
-- 정적 분석, standards validation, accessibility와 browser regression test로 결과를 반복 검증합니다.
+- 정적 분석, 제품 단위 테스트, standards validation, accessibility와 browser regression test로 결과를 반복 검증합니다.
 - resume와 외부 링크는 공개 검토에 필요한 최소 범위로 연결합니다.
 
 ## 아키텍처와 기술
 
-| 영역            | 선택                                    |
-| --------------- | --------------------------------------- |
-| Rendering       | Astro static output                     |
-| Markup          | Semantic HTML                           |
-| Styling         | Pure CSS, CSS custom properties         |
-| Language        | TypeScript                              |
-| Content         | Astro content collections, Markdown     |
-| Quality         | ESLint, Prettier, HTML Validate, W3C Nu |
-| Browser testing | Playwright, axe-core                    |
-| Delivery        | Cloudflare Pages                        |
+| 영역            | 선택                                      |
+| --------------- | ----------------------------------------- |
+| Rendering       | Astro static output                       |
+| Markup          | Semantic HTML                             |
+| Styling         | Pure CSS, CSS custom properties           |
+| Language        | TypeScript                                |
+| Content         | Astro content collections, Markdown       |
+| Quality         | ESLint, Prettier, HTML Validate, W3C Nu   |
+| Browser testing | Playwright, axe-core                      |
+| Unit testing    | Node.js `node:test`, `node:assert/strict` |
+| Delivery        | Cloudflare Pages                          |
 
 사이트는 application server 없이 정적 artifact로 생성됩니다. 콘텐츠, route, component, style과 검증 책임을 분리하고 Cloudflare Pages root에서 동작하는 shallow information architecture를 유지합니다.
 
@@ -47,6 +48,7 @@
 - [Architecture Decision Records](docs/adr/): 주요 기술·운영 결정
 - [Product Backlog](docs/planning/product-backlog.md): 구현 단위와 acceptance criteria
 - [Development Workflow](docs/process/development-workflow.md): branch, review와 품질 gate
+- [Testing Strategy](docs/process/testing.md): 테스트 범위, 실행 명령과 시각적 기준 이미지 관리
 - [Design Harness](DESIGN.md): UI의 시각·반응형·접근성 방향
 
 ## 로컬 검증
@@ -64,7 +66,9 @@ pnpm.cmd dev
 pnpm.cmd check
 ```
 
-이 명령은 type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 browser accessibility test를 순서대로 실행합니다.
+이 명령은 제품 단위 테스트, type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 전체 브라우저 테스트를 순서대로 실행합니다. `test:browser`는 전체 일반 브라우저 검사, `test:a11y`는 접근성 검사, `test:e2e`는 방문자의 사용자 흐름 검사를 실행합니다. 각 명령은 새 빌드 후 검사하며, `:run` 명령은 검증된 최신 `dist/`를 사용합니다. 접근성과 사용자 흐름에 모두 해당하는 테스트는 두 선택 범위에 포함되지만, `check`와 일반 CI에서는 전체 브라우저 검사를 한 번 실행합니다.
+
+스크린샷 시각적 회귀(screenshot visual regression)는 고정된 Linux Playwright 컨테이너에서 검토된 기준 이미지 12개와 픽셀을 비교합니다. 반복 비교와 의도적인 CSS 변경에 대한 diff 생성, 실패 시 필수 `Check`와 Site Artifact 승인 차단을 검증했습니다. Windows 로컬의 `check`와 별도로 실행하며, 실행과 기준 이미지 갱신·검토 절차는 [Testing Strategy](docs/process/testing.md)에서 확인할 수 있습니다.
 
 ## 배포와 릴리스 모델
 

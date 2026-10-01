@@ -137,10 +137,10 @@ check when possible:
 pnpm.cmd check
 ```
 
-The check runs type checking, strict linting, strict maintained-file validation,
+The check runs product unit tests, type checking, strict linting, maintained-file validation,
 governance, file-size, and static-budget tests, formatting verification, the
 production Astro build, deterministic `dist/` budget validation, strict HTML
-checks, W3C Nu validation, and browser accessibility tests in fail-fast order.
+checks, W3C Nu validation, and browser/E2E tests in fail-fast order.
 After it passes, do not rerun every component command separately.
 
 For a documentation-only iteration that only touches `docs/`, `.agents/`, or
@@ -171,13 +171,20 @@ pnpm.cmd build:bundle
 pnpm.cmd validate:static-budget
 pnpm.cmd validate:html:strict
 pnpm.cmd validate:standards:strict
+pnpm.cmd test:unit
+pnpm.cmd test:browser
 pnpm.cmd test:a11y
+pnpm.cmd test:e2e
 ```
 
-`pnpm.cmd test:a11y` creates a fresh Astro build before starting Playwright so a
-focused browser run cannot silently validate stale `dist/` output. The internal
-`test:a11y:run` script assumes a fresh build and is used only after
-`check:static` inside the canonical `check` sequence.
+`test:browser` runs the complete ordinary browser suite, `test:a11y` selects
+`@a11y`, and `test:e2e` selects `@e2e` visitor flows. Each command creates a fresh
+Astro build first. Their `:run` variants assume an already validated fresh build.
+Canonical `check` uses `test:browser:run` after `check:static`, covering every
+browser test once, including untagged content/layout checks and dual-tagged
+keyboard flows. Selection commands do not replace the full completion gate.
+The separate pinned-container visual gate and baseline review rules are in
+`docs/process/testing.md`.
 
 Use the standalone `pnpm.cmd build` when the task specifically requires a complete build
 that includes its own type check.
@@ -220,7 +227,7 @@ Keep this hook staged-file-only and fast:
 The pre-push hook runs `pnpm check:static`. It intentionally excludes browser
 tests to keep local pushes predictable while still blocking type, lint, size,
 format, build, HTML, and standards failures. Pull request CI remains the
-authoritative full gate and also runs the browser accessibility suite.
+authoritative full gate and also runs browser/E2E and fixed-container visual tests.
 
 Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
 

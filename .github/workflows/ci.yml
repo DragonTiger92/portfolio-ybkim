@@ -5,6 +5,16 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      update-baselines:
+        description: Generate baseline candidates on the selected branch for human review.
+        type: boolean
+        default: false
+      verify-site-artifact:
+        description: Validate Site Artifact approval without deployment.
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -14,10 +24,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
-    name: Check
+  quality:
+    name: Quality
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      artifact-id: ${{ steps.site.outputs.artifact-id }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -36,8 +48,66 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install browser for accessibility checks
+      - name: Install browsers for browser tests
         run: pnpm exec playwright install --with-deps chromium webkit
 
       - name: Run project checks
         run: pnpm check
+
+      - name: Create candidate manifest
+        env:
+          REVISION: ${{ github.sha }}
+        run: node scripts/create-artifact-manifest.mjs --revision "$REVISION"
+
+      - name: Upload visual candidate
+        id: site
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ci-site-${{ github.sha }}
+          path: |
+            dist/
+            tmp/delivery/site-artifact-manifest.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload browser diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: browser-diagnostics-ci
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+          if-no-files-found: warn
+
+  visual:
+    needs: quality
+    uses: ./.github/workflows/visual-tests.yml
+    with:
+      revision: ${{ github.sha }}
+      artifact-id: ${{ needs.quality.outputs.artifact-id }}
+      update-baselines: ${{ github.event_name == 'workflow_dispatch' && inputs.update-baselines }}
+
+  artifact_gate:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.verify-site-artifact && !inputs.update-baselines }}
+    uses: ./.github/workflows/site-artifact.yml
+    with:
+      revision: ${{ github.sha }}
+
+  check:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.update-baselines && 'Baseline Candidates' || 'Check' }}
+    if: ${{ always() }}
+    needs: [quality, visual]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Checkout gate validator
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Require every test gate
+        env:
+          QUALITY_RESULT: ${{ needs.quality.result }}
+          VISUAL_RESULT: ${{ needs.visual.result }}
+        run: node scripts/validate-test-gates.mjs

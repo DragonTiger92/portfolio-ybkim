@@ -9,11 +9,15 @@ lerna-debug.log*
 
 # Dependencies, framework cache, build output, and test artifacts
 node_modules/
+.pnpm-store/
 .astro/
 dist/
 dist-ssr/
 playwright-report/
 test-results/
+visual-report/
+visual-results/
+coverage/
 
 # Editor directories and files
 .vscode/*

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browser";
 
 test("distinguishes project evidence and business context without splitting the IA", async ({
   page,
