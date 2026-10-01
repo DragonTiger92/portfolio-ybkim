@@ -97,30 +97,36 @@ const raceCases = copyActions.flatMap((action) =>
 );
 
 for (const { action, mode } of failureCases) {
-  test(`${action.name} provides a manual fallback when clipboard is ${mode}`, async ({ page }) => {
-    await configureClipboard(page, mode);
-    await openCopyAction(page, action.route);
-    await page.locator(action.button).click();
-    await expectManualFallback(page, action);
-  });
+  test(
+    `${action.name} provides a manual fallback when clipboard is ${mode}`,
+    { tag: "@e2e" },
+    async ({ page }) => {
+      await configureClipboard(page, mode);
+      await openCopyAction(page, action.route);
+      await page.locator(action.button).click();
+      await expectManualFallback(page, action);
+    },
+  );
 }
 
 for (const { action, latestSucceeds } of raceCases) {
-  test(`${action.name} preserves the latest ${latestSucceeds ? "successful" : "failed"} copy when promises settle out of order`, async ({
-    page,
-  }) => {
-    await configureClipboard(page, "deferred");
-    await openCopyAction(page, action.route);
-    await page.locator(action.button).click();
-    await page.locator(action.button).click();
-    await expect
-      .poll(() => page.evaluate(() => (window as ClipboardWindow).pendingCopies.length))
-      .toBe(2);
+  test(
+    `${action.name} preserves the latest ${latestSucceeds ? "successful" : "failed"} copy when promises settle out of order`,
+    { tag: "@e2e" },
+    async ({ page }) => {
+      await configureClipboard(page, "deferred");
+      await openCopyAction(page, action.route);
+      await page.locator(action.button).click();
+      await page.locator(action.button).click();
+      await expect
+        .poll(() => page.evaluate(() => (window as ClipboardWindow).pendingCopies.length))
+        .toBe(2);
 
-    await settleCopy(page, 1, latestSucceeds);
-    const expectedFeedback = latestSucceeds ? action.success : action.failure;
-    await expect(page.locator(action.status)).toHaveText(expectedFeedback);
-    await settleCopy(page, 0, !latestSucceeds);
-    await expect(page.locator(action.status)).toHaveText(expectedFeedback);
-  });
+      await settleCopy(page, 1, latestSucceeds);
+      const expectedFeedback = latestSucceeds ? action.success : action.failure;
+      await expect(page.locator(action.status)).toHaveText(expectedFeedback);
+      await settleCopy(page, 0, !latestSucceeds);
+      await expect(page.locator(action.status)).toHaveText(expectedFeedback);
+    },
+  );
 }

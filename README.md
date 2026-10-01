@@ -66,7 +66,7 @@ pnpm.cmd dev
 pnpm.cmd check
 ```
 
-이 명령은 제품 단위 테스트, type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 browser/E2E test를 순서대로 실행합니다. `test:a11y`는 전체 브라우저 테스트를 실행하는 기존 이름의 호환 별칭입니다.
+이 명령은 제품 단위 테스트, type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 전체 브라우저 테스트를 순서대로 실행합니다. `test:browser`는 전체 일반 브라우저 검사, `test:a11y`는 접근성 검사, `test:e2e`는 방문자의 사용자 흐름 검사를 실행합니다. 각 명령은 새 빌드 후 검사하며, `:run` 명령은 검증된 최신 `dist/`를 사용합니다. 접근성과 사용자 흐름에 모두 해당하는 테스트는 두 선택 범위에 포함되지만, `check`와 일반 CI에서는 전체 브라우저 검사를 한 번 실행합니다.
 
 스크린샷 시각적 회귀(screenshot visual regression)는 고정된 Linux Playwright 컨테이너에서 검토된 기준 이미지 12개와 픽셀을 비교합니다. 반복 비교와 의도적인 CSS 변경에 대한 diff 생성, 실패 시 필수 `Check`와 Site Artifact 승인 차단을 검증했습니다. Windows 로컬의 `check`와 별도로 실행하며, 실행과 기준 이미지 갱신·검토 절차는 [Testing Strategy](docs/process/testing.md)에서 확인할 수 있습니다.
 

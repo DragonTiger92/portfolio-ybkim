@@ -17,46 +17,50 @@ function expectGmailRequestUrl(href: string | null, projectTitle: string): void 
 }
 
 for (const project of demoProjects) {
-  test(`${project.title} provides a scoped demo access request`, async ({ page }) => {
-    await page.goto(project.route);
+  test(
+    `${project.title} provides a scoped demo access request`,
+    { tag: "@e2e" },
+    async ({ page }) => {
+      await page.goto(project.route);
 
-    const section = page.locator(".demo-access");
-    const gmailLink = section.getByRole("link", {
-      name: `${project.title} 테스트 계정 요청 메일 작성(Gmail 새 창)`,
-    });
-    const dialog = section.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
+      const section = page.locator(".demo-access");
+      const gmailLink = section.getByRole("link", {
+        name: `${project.title} 테스트 계정 요청 메일 작성(Gmail 새 창)`,
+      });
+      const dialog = section.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
 
-    await expect(section.getByRole("heading", { name: "데모 로그인" })).toBeVisible();
-    await expect(section).toContainText("만료형 보안 링크");
-    await expect(gmailLink).toHaveAttribute("target", "_blank");
-    await expect(gmailLink).toHaveAttribute("rel", "noopener noreferrer");
-    expectGmailRequestUrl(await gmailLink.getAttribute("href"), project.title);
-    await expect(section.locator('a[href^="mailto:"]')).toHaveCount(0);
-    await expect(dialog).not.toBeVisible();
+      await expect(section.getByRole("heading", { name: "데모 로그인" })).toBeVisible();
+      await expect(section).toContainText("만료형 보안 링크");
+      await expect(gmailLink).toHaveAttribute("target", "_blank");
+      await expect(gmailLink).toHaveAttribute("rel", "noopener noreferrer");
+      expectGmailRequestUrl(await gmailLink.getAttribute("href"), project.title);
+      await expect(section.locator('a[href^="mailto:"]')).toHaveCount(0);
+      await expect(dialog).not.toBeVisible();
 
-    await gmailLink.click();
+      await gmailLink.click();
 
-    const continueLink = dialog.getByRole("link", { name: "Gmail에서 계속(새 창)" });
-    const closeButton = dialog.getByRole("button", { name: "닫기" });
-    const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
-    const template = dialog.locator("#demo-request-template");
+      const continueLink = dialog.getByRole("link", { name: "Gmail에서 계속(새 창)" });
+      const closeButton = dialog.getByRole("button", { name: "닫기" });
+      const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
+      const template = dialog.locator("#demo-request-template");
 
-    await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText(
-      "Gmail에 로그인하지 않았다면 Google 로그인 화면이 먼저 열리고",
-    );
-    await expect(template).toHaveValue(/받는 사람: dczwtu12b\+portfolio@gmail\.com/);
-    await expect(template).toHaveValue(
-      new RegExp(`제목: \\[Portfolio Demo Access\\] ${project.title}`),
-    );
-    await expect(continueLink).toHaveAttribute("target", "_blank");
-    await expect(continueLink).toHaveAttribute("rel", "noopener noreferrer");
-    expectGmailRequestUrl(await continueLink.getAttribute("href"), project.title);
-    await expect(closeButton).toHaveCSS("cursor", "pointer");
-    await expect(copyButton).toHaveCSS("cursor", "pointer");
-    await closeButton.click();
-    await expect(dialog).not.toBeVisible();
-  });
+      await expect(dialog).toBeVisible();
+      await expect(dialog).toContainText(
+        "Gmail에 로그인하지 않았다면 Google 로그인 화면이 먼저 열리고",
+      );
+      await expect(template).toHaveValue(/받는 사람: dczwtu12b\+portfolio@gmail\.com/);
+      await expect(template).toHaveValue(
+        new RegExp(`제목: \\[Portfolio Demo Access\\] ${project.title}`),
+      );
+      await expect(continueLink).toHaveAttribute("target", "_blank");
+      await expect(continueLink).toHaveAttribute("rel", "noopener noreferrer");
+      expectGmailRequestUrl(await continueLink.getAttribute("href"), project.title);
+      await expect(closeButton).toHaveCSS("cursor", "pointer");
+      await expect(copyButton).toHaveCSS("cursor", "pointer");
+      await closeButton.click();
+      await expect(dialog).not.toBeVisible();
+    },
+  );
 }
 
 test("keeps each landing request beside its deployment demo", async ({ page }) => {
@@ -77,46 +81,50 @@ test("keeps each landing request beside its deployment demo", async ({ page }) =
   }
 });
 
-test("copies the manual request template from the pre-navigation dialog", async ({ page }) => {
-  await page.clock.install({ time: new Date("2026-09-30T00:00:00Z") });
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: {
-        writeText(value: string) {
-          window.sessionStorage.setItem("copied-demo-request", value);
-          return Promise.resolve();
+test(
+  "copies the manual request template from the pre-navigation dialog",
+  { tag: "@e2e" },
+  async ({ page }) => {
+    await page.clock.install({ time: new Date("2026-09-30T00:00:00Z") });
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: {
+          writeText(value: string) {
+            window.sessionStorage.setItem("copied-demo-request", value);
+            return Promise.resolve();
+          },
         },
-      },
+      });
     });
-  });
 
-  await page.goto("/projects/karly/");
-  await page.clock.pauseAt(new Date("2026-09-30T01:00:00Z"));
-  await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
+    await page.goto("/projects/karly/");
+    await page.clock.pauseAt(new Date("2026-09-30T01:00:00Z"));
+    await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
 
-  const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
-  const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
-  const copyStatus = dialog.getByRole("status");
+    const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
+    const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
+    const copyStatus = dialog.getByRole("status");
 
-  await copyButton.click();
-  await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
+    await copyButton.click();
+    await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
 
-  const copiedRequest = await page.evaluate(() =>
-    window.sessionStorage.getItem("copied-demo-request"),
-  );
+    const copiedRequest = await page.evaluate(() =>
+      window.sessionStorage.getItem("copied-demo-request"),
+    );
 
-  expect(copiedRequest).toContain("받는 사람: dczwtu12b+portfolio@gmail.com");
-  expect(copiedRequest).toContain("제목: [Portfolio Demo Access] Karly");
-  expect(copiedRequest).toContain("Karly 데모 계정을 요청드립니다.");
+    expect(copiedRequest).toContain("받는 사람: dczwtu12b+portfolio@gmail.com");
+    expect(copiedRequest).toContain("제목: [Portfolio Demo Access] Karly");
+    expect(copiedRequest).toContain("Karly 데모 계정을 요청드립니다.");
 
-  await page.clock.runFor(1000);
-  await copyButton.click();
-  await page.clock.runFor(2100);
-  await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
-  await page.clock.runFor(900);
-  await expect(copyStatus).toBeEmpty();
-});
+    await page.clock.runFor(1000);
+    await copyButton.click();
+    await page.clock.runFor(2100);
+    await expect(copyStatus).toHaveText("메일 양식을 복사했습니다.");
+    await page.clock.runFor(900);
+    await expect(copyStatus).toBeEmpty();
+  },
+);
 
 test("keeps demo access requests off projects that do not need credentials", async ({ page }) => {
   await page.goto("/projects/portfolio-ybkim/");

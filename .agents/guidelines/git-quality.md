@@ -172,15 +172,19 @@ pnpm.cmd validate:static-budget
 pnpm.cmd validate:html:strict
 pnpm.cmd validate:standards:strict
 pnpm.cmd test:unit
+pnpm.cmd test:browser
+pnpm.cmd test:a11y
 pnpm.cmd test:e2e
 ```
 
-`pnpm.cmd test:e2e` creates a fresh Astro build before starting Playwright so a
-focused browser run cannot silently validate stale `dist/` output. The internal
-`test:e2e:run` script assumes a fresh build and is used only after
-`check:static` inside the canonical `check` sequence.
-`test:a11y` commands remain compatibility aliases. The separate pinned-container
-visual gate and baseline review rules are in `docs/process/testing.md`.
+`test:browser` runs the complete ordinary browser suite, `test:a11y` selects
+`@a11y`, and `test:e2e` selects `@e2e` visitor flows. Each command creates a fresh
+Astro build first. Their `:run` variants assume an already validated fresh build.
+Canonical `check` uses `test:browser:run` after `check:static`, covering every
+browser test once, including untagged content/layout checks and dual-tagged
+keyboard flows. Selection commands do not replace the full completion gate.
+The separate pinned-container visual gate and baseline review rules are in
+`docs/process/testing.md`.
 
 Use the standalone `pnpm.cmd build` when the task specifically requires a complete build
 that includes its own type check.

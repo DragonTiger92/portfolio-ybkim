@@ -7,14 +7,15 @@ the boundary is a visitor's flow through the built site.
 
 ## Test Layers And Ownership
 
-| Layer                 | Tool and location                                          | Responsibility                                                                        |
-| --------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs` | Availability policy, Gmail URL encoding, project-specific demo requests               |
-| Operational unit      | Existing `scripts/*.test.mjs`                              | Governance, delivery, budgets, and validation tools                                   |
-| Build integration     | Existing contact-availability tests                        | Generated HTML and contact visibility across availability modes                       |
-| Browser / E2E         | Playwright, `tests/*.spec.ts`                              | Navigation, keyboard, themes, clipboard, dialogs, downloads, and responsive behavior  |
-| Accessibility         | Playwright and axe-core                                    | Automated checks plus explicit keyboard, focus, structure, and target-size assertions |
-| Screenshot regression | Playwright `toHaveScreenshot()`                            | Reviewed pixel changes in a fixed rendering environment                               |
+| Layer                 | Tool and location                                          | Responsibility                                                                           |
+| --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs` | Availability policy, Gmail URL encoding, project-specific demo requests                  |
+| Operational unit      | Existing `scripts/*.test.mjs`                              | Governance, delivery, budgets, and validation tools                                      |
+| Build integration     | Existing contact-availability tests                        | Generated HTML and contact visibility across availability modes                          |
+| Browser               | Playwright, `tests/*.spec.ts`                              | All ordinary browser contracts, including content, layout, accessibility, and user flows |
+| E2E                   | Playwright, tests tagged `@e2e`                            | Visitor flows: navigation, themes, clipboard, dialogs, and downloads                     |
+| Accessibility         | Playwright and axe-core                                    | Automated checks plus explicit keyboard, focus, structure, and target-size assertions    |
+| Screenshot regression | Playwright `toHaveScreenshot()`                            | Reviewed pixel changes in a fixed rendering environment                                  |
 
 Node.js imports the product TypeScript modules directly. Type stripping does
 not typecheck them; the existing Astro typecheck remains mandatory. Keep
@@ -50,29 +51,49 @@ External Gmail authentication, mail delivery, and external demo applications
 are outside ordinary CI. Tests validate the links, local dialog, and request
 payload without logging in or sending mail.
 
+Classify browser tests by their observable purpose. Tag axe, semantic structure,
+target size, keyboard, and focus checks with `@a11y`; tag visitor interaction
+flows with `@e2e`. Keyboard navigation and dialog focus tests serve both purposes
+and carry both tags. Keep one test for shared behavior rather than duplicating
+it. Content and layout contracts remain in the full browser suite even when
+neither tag applies. Do not infer selection from a spec filename or place
+unrelated content and branding assertions in the accessibility spec.
+
 ## Commands And Gates
 
 Use Node.js `24.18.0`, pnpm `11.10.0`, Playwright `1.63.0`, and
 `@axe-core/playwright` `4.13.0`. Existing packages provide all test layers.
 Windows PowerShell uses `pnpm.cmd`; CI uses `pnpm`.
 
-| Command                                | Contract                                                       |
-| -------------------------------------- | -------------------------------------------------------------- |
-| `pnpm.cmd test:unit`                   | Product unit tests without a build or server                   |
-| `pnpm.cmd test:unit:coverage`          | Product coverage as a diagnostic report                        |
-| `pnpm.cmd test:test-gates`             | Fail-closed Check and artifact approval contracts              |
-| `pnpm.cmd test:contact-availability`   | Availability build integration contract                        |
-| `pnpm.cmd test:e2e`                    | Fresh build followed by the browser suite                      |
-| `pnpm.cmd test:e2e:run`                | Browser suite against an already validated fresh `dist/`       |
-| `pnpm.cmd test:a11y` / `test:a11y:run` | Compatibility aliases for the corresponding E2E commands       |
-| `pnpm.cmd check`                       | Product unit tests and all existing static/build/browser gates |
-| `pnpm test:visual`                     | Pixel comparison in the fixed visual environment               |
-| `pnpm test:visual:update`              | Explicit baseline generation in that same environment          |
-| `pnpm test:visual:probe`               | Verify an intentional CSS regression produces a pixel diff     |
-| `pnpm.cmd preview:test`                | Foreground Astro preview owned and stopped by Playwright       |
+| Command                              | Contract                                                       |
+| ------------------------------------ | -------------------------------------------------------------- |
+| `pnpm.cmd test:unit`                 | Product unit tests without a build or server                   |
+| `pnpm.cmd test:unit:coverage`        | Product coverage as a diagnostic report                        |
+| `pnpm.cmd test:test-gates`           | Fail-closed Check and artifact approval contracts              |
+| `pnpm.cmd test:contact-availability` | Availability build integration contract                        |
+| `pnpm.cmd test:browser`              | Fresh build followed by the full ordinary browser suite        |
+| `pnpm.cmd test:browser:run`          | Full browser suite against a validated fresh `dist/`           |
+| `pnpm.cmd test:a11y`                 | Fresh build followed by tests selected with `--grep @a11y`     |
+| `pnpm.cmd test:a11y:run`             | Accessibility selection against a validated fresh `dist/`      |
+| `pnpm.cmd test:e2e`                  | Fresh build followed by tests selected with `--grep @e2e`      |
+| `pnpm.cmd test:e2e:run`              | Visitor-flow selection against a validated fresh `dist/`       |
+| `pnpm.cmd check`                     | Product unit tests and all existing static/build/browser gates |
+| `pnpm test:visual`                   | Pixel comparison in the fixed visual environment               |
+| `pnpm test:visual:update`            | Explicit baseline generation in that same environment          |
+| `pnpm test:visual:probe`             | Verify an intentional CSS regression produces a pixel diff     |
+| `pnpm.cmd preview:test`              | Foreground Astro preview owned and stopped by Playwright       |
 
 Visual commands consume an existing fresh `dist/`; they do not rebuild it.
 The runner requires Linux and `PORTFOLIO_VISUAL_IMAGE` matching the pinned image.
+
+The three ordinary browser command pairs use the same Playwright config;
+`test:browser:run` applies no tag filter and excludes unit and screenshot tests.
+Their build commands use `build:bundle`, and `:run` requires a fresh `dist/` for
+the intended source revision. `check` runs `check:static` followed by
+`test:browser:run`, preserving the complete browser scope in local and CI gates.
+CI runs that full suite once rather than running the overlapping accessibility
+and E2E selections separately. Use each selection for focused work and use
+`--list` to inspect its scope; a passing selection does not replace full `check`.
 
 The browser configs use Astro's public preview API through `preview:test` so
 agent auto-background detection cannot detach the server from Playwright.
