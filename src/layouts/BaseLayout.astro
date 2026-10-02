@@ -3,6 +3,7 @@
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { siteMetadata } from "../data/site";
+import { serializeStructuredData } from "../data/structured-data";
 import "../styles/tokens.css";
 import "../styles/global.css";
 import "../styles/components.css";
@@ -25,9 +26,7 @@ if (Astro.site === undefined) {
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const socialPreviewUrl = new URL(siteMetadata.socialPreview.path, Astro.site);
-const serializedStructuredData = structuredData
-  ? JSON.stringify(structuredData).replaceAll("<", "\\u003c")
-  : null;
+const serializedStructuredData = structuredData ? serializeStructuredData(structuredData) : null;
 ---
 
 <!doctype html>

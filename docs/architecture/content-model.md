@@ -32,6 +32,30 @@ tool list.
 - Implementation-ready project, link, contact, skill, and disclosure source data
   is tracked in [Portfolio Content Source](../content/portfolio-content-source.md).
 
+## Project Structured Data
+
+Project collection content is the source of truth for both visible project
+details and their structured data. The shared detail template passes each
+project's `slug`, `title`, `summary`, and `stack`, together with `Astro.site`, to
+`createProjectStructuredData` in `src/data/structured-data.ts`. `BaseLayout`
+serializes the result into one JSON-LD script in the static HTML during build.
+New collection entries use this path automatically; content edits update the
+generated markup on the next build without a separate project registration.
+
+- One `@graph` represents the detail `WebPage`, its `CreativeWork`, and the
+  visible `BreadcrumbList` from `/#projects` to `/projects/{slug}/`.
+- Canonical URLs and stable node identifiers come from the configured site
+  origin. Page and project names and descriptions reproduce the visible title
+  and summary; non-empty stack values supply project keywords.
+- Use only verified, public, visible facts. Do not infer sole authorship of a
+  team project, dates, ratings, prices, images, or private evidence.
+- Version the content source, generator, policy, and tests in Git. Generated
+  JSON-LD belongs to the build artifact; do not commit per-project JSON files or
+  maintain independent page-level markup.
+
+This model extends the `PBI-029` launch baseline through `PBI-071` and implements
+`NFR-010`; see the [Product Backlog](../planning/product-backlog.md).
+
 ## Skills Model
 
 - Technology groups reproduce the reviewed resume inventory without proficiency

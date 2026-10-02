@@ -170,6 +170,21 @@ planning input alongside the content model.
 | `PBI-068` | Content    | Align timeless repository and product narrative | Done      | P1       | [Project Guidelines](../../.agents/guidelines/project.md), [Content Model](../architecture/content-model.md)                                                                                           | Root documentation and the portfolio project detail describe stable project truth rather than the current work phase                 | The released Korean-first README and portfolio project detail describe stable product, architecture, delivery, and review truth without a phase snapshot or planned-capability overclaim                                                                                                                                                |
 | `PBI-069` | Quality    | Remove async-function diagnostic hints          | Done      | P2       | [Git And Quality Guidelines](../../.agents/guidelines/git-quality.md)                                                                                                                                  | Strict type checking and actual pre-push output contain no `ts(80006)` hints while preserving script exit-code behavior              | Completed by `d1ac949`: made both then-current exported `run()` functions explicitly async and added CLI exit-code regression coverage; `evaluate-preview-eligibility` was later retired with automatic preview automation; the 2026-08-14 `pnpm.cmd typecheck` revalidation reported 0 errors, 0 warnings, and 0 hints                 |
 | `PBI-070` | Quality    | Strengthen product and visual test gates        | Done      | P1       | [Testing Strategy](../process/testing.md)                                                                                                                                                              | Product and browser tests pass; 12 reviewed container baselines pass twice; visual failures block Check and artifact delivery        | PH-003 maintenance; product/browser checks pass; 12 owner-reviewed PNGs passed two pinned-container comparisons and the CSS-diff probe; actual Check and Site Artifact approval rejected visual failure                                                                                                                                 |
+| `PBI-071` | Discovery  | Generate project-detail structured data         | Done      | P2       | [Content Model](../architecture/content-model.md), [Discoverability Guidelines](../../.agents/guidelines/discoverability.md)                                                                           | Current and future details use one generator; visible-content, serialization, built-page, and schema checks pass                     | PH-003 maintenance extending the `PBI-029` launch baseline; thematically related to `PBI-013`, which remains Deferred with PH-004. Version content, generator, policy, and tests rather than separate JSON artifacts                                                                                                                    |
+
+### PBI-071 Completion Notes
+
+- On 2026-10-02, `pnpm.cmd check:docs` and `pnpm.cmd check` passed, including
+  24 product unit tests and 202 desktop/mobile browser tests. Every current
+  project detail matches its visible content and keeps one linked JSON-LD graph.
+- Schema Markup Validator reported zero errors and warnings for the generated
+  HTML of `portfolio-ybkim`, Karly, and Book-Kong. Google Rich Results Test code
+  input detected one valid breadcrumb item for each project.
+- Generated project JSON-LD totals 4,655 UTF-8 bytes. Largest and aggregate HTML
+  remain at 32.85/40 KiB and 71.80/80 KiB; the current limits are preserved, and
+  further project pages need a headroom review under the existing budget policy.
+- This completes local implementation and verification; publication is separate.
+  `PBI-013` and PH-004 remain Deferred.
 
 ### PBI-059 Completion Notes
 
