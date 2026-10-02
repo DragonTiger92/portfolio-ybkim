@@ -28,6 +28,7 @@ describe("file-size policy", () => {
     assert.equal(isIgnoredPath("pnpm-lock.yaml"), true);
     assert.equal(isIgnoredPath("sbom.cdx.json"), true);
     assert.equal(isIgnoredPath("node_modules/example/README.md"), true);
+    assert.equal(isIgnoredPath(".tools/gitleaks/8.30.1/README.md"), true);
     assert.equal(isIgnoredPath("test-results/failure/error-context.md"), true);
     assert.equal(isIgnoredPath(".contexts/private-notes.md"), true);
     assert.equal(isIgnoredPath("tmp/draft.md"), true);

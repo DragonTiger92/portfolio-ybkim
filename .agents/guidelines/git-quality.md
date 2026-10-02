@@ -208,10 +208,10 @@ Do not claim that checks passed unless they were actually run.
 
 ## Husky And lint-staged
 
-Husky and lint-staged are active. The current flow is:
+Husky, lint-staged, and pinned Gitleaks are active. The flow is:
 
 ```txt
-pre-commit -> pnpm exec lint-staged -> staged ESLint fixes -> staged formatting -> staged file-size feedback
+pre-commit -> staged secret scan -> lint-staged fixes/formatting/size -> staged secret scan
 ```
 
 Keep this hook staged-file-only and fast:

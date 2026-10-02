@@ -40,6 +40,7 @@ owner-controlled storage outside the public repository.
 | `adr/0011-use-owner-driven-pages-previews.md`           | Owner-driven protected preview decision       |
 | `security/supply-chain.md`                              | Dependency and SBOM policy                    |
 | `security/license-compliance.md`                        | Pre-release third-party license review        |
+| `security/secret-scanning.md`                           | Secret prevention, scanner setup, and CI      |
 | `operations/production-readiness.md`                    | Production health, monitoring, and recovery   |
 | `operations/incident-response-and-rollback.md`          | Incident triage, rollback, and recovery       |
 | `operations/pages-delivery.md`                          | Pages production and manual preview runbook   |

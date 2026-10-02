@@ -151,6 +151,16 @@ policy review instead of inventing a license conclusion.
 - Release notes are generated from pull request metadata and labels when a
   GitHub Release is created.
 
+## Secret Detection Policy
+
+Keep GitHub secret scanning and push protection enabled alongside the pinned,
+checksum-verified Gitleaks CLI. The scanner is a development tool outside the
+application dependency graph and the shipped artifact. Its upstream MIT license
+is retained in the local installation. Setup, scan scope, safe output, exception
+review, and coverage limits are defined in the
+[Secret Scanning Guide](secret-scanning.md). Suspected exposure follows the root
+[Security Policy](../../SECURITY.md#secret-prevention-and-response).
+
 ## Repository Licensing
 
 - Source code and build/configuration files are licensed under the MIT License.

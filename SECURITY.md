@@ -26,3 +26,26 @@ or third-party personal data in the report.
 Private or confidential source material must not be published in this
 repository. Keep it in owner-controlled storage outside the public repository,
 and publish only disclosure-reviewed summaries.
+
+## Secret Prevention And Response
+
+Keep credentials in the existing protected GitHub Environment or provider secret
+store. Never put them in source, public documentation, frontend bundles, or build
+artifacts. Astro `PUBLIC_` variables are public browser inputs and must not contain
+secrets.
+
+Local `.env` and `.env.*` files are ignored. Only disclosure-reviewed
+`.env.example` and `.env.*.example` templates with placeholders may be tracked.
+Ignore rules do not protect already tracked files or prevent forced additions.
+
+Keep GitHub secret scanning and push protection enabled. Local hooks and CI also
+run the pinned Gitleaks scanner. See the
+[secret detection policy](docs/security/secret-scanning.md)
+for coverage limits and future scanner requirements.
+
+Treat a potentially exposed credential as compromised: notify the maintainer
+privately, revoke or rotate it at its issuer, update its protected consumers, and
+verify recovery. Removing the text from a commit alone does not invalidate it.
+Review affected history, logs, and artifacts after containment; coordinate any
+history rewrite separately. Record only sanitized paths, revisions, timestamps,
+and conclusions, never credential values or raw scanner reports.

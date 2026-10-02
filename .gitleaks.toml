@@ -1,0 +1,4 @@
+title = "portfolio-ybkim secret scanning"
+
+[extend]
+useDefault = true
