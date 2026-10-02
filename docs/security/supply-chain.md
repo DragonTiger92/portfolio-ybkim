@@ -45,6 +45,16 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
+- The October 2026 `devalue` refresh resolves Astro's indirect dependency from
+  `5.9.2` to `5.9.4`, including the four security fixes first published in
+  [5.9.3](https://github.com/sveltejs/devalue/releases/tag/v5.9.3).
+  Astro's existing `^5.8.1` range accepts the patched version; only
+  the lockfile changes, with no new override or release-age exception.
+  Dependabot reported `security_update_not_possible` with `5.9.2` as its latest
+  resolvable version. An owner-authorized transitive pnpm lockfile update with
+  `--depth 100` resolved the compatible patch, followed by frozen installation
+  and an audit of all severities. Keep the failed updater run as historical
+  evidence; verify default-branch alerts close after the reviewed fix merges.
 - The September 2026 security refresh pins patched `fast-uri@3.1.6`,
   `js-yaml@4.3.2`, `sharp@0.35.4`, and `svgo@4.1.0`, and updates Astro to
   `7.2.8`. Temporary `qs@6.16.0` and `smol-toml@1.7.1` overrides keep the
