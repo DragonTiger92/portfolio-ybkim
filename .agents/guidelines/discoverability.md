@@ -80,6 +80,27 @@ For structured data:
   channels, or data that is absent from the page.
 - Validate generated structured data before claiming completion.
 
+## Project Detail Structured Data
+
+- Every project detail, including new collection entries, must use
+  `createProjectStructuredData` in `src/data/structured-data.ts` through the
+  shared detail template. Do not handwrite page-specific JSON-LD or add a
+  project-by-project generated-data registry.
+- Keep `WebPage`, `CreativeWork`, and `BreadcrumbList` in one `@graph`, with
+  canonical URLs and stable `@id` links derived from `Astro.site`. Match the
+  visible title, summary, stack, Korean language, and project-list breadcrumb.
+- Content edits must update markup on the next static build. Version the source
+  content, generator, policy, and tests; keep generated JSON-LD in build output
+  rather than committing a parallel JSON artifact.
+- Use only verified public content. Do not infer team-project sole authorship,
+  dates, ratings, prices, or images that the page does not support.
+- Preserve script-safe JSON serialization, including `<` escaping. Verify the
+  generator and every sitemap-listed project detail against visible content,
+  and retain landing-page `ProfilePage` regression coverage.
+- Check generated markup with Schema Markup Validator and breadcrumbs with
+  Google Rich Results Test. Record unavailable external checks honestly;
+  search indexing or rich-result appearance is not a completion criterion.
+
 ## AEO And GEO Boundaries
 
 AEO and GEO should not become parallel content systems. In this project they

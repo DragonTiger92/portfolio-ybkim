@@ -297,15 +297,13 @@ validated CycloneDX SBOMs.
 | Verification Method | StaticAnalysis, Manual |
 | Source              | Project Owner          |
 
-Public portfolio pages must expose accurate metadata for search engines, social
-sharing, and answer-oriented discovery without overstating portfolio claims.
+Public pages must expose accurate search, social, and answer-oriented metadata without overstated claims.
+Project-detail JSON-LD must match visible public content through the shared generator.
 
 ### NFR-010 Verification
 
-- Provide accurate page titles, descriptions, canonical URLs, and social
-  metadata for the production URL.
-- Keep crawl and index directives aligned with the deployed environment.
-- Validate structured or answer-oriented metadata before publishing it.
+- Keep production titles, descriptions, canonical/social metadata, and crawl/index directives accurate.
+- Before publishing, test generator and built-page output; use Schema Markup Validator and Google Rich Results Test for breadcrumbs.
 
 ## NFR-011: Privacy-Aware Telemetry
 

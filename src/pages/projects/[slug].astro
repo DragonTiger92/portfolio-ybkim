@@ -5,6 +5,7 @@ import NewWindowLink from "../../components/NewWindowLink.astro";
 import TagList from "../../components/TagList.astro";
 import { getJobStatusContent, resolveJobStatusCode } from "../../data/job-status";
 import { siteMetadata } from "../../data/site";
+import { createProjectStructuredData } from "../../data/structured-data";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 interface ProjectNavigationTarget {
@@ -53,11 +54,26 @@ const jobStatus = getJobStatusContent(
 );
 const featuredProject = nextProject ?? previousProject;
 const featuredProjectDirection = nextProject ? "다음 프로젝트" : "이전 프로젝트";
+
+if (Astro.site === undefined) {
+  throw new Error("Astro site configuration is required for project structured data.");
+}
+
+const structuredData = createProjectStructuredData(
+  {
+    slug: project.id,
+    title: project.data.title,
+    summary: project.data.summary,
+    stack: project.data.stack,
+  },
+  Astro.site,
+);
 ---
 
 <BaseLayout
   title={`${project.data.title} | ${siteMetadata.title}`}
   description={project.data.summary}
+  structuredData={structuredData}
 >
   <main id="main-content" class="project-main">
     <article class="site-shell project-article">

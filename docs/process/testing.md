@@ -9,7 +9,7 @@ the boundary is a visitor's flow through the built site.
 
 | Layer                 | Tool and location                                          | Responsibility                                                                           |
 | --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs` | Availability policy, Gmail URL encoding, project-specific demo requests                  |
+| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs` | Availability policy, Gmail URL encoding, demo requests, structured-data generation       |
 | Operational unit      | Existing `scripts/*.test.mjs`                              | Governance, delivery, budgets, and validation tools                                      |
 | Build integration     | Existing contact-availability tests                        | Generated HTML and contact visibility across availability modes                          |
 | Browser               | Playwright, `tests/*.spec.ts`                              | All ordinary browser contracts, including content, layout, accessibility, and user flows |
@@ -34,6 +34,10 @@ Prefer tests that protect observable policy, failures, or boundary behavior.
 - Unit tests cover availability defaults and invalid input, Korean and English
   policy, optional Gmail fields, Unicode and special-character encoding,
   multiline bodies, and demo-request content for each supported project.
+- Structured-data tests cover deterministic generation, canonical node links,
+  empty stacks, and script-safe serialization. Browser checks discover all
+  project details from the sitemap and compare JSON-LD with visible content;
+  landing-page `ProfilePage` coverage protects the shared serializer.
 - Browser tests cover keyboard navigation and skip links; dialog initial focus,
   focus containment, Escape, and focus restoration; JavaScript-disabled
   content; clipboard rejection, absence, and out-of-order completion; feedback
