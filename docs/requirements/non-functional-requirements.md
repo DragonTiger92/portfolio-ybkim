@@ -252,6 +252,8 @@ licenses, version intent, and package provenance before integration.
 ### NFR-008 Verification
 
 - Keep direct dependencies exactly pinned and the lockfile reviewable.
+- Require pinned staged/CI secret scanning alongside GitHub protection.
+- Verify output safety with synthetic values; exclude secrets from logs/artifacts.
 - Run Dependency Review for pull requests that change dependencies.
 - Reject dependency licenses outside the reviewed allowlist until manually
   approved.

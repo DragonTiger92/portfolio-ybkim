@@ -172,6 +172,21 @@ planning input alongside the content model.
 | `PBI-070` | Quality    | Strengthen product and visual test gates        | Done      | P1       | [Testing Strategy](../process/testing.md)                                                                                                                                                              | Product and browser tests pass; 12 reviewed container baselines pass twice; visual failures block Check and artifact delivery                                    | PH-003 maintenance; product/browser checks pass; 12 owner-reviewed PNGs passed two pinned-container comparisons and the CSS-diff probe; actual Check and Site Artifact approval rejected visual failure                                                                                                                                 |
 | `PBI-071` | Discovery  | Generate project-detail structured data         | Done      | P2       | [Content Model](../architecture/content-model.md), [Discoverability Guidelines](../../.agents/guidelines/discoverability.md)                                                                           | Current and future details use one generator; visible-content, serialization, built-page, and schema checks pass                                                 | PH-003 maintenance extending the `PBI-029` launch baseline; thematically related to `PBI-013`, which remains Deferred with PH-004. Version content, generator, policy, and tests rather than separate JSON artifacts                                                                                                                    |
 | `PBI-072` | Operations | Verify deployed routes and structured data      | Done      | P2       | [Pages Delivery](../operations/pages-delivery.md), [Testing Strategy](../process/testing.md)                                                                                                           | Post-deployment smoke discovers public routes from the verified artifact and detects canonical, JSON-LD, robots, and sitemap drift; failure and retry tests pass | PH-003 maintenance extending `PBI-031` smoke and `PBI-071` schema coverage; retain critical assets, use one exact artifact, and retry read-only smoke only                                                                                                                                                                              |
+| `PBI-073` | Security   | Add staged and CI secret scanning               | Done      | P1       | [Secret Scanning](../security/secret-scanning.md), [Security Policy](../../SECURITY.md)                                                                                                                | Pinned checksum-verified scanner, staged/PR/main history coverage, synthetic failure/redaction tests, and required CI wiring are verified                        | PH-003 maintenance; retain GitHub protection and avoid application dependencies, raw reports, token validation, and unrelated refs                                                                                                                                                                                                      |
+
+### PBI-073 Completion Notes
+
+- On 2026-10-02, installed Gitleaks 8.30.1 from its official archive with the
+  reviewed SHA-256, then passed synthetic staged/range/history, merge-only,
+  invalid-ref, ignore-file, shallow-checkout, and output-safety checks.
+- The default-branch history audit, including merge diffs, returned zero
+  findings. Keep that result within heuristic detection coverage.
+- `pnpm.cmd check:docs` and `pnpm.cmd check` passed, including four scanner
+  unit tests and 202 browser tests. Independent security review found no
+  remaining blocker. No dependency, lockfile, or static-budget change was needed.
+- Local hooks scan before and after lint-staged; CI Secret Scan gates Quality
+  and the required Check. Publication and production-smoke evidence belong to
+  the implementation pull request.
 
 ### PBI-072 Completion Notes
 

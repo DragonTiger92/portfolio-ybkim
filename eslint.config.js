@@ -93,6 +93,7 @@ export default defineConfig([
       "build/**",
       "coverage/**",
       "node_modules/**",
+      ".tools/**",
       ".astro/**",
       "playwright-report/**",
       "test-results/**",

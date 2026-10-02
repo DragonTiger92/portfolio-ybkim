@@ -6,6 +6,7 @@ const ignoredDirectoryNames = new Set([
   ".astro",
   ".git",
   ".terraform",
+  ".tools",
   ".contexts",
   "build",
   "coverage",
