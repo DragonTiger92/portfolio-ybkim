@@ -16,7 +16,7 @@ function pageMetadata(html, path) {
   const canonicals = [...html.matchAll(/<link\b([^>]*)>/giu)]
     .filter((match) => attribute(match[1], "rel")?.toLowerCase() === "canonical")
     .map((match) => attribute(match[1], "href"));
-  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/giu)].filter(
+  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\b[^>]*>/giu)].filter(
     (match) => attribute(match[1], "type")?.toLowerCase() === "application/ld+json",
   );
   requireMatch(canonicals.length === 1 && canonicals[0], `${path} must have one canonical URL.`);

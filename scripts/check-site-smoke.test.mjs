@@ -20,9 +20,13 @@ const project = {
   stack: ["Astro"],
 };
 
+function schemaScript(schema) {
+  return `<script type="application/ld+json">${serializeStructuredData(schema)}</script>`;
+}
+
 function pageHtml(path, schema) {
   return `<html><head><link rel="canonical" href="${origin}${path}">
-    <script type="application/ld+json">${serializeStructuredData(schema)}</script></head>
+    ${schema === undefined ? "" : schemaScript(schema)}</head>
     <body><h1 id="portfolio-title">Portfolio</h1></body></html>`;
 }
 
@@ -94,16 +98,11 @@ it("discovers a future project and checks every route once alongside existing as
 
 const corruptions = [
   ["missing detail", projectPath, () => undefined, /returned HTTP 404/u],
-  [
-    "missing JSON-LD",
-    projectPath,
-    (body) => body.replace(/<script.*?<\/script>/su, ""),
-    /JSON-LD.*differs/u,
-  ],
+  ["missing JSON-LD", projectPath, () => pageHtml(projectPath, undefined), /JSON-LD.*differs/u],
   [
     "duplicate JSON-LD",
     projectPath,
-    (body) => body + body.match(/<script.*?<\/script>/su)[0],
+    (body) => body + schemaScript(createProjectStructuredData(project, new URL(origin))),
     /duplicate JSON-LD/u,
   ],
   [
@@ -172,6 +171,8 @@ it("ignores JSON whitespace and HTML attribute order", async () => {
       bodies
         .get(projectPath)
         .replace('rel="canonical" href=', 'REL="canonical" HREF=')
+        .replaceAll("<script", "<SCRIPT")
+        .replaceAll("</script>", "</SCRIPT\t\n bar>")
         .replace('{"@context"', '{\n "@context"'),
     );
     await runHttpSmoke({
@@ -241,7 +242,7 @@ it("accepts the text/xml sitemap media type used by production", async () => {
 
 it("checks historical artifact schema expectations", async () => {
   await withArtifact(async ({ directory, bodies }) => {
-    bodies.set(projectPath, bodies.get(projectPath).replace(/<script.*?<\/script>/su, ""));
+    bodies.set(projectPath, pageHtml(projectPath, undefined));
     await writeFile(
       join(directory, "projects", project.slug, "index.html"),
       bodies.get(projectPath),
