@@ -126,7 +126,9 @@ runs:
       env:
         SMOKE_BASE_URL: ${{ inputs['production-url'] }}
       shell: bash
-      run: pnpm smoke:http -- --attempts 4 --retry-delay-ms 5000
+      run: >-
+        pnpm smoke:http -- --attempts 4 --retry-delay-ms 5000
+        --artifact-dir tmp/pages-upload/site-artifact/dist
 
     - name: Record deployment evidence
       env:

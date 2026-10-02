@@ -1,5 +1,7 @@
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { createSiteSmokeTargets } from "./site-smoke-contract.mjs";
+import { checkSmokeTarget } from "./smoke-http-response.mjs";
 
 const loopbackHosts = new Set(["127.0.0.1", "[::1]", "localhost"]);
 const defaultRetryDelayMilliseconds = 5_000;
@@ -44,85 +46,12 @@ function validateCriticalAssetPath(path) {
   }
 }
 
-function isRedirectStatus(status) {
-  return status >= 300 && status < 400;
-}
-
-function resolveSameOriginRedirect(currentUrl, response, origin) {
-  const location = response.headers.get("location");
-
-  if (location === null) {
-    throw new Error(`${currentUrl} returned ${response.status} without a Location header.`);
-  }
-
-  const redirectUrl = new URL(location, currentUrl);
-
-  if (redirectUrl.origin !== origin) {
-    throw new Error(`Cross-origin smoke-check redirect is not allowed: ${redirectUrl}`);
-  }
-
-  return redirectUrl;
-}
-
-async function fetchSameOrigin(
-  url,
-  { fetchImplementation, origin, timeoutMilliseconds },
-  redirectCount = 0,
-) {
-  if (redirectCount > 5) {
-    throw new Error(`Smoke-check redirect limit exceeded for ${url}.`);
-  }
-
-  const response = await fetchImplementation(url, {
-    redirect: "manual",
-    signal: AbortSignal.timeout(timeoutMilliseconds),
-  });
-
-  if (!isRedirectStatus(response.status)) {
-    return response;
-  }
-
-  const redirectUrl = resolveSameOriginRedirect(url, response, origin);
-
-  return fetchSameOrigin(
-    redirectUrl,
-    { fetchImplementation, origin, timeoutMilliseconds },
-    redirectCount + 1,
-  );
-}
-
-async function checkTarget(target, options) {
-  const targetUrl = new URL(target.path, options.baseUrl);
-  const response = await fetchSameOrigin(targetUrl, {
-    fetchImplementation: options.fetchImplementation,
-    origin: options.baseUrl.origin,
-    timeoutMilliseconds: options.timeoutMilliseconds,
-  });
-
-  if (response.status !== 200) {
-    throw new Error(`${target.path} returned HTTP ${response.status}; expected 200.`);
-  }
-
-  const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
-
-  if (!contentType.startsWith(target.contentType)) {
-    throw new Error(
-      `${target.path} returned Content-Type ${contentType || "(missing)"}; expected ${target.contentType}.`,
-    );
-  }
-
-  const body = await response.text();
-
-  if (!body.includes(target.marker)) {
-    throw new Error(`${target.path} did not contain the stable marker ${target.marker}.`);
-  }
-}
-
 export async function runHttpSmoke({
   baseUrl,
   criticalAssetPath = "/assets/brand/logo-mark.svg",
   fetchImplementation = fetch,
   timeoutMilliseconds = 10_000,
+  siteTargets = [],
 }) {
   const parsedBaseUrl = validateBaseUrl(baseUrl);
   validateCriticalAssetPath(criticalAssetPath);
@@ -145,15 +74,24 @@ export async function runHttpSmoke({
     },
   ];
 
-  for (const target of targets) {
-    await checkTarget(target, {
+  const combinedTargets = [
+    ...targets.map((target) => ({
+      ...target,
+      validate: siteTargets.find((siteTarget) => siteTarget.path === target.path)?.validate,
+    })),
+    ...siteTargets.filter(
+      (target) => !targets.some((baseTarget) => baseTarget.path === target.path),
+    ),
+  ];
+  for (const target of combinedTargets) {
+    await checkSmokeTarget(target, {
       baseUrl: parsedBaseUrl,
       fetchImplementation,
       timeoutMilliseconds,
     });
   }
 
-  return targets.map((target) => target.path);
+  return combinedTargets.map((target) => target.path);
 }
 
 function delay(milliseconds) {
@@ -264,9 +202,14 @@ function reportRetry({ attempt, attempts, retryDelayMilliseconds }) {
 }
 
 async function execute(argumentsList) {
+  const baseUrl = requireBaseUrl(argumentsList);
+  const siteTargets = await createSiteSmokeTargets(
+    readOption(argumentsList, "--artifact-dir") ?? "dist",
+  );
   const checkedPaths = await runHttpSmokeWithRetry({
     attempts: readAttempts(argumentsList),
-    baseUrl: requireBaseUrl(argumentsList),
+    baseUrl,
+    siteTargets,
     criticalAssetPath:
       readOption(argumentsList, "--critical-asset-path") ?? "/assets/brand/logo-mark.svg",
     onRetry: reportRetry,

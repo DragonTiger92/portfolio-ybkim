@@ -24,8 +24,8 @@ Preview work does not create tags or GitHub Releases.
 The production workflow boundaries are:
 
 - `site-artifact.yml`: check, build, manifest, and upload the exact artifact;
-- `pages-upload.yml`: revalidate, upload, resolve, and publicly smoke-check a
-  production artifact;
+- `.github/actions/pages-upload/action.yml`: revalidate, upload, resolve, and
+  publicly smoke-check a production artifact;
 - `pages-production.yml`: automatic `main` delivery and reviewed operational
   redeploys;
 - `release-evidence.yml`: SBOM and ScanCode evidence; and
@@ -35,8 +35,26 @@ The production workflow boundaries are:
 After exact deployment resolution, the production action runs the read-only
 canonical smoke up to four times. It uses exponential backoff of 5, 10, and 20
 seconds, for at most 35 seconds of scheduled retry wait. Every attempt checks
-the homepage, critical logo, and web manifest again. Build, artifact download,
-manifest validation, upload, and exact deployment resolution still run once.
+the full smoke target set again. Build, artifact download, manifest validation,
+upload, and exact deployment resolution still run once.
+
+The smoke check uses the manifest-validated deployment artifact as its expected
+output (`--artifact-dir`, default `dist/`). Its sitemap supplies all public HTML
+routes, including future project details, without a separate URL registry.
+For each route, verify an HTML response, its canonical URL, and JSON-LD against
+the same artifact. The check detects missing, duplicated, malformed, or changed
+structured data, including the landing `ProfilePage` and project-detail graph.
+Also compare the public sitemap and robots output with the artifact, and retain
+the homepage marker, critical logo, and web manifest checks.
+Schema presence and script count follow the expected artifact, allowing recovery
+of older revisions without detail schema while rejecting unexpected scripts.
+
+This is a lightweight delivery check. Unit and browser tests establish that
+generated metadata matches visible content before delivery; external schema
+validators, full browser suites, accessibility audits, and performance audits
+remain outside post-deployment smoke. For a standalone smoke or recovery check,
+first obtain the verified artifact for the intended production revision; a
+different local build is not a reliable expected-output source.
 
 Intermediate retry messages contain only the attempt count and wait duration.
 The final failure preserves the checked path and failure category, stops the
