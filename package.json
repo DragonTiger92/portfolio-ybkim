@@ -30,7 +30,7 @@
     "test:unit": "node --test \"tests/unit/*.test.mjs\"",
     "test:unit:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/data/*.ts \"tests/unit/*.test.mjs\"",
     "test:test-gates": "node --test scripts/validate-test-gates.test.mjs",
-    "test:delivery": "node --test scripts/check-http-smoke.test.mjs scripts/create-artifact-manifest.test.mjs scripts/resolve-pages-deployment.test.mjs scripts/validate-artifact-manifest.test.mjs scripts/validate-dist-output.test.mjs scripts/validate-headers.test.mjs scripts/validate-release-request.test.mjs scripts/validate-reusable-workflow-secrets.test.mjs",
+    "test:delivery": "node --test scripts/check-http-smoke.test.mjs scripts/check-site-smoke.test.mjs scripts/create-artifact-manifest.test.mjs scripts/resolve-pages-deployment.test.mjs scripts/validate-artifact-manifest.test.mjs scripts/validate-dist-output.test.mjs scripts/validate-headers.test.mjs scripts/validate-release-request.test.mjs scripts/validate-reusable-workflow-secrets.test.mjs",
     "test:release-evidence": "node --test scripts/render-social-preview.test.mjs scripts/validate-cyclonedx-sbom.test.mjs scripts/validate-image-assets.test.mjs scripts/validate-scancode-report.test.mjs",
     "asset:social-preview": "node scripts/render-social-preview.mjs",
     "test:browser": "pnpm build:bundle && pnpm test:browser:run",

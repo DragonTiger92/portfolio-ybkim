@@ -7,15 +7,16 @@ the boundary is a visitor's flow through the built site.
 
 ## Test Layers And Ownership
 
-| Layer                 | Tool and location                                          | Responsibility                                                                           |
-| --------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs` | Availability policy, Gmail URL encoding, demo requests, structured-data generation       |
-| Operational unit      | Existing `scripts/*.test.mjs`                              | Governance, delivery, budgets, and validation tools                                      |
-| Build integration     | Existing contact-availability tests                        | Generated HTML and contact visibility across availability modes                          |
-| Browser               | Playwright, `tests/*.spec.ts`                              | All ordinary browser contracts, including content, layout, accessibility, and user flows |
-| E2E                   | Playwright, tests tagged `@e2e`                            | Visitor flows: navigation, themes, clipboard, dialogs, and downloads                     |
-| Accessibility         | Playwright and axe-core                                    | Automated checks plus explicit keyboard, focus, structure, and target-size assertions    |
-| Screenshot regression | Playwright `toHaveScreenshot()`                            | Reviewed pixel changes in a fixed rendering environment                                  |
+| Layer                 | Tool and location                                           | Responsibility                                                                           |
+| --------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Product unit          | `node:test`, `node:assert/strict`, `tests/unit/*.test.mjs`  | Availability policy, Gmail URL encoding, demo requests, structured-data generation       |
+| Operational unit      | Existing `scripts/*.test.mjs`                               | Governance, delivery, budgets, and validation tools                                      |
+| Build integration     | Existing contact-availability tests                         | Generated HTML and contact visibility across availability modes                          |
+| Browser               | Playwright, `tests/*.spec.ts`                               | All ordinary browser contracts, including content, layout, accessibility, and user flows |
+| E2E                   | Playwright, tests tagged `@e2e`                             | Visitor flows: navigation, themes, clipboard, dialogs, and downloads                     |
+| Accessibility         | Playwright and axe-core                                     | Automated checks plus explicit keyboard, focus, structure, and target-size assertions    |
+| Screenshot regression | Playwright `toHaveScreenshot()`                             | Reviewed pixel changes in a fixed rendering environment                                  |
+| Post-deployment smoke | Node.js HTTP check against the verified deployment artifact | Public routes, canonical URLs, JSON-LD, crawler files, and critical assets               |
 
 Node.js imports the product TypeScript modules directly. Type stripping does
 not typecheck them; the existing Astro typecheck remains mandatory. Keep
@@ -69,23 +70,47 @@ Use Node.js `24.18.0`, pnpm `11.10.0`, Playwright `1.63.0`, and
 `@axe-core/playwright` `4.13.0`. Existing packages provide all test layers.
 Windows PowerShell uses `pnpm.cmd`; CI uses `pnpm`.
 
-| Command                              | Contract                                                       |
-| ------------------------------------ | -------------------------------------------------------------- |
-| `pnpm.cmd test:unit`                 | Product unit tests without a build or server                   |
-| `pnpm.cmd test:unit:coverage`        | Product coverage as a diagnostic report                        |
-| `pnpm.cmd test:test-gates`           | Fail-closed Check and artifact approval contracts              |
-| `pnpm.cmd test:contact-availability` | Availability build integration contract                        |
-| `pnpm.cmd test:browser`              | Fresh build followed by the full ordinary browser suite        |
-| `pnpm.cmd test:browser:run`          | Full browser suite against a validated fresh `dist/`           |
-| `pnpm.cmd test:a11y`                 | Fresh build followed by tests selected with `--grep @a11y`     |
-| `pnpm.cmd test:a11y:run`             | Accessibility selection against a validated fresh `dist/`      |
-| `pnpm.cmd test:e2e`                  | Fresh build followed by tests selected with `--grep @e2e`      |
-| `pnpm.cmd test:e2e:run`              | Visitor-flow selection against a validated fresh `dist/`       |
-| `pnpm.cmd check`                     | Product unit tests and all existing static/build/browser gates |
-| `pnpm test:visual`                   | Pixel comparison in the fixed visual environment               |
-| `pnpm test:visual:update`            | Explicit baseline generation in that same environment          |
-| `pnpm test:visual:probe`             | Verify an intentional CSS regression produces a pixel diff     |
-| `pnpm.cmd preview:test`              | Foreground Astro preview owned and stopped by Playwright       |
+| Command                                      | Contract                                                       |
+| -------------------------------------------- | -------------------------------------------------------------- |
+| `pnpm.cmd test:unit`                         | Product unit tests without a build or server                   |
+| `pnpm.cmd test:unit:coverage`                | Product coverage as a diagnostic report                        |
+| `pnpm.cmd test:test-gates`                   | Fail-closed Check and artifact approval contracts              |
+| `pnpm.cmd test:contact-availability`         | Availability build integration contract                        |
+| `pnpm.cmd test:browser`                      | Fresh build followed by the full ordinary browser suite        |
+| `pnpm.cmd test:browser:run`                  | Full browser suite against a validated fresh `dist/`           |
+| `pnpm.cmd test:a11y`                         | Fresh build followed by tests selected with `--grep @a11y`     |
+| `pnpm.cmd test:a11y:run`                     | Accessibility selection against a validated fresh `dist/`      |
+| `pnpm.cmd test:e2e`                          | Fresh build followed by tests selected with `--grep @e2e`      |
+| `pnpm.cmd test:e2e:run`                      | Visitor-flow selection against a validated fresh `dist/`       |
+| `pnpm.cmd check`                             | Product unit tests and all existing static/build/browser gates |
+| `pnpm test:visual`                           | Pixel comparison in the fixed visual environment               |
+| `pnpm test:visual:update`                    | Explicit baseline generation in that same environment          |
+| `pnpm test:visual:probe`                     | Verify an intentional CSS regression produces a pixel diff     |
+| `pnpm.cmd preview:test`                      | Foreground Astro preview owned and stopped by Playwright       |
+| `pnpm.cmd smoke:http -- --artifact-dir dist` | Read-only deployed-output check using the verified artifact    |
+
+Post-deployment smoke discovers public HTML routes from the expected artifact's
+sitemap. It compares each route's canonical and JSON-LD with that artifact,
+including the landing `ProfilePage` and every project detail, and verifies the
+public robots and sitemap output. It retains the homepage, logo, and web
+manifest checks. Missing, duplicate, malformed, or stale markup fails delivery.
+Use the artifact for the intended deployment revision; do not substitute a
+different build or maintain a hard-coded project URL list. Operational unit
+tests cover these failures and malformed expected artifacts.
+Script presence and count follow the expected artifact, preserving historical
+rollback compatibility without weakening current schema-missing checks.
+
+For a verified artifact in `dist/`, run:
+
+```powershell
+pnpm.cmd smoke:http -- --base-url https://portfolio-ybkim.pages.dev/ --artifact-dir dist
+```
+
+Production delivery retries only the complete read-only smoke set, up to four
+attempts with the existing 5/10/20-second backoff. Upload and exact deployment
+resolution run once. These HTTP checks verify published output; product units,
+browser content comparisons, and external schema validation retain ownership
+of semantic correctness before delivery.
 
 Visual commands consume an existing fresh `dist/`; they do not rebuild it.
 The runner requires Linux and `PORTFOLIO_VISUAL_IMAGE` matching the pinned image.

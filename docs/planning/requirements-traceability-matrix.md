@@ -141,10 +141,13 @@ governance work rather than product behavior.
 | `NFR-010`      | `PBI-029` | Implement     |
 | `NFR-010`      | `PBI-071` | Implement     |
 | `NFR-010`      | `PBI-071` | Verify        |
+| `NFR-010`      | `PBI-072` | Verify        |
 | `NFR-011`      | `PBI-032` | Implement     |
 | `NFR-012`      | `PBI-030` | Verify        |
 | `NFR-012`      | `PBI-030` | Operate       |
 | `NFR-013`      | `PBI-031` | Verify        |
+| `NFR-013`      | `PBI-072` | Verify        |
+| `NFR-013`      | `PBI-072` | Operate       |
 | `NFR-013`      | `PBI-032` | Operate       |
 | `NFR-013`      | `PBI-033` | Operate       |
 | `NFR-014`      | `PBI-060` | Implement     |
