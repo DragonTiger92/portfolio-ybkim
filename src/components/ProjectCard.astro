@@ -32,7 +32,9 @@ const classificationLabel =
   <div class="project-card__content">
     <div class="project-card__heading">
       <p class="project-card__classification">{classificationLabel}</p>
-      <h4><a href={`/projects/${slug}/`}>{title}</a></h4>
+      <h4>
+        <a href={`/projects/${slug}/`}>{title}</a>
+      </h4>
     </div>
     <p class="project-card__summary">{summary}</p>
     <dl class="project-card__role">
@@ -46,18 +48,14 @@ const classificationLabel =
   <TagList items={tags} />
 
   <div class="project-card__links">
-    <a class="text-link" href={`/projects/${slug}/`} aria-label={`${title} 상세 설명`}>상세 설명</a>
-    {
-      cardLinks.map((link) => (
-        <NewWindowLink
-          class="text-link"
-          href={link.href}
-          accessibleLabel={`${title} ${link.label}`}
-        >
-          {link.label}
-        </NewWindowLink>
-      ))
-    }
+    <a class="text-link" href={`/projects/${slug}/`} aria-label={`${title} 상세 설명`}>
+      상세 설명
+    </a>
+    {cardLinks.map((link) => (
+      <NewWindowLink class="text-link" href={link.href} accessibleLabel={`${title} ${link.label}`}>
+        {link.label}
+      </NewWindowLink>
+    ))}
     {demoAccess && <DemoAccessRequestActions presentation="card" projectTitle={title} />}
   </div>
 </article>

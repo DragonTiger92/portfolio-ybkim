@@ -66,15 +66,15 @@ const serializedStructuredData = structuredData ? serializeStructuredData(struct
     <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/brand/site.webmanifest" crossorigin="use-credentials" />
     <title>{title}</title>
-    {
-      serializedStructuredData && (
-        <script type="application/ld+json" is:inline set:html={serializedStructuredData} />
-      )
-    }
+    {serializedStructuredData && (
+      <script type="application/ld+json" is:inline set:html={serializedStructuredData} />
+    )}
     <script is:inline src="/scripts/theme-init.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">본문으로 이동</a>
+    <a class="skip-link" href="#main-content">
+      본문으로 이동
+    </a>
     <SiteHeader />
     <slot />
     <SiteFooter />

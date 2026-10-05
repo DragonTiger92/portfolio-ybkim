@@ -16,18 +16,32 @@ const homePrefix = isLandingPage ? "" : "/";
           <a
             href={`${homePrefix}#intro`}
             data-section-link
-            aria-current={isLandingPage ? "location" : undefined}>소개</a
+            aria-current={isLandingPage ? "location" : undefined}
           >
+            소개
+          </a>
         </li>
-        <li><a href={`${homePrefix}#projects`} data-section-link>프로젝트</a></li>
-        <li><a href={`${homePrefix}#skills`} data-section-link>역량</a></li>
+        <li>
+          <a href={`${homePrefix}#projects`} data-section-link>
+            프로젝트
+          </a>
+        </li>
+        <li>
+          <a href={`${homePrefix}#skills`} data-section-link>
+            역량
+          </a>
+        </li>
       </ul>
     </nav>
 
     <button class="theme-toggle" type="button" data-theme-toggle>
       <span class="theme-toggle__icon" aria-hidden="true"></span>
-      <span data-theme-label data-theme-action="dark">다크 모드</span>
-      <span data-theme-label data-theme-action="light">라이트 모드</span>
+      <span data-theme-label data-theme-action="dark">
+        다크 모드
+      </span>
+      <span data-theme-label data-theme-action="light">
+        라이트 모드
+      </span>
     </button>
   </div>
 </header>

@@ -53,7 +53,9 @@ const profilePageStructuredData = {
     <section id="intro" class="hero-section" aria-labelledby="portfolio-title">
       <div class="site-shell hero-layout">
         <div class="hero-copy">
-          <h1 id="portfolio-title" class="visually-hidden">웹 개발자 김용범의 포트폴리오</h1>
+          <h1 id="portfolio-title" class="visually-hidden">
+            웹 개발자 김용범의 포트폴리오
+          </h1>
           <dl class="job-status">
             <div class="job-status__field">
               <dt>{jobStatus.fieldLabel}</dt>
@@ -64,9 +66,8 @@ const profilePageStructuredData = {
           </dl>
           <p class="hero-positioning">
             <span class="hero-positioning__line">
-              <span class="hero-positioning__accent">최종 사용자</span>와 <span
-                class="hero-positioning__accent">개발자</span
-              > 모두를 만족시키는{" "}
+              <span class="hero-positioning__accent">최종 사용자</span>와{" "}
+              <span class="hero-positioning__accent">개발자</span> 모두를 만족시키는{" "}
             </span>
             <span class="hero-positioning__line">제품 구현을 지향합니다.</span>
           </p>
@@ -95,21 +96,19 @@ const profilePageStructuredData = {
             </div>
 
             <div class="project-grid">
-              {
-                projects.map((project, projectIndex) => (
-                  <ProjectCard
-                    classification={project.data.classification}
-                    demoAccess={project.data.demoAccess && jobStatus.acceptsEmailContact}
-                    featured={projectIndex === 0}
-                    links={project.data.links}
-                    role={project.data.role}
-                    slug={project.id}
-                    summary={project.data.summary}
-                    tags={project.data.tags}
-                    title={project.data.title}
-                  />
-                ))
-              }
+              {projects.map((project, projectIndex) => (
+                <ProjectCard
+                  classification={project.data.classification}
+                  demoAccess={project.data.demoAccess && jobStatus.acceptsEmailContact}
+                  featured={projectIndex === 0}
+                  links={project.data.links}
+                  role={project.data.role}
+                  slug={project.id}
+                  summary={project.data.summary}
+                  tags={project.data.tags}
+                  title={project.data.title}
+                />
+              ))}
             </div>
           </section>
 
@@ -125,29 +124,27 @@ const profilePageStructuredData = {
             </div>
 
             <div class="professional-grid">
-              {
-                companyProjectHighlights.map((highlight, highlightIndex) => (
-                  <article class="professional-card">
-                    <span class="professional-card__index" aria-hidden="true">
-                      {String(highlightIndex + 1).padStart(2, "0")}
-                    </span>
-                    <div class="professional-card__content">
-                      <h4>{highlight.title}</h4>
-                      <p class="professional-card__description">{highlight.description}</p>
-                    </div>
-                    <TagList items={highlight.tags} />
-                    {highlight.action && (
-                      <NewWindowLink
-                        class="text-link"
-                        href={highlight.action.href}
-                        accessibleLabel={highlight.action.label}
-                      >
-                        {highlight.action.label}
-                      </NewWindowLink>
-                    )}
-                  </article>
-                ))
-              }
+              {companyProjectHighlights.map((highlight, highlightIndex) => (
+                <article class="professional-card">
+                  <span class="professional-card__index" aria-hidden="true">
+                    {String(highlightIndex + 1).padStart(2, "0")}
+                  </span>
+                  <div class="professional-card__content">
+                    <h4>{highlight.title}</h4>
+                    <p class="professional-card__description">{highlight.description}</p>
+                  </div>
+                  <TagList items={highlight.tags} />
+                  {highlight.action && (
+                    <NewWindowLink
+                      class="text-link"
+                      href={highlight.action.href}
+                      accessibleLabel={highlight.action.label}
+                    >
+                      {highlight.action.label}
+                    </NewWindowLink>
+                  )}
+                </article>
+              ))}
             </div>
           </section>
         </div>

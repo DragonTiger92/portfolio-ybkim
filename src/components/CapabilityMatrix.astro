@@ -26,37 +26,35 @@ const { capabilities } = Astro.props;
       </tr>
     </thead>
     <tbody>
-      {
-        capabilities.map((capability) => (
-          <tr>
-            <th scope="row">
-              <strong>{capability.title}</strong>
-              <span>{capability.description}</span>
-            </th>
-            <td data-label="대표 설계 기준">{capability.standard}</td>
-            <td data-label="핵심 특징">
-              <ul class="capability-matrix__feature-list">
-                {capability.features.map((feature) => (
-                  <li>{feature}</li>
+      {capabilities.map((capability) => (
+        <tr>
+          <th scope="row">
+            <strong>{capability.title}</strong>
+            <span>{capability.description}</span>
+          </th>
+          <td data-label="대표 설계 기준">{capability.standard}</td>
+          <td data-label="핵심 특징">
+            <ul class="capability-matrix__feature-list">
+              {capability.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </td>
+          <td data-label="자동화 경로">{capability.automation}</td>
+          <td data-label="확인 근거">
+            <div class="capability-matrix__evidence">
+              <div class="capability-matrix__evidence-links">
+                {capability.evidenceLinks.map((evidenceLink) => (
+                  <NewWindowLink href={evidenceLink.href} accessibleLabel={evidenceLink.label}>
+                    {evidenceLink.label}
+                  </NewWindowLink>
                 ))}
-              </ul>
-            </td>
-            <td data-label="자동화 경로">{capability.automation}</td>
-            <td data-label="확인 근거">
-              <div class="capability-matrix__evidence">
-                <div class="capability-matrix__evidence-links">
-                  {capability.evidenceLinks.map((evidenceLink) => (
-                    <NewWindowLink href={evidenceLink.href} accessibleLabel={evidenceLink.label}>
-                      {evidenceLink.label}
-                    </NewWindowLink>
-                  ))}
-                </div>
-                <span>{capability.evidence}</span>
               </div>
-            </td>
-          </tr>
-        ))
-      }
+              <span>{capability.evidence}</span>
+            </div>
+          </td>
+        </tr>
+      ))}
     </tbody>
   </table>
 </section>
