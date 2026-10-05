@@ -30,8 +30,12 @@ const {
   rel="noopener noreferrer"
   aria-label={`${accessibleLabel}(${windowLabel})`}
 >
-  <span class="new-window-link__label affordance-pair__label"><slot /></span>
-  <span class="new-window-link__icon affordance-pair__mark" aria-hidden="true">↗</span>
+  <span class="new-window-link__label affordance-pair__label">
+    <slot />
+  </span>
+  <span class="new-window-link__icon affordance-pair__mark" aria-hidden="true">
+    ↗
+  </span>
 </a>
 
 <style>

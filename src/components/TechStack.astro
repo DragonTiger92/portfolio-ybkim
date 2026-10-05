@@ -24,33 +24,31 @@ function getInitials(name: string) {
   </div>
 
   <dl class="tech-stack__groups">
-    {
-      groups.map((group) => (
-        <div class="tech-stack__group">
-          <dt>{group.label}</dt>
-          <dd>
-            <ul class="tech-stack__items">
-              {group.items.map((item) => (
-                <li>
-                  {item.icon ? (
-                    <span
-                      class:list={["tech-stack__icon", `tech-stack__icon--${item.icon.slug}`]}
-                      aria-hidden="true"
-                    >
-                      <span class="tech-stack__mark" />
-                    </span>
-                  ) : (
-                    <span class="tech-stack__icon tech-stack__icon--fallback" aria-hidden="true">
-                      {getInitials(item.name)}
-                    </span>
-                  )}
-                  <span>{item.name}</span>
-                </li>
-              ))}
-            </ul>
-          </dd>
-        </div>
-      ))
-    }
+    {groups.map((group) => (
+      <div class="tech-stack__group">
+        <dt>{group.label}</dt>
+        <dd>
+          <ul class="tech-stack__items">
+            {group.items.map((item) => (
+              <li>
+                {item.icon ? (
+                  <span
+                    class:list={["tech-stack__icon", `tech-stack__icon--${item.icon.slug}`]}
+                    aria-hidden="true"
+                  >
+                    <span class="tech-stack__mark" />
+                  </span>
+                ) : (
+                  <span class="tech-stack__icon tech-stack__icon--fallback" aria-hidden="true">
+                    {getInitials(item.name)}
+                  </span>
+                )}
+                <span>{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    ))}
   </dl>
 </article>
