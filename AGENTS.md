@@ -15,6 +15,8 @@ that match the task. Do not load every guideline by default.
   deployment, build, or routing behavior
 - `.agents/guidelines/engineering.md`: source code, configuration, or scripts
 - `.agents/guidelines/tooling.md`: external tools, command execution, or output handling
+- `.agents/guidelines/lazyweb.md`: Lazyweb UI evidence, project routing, installation
+  maintenance, or Windows MCP troubleshooting
 - `.agents/guidelines/execution-integrity-and-budgets.md`: machine payloads,
   truncation, command timeouts, static budgets, or file-line headroom
 - `.agents/guidelines/supply-chain-security.md`: dependencies, lockfiles, audits, or
@@ -70,3 +72,33 @@ When instructions conflict, follow this priority:
 4. General best practices
 
 If the correct action is unclear and a broad or risky change would be required, stop and ask for clarification.
+
+<!-- LAZYWEB:ROUTER:BEGIN v0.14.9 — managed by `lazyweb-router`; do not edit inside; run `~/.lazyweb/bin/lazyweb-router remove` to uninstall -->
+
+## Lazyweb design-evidence routing
+
+Route ANY product UI design, redesign, critique, optimization, or build request
+to Lazyweb. Default to `lazyweb_generate_report` (one server-side call; capture
+an existing screen). Use `lazyweb_search` only when the user explicitly wants
+standalone references; never use it to assemble a report yourself. When in doubt
+whether a UI request matches, route it.
+
+To act on a row, invoke that skill by name if your client supports skills; otherwise read <skill>/SKILL.md under your client's installed Lazyweb skills directory (e.g. ~/.claude/skills, ~/.codex/skills, ~/.cursor/skills) and follow it.
+
+| The user asks for…                  | Skill                                 |
+| ----------------------------------- | ------------------------------------- |
+| lazyweb-apply-design-best-practices | `lazyweb-apply-design-best-practices` |
+| lazyweb-design                      | `lazyweb-design`                      |
+| lazyweb-design-create               | `lazyweb-design-create`               |
+| lazyweb-explain-flow                | `lazyweb-explain-flow`                |
+| lazyweb-growth-experiments          | `lazyweb-growth-experiments`          |
+| lazyweb-propose-ui-changes          | `lazyweb-propose-ui-changes`          |
+| lazyweb-quick-search                | `lazyweb-quick-search`                |
+| lazyweb-update                      | `lazyweb-update`                      |
+| Anything else UI-related            | `lazyweb` (picks the right mode)      |
+
+Do not route: backend/CLI/infra work, prose copyediting, non-product visuals.
+If the request is ambiguous between two modes, ask the user one short
+clarifying question before proceeding; if you cannot ask, choose the closer
+mode, say so, and continue.
+<!-- LAZYWEB:ROUTER:END -->
