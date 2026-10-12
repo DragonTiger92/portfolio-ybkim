@@ -145,3 +145,39 @@ test("publishes a minimal robots contract and public sitemap", async ({ request 
   expect(sitemapBody).not.toContain("<changefreq>");
   expect(sitemapBody).not.toContain("<priority>");
 });
+
+test("serves llms.txt as Markdown with reachable canonical page links", async ({ request }) => {
+  const response = await request.get("/llms.txt");
+
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-type"]).toMatch(/^text\/plain(?:;|$)/iu);
+
+  const body = await response.text();
+
+  expect(body).toMatch(/^# 개발자 김용범의 포트폴리오\n\n> .+/u);
+  expect(body.match(/^# /gmu)).toHaveLength(1);
+  expect(body).not.toMatch(/<!doctype|<html|\.contexts|tmp\/|[A-Za-z]:\\/iu);
+
+  const links = [...body.matchAll(/^- \[[^\n]+\]\((https:\/\/[^\s)]+)\): .+$/gmu)].map(
+    (match) => match[1],
+  );
+  const sitemapResponse = await request.get("/sitemap.xml");
+
+  expect(sitemapResponse.ok()).toBe(true);
+
+  const sitemapUrls = [...(await sitemapResponse.text()).matchAll(/<loc>(.*?)<\/loc>/gu)].map(
+    (match) => match[1],
+  );
+
+  expect(links.length).toBeGreaterThan(0);
+  expect(links.toSorted()).toEqual(sitemapUrls.toSorted());
+
+  for (const link of links) {
+    expect(new URL(link).origin).toBe(productionOrigin);
+
+    const pageResponse = await request.get(new URL(link).pathname);
+
+    expect(pageResponse.status()).toBe(200);
+    expect(await pageResponse.text()).toContain(`href="${link}"`);
+  }
+});

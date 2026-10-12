@@ -5,9 +5,17 @@ static portfolio. It complements the [Content Model](content-model.md), which
 defines the content types that fill these routes and sections.
 
 This is the product sitemap, not the generated search-engine `sitemap.xml`
-artifact. `PBI-029` publishes `robots.txt` and `sitemap.xml` from the canonical
+artifact. `PBI-029` publishes `robots.txt`, `sitemap.xml`, and `llms.txt` from the canonical
 `https://portfolio-ybkim.pages.dev/` origin; those files are delivery artifacts
 rather than product routes.
+
+`llms.txt` is a build-generated Markdown overview with an H1, a short summary,
+and links to the homepage and project details. Project titles, summaries, and
+URLs come from the same content collection and Astro site configuration as the
+pages and sitemap. It follows the [llms.txt proposal](https://llmstxt.org/) for
+agent discovery; it does not grant crawling or training permission. Publishing
+the actual file also prevents Cloudflare Pages' default SPA fallback from
+returning homepage HTML for this path, which Lighthouse would reject as Markdown.
 
 ## IA Goals
 
