@@ -155,8 +155,11 @@ collector, logging server, or post-launch optimization item without a concrete
 gap observed in production and a new architecture decision that accepts its
 privacy, security, and maintenance cost.
 
-Visitor-interest analytics belong to `PBI-015`, not the PH-003 health model.
-Keep route, referrer, and outbound-action metrics aggregate and privacy-aware.
+Visitor-interest analytics were cancelled under `PBI-015` on 2026-10-14 and
+are outside the PH-003 health model. This does not change the existing
+`PBI-032` monitoring baseline or `NFR-011` privacy safeguards. Any future
+analytics proposal requires a new evidence-scoped PBI; keep route, referrer,
+and outbound-action metrics aggregate and privacy-aware.
 Do not add a server-side collector, analytics proxy, database, or private
 dashboard unless a future ADR accepts the additional architecture, security, and
 operations scope.

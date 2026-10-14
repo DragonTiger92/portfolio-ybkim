@@ -165,5 +165,7 @@ governance work rather than product behavior.
 | `FR-008`       | `PBI-042` | Implement     |
 | `NFR-004`      | `PBI-042` | Verify        |
 | `NFR-010`      | `PBI-013` | Operate       |
-| `NFR-011`      | `PBI-015` | Implement     |
-| `NFR-011`      | `PBI-015` | Operate       |
+
+`PBI-015` was cancelled by the owner on 2026-10-14 and no longer provides
+planned implementation or operational coverage. `NFR-011` remains covered by
+`PBI-032` under PH-003.
