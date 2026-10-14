@@ -10,7 +10,7 @@ duplicating roadmap state in GitHub Issues or Milestones.
 | `PH-001` | Product Foundation Baseline         | Completed | No production tag | Establish docs, workflow, governance, and content base      |
 | `PH-002` | Static Portfolio Implementation     | Completed | No production tag | Complete the portfolio content and experience               |
 | `PH-003` | Deployment And Operations Readiness | Completed | `v1.0.0`          | Prepare release, deployment, public contact, and operations |
-| `PH-004` | Post-Launch Optimization            | Deferred  | No active target  | Refine discoverability, English reach, and product insights |
+| `PH-004` | Post-Launch Optimization            | Deferred  | No active target  | Refine discoverability and English reach                    |
 
 ## Phase Notes
 
@@ -31,9 +31,11 @@ duplicating roadmap state in GitHub Issues or Milestones.
   repeated provider, canonical, monitoring, and workflow verification. No
   purchased domain is required.
 - `PH-004` was deferred by the owner on 2026-08-21 after PH-003 closeout. Its
-  remaining `PBI-013`, `PBI-015`, and `PBI-042` work does not enter refinement,
-  scheduling, implementation, or phase-closure checks while deferred;
-  `PBI-014` remains cancelled. Reactivation requires an explicit owner decision
+  remaining `PBI-013` and `PBI-042` work does not enter refinement, scheduling,
+  implementation, or phase-closure checks while deferred. `PBI-014` remains
+  cancelled; the owner also cancelled `PBI-015` on 2026-10-14 because visitor
+  analytics are unnecessary for the portfolio's current needs. Reactivation of
+  deferred work requires an explicit owner decision
   that returns the phase to `Planned` and each selected PBI to `Backlog` or
   `Ready`.
 

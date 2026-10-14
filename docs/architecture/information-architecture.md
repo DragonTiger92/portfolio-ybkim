@@ -67,8 +67,14 @@ description, shareable URL, or a substantially different review task.
 
 ## Post-launch Analytics Scope
 
-Post-launch analytics should answer aggregate product questions, not identify
-individual visitors:
+`PBI-015` was cancelled by the owner on 2026-10-14 because visitor analytics
+are unnecessary for the portfolio's current needs. No visitor analytics are
+planned. The questions and tool comparison below are historical evaluation
+context, not active delivery scope. A future analytics proposal requires a new
+evidence-scoped PBI tied to a concrete product question.
+
+If analytics are approved in the future, answer aggregate product questions
+without identifying individual visitors:
 
 - Which route or project detail receives sustained attention?
 - Do visitors move from the landing page to project details?
@@ -105,23 +111,22 @@ Reference signals checked on 2026-07-01:
 | Option                       | Fit for this portfolio                                                  | Notes                                                                  |
 | ---------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | No visitor analytics         | Strongest privacy posture when product questions do not require metrics | Does not answer content-interest questions                             |
-| Cloudflare Web Analytics     | Preferred first candidate if `PBI-015` proceeds                         | Aligns with Cloudflare Pages and does not require a server component   |
+| Cloudflare Web Analytics     | Historical first candidate for cancelled `PBI-015`                      | Aligns with Cloudflare Pages and does not require a server component   |
 | Plausible hosted             | Good privacy-focused candidate                                          | Adds a paid SaaS account and external script decision                  |
 | Umami hosted                 | Good privacy-focused candidate                                          | Adds an external analytics account and script decision                 |
 | Umami self-hosted            | Not a baseline fit                                                      | Requires server and database ownership beyond the static architecture  |
 | Google Analytics 4           | Non-default candidate                                                   | Rich reports, but cookies and consent review add disproportionate cost |
 | Custom server-side analytics | Not needed for the initial scope                                        | Would require a new architecture decision and operational ownership    |
 
-If `PBI-015` proceeds, prefer Cloudflare Web Analytics or a similarly
-privacy-focused, cookie-less tool. Use Google Analytics only if a specific
+If a new analytics PBI is approved, revalidate this historical comparison and
+prefer a privacy-focused, cookie-less tool. Use Google Analytics only if a specific
 product question requires the GA ecosystem and the implementation also
 documents consent, disclosure, retention, and data-sharing settings.
 
 ## Server Component Review
 
-No server component is needed for the current sitemap or initial post-launch
-analytics scope. A static page plus provider-managed aggregate analytics is
-sufficient to review route and content interest.
+No server component is needed for the current sitemap. The cancelled analytics
+evaluation also identified no need for a custom server component.
 
 Add an ADR and update deployment, operations, security, and requirement docs
 before introducing any of the following:
@@ -135,10 +140,9 @@ before introducing any of the following:
 
 ## Feature Specification Review
 
-Do not add a `docs/specifications/` document for this work yet. The sitemap,
-requirements, PH-004 PBIs, and this architecture note are enough while analytics
-is limited to provider selection, aggregate route metrics, outbound action
-events, disclosure review, and a small review cadence.
+No `docs/specifications/` document is needed for the cancelled analytics work.
+The sitemap, requirements, and this architecture note retain its historical
+evaluation context.
 
 Create a feature specification only if the future implementation spans multiple
 PBIs, adds consent states, defines a custom event taxonomy, introduces a data
