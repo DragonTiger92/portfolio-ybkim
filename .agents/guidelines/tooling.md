@@ -82,11 +82,12 @@ workspace. WSL is not required for ordinary project work.
 - Keep one shell responsible for each command. Use Git Bash only when reproducing
   an explicitly Bash-specific workflow, and invoke it as a separate process
   rather than piping PowerShell output into Bash.
-- From PowerShell, continue to use `pnpm.cmd` for project commands. This selects
-  the Windows command shim deterministically and avoids dependence on PowerShell
-  script-shim resolution.
+- From PowerShell, prefer `pnpm.exe` when provided by nvm-windows. A vendor
+  `pnpm.cmd` launcher is also supported when its resolved version matches
+  `packageManager`. Check resolution with `Get-Command` and `--version`; avoid
+  depending on a `.ps1` shim that execution policy may block.
 - Treat `package.json` scripts as package-manager command-shell syntax. A script
-  that works through `pnpm.cmd` is not necessarily valid when pasted directly
+  that works through `pnpm.exe` is not necessarily valid when pasted directly
   into Windows PowerShell 5.1.
 - Prefer vendor-installed executable shims and normal `PATH` discovery. Use an
   absolute executable path only for diagnosis or when a tool is not yet visible
@@ -137,7 +138,7 @@ network permissions that can complete the approved task. Do not weaken the
 sandbox or switch to unrestricted execution merely to suppress a permission
 prompt.
 
-The project may use the vendor-installed `pnpm.cmd` shim discovered through
+The project may use a vendor-installed `pnpm.exe` or `pnpm.cmd` launcher discovered through
 `PATH` when its resolved version matches the `packageManager` contract and the
 active sandbox can execute it, use the selected package store, and access the
 project installation. Do not vendor a second pnpm binary, hardcode its

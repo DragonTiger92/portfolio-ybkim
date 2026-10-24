@@ -72,7 +72,7 @@ Before running a composite command:
    slower Windows process cleanup.
 3. Use recent measured duration when available, then add at least 50% headroom
    for a stable local check and more for first runs or cold caches.
-4. For this repository, use at least 240 seconds for `pnpm.cmd check` unless a
+4. For this repository, use at least 240 seconds for `pnpm.exe check` unless a
    newer measured run supports another value. Use focused commands during the
    edit loop.
 5. Do not describe an outer timeout as a test failure. Record the last completed

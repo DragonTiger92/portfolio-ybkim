@@ -2,7 +2,8 @@
 
 ## Package Policy
 
-- Use `pnpm` only. On Windows PowerShell, prefer `pnpm.cmd`.
+- Use `pnpm` only. Windows PowerShell examples use `pnpm.exe`; a verified
+  `pnpm.cmd` launcher is also supported when it matches `packageManager`.
 - Keep direct dependency versions exact in `package.json`.
 - Do not add or update dependencies without an explicit decision.
 - Prefer platform-native solutions for this small static site.
@@ -26,7 +27,7 @@ environment-specific paths and timestamps.
 | Root license   | `MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved`                      |
 | Output         | Local artifact, Actions evidence artifact, or GitHub Release asset; not committed |
 | Source         | `package.json`, `pnpm-lock.yaml`, local install metadata                          |
-| Generator      | `@cyclonedx/cdxgen` through `pnpm.cmd sbom:cyclonedx`                             |
+| Generator      | `@cyclonedx/cdxgen` through `pnpm.exe sbom:cyclonedx`                             |
 | Validation     | cdxgen schema validation plus the repository root-component contract              |
 | Dependencies   | Unresolved license metadata remains generator output                              |
 | Update         | Regenerate after dependency or project license changes                            |
@@ -173,7 +174,7 @@ review, and coverage limits are defined in the
 ## Verification
 
 - Parse generated `sbom.cdx.json` as JSON after regeneration.
-- Regenerate the root CycloneDX SBOM with `pnpm.cmd sbom:cyclonedx` after
+- Regenerate the root CycloneDX SBOM with `pnpm.exe sbom:cyclonedx` after
   dependency or project license changes.
-- Run `pnpm.cmd format:check` before completion.
-- Run `pnpm.cmd check` before treating a release candidate as ready.
+- Run `pnpm.exe format:check` before completion.
+- Run `pnpm.exe check` before treating a release candidate as ready.

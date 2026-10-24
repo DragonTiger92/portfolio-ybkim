@@ -131,7 +131,7 @@ substitute for design judgment. The enforced limits are:
 | Agent guideline Markdown                   |                200 |
 
 ESLint counts JavaScript and TypeScript after skipping blank and comment-only
-lines. `pnpm.cmd lint:size` counts non-empty lines for the other maintained text
+lines. `pnpm.exe lint:size` counts non-empty lines for the other maintained text
 files. Generated artifacts, dependency directories, private `.contexts/` source,
 and temporary `tmp/` material are excluded.
 
@@ -143,7 +143,7 @@ When a file reaches or exceeds its limit before requested content is added:
    modules.
 4. Refactor first, preserving public behavior and explicit data flow.
 5. Add the requested content to the module that owns that responsibility.
-6. Run the focused checks and then `pnpm.cmd check` when feasible.
+6. Run the focused checks and then `pnpm.exe check` when feasible.
 
 Do not split by arbitrary line ranges, create numbered `part1` or `part2` files,
 move unrelated exports into a generic utility module, or introduce barrel files

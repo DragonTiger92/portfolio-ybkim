@@ -42,4 +42,4 @@ visual page.
 - A visitor can understand the developer positioning within the first viewport.
 - A technical reviewer can trace major product choices through docs and ADRs.
 - Public project claims stay concise, specific, and safe to publish.
-- `pnpm.cmd check` remains the preferred full verification path.
+- `pnpm.exe check` remains the preferred full verification path.

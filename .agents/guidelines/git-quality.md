@@ -134,7 +134,7 @@ HTML, accessibility behavior, or runtime behavior, run the canonical project
 check when possible:
 
 ```bash
-pnpm.cmd check
+pnpm.exe check
 ```
 
 The check runs product unit tests, type checking, strict linting, maintained-file validation,
@@ -147,7 +147,7 @@ For a documentation-only iteration that only touches `docs/`, `.agents/`, or
 `AGENTS.md`, use the focused docs check for the active feedback loop:
 
 ```bash
-pnpm.cmd check:docs
+pnpm.exe check:docs
 ```
 
 The docs check runs warning-free Markdown linting, strict documentation
@@ -159,22 +159,22 @@ behavior.
 If the check fails, rerun only the failing stage or use these commands for focused work:
 
 ```bash
-pnpm.cmd check:docs
-pnpm.cmd typecheck
-pnpm.cmd lint:strict
-pnpm.cmd lint:size:strict
-pnpm.cmd test:governance
-pnpm.cmd test:file-size
-pnpm.cmd test:static-budget
-pnpm.cmd format:check
-pnpm.cmd build:bundle
-pnpm.cmd validate:static-budget
-pnpm.cmd validate:html:strict
-pnpm.cmd validate:standards:strict
-pnpm.cmd test:unit
-pnpm.cmd test:browser
-pnpm.cmd test:a11y
-pnpm.cmd test:e2e
+pnpm.exe check:docs
+pnpm.exe typecheck
+pnpm.exe lint:strict
+pnpm.exe lint:size:strict
+pnpm.exe test:governance
+pnpm.exe test:file-size
+pnpm.exe test:static-budget
+pnpm.exe format:check
+pnpm.exe build:bundle
+pnpm.exe validate:static-budget
+pnpm.exe validate:html:strict
+pnpm.exe validate:standards:strict
+pnpm.exe test:unit
+pnpm.exe test:browser
+pnpm.exe test:a11y
+pnpm.exe test:e2e
 ```
 
 `test:browser` runs the complete ordinary browser suite, `test:a11y` selects
@@ -186,15 +186,15 @@ keyboard flows. Selection commands do not replace the full completion gate.
 The separate pinned-container visual gate and baseline review rules are in
 `docs/process/testing.md`.
 
-Use the standalone `pnpm.cmd build` when the task specifically requires a complete build
+Use the standalone `pnpm.exe build` when the task specifically requires a complete build
 that includes its own type check.
 
 For formatting fixes or ordinary local lint feedback, use the relevant focused command:
 
 ```bash
-pnpm.cmd format
-pnpm.cmd lint
-pnpm.cmd lint:size
+pnpm.exe format
+pnpm.exe lint
+pnpm.exe lint:size
 ```
 
 If checks fail:
@@ -229,10 +229,10 @@ tests to keep local pushes predictable while still blocking type, lint, size,
 format, build, HTML, and standards failures. Pull request CI remains the
 authoritative full gate and also runs browser/E2E and fixed-container visual tests.
 
-Use `pnpm.cmd lint` for ordinary local lint feedback. Use `pnpm.cmd lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
+Use `pnpm.exe lint` for ordinary local lint feedback. Use `pnpm.exe lint:strict` for agent-led completion checks and CI-style verification because it treats warnings as failures.
 
 File-size validation follows the same intent: staged-file and ordinary local runs
-report advisory feedback, while `pnpm.cmd lint:size:strict` fails agent-led and
+report advisory feedback, while `pnpm.exe lint:size:strict` fails agent-led and
 completion checks when a maintained file exceeds its category limit.
 
 The same warning policy applies across static-analysis tools: ordinary human

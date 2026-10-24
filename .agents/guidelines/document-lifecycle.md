@@ -79,7 +79,7 @@ has ended and its useful content has a better home or no longer matters.
    temporary artifact.
 4. Remove or update references in navigation docs, guidelines, and handoff
    prompts.
-5. Run the smallest relevant check, usually `pnpm.cmd check:docs` for
+5. Run the smallest relevant check, usually `pnpm.exe check:docs` for
    documentation-only cleanup.
 6. Report what was removed, what was retained, and why.
 

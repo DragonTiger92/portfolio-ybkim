@@ -16,10 +16,10 @@ needed. Review version, platform checksums, release age, and compatibility befor
 updating the pin; never silently download a floating latest release in a hook.
 
 ```powershell
-pnpm.cmd secrets:install
-pnpm.cmd secrets:self-test
-pnpm.cmd secrets:staged
-pnpm.cmd secrets:history
+pnpm.exe secrets:install
+pnpm.exe secrets:self-test
+pnpm.exe secrets:staged
+pnpm.exe secrets:history
 ```
 
 - Run install once per checkout and again after an approved pin change.
@@ -34,7 +34,7 @@ pnpm.cmd secrets:history
   and scans additions in that commit range. It does not accept arbitrary Git
   options or refs.
 - `test:secrets` verifies safe result projection and failure handling without
-  requiring the binary or network; it is part of `pnpm.cmd check`.
+  requiring the binary or network; it is part of `pnpm.exe check`.
 
 ## CI And Scope
 

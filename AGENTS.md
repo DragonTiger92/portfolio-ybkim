@@ -44,7 +44,8 @@ For active continuation notes, check `.agents/handoffs/` when the user asks to r
 
 ## Always Follow
 
-- Use `pnpm` only. On Windows PowerShell, prefer `pnpm.cmd`.
+- Use `pnpm` only. On Windows PowerShell, prefer `pnpm.exe`; a verified
+  `pnpm.cmd` launcher is also supported.
 - Do not install, add, update, or import dependency packages, or mutate the
   lockfile, unless the user explicitly approves the exact action. A
   user-approved execution authorization envelope may cover non-mutating use of

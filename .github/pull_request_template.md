@@ -38,7 +38,7 @@
 
 - [ ] Branch name follows `<type>/<ph-NNN|pbi-NNN>-<short-kebab-description>`
 - [ ] Roadmap and Product Backlog statuses are updated where applicable
-- [ ] `pnpm.cmd check`
+- [ ] `pnpm.exe check`
 - [ ] Documentation or ADR impact reviewed
 - [ ] Public/private information boundary reviewed
 - [ ] Manual preview is not needed, or its branch, revision, and QA result are recorded in Notes

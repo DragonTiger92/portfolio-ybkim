@@ -14,7 +14,7 @@ changed.
 ## Decision
 
 Generate CycloneDX JSON with the pinned `@cyclonedx/cdxgen` development
-dependency through `pnpm.cmd sbom:cyclonedx`. The command writes local output to
+dependency through `pnpm.exe sbom:cyclonedx`. The command writes local output to
 `sbom.cdx.json`, but the generated file is not committed.
 
 The generator must not install dependencies while producing the SBOM. Missing

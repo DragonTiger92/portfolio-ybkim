@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { describe, it } from "node:test";
 
 import {
@@ -65,5 +66,28 @@ describe("GitHub Action pin validation", () => {
     assert.ok(sources.some(({ path }) => path.startsWith(".github/workflows/")));
     assert.ok(sources.some(({ path }) => path.startsWith(".github/actions/")));
     assert.deepEqual(validateGitHubActionSources(sources), []);
+  });
+
+  it("shares the repository Node.js version across metadata and all setup steps", async () => {
+    const nodeVersion = (await readFile(".node-version", "utf8")).trim();
+    const packageMetadata = JSON.parse(await readFile("package.json", "utf8"));
+    const sources = await readGitHubActionSources();
+    const nodeSources = sources.filter(({ content }) =>
+      content.includes("uses: actions/setup-node@"),
+    );
+
+    assert.match(nodeVersion, /^\d+\.\d+\.\d+$/u);
+    assert.equal(packageMetadata.engines.node, nodeVersion);
+    assert.ok(nodeSources.length > 0);
+
+    for (const { path, content } of nodeSources) {
+      const setupCount = content.match(/uses: actions\/setup-node@/gu)?.length;
+      const versionFileCount = content.match(
+        /^\s*node-version-file:\s*\.node-version\s*$/gmu,
+      )?.length;
+
+      assert.doesNotMatch(content, /^\s*node-version:/mu, path);
+      assert.equal(versionFileCount, setupCount, path);
+    }
   });
 });
