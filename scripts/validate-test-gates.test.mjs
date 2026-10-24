@@ -115,6 +115,9 @@ test("canonical CI checks reuse preinstalled browser dependencies without weaken
 
     assert.ok(buildJob.includes(`image: ${visualContainerImage}`));
     assert.ok(buildJob.includes("options: --ipc=host"));
+    assert.ok(buildJob.includes('GIT_CONFIG_COUNT: "1"'));
+    assert.ok(buildJob.includes("GIT_CONFIG_KEY_0: safe.directory"));
+    assert.ok(buildJob.includes("GIT_CONFIG_VALUE_0: ${{ github.workspace }}"));
     assert.ok(buildJob.includes("run: pnpm check\n"));
     assert.doesNotMatch(buildJob, /playwright install|apt-get/iu);
   }

@@ -135,6 +135,8 @@ configured local JRE when the container has no system Java. Browser coverage,
 gate requirements, and job timeouts remain unchanged.
 The availability build test creates and cleans its temporary output under
 `.astro/`, keeping Astro's asset moves on the workspace filesystem in containers.
+Both build jobs trust only the checked-out workspace through process-scoped Git
+configuration so tracked-file validators work across the container mount owner.
 
 The browser configs use Astro's public preview API through `preview:test` so
 agent auto-background detection cannot detach the server from Playwright.
