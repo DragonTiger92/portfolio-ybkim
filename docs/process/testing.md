@@ -126,6 +126,14 @@ CI runs that full suite once rather than running the overlapping accessibility
 and E2E selections separately. Use each selection for focused work and use
 `--list` to inspect its scope; a passing selection does not replace full `check`.
 
+CI Quality and Site Artifact builds reuse the same digest-pinned Playwright
+image as the visual gate. Its preinstalled Chromium, WebKit, and system libraries
+avoid repeated APT downloads during each job. Node.js still comes from
+`.node-version`; pnpm and project dependencies retain their existing exact pins.
+The Nu HTML checker uses the existing `vnu-jar` Java resolver, which prepares its
+configured local JRE when the container has no system Java. Browser coverage,
+gate requirements, and job timeouts remain unchanged.
+
 The browser configs use Astro's public preview API through `preview:test` so
 agent auto-background detection cannot detach the server from Playwright.
 Both configs start a fresh server on port 4321 and fail if it is occupied;

@@ -96,3 +96,29 @@ test("visual calls reuse the exact manifested dist even from a manual release ca
   assert.ok(workflow.includes("if: ${{ inputs.update-baselines }}"));
   assert.ok(workflow.includes("contents: read"));
 });
+
+test("canonical CI checks reuse preinstalled browser dependencies without weakening gates", async () => {
+  const packageMetadata = JSON.parse(await readFile("package.json", "utf8"));
+  const workflows = await Promise.all([
+    readWorkflow(".github/workflows/ci.yml"),
+    readWorkflow(".github/workflows/site-artifact.yml"),
+  ]);
+
+  assert.ok(
+    visualContainerImage.startsWith(
+      `mcr.microsoft.com/playwright:v${packageMetadata.devDependencies["@playwright/test"]}-noble@sha256:`,
+    ),
+  );
+
+  for (const workflow of workflows) {
+    const buildJob = workflow.slice(0, workflow.indexOf("  visual:\n"));
+
+    assert.ok(buildJob.includes(`image: ${visualContainerImage}`));
+    assert.ok(buildJob.includes("options: --ipc=host"));
+    assert.ok(buildJob.includes("run: pnpm check\n"));
+    assert.doesNotMatch(buildJob, /playwright install|apt-get/iu);
+  }
+
+  assert.ok(workflows[0].includes("timeout-minutes: 10\n"));
+  assert.ok(workflows[1].includes("timeout-minutes: 15\n"));
+});
