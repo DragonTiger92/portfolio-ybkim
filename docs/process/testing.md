@@ -133,6 +133,8 @@ avoid repeated APT downloads during each job. Node.js still comes from
 The Nu HTML checker uses the existing `vnu-jar` Java resolver, which prepares its
 configured local JRE when the container has no system Java. Browser coverage,
 gate requirements, and job timeouts remain unchanged.
+The availability build test creates and cleans its temporary output under
+`.astro/`, keeping Astro's asset moves on the workspace filesystem in containers.
 
 The browser configs use Astro's public preview API through `preview:test` so
 agent auto-background detection cannot detach the server from Playwright.
