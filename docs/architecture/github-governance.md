@@ -46,11 +46,11 @@ public branch naming convention instead.
 
 | Trigger                     | Required work                                                                                                 | Purpose                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Local docs iteration        | `pnpm.cmd check:docs`                                                                                         | Validate documentation without repeating the full gate                     |
+| Local docs iteration        | `pnpm.exe check:docs`                                                                                         | Validate documentation without repeating the full gate                     |
 | Local source iteration      | Focused lint, formatter, build, browser, or failing-stage command                                             | Give fast feedback without repeating the full gate                         |
 | Local `pre-commit`          | Secret scan, staged lint-staged fixes/formatting, then secret scan                                            | Keep the commit feedback loop fast                                         |
 | Local `pre-push`            | `pnpm check:static`                                                                                           | Block static-analysis, build, and HTML regressions                         |
-| Local completion / PR prep  | Full `pnpm.cmd check`                                                                                         | Verify the complete change once before handoff                             |
+| Local completion / PR prep  | Full `pnpm.exe check`                                                                                         | Verify the complete change once before handoff                             |
 | Pull request                | `Check` (secret scan, local checks, and container visual comparisons), `Dependency Review`, and `PR Metadata` | Gate merge readiness and policy metadata                                   |
 | Merged pull request         | Compare and update eligible open PR branches through `Sync Open PR Branches`                                  | Preserve the integrated `main` history in active same-repository work      |
 | Dependabot pull request     | Policy classification, required checks, and owner merge review                                                | Route updates by metadata, breaking markers, and `deps:validated` evidence |

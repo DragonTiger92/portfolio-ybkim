@@ -69,12 +69,12 @@ without unnecessary runtime dependencies or client-side data fetching.
 - Preserve SVG for vector artwork such as icons, logos, diagrams, and UI symbols
   when scalability, editability, or semantic structure is more valuable than a
   raster derivative.
-- Confirm `pnpm.cmd build` succeeds before release.
+- Confirm `pnpm.exe build` succeeds before release.
 - Prefer static content over client-side data fetching for portfolio copy.
 
 ### NFR-002 Phase 2 Static Build Budget
 
-`pnpm.cmd validate:static-budget` enforces these deterministic raw-byte limits
+`pnpm.exe validate:static-budget` enforces these deterministic raw-byte limits
 against the generated `dist/` directory:
 
 | Metric                                       |   Limit |

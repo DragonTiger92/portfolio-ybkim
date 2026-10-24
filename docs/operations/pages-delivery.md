@@ -120,7 +120,7 @@ if ($codexTaskRevision -ne $codexTaskRemoteRevision) {
   throw "Local HEAD must equal the pushed topic-branch revision."
 }
 
-pnpm.cmd check
+pnpm.exe check
 if ($LASTEXITCODE -ne 0) { throw "The canonical project check failed." }
 ```
 
@@ -154,7 +154,7 @@ try {
     throw "Invalid Pages project name."
   }
 
-  pnpm.cmd exec wrangler pages deploy dist `
+  pnpm.exe exec wrangler pages deploy dist `
     --project-name "$codexTaskPagesProject" `
     --branch "$codexTaskBranch" `
     --commit-hash "$codexTaskRevision" `
@@ -181,7 +181,7 @@ try {
 Do not store the token in repository files, persistent environment settings,
 task logs, or prompts. If the owner no longer holds the Pages-only token, either
 create a replacement with the reviewed narrow scope or deliberately accept the
-broader OAuth scopes requested by `pnpm.cmd exec wrangler login --use-keyring`.
+broader OAuth scopes requested by `pnpm.exe exec wrangler login --use-keyring`.
 
 The explicit non-production branch makes the Direct Upload a preview. Keep the
 returned deployment location in owner-controlled notes rather than repository

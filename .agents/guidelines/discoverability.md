@@ -117,7 +117,7 @@ metadata.
 
 ## Verification
 
-Run `pnpm.cmd check` when feasible. For focused discoverability work, also
+Run `pnpm.exe check` when feasible. For focused discoverability work, also
 inspect the built HTML or generated static files for:
 
 - expected `title`, description, canonical, and social metadata;

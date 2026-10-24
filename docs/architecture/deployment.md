@@ -9,7 +9,7 @@ previews.
 ## Build Flow
 
 ```text
-pnpm.cmd build
+pnpm.exe build
   -> astro check
   -> astro build
   -> dist/
@@ -25,10 +25,15 @@ client-side state. Changing the status requires a new build and deployment.
 
 ### Build Runtime Contract
 
-`PBI-010` fixed Node.js `24.18.0` and pnpm `11.10.0` as the exact build-tool
-contracts in `.node-version`, `package.json`, and GitHub Actions. Cloudflare
-Pages receives a checked `dist/` artifact through Direct Upload, so it does not
-run a separate application build or server runtime.
+`PBI-010` originally verified Node.js `24.18.0` and pnpm `11.10.0` as the exact
+build-tool baseline. The current Node.js version is `24.22.1`, selected from the
+root `.node-version`. Every Actions Node.js setup step, including deployment
+uploads, uses `node-version-file: .node-version` after checkout. The exact
+`package.json` Node.js engine declaration must match that file; governance tests
+enforce consistency. pnpm remains pinned to `11.10.0` in metadata and Actions.
+
+Cloudflare Pages receives a checked `dist/` artifact through Direct Upload, so it
+does not run a separate application build or server runtime.
 
 The `v1.0.0` and `v1.0.1` formal releases and subsequent `main` deliveries
 exercised the frozen install, canonical checks, static-budget validation, and
@@ -202,7 +207,7 @@ dispatch as the break-glass redeploy.
 
 ## Release Checks
 
-- Run `pnpm.cmd check` before treating a release candidate as ready.
+- Run `pnpm.exe check` before treating a release candidate as ready.
 - Verify built asset paths under the selected production base path.
 - Review public copy for private information before publishing.
 

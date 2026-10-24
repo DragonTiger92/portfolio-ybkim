@@ -10,17 +10,19 @@ Do not use:
 - `yarn`
 - `bun install`
 
-On Windows PowerShell, prefer `pnpm.cmd` because plain `pnpm` can fail under execution policy restrictions.
+On Windows PowerShell, prefer `pnpm.exe` when available. A verified `pnpm.cmd`
+launcher is also supported. Resolve the launcher and confirm its version matches
+`packageManager`; a `.ps1` shim may be blocked by execution policy.
 
 Unless explicitly requested, do not modify the lockfile manually.
 
 Preferred commands:
 
 ```bash
-pnpm.cmd install
-pnpm.cmd dev
-pnpm.cmd build
-pnpm.cmd lint
+pnpm.exe install
+pnpm.exe dev
+pnpm.exe build
+pnpm.exe lint
 ```
 
 If a command does not exist in `package.json`, report that clearly instead of inventing an alternative.
@@ -82,11 +84,11 @@ Do not add dependencies for trivial utilities.
 For verification, prefer non-mutating checks first:
 
 ```bash
-pnpm.cmd audit --audit-level moderate
-pnpm.cmd typecheck
-pnpm.cmd lint
-pnpm.cmd format:check
-pnpm.cmd build
+pnpm.exe audit --audit-level moderate
+pnpm.exe typecheck
+pnpm.exe lint
+pnpm.exe format:check
+pnpm.exe build
 ```
 
 ## Dependabot Manual Review
@@ -103,7 +105,7 @@ evidence-based repository inspection rather than automatic rejection.
 4. Compare the proposed manifest and lockfile diff with the package's actual
    role and check for unexpected transitive churn.
 5. With owner authorization for dependency execution, run the smallest focused
-   verification and then `pnpm.cmd check` before recommending merge.
+   verification and then `pnpm.exe check` before recommending merge.
 6. When the evidence supports the update, add the Terraform-managed
    `deps:validated` label. This attests repository-specific compatibility and
    records that the update is ready for an owner merge decision after required

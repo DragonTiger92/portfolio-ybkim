@@ -66,28 +66,30 @@ unrelated content and branding assertions in the accessibility spec.
 
 ## Commands And Gates
 
-Use Node.js `24.18.0`, pnpm `11.10.0`, Playwright `1.63.0`, and
+Use Node.js `24.22.1` from `.node-version`, pnpm `11.10.0`, Playwright `1.63.0`, and
 `@axe-core/playwright` `4.13.0`. Existing packages provide all test layers.
-Windows PowerShell uses `pnpm.cmd`; CI uses `pnpm`.
+Windows PowerShell examples use `pnpm.exe`; a verified `pnpm.cmd` launcher is
+also supported. CI and Git Bash use `pnpm`. All Actions Node.js setup steps read
+`.node-version`; governance tests check that `engines.node` matches that file.
 
 | Command                                      | Contract                                                       |
 | -------------------------------------------- | -------------------------------------------------------------- |
-| `pnpm.cmd test:unit`                         | Product unit tests without a build or server                   |
-| `pnpm.cmd test:unit:coverage`                | Product coverage as a diagnostic report                        |
-| `pnpm.cmd test:test-gates`                   | Fail-closed Check and artifact approval contracts              |
-| `pnpm.cmd test:contact-availability`         | Availability build integration contract                        |
-| `pnpm.cmd test:browser`                      | Fresh build followed by the full ordinary browser suite        |
-| `pnpm.cmd test:browser:run`                  | Full browser suite against a validated fresh `dist/`           |
-| `pnpm.cmd test:a11y`                         | Fresh build followed by tests selected with `--grep @a11y`     |
-| `pnpm.cmd test:a11y:run`                     | Accessibility selection against a validated fresh `dist/`      |
-| `pnpm.cmd test:e2e`                          | Fresh build followed by tests selected with `--grep @e2e`      |
-| `pnpm.cmd test:e2e:run`                      | Visitor-flow selection against a validated fresh `dist/`       |
-| `pnpm.cmd check`                             | Product unit tests and all existing static/build/browser gates |
+| `pnpm.exe test:unit`                         | Product unit tests without a build or server                   |
+| `pnpm.exe test:unit:coverage`                | Product coverage as a diagnostic report                        |
+| `pnpm.exe test:test-gates`                   | Fail-closed Check and artifact approval contracts              |
+| `pnpm.exe test:contact-availability`         | Availability build integration contract                        |
+| `pnpm.exe test:browser`                      | Fresh build followed by the full ordinary browser suite        |
+| `pnpm.exe test:browser:run`                  | Full browser suite against a validated fresh `dist/`           |
+| `pnpm.exe test:a11y`                         | Fresh build followed by tests selected with `--grep @a11y`     |
+| `pnpm.exe test:a11y:run`                     | Accessibility selection against a validated fresh `dist/`      |
+| `pnpm.exe test:e2e`                          | Fresh build followed by tests selected with `--grep @e2e`      |
+| `pnpm.exe test:e2e:run`                      | Visitor-flow selection against a validated fresh `dist/`       |
+| `pnpm.exe check`                             | Product unit tests and all existing static/build/browser gates |
 | `pnpm test:visual`                           | Pixel comparison in the fixed visual environment               |
 | `pnpm test:visual:update`                    | Explicit baseline generation in that same environment          |
 | `pnpm test:visual:probe`                     | Verify an intentional CSS regression produces a pixel diff     |
-| `pnpm.cmd preview:test`                      | Foreground Astro preview owned and stopped by Playwright       |
-| `pnpm.cmd smoke:http -- --artifact-dir dist` | Read-only deployed-output check using the verified artifact    |
+| `pnpm.exe preview:test`                      | Foreground Astro preview owned and stopped by Playwright       |
+| `pnpm.exe smoke:http -- --artifact-dir dist` | Read-only deployed-output check using the verified artifact    |
 
 Post-deployment smoke discovers public HTML routes from the expected artifact's
 sitemap. It compares each route's canonical and JSON-LD with that artifact,
@@ -103,7 +105,7 @@ rollback compatibility without weakening current schema-missing checks.
 For a verified artifact in `dist/`, run:
 
 ```powershell
-pnpm.cmd smoke:http -- --base-url https://portfolio-ybkim.pages.dev/ --artifact-dir dist
+pnpm.exe smoke:http -- --base-url https://portfolio-ybkim.pages.dev/ --artifact-dir dist
 ```
 
 Production delivery retries only the complete read-only smoke set, up to four
@@ -123,6 +125,18 @@ the intended source revision. `check` runs `check:static` followed by
 CI runs that full suite once rather than running the overlapping accessibility
 and E2E selections separately. Use each selection for focused work and use
 `--list` to inspect its scope; a passing selection does not replace full `check`.
+
+CI Quality and Site Artifact builds reuse the same digest-pinned Playwright
+image as the visual gate. Its preinstalled Chromium, WebKit, and system libraries
+avoid repeated APT downloads during each job. Node.js still comes from
+`.node-version`; pnpm and project dependencies retain their existing exact pins.
+The Nu HTML checker uses the existing `vnu-jar` Java resolver, which prepares its
+configured local JRE when the container has no system Java. Browser coverage,
+gate requirements, and job timeouts remain unchanged.
+The availability build test creates and cleans its temporary output under
+`.astro/`, keeping Astro's asset moves on the workspace filesystem in containers.
+Both build jobs trust only the checked-out workspace through process-scoped Git
+configuration so tracked-file validators work across the container mount owner.
 
 The browser configs use Astro's public preview API through `preview:test` so
 agent auto-background detection cannot detach the server from Playwright.

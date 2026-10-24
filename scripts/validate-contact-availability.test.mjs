@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { readFile, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 
@@ -21,7 +20,9 @@ function isExpectedGitHubProfile(href) {
 }
 
 test("omits email data and actions from a not-looking static build", async () => {
-  const outputDirectory = path.join(tmpdir(), `portfolio-contact-${process.pid}-${Date.now()}`);
+  const cacheDirectory = path.resolve(".astro");
+  await mkdir(cacheDirectory, { recursive: true });
+  const outputDirectory = await mkdtemp(path.join(cacheDirectory, "portfolio-contact-"));
   const astroCli = path.resolve("node_modules/astro/bin/astro.mjs");
 
   try {

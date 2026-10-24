@@ -5,7 +5,7 @@
   "license": "MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved",
   "packageManager": "pnpm@11.10.0",
   "engines": {
-    "node": "24.18.0",
+    "node": "24.22.1",
     "pnpm": "11.10.0"
   },
   "type": "module",

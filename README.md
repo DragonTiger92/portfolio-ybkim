@@ -53,17 +53,19 @@
 
 ## 로컬 검증
 
-저장소는 Node.js `24.18.0`과 pnpm `11.10.0`을 기준으로 합니다. Windows PowerShell에서는 다음과 같이 실행합니다.
+저장소는 `.node-version`에 지정한 Node.js `24.22.1`과 pnpm `11.10.0`을 기준으로 합니다. CI와 배포 업로드 단계도 `.node-version`을 읽습니다.
+
+Windows PowerShell 예시는 nvm-windows가 제공하는 `pnpm.exe`를 사용합니다. 다른 설치 방식의 `pnpm.cmd`도 실행 경로와 버전이 프로젝트의 `packageManager`와 일치하면 사용할 수 있습니다. CI와 Git Bash에서는 `pnpm`을 사용합니다.
 
 ```powershell
-pnpm.cmd install --frozen-lockfile
-pnpm.cmd dev
+pnpm.exe install --frozen-lockfile
+pnpm.exe dev
 ```
 
 전체 제품 검증은 하나의 canonical command로 수행합니다.
 
 ```powershell
-pnpm.cmd check
+pnpm.exe check
 ```
 
 이 명령은 제품 단위 테스트, type checking, strict lint, repository policy와 budget 검증, static build, HTML standards validation 및 전체 브라우저 테스트를 순서대로 실행합니다. `test:browser`는 전체 일반 브라우저 검사, `test:a11y`는 접근성 검사, `test:e2e`는 방문자의 사용자 흐름 검사를 실행합니다. 각 명령은 새 빌드 후 검사하며, `:run` 명령은 검증된 최신 `dist/`를 사용합니다. 접근성과 사용자 흐름에 모두 해당하는 테스트는 두 선택 범위에 포함되지만, `check`와 일반 CI에서는 전체 브라우저 검사를 한 번 실행합니다.
