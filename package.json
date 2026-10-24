@@ -85,7 +85,7 @@
     "@eslint/markdown": "8.0.3",
     "@playwright/test": "1.63.0",
     "@typescript-eslint/parser": "8.70.0",
-    "astro": "7.2.8",
+    "astro": "7.3.3",
     "eslint": "10.11.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-astro": "3.2.1",
