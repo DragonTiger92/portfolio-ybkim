@@ -46,6 +46,27 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
+- The 2026-11-02 security refresh pins `fast-uri@3.1.9` and `qs@6.16.1`
+  and scopes `body-parser@2.4.0` to `@cyclonedx/cdxgen@12.8.4`, which declares
+  `2.3.0` exactly. These changes resolve all four `fast-uri` advisories,
+  the `body-parser` compressed-body denial of service, and the `qs.stringify`
+  denial of service. All three releases meet the seven-day cooldown.
+  The local audit then reports no high, critical, or low findings and two
+  moderate findings: [minimatch](https://github.com/advisories/GHSA-g3hv-75wg-m249)
+  and [glob](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4).
+  The owner deferred those two fixes to preserve the cooldown. Their patched
+  versions, `minimatch@11.0.1` and `glob@14.0.2`, both become eligible by
+  2026-11-04 07:26:04 KST. Recheck advisories, publication times, and upstream
+  compatibility then: these are major upgrades outside current consumer ranges,
+  and a standalone `minimatch` override would also affect `glob@13` internals.
+  Do not suppress the remaining findings or treat the audit as passing.
+- [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp),
+  the disputed `http-cache-semantics` advisory behind alert `#69`, was withdrawn
+  on 2026-10-28 because it was not a valid vulnerability. On 2026-11-02, the
+  repository alert API returns withdrawn status and the advisory is absent from
+  the local audit. The discussion in advisory-database issue `#10139` remains
+  open; that does not override the official withdrawal. Retain the current
+  `4.2.0` resolution without claiming that a newer version fixed this report.
 - The October 2026 `devalue` refresh resolves Astro's indirect dependency from
   `5.9.2` to `5.9.4`, including the four security fixes first published in
   [5.9.3](https://github.com/sveltejs/devalue/releases/tag/v5.9.3).
