@@ -51,15 +51,21 @@ policy review instead of inventing a license conclusion.
   `2.3.0` exactly. These changes resolve all four `fast-uri` advisories,
   the `body-parser` compressed-body denial of service, and the `qs.stringify`
   denial of service. All three releases meet the seven-day cooldown.
-  The local audit then reports no high, critical, or low findings and two
+  The local audit then reported no high, critical, or low findings and two
   moderate findings: [minimatch](https://github.com/advisories/GHSA-g3hv-75wg-m249)
   and [glob](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4).
-  The owner deferred those two fixes to preserve the cooldown. Their patched
-  versions, `minimatch@11.0.1` and `glob@14.0.2`, both become eligible by
-  2026-11-04 07:26:04 KST. Recheck advisories, publication times, and upstream
-  compatibility then: these are major upgrades outside current consumer ranges,
-  and a standalone `minimatch` override would also affect `glob@13` internals.
-  Do not suppress the remaining findings or treat the audit as passing.
+  The owner initially deferred those two fixes to preserve the cooldown.
+- The 2026-11-04 follow-up pins `minimatch@11.0.2` and `glob@14.0.3`
+  together, resolving both remaining moderate advisories. Their new transitive
+  dependencies are `@isaacs/nonrecursive-glob-match@1.0.2` and
+  `path-scurry@3.0.0`; all four releases meet the seven-day cooldown by
+  2026-11-04 13:08:40 KST. `minimumReleaseAge: 10080` remains unchanged,
+  with no exception. The local all-severity audit reports no known vulnerabilities.
+  These temporary overrides exceed current consumer ranges: minimatch 11 removes
+  regexp-oriented APIs, and glob 14 adopts its matcher implementation. Existing
+  ESLint, typescript-eslint, and cdxgen consumers use retained matching and
+  traversal APIs. Revalidate both overrides together when those consumers change;
+  remove them when upstream ranges resolve patched versions and verification passes.
 - [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp),
   the disputed `http-cache-semantics` advisory behind alert `#69`, was withdrawn
   on 2026-10-28 because it was not a valid vulnerability. On 2026-11-02, the
