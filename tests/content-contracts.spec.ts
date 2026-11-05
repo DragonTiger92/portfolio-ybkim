@@ -91,8 +91,8 @@ test("presents inspectable public results and disclosure-safe company projects",
   await expect(projectCards).toHaveCount(3);
   await expect(projectCards.locator("h4")).toHaveText(["portfolio-ybkim", "Karly", "Book-Kong"]);
   await expect(projectCards.nth(0).locator(".project-card__links a")).toHaveCount(2);
-  await expect(projectCards.nth(1).locator(".project-card__links a")).toHaveCount(4);
-  await expect(projectCards.nth(2).locator(".project-card__links a")).toHaveCount(4);
+  await expect(projectCards.nth(1).locator(".project-card__links :is(a, button)")).toHaveCount(4);
+  await expect(projectCards.nth(2).locator(".project-card__links :is(a, button)")).toHaveCount(4);
   const professionalCards = page.locator("#projects .professional-card");
 
   await expect(professionalCards).toHaveCount(3);

@@ -24,20 +24,22 @@ for (const project of demoProjects) {
       await page.goto(project.route);
 
       const section = page.locator(".demo-access");
-      const gmailLink = section.getByRole("link", {
-        name: `${project.title} 테스트 계정 요청 메일 작성(Gmail 새 창)`,
+      const requestButton = section.getByRole("button", {
+        name: `${project.title} 테스트 계정 요청`,
       });
       const dialog = section.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
 
       await expect(section.getByRole("heading", { name: "데모 로그인" })).toBeVisible();
       await expect(section).toContainText("만료형 보안 링크");
-      await expect(gmailLink).toHaveAttribute("target", "_blank");
-      await expect(gmailLink).toHaveAttribute("rel", "noopener noreferrer");
-      expectGmailRequestUrl(await gmailLink.getAttribute("href"), project.title);
+      await expect(requestButton).toHaveText("테스트 계정 요청");
+      await expect(requestButton).toHaveAttribute("aria-haspopup", "dialog");
+      await expect(requestButton).toHaveAttribute("aria-controls", "demo-access-dialog");
       await expect(section.locator('a[href^="mailto:"]')).toHaveCount(0);
       await expect(dialog).not.toBeVisible();
 
-      await gmailLink.click();
+      await requestButton.click();
+      await expect(page).toHaveURL(project.route);
+      expect(page.context().pages()).toHaveLength(1);
 
       const continueLink = dialog.getByRole("link", { name: "Gmail에서 계속(새 창)" });
       const closeButton = dialog.getByRole("button", { name: "닫기" });
@@ -54,11 +56,26 @@ for (const project of demoProjects) {
       );
       await expect(continueLink).toHaveAttribute("target", "_blank");
       await expect(continueLink).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(continueLink.locator(".new-window-link__icon")).toHaveText("↗");
       expectGmailRequestUrl(await continueLink.getAttribute("href"), project.title);
       await expect(closeButton).toHaveCSS("cursor", "pointer");
       await expect(copyButton).toHaveCSS("cursor", "pointer");
       await closeButton.click();
       await expect(dialog).not.toBeVisible();
+
+      await page
+        .context()
+        .route("https://mail.google.com/**", (route) =>
+          route.fulfill({ contentType: "text/html", body: "Gmail navigation verified" }),
+        );
+      await requestButton.click();
+      const popupEvent = page.waitForEvent("popup");
+      await continueLink.click();
+      const popup = await popupEvent;
+      await popup.waitForLoadState();
+      expectGmailRequestUrl(popup.url(), project.title);
+      await expect(dialog).not.toBeVisible();
+      await popup.close();
     },
   );
 }
@@ -69,14 +86,22 @@ test("keeps each landing request beside its deployment demo", async ({ page }) =
   for (const project of demoProjects) {
     const card = page.locator(".project-card").filter({ hasText: project.title });
     const deploymentDemo = card.getByRole("link", { name: "배포 데모" });
-    const gmailLink = card.getByRole("link", {
-      name: `${project.title} 테스트 계정 요청 메일 작성(Gmail 새 창)`,
+    const requestButton = card.getByRole("button", {
+      name: `${project.title} 테스트 계정 요청`,
     });
 
     await expect(deploymentDemo).toBeVisible();
-    await expect(gmailLink).toHaveAttribute("target", "_blank");
-    await expect(gmailLink).toHaveAttribute("rel", "noopener noreferrer");
-    expectGmailRequestUrl(await gmailLink.getAttribute("href"), project.title);
+    await expect(requestButton).toHaveText("테스트 계정 요청");
+    await requestButton.click();
+    const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
+    await expect(dialog).toBeVisible();
+    await expect(page).toHaveURL("/");
+    expect(page.context().pages()).toHaveLength(1);
+    const continueLink = dialog.getByRole("link", { name: "Gmail에서 계속(새 창)" });
+    expectGmailRequestUrl(await continueLink.getAttribute("href"), project.title);
+    await expect(continueLink.locator(".new-window-link__icon")).toHaveText("↗");
+    await page.keyboard.press("Escape");
+    await expect(requestButton).toBeFocused();
     await expect(card.locator('a[href^="mailto:"]')).toHaveCount(0);
   }
 });
@@ -100,7 +125,7 @@ test(
 
     await page.goto("/projects/karly/");
     await page.clock.pauseAt(new Date("2026-09-30T01:00:00Z"));
-    await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
+    await page.getByRole("button", { name: "Karly 테스트 계정 요청" }).click();
 
     const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
     const copyButton = dialog.getByRole("button", { name: "메일 양식 복사" });
@@ -133,5 +158,5 @@ test("keeps demo access requests off projects that do not need credentials", asy
 
   await page.goto("/");
   const portfolioCard = page.locator(".project-card").filter({ hasText: "portfolio-ybkim" });
-  await expect(portfolioCard.getByRole("link", { name: /테스트 계정 요청/ })).toHaveCount(0);
+  await expect(portfolioCard.locator("[data-demo-access-trigger]")).toHaveCount(0);
 });

@@ -158,7 +158,9 @@ test("keeps demo-request affordances visible in light and dark button states", a
 
     const requestLink = page.locator("[data-demo-access-trigger]");
 
-    await expectAffordanceColor(requestLink, "--color-text");
+    await expect(requestLink).toHaveText("테스트 계정 요청");
+    await expect(requestLink).toHaveCSS("cursor", "pointer");
+    await expect(requestLink.locator(".affordance-pair__mark")).toHaveCount(0);
     await requestLink.click();
 
     const continueLink = page.locator("[data-demo-access-continue]");

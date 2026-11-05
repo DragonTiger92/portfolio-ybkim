@@ -15,7 +15,7 @@ test("karly", async ({ page }) => {
 
 test("demo dialog", async ({ page }) => {
   await prepareVisualPage(page, "/projects/karly/");
-  await page.getByRole("link", { name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)" }).click();
+  await page.getByRole("button", { name: "Karly 테스트 계정 요청" }).click();
   const dialog = page.getByRole("dialog", { name: "Gmail에서 테스트 계정 요청" });
   await expect(dialog).toBeVisible();
   await waitForVisualAssets(page);
