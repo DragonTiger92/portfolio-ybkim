@@ -19,16 +19,9 @@
     return { continueLink, copyButton, dialog, status, template };
   }
 
-  function hasNavigationOverride(event) {
-    return event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
-  }
-
-  function openRequestDialog(event, trigger, elements) {
-    if (hasNavigationOverride(event) || typeof elements.dialog.showModal !== "function") return;
-
+  function openRequestDialog(trigger, elements) {
     const url = new URL(trigger.href);
 
-    event.preventDefault();
     elements.template.value = [
       `받는 사람: ${url.searchParams.get("to") ?? ""}`,
       `제목: ${url.searchParams.get("su") ?? ""}`,
@@ -95,10 +88,21 @@
 
   const elements = getDialogElements();
 
-  if (!elements) return;
+  if (!elements || typeof elements.dialog.showModal !== "function") return;
 
   document.querySelectorAll("[data-demo-access-trigger]").forEach((trigger) => {
-    trigger.addEventListener("click", (event) => openRequestDialog(event, trigger, elements));
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = trigger.className;
+    button.classList.remove("new-window-link");
+    button.textContent = trigger.querySelector(".new-window-link__label").textContent.trim();
+    button.setAttribute("aria-label", trigger.dataset.demoAccessLabel);
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-controls", elements.dialog.id);
+    button.setAttribute("data-demo-access-trigger", "");
+    button.addEventListener("click", () => openRequestDialog(trigger, elements));
+    trigger.replaceWith(button);
   });
   elements.continueLink.addEventListener("click", () => elements.dialog.close());
   elements.copyButton.addEventListener("click", () => copyRequestTemplate(elements));

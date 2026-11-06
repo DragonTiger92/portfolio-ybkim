@@ -60,12 +60,12 @@ test(
 );
 
 test(
-  "contains dialog focus and restores it to the request link after Escape",
+  "contains dialog focus and restores it to the request button after Escape",
   { tag: ["@a11y", "@e2e"] },
   async ({ page }) => {
     await page.goto("/projects/karly/");
-    const trigger = page.getByRole("link", {
-      name: "Karly 테스트 계정 요청 메일 작성(Gmail 새 창)",
+    const trigger = page.getByRole("button", {
+      name: "Karly 테스트 계정 요청",
     });
     await tabTo(page, trigger);
     await page.keyboard.press("Enter");

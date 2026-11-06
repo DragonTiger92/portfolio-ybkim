@@ -1,4 +1,15 @@
 @layer components {
+  button[data-demo-access-trigger] {
+    cursor: pointer;
+  }
+
+  button.text-link[data-demo-access-trigger] {
+    padding: 0;
+    text-decoration: underline;
+    background: transparent;
+    border: 0;
+  }
+
   .demo-dialog {
     inline-size: min(calc(100% - (var(--space-4) * 2)), 36rem);
     max-block-size: calc(100dvb - (var(--space-4) * 2));
