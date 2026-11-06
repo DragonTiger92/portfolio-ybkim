@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { describe, it } from "node:test";
 
 import { expectedCycloneDxComponent, validateCycloneDxSbom } from "./validate-cyclonedx-sbom.mjs";
@@ -18,6 +19,36 @@ describe("CycloneDX SBOM contract", () => {
     assert.deepEqual(validateCycloneDxSbom(createValidReport()), []);
   });
 
+  it("accepts the application identity from the package manifest", async () => {
+    const manifest = JSON.parse(
+      await readFile(new URL("../package.json", import.meta.url), "utf8"),
+    );
+    const report = createValidReport();
+    const purl = `pkg:npm/${manifest.name}@${manifest.version}`;
+
+    Object.assign(report.metadata.component, {
+      "bom-ref": purl,
+      purl,
+      version: manifest.version,
+    });
+    assert.deepEqual(validateCycloneDxSbom(report), []);
+  });
+
+  it("rejects the previous release's application identity", () => {
+    const report = createValidReport();
+
+    Object.assign(report.metadata.component, {
+      "bom-ref": "pkg:npm/portfolio-ybkim@1.0.2",
+      purl: "pkg:npm/portfolio-ybkim@1.0.2",
+      version: "1.0.2",
+    });
+    const errors = validateCycloneDxSbom(report).join("\n");
+
+    assert.match(errors, /metadata\.component\.version/u);
+    assert.match(errors, /metadata\.component\.purl/u);
+    assert.match(errors, /metadata\.component\.bom-ref/u);
+  });
+
   it("rejects format, specification, type, name, and version drift", () => {
     const report = createValidReport();
     report.bomFormat = "SPDX";
@@ -31,7 +62,9 @@ describe("CycloneDX SBOM contract", () => {
     assert.match(errors, /specVersion must be 1\.6/u);
     assert.match(errors, /metadata\.component\.type must be application/u);
     assert.match(errors, /metadata\.component\.name must be portfolio-ybkim/u);
-    assert.match(errors, /metadata\.component\.version must be 1\.0\.2/u);
+    assert.ok(
+      errors.includes(`metadata.component.version must be ${expectedCycloneDxComponent.version}`),
+    );
   });
 
   it("requires the exact root purl, bom-ref, and sole license expression", () => {

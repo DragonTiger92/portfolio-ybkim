@@ -3,7 +3,10 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const expectedLicense = "MIT AND LicenseRef-Portfolio-Materials-All-Rights-Reserved";
-const expectedPurl = "pkg:npm/portfolio-ybkim@1.0.2";
+const { version: expectedVersion } = JSON.parse(
+  await readFile(new URL("../package.json", import.meta.url), "utf8"),
+);
+const expectedPurl = `pkg:npm/portfolio-ybkim@${expectedVersion}`;
 
 export const expectedCycloneDxComponent = Object.freeze({
   "bom-ref": expectedPurl,
@@ -11,7 +14,7 @@ export const expectedCycloneDxComponent = Object.freeze({
   name: "portfolio-ybkim",
   purl: expectedPurl,
   type: "application",
-  version: "1.0.2",
+  version: expectedVersion,
 });
 
 function isRecord(value) {
