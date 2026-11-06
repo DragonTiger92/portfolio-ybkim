@@ -86,10 +86,44 @@
     });
   }
 
+  function isBackdropEvent(event, dialog) {
+    if (event.target !== dialog) return false;
+
+    const bounds = dialog.getBoundingClientRect();
+
+    return (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    );
+  }
+
+  function enableBackdropDismiss(dialog) {
+    let startedOnBackdrop = false;
+
+    dialog.addEventListener("pointerdown", (event) => {
+      startedOnBackdrop = event.isPrimary && event.button === 0 && isBackdropEvent(event, dialog);
+    });
+    dialog.addEventListener("pointercancel", () => {
+      startedOnBackdrop = false;
+    });
+    dialog.addEventListener("click", (event) => {
+      const shouldDismiss = startedOnBackdrop && isBackdropEvent(event, dialog);
+
+      startedOnBackdrop = false;
+      if (shouldDismiss) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      startedOnBackdrop = false;
+    });
+  }
+
   const elements = getDialogElements();
 
   if (!elements || typeof elements.dialog.showModal !== "function") return;
 
+  enableBackdropDismiss(elements.dialog);
   document.querySelectorAll("[data-demo-access-trigger]").forEach((trigger) => {
     const button = document.createElement("button");
 
