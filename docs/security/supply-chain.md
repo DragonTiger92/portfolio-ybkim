@@ -46,6 +46,19 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
+- The 2026-11-14 Astro refresh pins `astro@7.4.7`, fixing
+  [dynamic-tag XSS](https://github.com/advisories/GHSA-mh32-jxcr-mh9f) and
+  [case-variant image path traversal](https://github.com/advisories/GHSA-r3h5-4585-7x3w).
+  The static site has no Node adapter or untrusted dynamic element names.
+  Regenerating from the reviewed default-branch lockfile avoids Dependabot's
+  too-new transitive resolutions; the frozen install passes the unchanged
+  seven-day cooldown and the all-severity audit reports no known vulnerabilities.
+  Remove the obsolete Astro 7.3.3-only overrides: the upstream graph now resolves
+  `vite@8.3.6`, `zod@4.6.7`, and `http-cache-semantics@4.3.0`.
+  The owner-approved Dependency Review exception covers only `tslib@2.9.1`:
+  Microsoft's [versioned license](https://github.com/microsoft/tslib/blob/v2.9.1/LICENSE.txt)
+  is `0BSD`, permitting use, modification, and distribution. The global license
+  allowlist remains unchanged; future versions require review again.
 - The 2026-11-02 security refresh pins `fast-uri@3.1.9` and `qs@6.16.1`
   and scopes `body-parser@2.4.0` to `@cyclonedx/cdxgen@12.8.4`, which declares
   `2.3.0` exactly. These changes resolve all four `fast-uri` advisories,
