@@ -55,6 +55,8 @@ Prefer tests that protect observable policy, failures, or boundary behavior.
 External Gmail authentication, mail delivery, and external demo applications
 are outside ordinary CI. Tests validate the links, local dialog, and request
 payload without logging in or sending mail.
+Ordinary test workers reuse real pinned CDN font responses; screenshot tests
+still fetch and validate the approved CDN font independently.
 
 Classify browser tests by their observable purpose. Tag axe, semantic structure,
 target size, keyboard, and focus checks with `@a11y`; tag visitor interaction

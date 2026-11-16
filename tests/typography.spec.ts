@@ -11,6 +11,11 @@ test("loads the pinned Pretendard stylesheet through shared font tokens", async 
   await expect(stylesheet).toHaveCount(1);
   await expect(stylesheet).toHaveAttribute("crossorigin", "anonymous");
 
+  const loadedFontCount = await page.evaluate(
+    async () => (await document.fonts.load('16px "Pretendard Variable"', "포트폴리오")).length,
+  );
+  expect(loadedFontCount).toBeGreaterThan(0);
+
   const bodyFontFamily = await page
     .locator("body")
     .evaluate((body) => getComputedStyle(body).fontFamily);
