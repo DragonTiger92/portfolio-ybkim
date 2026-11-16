@@ -5,8 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@cyclonedx/cdxgen@12.8.4>body-parser': 2.4.0
-  '@cyclonedx/cdxgen@12.8.4>compression': 1.8.2
+  '@cyclonedx/cdxgen@12.9.1>body-parser': 2.4.0
   brace-expansion: 5.0.12
   fast-uri: 3.1.9
   glob: 14.0.3
@@ -1724,8 +1723,8 @@ packages:
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
 
-  body-parser@2.3.0:
-    resolution: {integrity: sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw==}
+  body-parser@2.4.0:
+    resolution: {integrity: sha512-Ifk1KcLrxaGt1occQagQNFNNOqRt1LFuehEnHHzB8Z6cRgIxRU1TBaiIsUiCdA+gy5PL7Y1IX31DNKkRmxtXjQ==}
     engines: {node: '>=18'}
 
   boolbase@1.0.0:
@@ -4119,7 +4118,7 @@ snapshots:
       '@cdxgen/cdxgen-plugins-bin-windows-amd64': 2.5.1
       '@cdxgen/cdxgen-plugins-bin-windows-arm64': 2.5.1
       '@cdxgen/safer-exec': 0.15.0
-      body-parser: 2.3.0
+      body-parser: 2.4.0
       compression: 1.8.2
       connect: 3.7.0
       jsonata: 2.2.2
@@ -5155,7 +5154,7 @@ snapshots:
 
   blake3-wasm@2.1.5: {}
 
-  body-parser@2.3.0:
+  body-parser@2.4.0:
     dependencies:
       bytes: 3.1.2
       content-type: 2.1.0

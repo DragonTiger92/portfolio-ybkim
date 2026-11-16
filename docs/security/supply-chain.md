@@ -46,6 +46,14 @@ policy review instead of inventing a license conclusion.
 
 ## Transitive Dependency Decisions
 
+- The 2026-11-16 CDXGen refresh pins `@cyclonedx/cdxgen@12.9.1` with its
+  [12.x security fixes](https://github.com/cdxgen/cdxgen/releases/tag/v12.9.1).
+  Move the scoped `body-parser@2.4.0` override to this consumer: upstream still
+  declares vulnerable `2.3.0`, so the old `12.8.4` selector no longer protects it.
+  Remove the old compression override because this release declares patched
+  `compression@1.8.2` directly. Keep the seven-day cooldown and paired
+  `glob@14.0.3` / `minimatch@11.0.2` overrides; revalidate the SBOM and project
+  checks against the updated graph before merge.
 - The 2026-11-14 Astro refresh pins `astro@7.4.7`, fixing
   [dynamic-tag XSS](https://github.com/advisories/GHSA-mh32-jxcr-mh9f) and
   [case-variant image path traversal](https://github.com/advisories/GHSA-r3h5-4585-7x3w).
