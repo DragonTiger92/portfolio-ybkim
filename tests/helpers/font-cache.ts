@@ -1,8 +1,7 @@
-import type { Buffer } from "node:buffer";
-import type { Route } from "@playwright/test";
+import type { APIResponse, Route } from "@playwright/test";
 
 interface FontAsset {
-  body: Buffer;
+  body: Awaited<ReturnType<APIResponse["body"]>>;
   headers: Record<string, string>;
   status: number;
 }
